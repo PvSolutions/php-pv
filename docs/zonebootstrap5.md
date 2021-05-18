@@ -1,20 +1,20 @@
-# Zone Bootstrap 4 - PHP-PV
+# Zone Bootstrap 5 - PHP-PV
 
 ## Pre-Requis
 
 Librairie | Lien | Requis
 ------------ | ------------- | -------------
 JQuery | https://www.jquery.com | Oui
-Bootstrap4 | https://www.getbootstrap.com | Oui
+Bootstrap5 | https://www.getbootstrap.com | Oui
 
 ## Installation
 
 - Téléchargez le code source de PHP-PV sur GITHUB. Décompressez le fichier **php-pv-master.zip**. Copiez le contenu du dossier **php-pv-master** dans **/**
 - Copiez le fichier **jquery-3.x.x.min.js** dans **/js/jquery.min.js**
 - Copiez le fichier **jquery-migrate-1.x.x.min.js** dans **/js/jquery-migrate.min.js**
-- Décompressez le fichier **bootstrap-4.x.x-dist.zip**. Copiez :
-	- **bootstrap-4.x.x-dist/css/bootstrap.min.css** vers **/css/bootstrap.min.css**
-	- **bootstrap-4.x.x-dist/js/bootstrap.min.js** vers **/js/bootstrap.min.js**
+- Décompressez le fichier **bootstrap-5.x.x-dist.zip**. Copiez :
+	- **bootstrap-5.x.x-dist/css/bootstrap.min.css** vers **/css/bootstrap.min.css**
+	- **bootstrap-5.x.x-dist/js/bootstrap.bundle.min.js** vers **/js/bootstrap.min.js**
 - Décompressez le fichier **fontawesome-free-5.x.x-web.zip**. Copiez le contenu du dossier **fontawesome-free-5.x.x-web/** dans **/vendor/fontawesome/**
 
 Vous devez avoir la structure suivante :
@@ -37,8 +37,8 @@ Créez votre fichier **/mazone1.php** avec ce contenu :
 <?php
 // Librairie PHP-PV par defaut
 include dirname(__FILE__)."/php-pv-master/Pv/Base.class.php" ;
-// Librairie Bootstrap 4
-include dirname(__FILE__)."/php-pv-master/Pv/IHM/Bootstrap4.class.php" ;
+// Librairie Bootstrap 5
+include dirname(__FILE__)."/php-pv-master/Pv/IHM/Bootstrap5.class.php" ;
 // Déclarer la classe Application
 class MonApplication1 extends PvApplication
 {
@@ -49,8 +49,9 @@ $this->InsereIHM('mazone1', new MaZone1) ;
 }
 }
 // Déclarer la zone Bootstrap
-class MaZone1 extends PvZoneBaseBootstrap4
+class MaZone1 extends PvZoneBaseBootstrap5
 {
+public $InclureFontAwesome = 1 ; // Inclure la librairie Font Awesome
 public $AccepterTousChemins = 1 ;
 protected function ChargeScripts()
 {
@@ -75,84 +76,17 @@ $app->Execute() ;
 
 Résultat dans un navigateur :
 
-![Resultat zone bootstrap 4](images/zonebootstrap4_apercu1.png)
+![Resultat zone bootstrap 5](images/zonebootstrap5_apercu1.png)
 
 Voici le code source de cette page dans le navigateur :
 
-![Code source zone bootstrap 4](images/zonebootstrap4_codesource1.png)
-
-## Scripts Membership
-
-Les scripts membership de la Zone ont été adaptés pour Bootstrap 4.
-
-Nom du script | Classe script web | Pré-requis | Description
-------------- | ------------- | ------------- | -------------
-connexion | PvScriptConnexionBootstrap4 | Aucun | Page de connexion
-deconnexion | PvScriptDeconnexionBootstrap4 | Aucun | Page de déconnexion
-recouvreMP | PvScriptRecouvreMPBootstrap4 | Aucun | Page pour récupérer son mot de passe, à partir du login et du mot de passe
-inscription | PvScriptInscriptionBootstrap4 | Mettre la propriété $AutoriserInscription à 1 | Page d'inscription d'un membre
-modifPrefs | PvScriptModifPrefsBootstrap4 | Mettre la propriété $AutoriserModifPrefs à 1 | Page pour modifier les informations du membre (nom, prénom, …)
-doitChangerMotPasse | PvScriptDoitChangerMotPasseBootstrap4 | Aucun | Page qui force le membre connecté à changer son mot de passe
-changeMotPasse | PvScriptChangeMotPasseBootstrap4 | Aucun | Page pour modifier le mot de passe
-ajoutMembre | PvScriptAjoutMembreMSBootstrap4 | Aucun | Ajouter un membre
-importMembre | PvScriptImportMembreMSBootstrap4 | Aucun | Importe des membres à partir d'un fichier CSV
-modifMembre | PvScriptModifMembreMSBootstrap4 | Aucun | Modifie un membre
-supprMembre | PvScriptSupprMembreMSBootstrap4 | Aucun | Désactive le membre
-listeMembres | PvScriptListeMembresMSBootstrap4 | Aucun | Liste les membres
-ajoutProfil | PvScriptAjoutProfilMSBootstrap4 | Aucun | Ajoute un profil
-modifProfil | PvScriptModifProfilMSBootstrap4 | Aucun | Modifie un profil
-supprProfil | PvScriptSupprProfilMSBootstrap4 | Aucun | Désactive le profil
-listeProfils | PvScriptListeProfilsMSBootstrap4 | Aucun | Liste les profils
-ajoutRole | PvScriptAjoutRoleMSBootstrap4 | Aucun | Ajoute un rôle
-modifRole | PvScriptModifRoleMSBootstrap4 | Aucun | Modifie un rôle
-supprRole | PvScriptSupprRoleMSBootstrap4 | Aucun | Désactive un rôle
-listeRoles | PvScriptListeRolesMSBootstrap4 | Aucun | Liste les rôles
-
-### Composants web Membership
-
-Plusieurs scripts de membership utilisent un tableau de données ou un formulaire de données spécifique.
-
-Nom du script | Classe script web | Classe composant | Propriété composant
-------------- | ------------- | ------------- | -------------
-recouvreMP | PvScriptRecouvreMPWeb | PvFormulaireRecouvreMPBootstrap4 | $NomClasseFormulaireDonnees
-inscription | PvScriptInscriptionWeb | PvFormulaireInscriptionMembreBootstrap4 | $NomClasseFormulaireDonnees
-modifPrefs | PvScriptModifPrefsWeb | PvFormulaireModifInfosBootstrap4 | $NomClasseFormulaireDonnees
-doitChangerMotPasse | PvScriptDoitChangerMotPasseWeb | PvFormulaireDoitChangerMotPasseBootstrap4 | $NomClasseFormulaireDonnees
-changeMotPasse | PvScriptChangeMotPasseWeb | PvFormulaireChangeMotPasseBootstrap4 | $NomClasseFormulaireDonnees
-ajoutMembre | PvScriptAjoutMembreBootstrap4 | PvFormulaireAjoutMembreBootstrap4 | $NomClasseFormulaireDonnees
-modifMembre | PvScriptModifMembreBootstrap4 | PvFormulaireModifMembreBootstrap4 | $NomClasseFormulaireDonnees
-supprMembre | PvScriptSupprMembreBootstrap4 | PvFormulaireSupprMembreBootstrap4 | $NomClasseFormulaireDonnees
-listeMembres | PvScriptListeMembresBootstrap4 | PvTableauMembresBootstrap4Html | $NomClasseTableauDonnees
-ajoutProfil | PvScriptAjoutProfilBootstrap4 | PvFormulaireAjoutProfilBootstrap4 | $NomClasseFormulaireDonnees
-modifProfil | PvScriptModifProfilBootstrap4 | PvFormulaireModifProfilBootstrap4 | $NomClasseFormulaireDonnees
-supprProfil | PvScriptSupprProfilBootstrap4 | PvFormulaireSupprProfilBootstrap4 | $NomClasseFormulaireDonnees
-listeProfils | PvScriptListeProfilsBootstrap4 | PvTableauProfilsBootstrap4 | $NomClasseTableauDonnees
-ajoutRole | PvScriptAjoutRoleBootstrap4 | PvFormulaireAjoutRoleBootstrap4 | $NomClasseFormulaireDonnees
-modifRole | PvScriptModifRoleBootstrap4 | PvFormulaireModifRoleBootstrap4 | $NomClasseFormulaireDonnees
-supprRole | PvScriptSupprRoleBootstrap4 | PvFormulaireSupprRoleBootstrap4 | $NomClasseFormulaireDonnees
-listeRoles | PvScriptListeRolesBootstrap4 | PvTableauAjoutRoleBootstrap4 | $NomClasseTableauDonnees
-
-```php
-class MaZoneWeb1 extends PvZoneWebSimple
-{
-public $AutoriserModifPrefs = 1 ; 
-public $NomClasseScriptConnexion = "MonScriptModifPrefs" ;
-// ...
-}
-class FormModifPrefs1 extends PvFormulaireModifInfosBootstrap4
-{
-}
-class MonScriptModifPrefs extends PvScriptModifPrefsWeb
-{
-public $NomClasseFormulaireDonnees = "FormModifPrefs1" ;
-}
-```
+![Code source zone bootstrap 5](images/zonebootstrap5_codesource1.png)
 
 ## Tableau de données
 
 ### Utilisation
 
-La classe tableau de données est **PvTableauDonneesBootstrap4**.
+La classe tableau de données est **PvTableauDonneesBootstrap5**.
 
 ```php
 class MonScript1 extends PvScriptWebSimple
@@ -160,10 +94,11 @@ class MonScript1 extends PvScriptWebSimple
 public function DetermineEnvironnement()
 {
 // Déclaration
-$this->Tabl1 = new PvTableauDonneesBootstrap4() ;
+$this->Tabl1 = new PvTableauDonneesBootstrap5() ;
 // Chargement de la config
 $this->Tabl1->AdopteScript("tabl1", $this) ;
 $this->Tabl1->ChargeConfig() ;
+$this->Tabl1->ToujoursAfficher = 1 ;
 // Définition des filtres de sélection
 $this->Flt1 = $this->Tabl1->InsereFltSelectHttpGet("expression", "champ1 like concat(<self>, '%')") ;
 $this->Flt1->Libelle = "Expression" ;
@@ -185,6 +120,8 @@ return $ctn ;
 }
 ```
 
+![Tableau de données bootstrap 5](images/zonebootstrap5_tableau.png)
+
 ### Propriétés / Méthodes spécifiques
 
 Propriété | Description
@@ -195,7 +132,7 @@ $ClsBstFormFiltresSelect | Classe CSS de la largeur du formulaire des filtres. P
 
 ```php
 // Déclaration
-$this->Tabl1 = new PvTableauDonneesBootstrap4() ;
+$this->Tabl1 = new PvTableauDonneesBootstrap5() ;
 // Propriétés spécifiques
 $this->Tabl1->ClasseCSSRangee = "table-bordered" ;
 $this->Tabl1->ClsBstBoutonSoumettre = "btn-info" ;
@@ -207,7 +144,7 @@ $this->Tabl1->AdopteScript("tabl1", $this) ;
 
 ### Utilisation
 
-La classe Grille de données est **PvGrilleDonneesBootstrap4**.
+La classe Grille de données est **PvGrilleDonneesBootstrap5**.
 
 ```php
 class MonScript1 extends PvScriptWebSimple
@@ -215,7 +152,7 @@ class MonScript1 extends PvScriptWebSimple
 public function DetermineEnvironnement()
 {
 // Déclaration
-$this->Tabl1 = new PvGrilleDonneesBootstrap4() ;
+$this->Tabl1 = new PvGrilleDonneesBootstrap5() ;
 // Chargement de la config
 $this->Tabl1->AdopteScript("gril1", $this) ;
 $this->Tabl1->ChargeConfig() ;
@@ -252,7 +189,7 @@ $ClsBstFormFiltresSelect | Classe CSS de la largeur du formulaire des filtres. P
 
 ```php
 // Déclaration
-$this->Tabl1 = new PvGrilleDonneesBootstrap4() ;
+$this->Tabl1 = new PvGrilleDonneesBootstrap5() ;
 // Propriétés spécifiques
 $this->Tabl1->ClasseCSSRangee = "table-bordered" ;
 $this->Tabl1->ClsBstBoutonSoumettre = "btn-info" ;
@@ -264,10 +201,10 @@ $this->Tabl1->AdopteScript("tabl1", $this) ;
 
 ### Utilisation
 
-La classe formulaire de données est **PvFormulaireDonneesBootstrap4**.
+La classe formulaire de données est **PvFormulaireDonneesBootstrap5**.
 
 ```php
-class MonScript2 extends PvScriptWebSimple
+class MonScript1 extends PvScriptWebSimple
 {
 public $Form1 ;
 public $Flt1 ;
@@ -275,12 +212,12 @@ public $Flt2 ;
 public function DetermineEnvironnement()
 {
 // Initiation
-$this->Form1 = new PvFormulaireDonneesBootstrap4() ;
+$this->Form1 = new PvFormulaireDonneesBootstrap5() ;
 // Toujours afficher le formulaire
 $this->Form1->InclureElementEnCours = 0 ;
 $this->Form1->InclureTotalElements = 0 ;
 // Définir la classe commande "Executer"
-$this->Form1->NomClasseCommandeExecuter = "MaCmdExecScript2" ;
+// $this->Form1->NomClasseCommandeExecuter = "MaCmdExecScript2" ;
 // Liaison avec le script en cours
 $this->Form1->AdopteScript("form1", $this) ;
 // Chargement de la config
@@ -301,6 +238,8 @@ return $ctn ;
 }
 ```
 
+![Formulaire de données bootstrap 5](images/zonebootstrap5_formulaire.png)
+
 ### Propriétés / Méthodes spécifiques
 
 Propriété | Description
@@ -312,7 +251,7 @@ $ClasseCSSCommandeAnnuler | Classe CSS Bootstrap du bouton "Annuler". Par défaut
 
 ```php
 // Initiation
-$this->Form1 = new PvFormulaireDonneesBootstrap4() ;
+$this->Form1 = new PvFormulaireDonneesBootstrap5() ;
 // Toujours afficher le formulaire
 $this->Form1->InclureElementEnCours = 0 ;
 $this->Form1->InclureTotalElements = 0 ;
@@ -327,10 +266,10 @@ $this->Form1->AdopteScript("form1", $this) ;
 ### Utilisation
 
 Le dessinateur de filtres fournit le rendu des filtres selection d'un tableau de données et filtres édition du formulaire de données.
-Pour Bootstrap 4, utilisez la classe **PvDessinFiltresDonneesBootstrap4**.
+Pour Bootstrap 5, utilisez la classe **PvDessinFiltresDonneesBootstrap5**.
 
 ```php
-class DessinFiltres1 extends PvDessinFiltresDonneesBootstrap4
+class DessinFiltres1 extends PvDessinFiltresDonneesBootstrap5
 {
 }
 
@@ -339,7 +278,7 @@ class MonScript1 extends PvScriptWebSimple
 public function DetermineEnvironnement()
 {
 // Déclaration
-$this->Tabl1 = new PvGrilleDonneesBootstrap4() ;
+$this->Tabl1 = new PvGrilleDonneesBootstrap5() ;
 // Chargement de la config
 $this->Tabl1->AdopteScript("gril1", $this) ;
 $this->Tabl1->ChargeConfig() ;
@@ -363,3 +302,70 @@ $ClsBstLibelle | Classe CSS Bootstrap complémentaire du libellé
 $AlignLibelle | Alignement html du libellé
 $ColXsEditeur | Classe CSS Bootstrap complémentaire de l'éditeur
 $AlignEditeur | Alignment html de l'éditeur
+
+## Scripts Membership
+
+Les scripts membership de la Zone ont été adaptés pour Bootstrap 5.
+
+Nom du script | Classe script web | Pré-requis | Description
+------------- | ------------- | ------------- | -------------
+connexion | PvScriptConnexionBootstrap5 | Aucun | Page de connexion
+deconnexion | PvScriptDeconnexionBootstrap5 | Aucun | Page de déconnexion
+recouvreMP | PvScriptRecouvreMPBootstrap5 | Aucun | Page pour récupérer son mot de passe, à partir du login et du mot de passe
+inscription | PvScriptInscriptionBootstrap5 | Mettre la propriété $AutoriserInscription à 1 | Page d'inscription d'un membre
+modifPrefs | PvScriptModifPrefsBootstrap5 | Mettre la propriété $AutoriserModifPrefs à 1 | Page pour modifier les informations du membre (nom, prénom, …)
+doitChangerMotPasse | PvScriptDoitChangerMotPasseBootstrap5 | Aucun | Page qui force le membre connecté à changer son mot de passe
+changeMotPasse | PvScriptChangeMotPasseBootstrap5 | Aucun | Page pour modifier le mot de passe
+ajoutMembre | PvScriptAjoutMembreMSBootstrap5 | Aucun | Ajouter un membre
+importMembre | PvScriptImportMembreMSBootstrap5 | Aucun | Importe des membres à partir d'un fichier CSV
+modifMembre | PvScriptModifMembreMSBootstrap5 | Aucun | Modifie un membre
+supprMembre | PvScriptSupprMembreMSBootstrap5 | Aucun | Désactive le membre
+listeMembres | PvScriptListeMembresMSBootstrap5 | Aucun | Liste les membres
+ajoutProfil | PvScriptAjoutProfilMSBootstrap5 | Aucun | Ajoute un profil
+modifProfil | PvScriptModifProfilMSBootstrap5 | Aucun | Modifie un profil
+supprProfil | PvScriptSupprProfilMSBootstrap5 | Aucun | Désactive le profil
+listeProfils | PvScriptListeProfilsMSBootstrap5 | Aucun | Liste les profils
+ajoutRole | PvScriptAjoutRoleMSBootstrap5 | Aucun | Ajoute un rôle
+modifRole | PvScriptModifRoleMSBootstrap5 | Aucun | Modifie un rôle
+supprRole | PvScriptSupprRoleMSBootstrap5 | Aucun | Désactive un rôle
+listeRoles | PvScriptListeRolesMSBootstrap5 | Aucun | Liste les rôles
+
+### Composants web Membership
+
+Plusieurs scripts de membership utilisent un tableau de données ou un formulaire de données spécifique.
+
+Nom du script | Classe script web | Classe composant | Propriété composant
+------------- | ------------- | ------------- | -------------
+recouvreMP | PvScriptRecouvreMPWeb | PvFormulaireRecouvreMPBootstrap5 | $NomClasseFormulaireDonnees
+inscription | PvScriptInscriptionWeb | PvFormulaireInscriptionMembreBootstrap5 | $NomClasseFormulaireDonnees
+modifPrefs | PvScriptModifPrefsWeb | PvFormulaireModifInfosBootstrap5 | $NomClasseFormulaireDonnees
+doitChangerMotPasse | PvScriptDoitChangerMotPasseWeb | PvFormulaireDoitChangerMotPasseBootstrap5 | $NomClasseFormulaireDonnees
+changeMotPasse | PvScriptChangeMotPasseWeb | PvFormulaireChangeMotPasseBootstrap5 | $NomClasseFormulaireDonnees
+ajoutMembre | PvScriptAjoutMembreBootstrap5 | PvFormulaireAjoutMembreBootstrap5 | $NomClasseFormulaireDonnees
+modifMembre | PvScriptModifMembreBootstrap5 | PvFormulaireModifMembreBootstrap5 | $NomClasseFormulaireDonnees
+supprMembre | PvScriptSupprMembreBootstrap5 | PvFormulaireSupprMembreBootstrap5 | $NomClasseFormulaireDonnees
+listeMembres | PvScriptListeMembresBootstrap5 | PvTableauMembresBootstrap5Html | $NomClasseTableauDonnees
+ajoutProfil | PvScriptAjoutProfilBootstrap5 | PvFormulaireAjoutProfilBootstrap5 | $NomClasseFormulaireDonnees
+modifProfil | PvScriptModifProfilBootstrap5 | PvFormulaireModifProfilBootstrap5 | $NomClasseFormulaireDonnees
+supprProfil | PvScriptSupprProfilBootstrap5 | PvFormulaireSupprProfilBootstrap5 | $NomClasseFormulaireDonnees
+listeProfils | PvScriptListeProfilsBootstrap5 | PvTableauProfilsBootstrap5 | $NomClasseTableauDonnees
+ajoutRole | PvScriptAjoutRoleBootstrap5 | PvFormulaireAjoutRoleBootstrap5 | $NomClasseFormulaireDonnees
+modifRole | PvScriptModifRoleBootstrap5 | PvFormulaireModifRoleBootstrap5 | $NomClasseFormulaireDonnees
+supprRole | PvScriptSupprRoleBootstrap5 | PvFormulaireSupprRoleBootstrap5 | $NomClasseFormulaireDonnees
+listeRoles | PvScriptListeRolesBootstrap5 | PvTableauAjoutRoleBootstrap5 | $NomClasseTableauDonnees
+
+```php
+class MaZoneWeb1 extends PvZoneWebSimple
+{
+public $AutoriserModifPrefs = 1 ; 
+public $NomClasseScriptConnexion = "MonScriptModifPrefs" ;
+// ...
+}
+class FormModifPrefs1 extends PvFormulaireModifInfosBootstrap5
+{
+}
+class MonScriptModifPrefs extends PvScriptModifPrefsWeb
+{
+public $NomClasseFormulaireDonnees = "FormModifPrefs1" ;
+}
+```

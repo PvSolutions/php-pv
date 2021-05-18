@@ -13,7 +13,7 @@ Ainsi, vous aurez :
 	index.php
 ```	
 
-Ensuite, créez un fichier PHP dans ce dossier.
+Ensuite, créez un fichier index.php dans le dossier **Solution1**.
 Comme première instruction, incluez le fichier « **../php-pv-master/Pv/Base.class.php** »
 
 ```php
