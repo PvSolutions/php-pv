@@ -1,0 +1,72 @@
+<?php
+
+namespace Pv\ZoneWeb\ScriptMembership ;
+
+class ListeMembres extends \Pv\ZoneWeb\Script\Script
+{
+	public $TitreDocument = "Liste des membres" ;
+	public $Titre = "Liste des membres" ;
+	public $AfficherId = true ;
+	public $PrivilegesAfficherId = array() ;
+	public function DetermineEnvironnement()
+	{
+		parent::DetermineEnvironnement() ;
+		$this->DetermineTablPrinc() ;
+	}
+	protected function DetermineTablPrinc()
+	{
+		$membership = & $this->ZoneParent->Membership ;
+		$bd = & $membership->Database ;
+		$this->TablPrinc = $this->CreeTablPrinc() ;
+		$this->TablPrinc->AdopteScript("tablPrinc", $this) ;
+		$this->TablPrinc->ChargeConfig() ;
+		if($this->AfficherId == 0 || (count($this->PrivilegesAfficherId) > 0 && $this->PossedePrivileges($this->PrivilegesAfficherId)))
+		{
+			$this->DefColId = $this->TablPrinc->InsereDefColCachee($membership->IdMemberColumn) ;
+		}
+		else
+		{
+			$this->DefColId = $this->TablPrinc->InsereDefCol($membership->IdMemberColumn, strtoupper($membership->IdMemberColumn)) ;
+		}
+		$this->ChargeFiltresPrinc() ;
+		$this->DefColLogin = $this->TablPrinc->InsereDefCol($membership->LoginMemberColumn, $membership->LoginMemberLabel) ;
+		$this->DefColNom = $this->TablPrinc->InsereDefCol($membership->LastNameMemberColumn, $membership->LastNameMemberLabel) ;
+		$this->DefColPrenom = $this->TablPrinc->InsereDefCol($membership->FirstNameMemberColumn, $membership->FirstNameMemberLabel) ;
+		$this->DefColActif = $this->TablPrinc->InsereDefColBool($membership->EnableMemberColumn, $membership->EnableMemberLabel) ;
+		$this->DefColActif->AlignElement = "center" ;
+		$this->DefColProfil = $this->TablPrinc->InsereDefCol("MEMBER_PROFILE", $membership->ProfileMemberLabel) ;
+		$this->ChargeDefsColPrinc() ;
+		$this->DefColActs = $this->TablPrinc->InsereDefColActions($this->ZoneParent->EnteteActionsTablPrinc) ;
+		$this->LienModif = $this->TablPrinc->InsereLienAction(
+			$this->DefColActs,
+			$this->ZoneParent->ScriptModifMembre->ObtientUrlFmt(array('id' => '${id}')),
+			$this->ZoneParent->LibelleModif
+		) ;
+		$this->ChargeLiensActPrinc() ;
+		$this->LienSuppr = $this->TablPrinc->InsereLienAction(
+			$this->DefColActs,
+			$this->ZoneParent->ScriptSupprMembre->ObtientUrlFmt(array('id' => '${id}')),
+			$this->ZoneParent->LibelleSuppr
+		) ;
+		$this->TablPrinc->FournisseurDonnees = new \Pv\FournisseurDonnees\Sql ;
+		$this->TablPrinc->FournisseurDonnees->RequeteSelection = '(select t1.*, t2.'.$bd->EscapeVariableName($membership->TitleProfileColumn).' MEMBER_PROFILE from '.$bd->EscapeTableName($membership->MemberTable).' t1
+inner join '.$bd->EscapeTableName($membership->ProfileTable).' t2 on t1.'.$bd->EscapeVariableName($membership->ProfileMemberColumn).'=t2.'.$bd->EscapeVariableName($membership->IdProfileColumn).')';
+		$this->TablPrinc->FournisseurDonnees->BaseDonnees = & $bd ;
+	}
+	protected function ChargeFiltresPrinc()
+	{
+	}
+	protected function ChargeDefsColPrinc()
+	{
+	}
+	protected function ChargeLiensActPrinc()
+	{
+	}
+	public function RenduSpecifique()
+	{
+		$ctn = '' ;
+		$ctn .= parent::RenduSpecifique() ;
+		$ctn .= $this->TablPrinc->RenduDispositif() ;
+		return $ctn ;
+	}
+}
