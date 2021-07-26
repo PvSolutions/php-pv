@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
-class \Pv\ZoneWeb\SiteWeb\BtnLikeFacebook extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class \Pv\ZoneWeb\SiteWeb\BtnLikeFacebook extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $Url ;
 	public $DataLayout = "standard" ;

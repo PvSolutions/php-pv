@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
-class CommentaireFacebook extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class CommentaireFacebook extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $AppId = PV_ID_APP_FACEBOOK_DEFAUT ; // 
 	public $Version = '2.9' ;

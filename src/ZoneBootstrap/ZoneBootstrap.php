@@ -6,22 +6,18 @@ class ZoneBootstrap extends \Pv\ZoneWeb\ZoneWeb
 {
 	public $LangueDocument = "en" ;
 	public $EncodageDocument = "utf-8" ;
-	public $InclureCtnJsEntete = 1 ;
-	public $InclureJQuery = 1 ;
+	public $AutoriserModifPrefs = true ;
+	public $InclureCtnJsEntete = true ;
+	public $InclureJQuery = true ;
 	public $VersionBootstrap = 5 ;
-	public $InclureBootstrap = 1 ;
-	public $InclureNavbarFlottant = 0 ;
+	public $InclureBootstrap = true ;
+	public $RedirigerVersConnexion = true ;
 	public $RenduExtraHead = '<meta http-equiv="X-UA-Compatible" content="IE=edge">' ;
 	public $ViewportMeta = 'width=device-width, initial-scale=1' ;
-	public $HauteurTableauFixe = '600px' ;
-	public $BackgroundEnteteTableauFixe = 'white' ;
 	public $ClasseCSSMsgExecSucces = "alert alert-success" ;
 	public $ClasseCSSMsgExecErreur = "alert alert-danger" ;
-	public $BackgroundNavbarFlottant = "white" ;
-	public $CouleurBordureNavbarFlottant = "" ;
-	public $CouleurTexteNavbarFlottant = "black" ;
 	public $CheminCSSBootstrap = 'css/bootstrap.min.css' ;
-	public $NomClasseScriptConnexion = 'Pv\ZoneBootstrap\ScriptMembership\Connexion' ;
+	public $NomClasseScriptConnexion = '\Pv\ZoneBootstrap\ScriptMembership\Connexion' ;
 	public $CheminFontAwesome = 'vendor/fontawesome/css/all.min.css' ;
 	protected function AfficheRenduIndisponible(& $script, $msg)
 	{
@@ -41,6 +37,14 @@ class ZoneBootstrap extends \Pv\ZoneWeb\ZoneWeb
 	public function CreeFormPrinc()
 	{
 		return new \Pv\ZoneBootstrap\FormulaireDonnees\FormulaireDonnees() ;
+	}
+	public function CreeGrillePrinc()
+	{
+		return new \Pv\ZoneBootstrap\TableauDonnees\GrilleDonnees() ;
+	}
+	public function CreeRepetPrinc()
+	{
+		return new \Pv\ZoneBootstrap\TableauDonnees\RepeteurDonnees() ;
 	}
 }
 

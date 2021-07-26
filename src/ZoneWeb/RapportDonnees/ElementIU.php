@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\RapportDonnees ;
 
-class ElementIU extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class ElementIU extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $NomElementRapport ;
 	public $RapportParent ;

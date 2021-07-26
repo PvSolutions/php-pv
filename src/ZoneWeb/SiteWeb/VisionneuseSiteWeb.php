@@ -2,6 +2,6 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
-class VisionneuseSiteWeb extends \Pv\ZoneWeb\ComposantIU\BaliseHtml
+class VisionneuseSiteWeb extends \Pv\ZoneWeb\ComposantRendu\BaliseHtml
 {
 }

@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
-class BaliseJs extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class BaliseJs extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $TypeComposant = "BaliseJs" ;
 	public $Definitions = "" ;

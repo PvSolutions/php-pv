@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\ChartJs ;
 
-class ChartJs extends \Pv\ZoneWeb\ComposantIU\ComposantDonneesSimple
+class ChartJs extends \Pv\ZoneWeb\ComposantRendu\ComposantDonneesSimple
 {
 	public $TypeComposant = "Chart" ;
 	public $Largeur = 450 ;

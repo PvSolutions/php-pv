@@ -15,7 +15,7 @@ class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 	public $ZoneParent = null ;
 	public $ApplicationParent = null ;
 	public $NomElementFormulaireDonnees = "" ;
-	public $NomElementSousComposantIU = "" ;
+	public $NomElementSousComposantRendu = "" ;
 	public $CheminIcone ;
 	public $InclureLibelle = 1 ;
 	public $Libelle = "" ;
@@ -88,9 +88,9 @@ class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 	public function PrepareRendu(& $composant)
 	{
 	}
-	protected function AdopteComposantIU($nom, &$composant)
+	protected function AdopteComposantRendu($nom, &$composant)
 	{
-		$this->NomElementSousComposantIU = $nom ;
+		$this->NomElementSousComposantRendu = $nom ;
 		$this->ScriptParent = & $composant->ScriptParent ;
 		$this->ZoneParent = & $composant->ZoneParent ;
 		$this->ApplicationParent = & $composant->ApplicationParent ;
@@ -99,13 +99,13 @@ class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 	{
 		$this->NomElementFormulaireDonnees = $nom ;
 		$this->FormulaireDonneesParent = & $formulaireDonnees ;
-		$this->AdopteComposantIU($nom, $formulaireDonnees) ;
+		$this->AdopteComposantRendu($nom, $formulaireDonnees) ;
 	}
 	public function AdopteTableauDonnees($nom, & $tableauDonnees)
 	{
 		$this->NomElementTableauDonnees = $nom ;
 		$this->TableauDonneesParent = & $tableauDonnees ;
-		$this->AdopteComposantIU($nom, $tableauDonnees) ;
+		$this->AdopteComposantRendu($nom, $tableauDonnees) ;
 	}
 	public function InscritCritere(& $critere)
 	{
@@ -115,6 +115,18 @@ class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 	public function InscritCritr(& $critere)
 	{
 		$this->InscritCritere($critere) ;
+	}
+	public function & InsereCritereScriptParent()
+	{
+		$critere = new \Pv\ZoneWeb\Critere\ValideScriptParent() ;
+		$this->InscritCritere($critere) ;
+		return $critere ;
+	}
+	public function & InsereCritereZoneParent()
+	{
+		$critere = new \Pv\ZoneWeb\Critere\ValideZoneParent() ;
+		$this->InscritCritere($critere) ;
+		return $critere ;
 	}
 	public function & InsereCritereFormatUrl($nomFiltres = array())
 	{
@@ -206,7 +218,7 @@ class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 	{
 		parent::ChargeConfig() ;
 	}
-	public function & InsereCritere($nomClasse, $nomFiltresCibles=array())
+	public function & InsereClasseCritere($nomClasse, $nomFiltresCibles=array())
 	{
 		if(! class_exists($nomClasse))
 		{
@@ -216,7 +228,7 @@ class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 		$this->InsereNouvCritere($critere, $nomFiltresCibles) ;
 		return $critere ;
 	}
-	public function & InsereActCmd($nomClasse, $nomFiltresCibles=array())
+	public function & InsereClasseActCmd($nomClasse, $nomFiltresCibles=array())
 	{
 		if(! class_exists($nomClasse))
 		{
@@ -226,9 +238,34 @@ class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 		$this->InscritNouvActCmd($actCmd, $nomFiltresCibles) ;
 		return $actCmd ;
 	}
-	public function & InsereAction($nomClasse, $nomFiltresCibles=array())
+	public function & InsereClasseAction($nomClasse, $nomFiltresCibles=array())
 	{
-		$action = $this->InsereActCmd($nomClasse, $nomFiltresCibles) ;
+		$action = $this->InsereClasseActCmd($nomClasse, $nomFiltresCibles) ;
+		return $action ;
+	}
+	public function & InsereCritere($critere, $nomFiltresCibles=array())
+	{
+		$this->InscritCritere($critere) ;
+		call_user_func_array(array($critere, 'CibleFiltres'), $nomFiltresCibles) ;
+		return $critere ;
+	}
+	public function & InsereActCmd($actCmd, $nomFiltresCibles=array())
+	{
+		$this->InscritAction($actCmd) ;
+		call_user_func_array(array($actCmd, 'CibleFiltres'), $nomFiltresCibles) ;
+		return $actCmd ;
+	}
+	public function & InsereActCmdScriptParent()
+	{
+		return $this->InsereAction(new \Pv\ZoneWeb\ActionCommande\AppliqueScriptParent()) ;
+	}
+	public function & InsereActCmdZoneParent()
+	{
+		return $this->InsereAction(new \Pv\ZoneWeb\ActionCommande\AppliqueZoneParent()) ;
+	}
+	public function & InsereAction($action, $nomFiltresCibles=array())
+	{
+		$action = $this->InsereActCmd($action, $nomFiltresCibles) ;
 		return $action ;
 	}
 	public function & InsereNouvCritere($critere, $nomFiltresCibles=array())

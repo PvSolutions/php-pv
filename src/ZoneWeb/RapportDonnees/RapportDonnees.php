@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\RapportDonnees ;
 
-class RapportDonnees extends \Pv\ZoneWeb\ComposantIU\ComposantDonneesSimple
+class RapportDonnees extends \Pv\ZoneWeb\ComposantRendu\ComposantDonneesSimple
 {
 	public $TypeComposant = "RapportHTML" ;
 	public $BaseDonnees ;

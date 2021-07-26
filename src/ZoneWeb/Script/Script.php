@@ -69,6 +69,17 @@ class Script extends \Pv\IHM\Zone\Script
 	{
 		return 1 ;
 	}
+	public function & InsereComposantRendu($nomComp, $comp)
+	{
+		return $this->InsereComposant($nomComp, $comp) ;
+	}
+	public function & InsereComposant($nomComp, $comp)
+	{
+		$compResult = $this->ZoneParent->InsereComposantRendu($this->NomElementZone."_".$nomComp, $comp) ;
+		$compResult->NomElementScript = $nomComp ;
+		$compResult->ScriptParent = & $this ;
+		return $compResult ;
+	}
 	public function & InsereActionPrinc($nomAction, $action)
 	{
 		$actionResult = $this->ZoneParent->InsereActionPrinc($this->NomElementZone."_".$nomAction, $action) ;
@@ -304,9 +315,24 @@ class Script extends \Pv\IHM\Zone\Script
 	{
 		$cmd->ConfirmeSucces() ;
 	}
+	public function AppliqueActionCommande(& $actCmd)
+	{
+		$this->AppliqueActCmd($actCmd) ;
+	}
+	public function AppliqueActCmd(& $actCmd)
+	{
+	}
 	public function ValideCritere(& $critere)
 	{
 		return true ;
+	}
+	public function ExtraitSrcValsSuppl($ligneDonnees, & $composant, & $srcValsSuppl)
+	{
+		return $ligneDonnees ;
+	}
+	public function DessineFiltres(& $dessin, & $composant, $parametres)
+	{
+		return '' ;
 	}
 	// Incrire un fichier CSS
 	public function InscritContenuCSS($contenu, $media="")
@@ -385,6 +411,14 @@ class Script extends \Pv\IHM\Zone\Script
 	{
 		return $this->ZoneParent->CreeTableauDonneesPrinc() ;
 	}
+	public function CreeGrillePrinc()
+	{
+		return $this->ZoneParent->CreeGrillePrinc() ;
+	}
+	public function CreeRepetPrinc()
+	{
+		return $this->ZoneParent->CreeRepetPrinc() ;
+	}
 	public function CreeTablPrinc()
 	{
 		return $this->ZoneParent->CreeTableauDonneesPrinc() ;
@@ -405,4 +439,29 @@ class Script extends \Pv\IHM\Zone\Script
 	{
 		return $this->ApplicationParent->CreeFournisseurDonneesPrinc() ;
 	}
+	public function CreeFournPrinc()
+	{
+		return $this->ApplicationParent->CreeFournisseurDonneesPrinc() ;
+	}
+	public function & InsereFormPrinc($nom='formPrinc')
+	{
+		$comp = $this->InsereComposant($nom, $this->CreeFormPrinc()) ;
+		return $comp ;
+	}
+	public function & InsereTablPrinc($nom='tablPrinc')
+	{
+		$comp = $this->InsereComposant($nom, $this->CreeTablPrinc()) ;
+		return $comp ;
+	}
+	public function & InsereGrillePrinc($nom='grillePrinc')
+	{
+		$comp = $this->InsereComposant($nom, $this->CreeGrillePrinc()) ;
+		return $comp ;
+	}
+	public function & InsereRepetPrinc($nom='repetPrinc')
+	{
+		$comp = $this->InsereComposant($nom, $this->CreeRepetPrinc()) ;
+		return $comp ;
+	}
+
 }

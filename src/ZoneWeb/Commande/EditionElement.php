@@ -5,12 +5,13 @@ namespace Pv\ZoneWeb\Commande ;
 class EditionElement extends \Pv\ZoneWeb\Commande\Executer
 {
 	public $Mode = 1 ;
+	public $AjusterRendu = true ;
 	protected function ExecuteInstructions()
 	{
 		$this->StatutExecution = 0 ;
 		if($this->EstNul($this->FormulaireDonneesParent->FournisseurDonnees))
 		{
-			$this->RenseigneErreur("La base de donnÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©e du formulaire n'est renseignÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©.") ;
+			$this->RenseigneErreur("La base de donnée du formulaire n'est renseignée") ;
 			return ;
 		}
 		$succes = 0 ;
@@ -26,6 +27,10 @@ class EditionElement extends \Pv\ZoneWeb\Commande\Executer
 			case \Pv\ZoneWeb\FormulaireDonnees\ModeEditionElement::Ajout :
 			{
 				$succes = $this->FormulaireDonneesParent->FournisseurDonnees->AjoutElement($this->FormulaireDonneesParent->FiltresEdition) ;
+				if($succes && $this->AjusterRendu)
+				{
+					$this->FormulaireDonneesParent->AnnuleLiaisonParametres() ;
+				}
 			}
 			break ;
 			case \Pv\ZoneWeb\FormulaireDonnees\ModeEditionElement::Modif :
@@ -37,6 +42,11 @@ class EditionElement extends \Pv\ZoneWeb\Commande\Executer
 			case \Pv\ZoneWeb\FormulaireDonnees\ModeEditionElement::Suppr :
 			{
 				$succes = $this->FormulaireDonneesParent->FournisseurDonnees->SupprElement($this->FormulaireDonneesParent->FiltresLigneSelection) ;
+				if($succes && $this->AjusterRendu)
+				{
+					$this->FormulaireDonneesParent->CacherFormulaireFiltres = true ;
+					$this->Visible = false ;
+				}
 			}
 			break ;
 			default :
@@ -59,11 +69,6 @@ class EditionElement extends \Pv\ZoneWeb\Commande\Executer
 		else
 		{
 			$this->ConfirmeSucces() ;
-		}
-		if($this->Mode == 3 && $this->StatutExecution == 1)
-		{
-			$this->CacherFormulaireFiltres = 1 ;
-			$this->Visible = 0 ;
 		}
 	}
 }

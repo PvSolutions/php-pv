@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\Document ;
 
-class Html extends \Pv\ZoneWeb\Document\DocumentWeb
+class Html extends \Pv\ZoneWeb\Document\Document
 {
 	public $AttrsBody = array() ;
 	public function RenduEntete(& $zone)
@@ -42,8 +42,4 @@ class Html extends \Pv\ZoneWeb\Document\DocumentWeb
 		$ctn .= '</html>' ;
 		return $ctn ;
 	}
-}
-
-class Html extends \Pv\ZoneWeb\Document\Html
-{
 }

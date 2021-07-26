@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\SliderJs ;
 
-class JQueryCamera extends \Pv\ZoneWeb\ComposantIU\FiltrableJs
+class JQueryCamera extends \Pv\ZoneWeb\ComposantRendu\FiltrableJs
 {
 	public $CheminJs = "js/camera.min.js" ;
 	public $CheminCSS = "css/camera.css" ;

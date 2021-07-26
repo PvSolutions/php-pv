@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
-class LienFichierJs extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class LienFichierJs extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $TypeComposant = "FichierJs" ;
 	public $Src = "" ;

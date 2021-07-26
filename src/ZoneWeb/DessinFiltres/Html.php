@@ -20,7 +20,7 @@ class Html extends \Pv\ZoneWeb\DessinFiltres\DessinFiltres
 		}
 		return $ctn ;
 	}
-	protected function RenduLibelleFiltre(& $filtre)
+	public function RenduLibelleFiltre(& $filtre)
 	{
 		$ctn = '' ;
 		$ctn .= '<label for="'.$filtre->ObtientIDElementHtmlComposant().'">' ;

@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
-class BarreMenuWeb extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class BarreMenuWeb extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $TypeComposant = 'BarreMenuHTML' ;
 	public $NomClasseCSSSelect = 'Selectionne' ;

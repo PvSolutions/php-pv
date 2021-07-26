@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
-class CercleProgressCSS extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class CercleProgressCSS extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public static $SourceIncluse = 0 ;
 	public static $CheminFichierCSS = "css/circle.css" ;

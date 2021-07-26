@@ -6,7 +6,7 @@ class DessinFiltres extends \Pv\ZoneWeb\DessinFiltres\Html
 {
 	public $ClassesBsEditeur = array(
 	"form-control" => array(
-			"input_text_html", "input_password_html", "input_file_html"
+			"input_text_html", "input_password_html", "input_file_html", "textarea_html", "input_date_html"
 		),
 	"form-select" => array(
 			"select_html"
@@ -49,7 +49,7 @@ class DessinFiltres extends \Pv\ZoneWeb\DessinFiltres\Html
 		}
 		return $val ;
 	}
-	protected function RenduFiltre(& $filtre, & $composant)
+	public function RenduFiltre(& $filtre, & $composant)
 	{
 		$ctn = '' ;
 		if($composant->Editable)

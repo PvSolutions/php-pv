@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
-class LeftSidebarJQuery extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class LeftSidebarJQuery extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	protected $CheminJs = "js/slidebars.js" ;
 	protected $CheminCSS = "css/slidebars.css" ;
@@ -14,7 +14,7 @@ class LeftSidebarJQuery extends \Pv\ZoneWeb\ComposantIU\ComposantIU
 	protected function InitConfig()
 	{
 		parent::InitConfig() ;
-		$this->ComposantSupport = new \Pv\ZoneWeb\ComposantIU\PortionRendu() ;
+		$this->ComposantSupport = new \Pv\ZoneWeb\ComposantRendu\PortionRendu() ;
 	}
 	public function & DeclareComposantSupport($comp)
 	{

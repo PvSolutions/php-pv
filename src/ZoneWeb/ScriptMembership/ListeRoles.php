@@ -17,7 +17,7 @@ class ListeRoles extends \Pv\ZoneWeb\Script\Script
 	{
 		$membership = & $this->ZoneParent->Membership ;
 		$bd = & $membership->Database ;
-		$this->TablPrinc = $this->CreeTablPrinc() ;
+		$this->TablPrinc = $this->InsereTablPrinc() ;
 		$this->TablPrinc->AdopteScript("tablPrinc", $this) ;
 		$this->TablPrinc->ChargeConfig() ;
 		if($this->AfficherId == 0 || (count($this->PrivilegesAfficherId) > 0 && $this->PossedePrivileges($this->PrivilegesAfficherId)))

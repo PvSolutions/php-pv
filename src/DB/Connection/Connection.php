@@ -45,13 +45,12 @@ class Connection
 */
 	var $NewValuePrefix = 'NEW' ;
 /**
- ClÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© du tableau qui gÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨re les expressions dans le cas des
- insertions et des mises ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â  jour.
+ Nom de la clé du tableau des expressions
  @var string $ExprKeyName
 */
 	var $ExprKeyName = "__EXPRS" ;
 /**
- ModÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨le qui correspond au nom de la colonne dans chaque expression
+ Modèle qui correspond au nom de la colonne dans chaque expression
  @var string $ExprKeyName
 */
 	var $ExprParamPattern = "<SELF>" ;
@@ -317,7 +316,6 @@ class Connection
 		$sql_res = $sql ;
 		$params = $this->SortSqlParams($params) ;
 		// print_r($params) ;
-		// $formatsSep = '[[:space:],;\.\:`"\'\|\(\)\[\]\\#~ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨\%\?\/]' ;
 		foreach($params as $n => $v)
 		{
 			$sql_res = str_replace($this->ParamPrefix.$n, $this->EscapeRowValue($v), $sql_res) ;
@@ -701,7 +699,7 @@ class Connection
 		$entities = null ;
 		if(! class_exists($entityClassName))
 		{
-			die($entityClassName." ne peut pas ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªtre utilisÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© comme classe d'entitÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©") ;
+			die("La classe ".$entityClassName." n'existe pas") ;
 		}
 		$res = $this->OpenQuery($sql, $params) ;
 		if($res !== false)
@@ -869,7 +867,7 @@ class Connection
 		$entities = null ;
 		if(! class_exists($entityClassName))
 		{
-			die($entityClassName." ne peut pas ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªtre utilisÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© comme classe d'entitÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©") ;
+			die("La classe ".$entityClassName." n'existe pas") ;
 		}
 		$this->StoredProcUseCursor = 1 ;
 		$res = $this->OpenStoredProc($procName, $this->EncodeParams($params)) ;

@@ -9,7 +9,7 @@ class DessinFiltres
 	{
 		return "" ;
 	}
-	protected function RenduFiltre(& $filtre, & $composant)
+	public function RenduFiltre(& $filtre, & $composant)
 	{
 		$ctn = '' ;
 		// print $filtre->NomParametreLie.' : '.$filtre->EstEtiquette.'<br>' ;

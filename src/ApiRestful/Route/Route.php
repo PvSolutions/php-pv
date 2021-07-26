@@ -8,6 +8,7 @@ class Route extends \Pv\Objet\Objet
 	public $NomElementApi ;
 	public $CheminRouteApi ;
 	public $ApiParent ;
+	public $ApplicationParent ;
 	public $NecessiteMembreConnecte = 0 ;
 	public $Privileges = array() ;
 	public $PrivilegesStricts = 0 ;
@@ -49,6 +50,7 @@ class Route extends \Pv\Objet\Objet
 		}
 		$this->CheminRouteApi = $cheminRoute ;
 		$this->ApiParent = & $api ;
+		$this->ApplicationParent = & $api->ApplicationParent ;
 	}
 	public function SuccesReponse()
 	{

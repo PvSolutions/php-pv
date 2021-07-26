@@ -314,7 +314,7 @@ class Collection extends Filtrable
 		}
 		else
 		{
-			// Ajuster l'indice dÃƒÂ©but
+			// Ajuster l'indice début
 			if($this->IndiceDebut < 0)
 				$this->IndiceDebut = 0 ;
 			if($this->IndiceDebut >= $this->TotalElements)

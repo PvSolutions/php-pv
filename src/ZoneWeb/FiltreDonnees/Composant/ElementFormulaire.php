@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
-class ElementFormulaire extends \Pv\ZoneWeb\ComposantIU\BaliseHtml
+class ElementFormulaire extends \Pv\ZoneWeb\ComposantRendu\BaliseHtml
 {
 	public $TypeEditeur = "base" ;
 	public $Largeur = "" ;

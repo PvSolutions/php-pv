@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
-class LienPartageReseauxSociaux extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class LienPartageReseauxSociaux extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $Url ;
 	public $Libelle = "Partager : " ;

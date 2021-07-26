@@ -33,7 +33,7 @@ class DessinCommandes extends \Pv\ZoneWeb\DessinFiltres\DessinFiltres
 		{
 			$ctn .= $commande->ContenuAvantRendu ;
 		}
-		$ctn .= '<button id="'.$commande->IDInstanceCalc.'" class="Commande '.$commande->NomClsCSS.'" type="submit" rel="'.$commande->NomElementSousComposantIU.'"' ;
+		$ctn .= '<button id="'.$commande->IDInstanceCalc.'" class="Commande '.$commande->NomClsCSS.'" type="submit" rel="'.$commande->NomElementSousComposantRendu.'"' ;
 		$contenuJsSurClick = ($commande->ContenuJsSurClick == '') ? $composant->IDInstanceCalc.'_ActiveCommande(this) ;' : $commande->ContenuJsSurClick.' ; return false ;' ;
 		$ctn .= ' onclick="'.$contenuJsSurClick.'"' ;
 		if($this->InclureLibelle == 0)

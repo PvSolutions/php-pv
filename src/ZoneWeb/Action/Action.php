@@ -13,8 +13,8 @@ class Action extends \Pv\Objet\Objet
      */
 	public $ScriptParent ;
 	public $NomElementScript = "" ;
-	public $ComposantIUParent ;
-	public $NomElementComposantIU = "" ;
+	public $ComposantRenduParent ;
+	public $NomElementComposantRendu = "" ;
 	public $Params = array() ;
 	public $Privileges = array() ;
 	public $NecessiteMembreConnecte = 0 ;
@@ -121,11 +121,11 @@ xhttp_'.$this->IDInstanceCalc.'.send() ;' ;
 		$this->NomElementScript = $nom ;
 		$this->AdopteZone($this->ScriptParent->NomElementZone."_".$this->NomElementScript, $script->ZoneParent) ;
 	}
-	public function AdopteComposantIU($nom, & $composant)
+	public function AdopteComposantRendu($nom, & $composant)
 	{
-		$this->ComposantIUParent = & $composant ;
-		$this->NomElementComposantIU = $nom ;
-		$this->AdopteScript($this->ComposantIUParent->NomElementScript."_".$this->NomElementComposantIU, $composant->ScriptParent) ;
+		$this->ComposantRenduParent = & $composant ;
+		$this->NomElementComposantRendu = $nom ;
+		$this->AdopteScript($this->ComposantRenduParent->NomElementScript."_".$this->NomElementComposantRendu, $composant->ScriptParent) ;
 	}
 	public function Accepte($valeurAction)
 	{

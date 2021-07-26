@@ -14,7 +14,7 @@ class Misc
 	public static function encode_html_symbols($texte)
 	{
 		return str_replace(
-			array('`', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âª', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â«', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â­', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â®', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â±', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â²', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â´', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âµ', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â·', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âº', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â»', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¾', 'ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡', 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡', 'ÃƒÆ’Ã†â€™Ãƒâ€¹Ã¢â‚¬Â ', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°', 'ÃƒÆ’Ã†â€™Ãƒâ€¦Ã‚Â ', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹', 'ÃƒÆ’Ã†â€™Ãƒâ€¦Ã¢â‚¬â„¢', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â', 'ÃƒÆ’Ã†â€™Ãƒâ€¦Ã‚Â½', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‹Å“', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â', 'ÃƒÆ’Ã†â€™Ãƒâ€¹Ã…â€œ', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢', 'ÃƒÆ’Ã†â€™Ãƒâ€¦Ã‚Â¡', 'ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº', 'ÃƒÆ’Ã†â€™Ãƒâ€¦Ã¢â‚¬Å“', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â', 'ÃƒÆ’Ã†â€™Ãƒâ€¦Ã‚Â¾', 'ÃƒÆ’Ã†â€™Ãƒâ€¦Ã‚Â¸', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â ', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¤', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¥', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¦', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âª', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â«', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¬', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â®', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â²', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â´', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âµ', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¶', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â·', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¸', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¹', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âº', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â»', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¼', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â½', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¾', 'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¿'),
+			array('`', '¡', '¢', '£', '¤', '¥', '¦', '§', '¨', '©', 'ª', '«', '¬', '­', '®', '¯', '°', '±', '²', '³', '´', 'µ', '¶', '·', '¸', '¹', 'º', '»', '¼', '½', '¾', '¿', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', '×', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'Þ', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', '÷', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'þ', 'ÿ'),
 			array('&#96;', '&#161;', '&#162;', '&#163;', '&#164;', '&#165;', '&#166;', '&#167;', '&#168;', '&#169;', '&#170;', '&#171;', '&#172;', '&#173;', '&#174;', '&#175;', '&#176;', '&#177;', '&#178;', '&#179;', '&#180;', '&#181;', '&#182;', '&#183;', '&#184;', '&#185;', '&#186;', '&#187;', '&#188;', '&#189;', '&#190;', '&#191;', '&#192;', '&#193;', '&#194;', '&#195;', '&#196;', '&#197;', '&#198;', '&#199;', '&#200;', '&#201;', '&#202;', '&#203;', '&#204;', '&#205;', '&#206;', '&#207;', '&#208;', '&#209;', '&#210;', '&#211;', '&#212;', '&#213;', '&#214;', '&#215;', '&#216;', '&#217;', '&#218;', '&#219;', '&#220;', '&#221;', '&#222;', '&#223;', '&#224;', '&#225;', '&#226;', '&#227;', '&#228;', '&#229;', '&#230;', '&#231;', '&#232;', '&#233;', '&#234;', '&#235;', '&#236;', '&#237;', '&#238;', '&#239;', '&#240;', '&#241;', '&#242;', '&#243;', '&#244;', '&#245;', '&#246;', '&#247;', '&#248;', '&#249;', '&#250;', '&#251;', '&#252;', '&#253;', '&#254;', '&#255;'),
 			$texte
 		) ;
@@ -320,44 +320,44 @@ class Misc
 		$result = str_replace("\t", " ", $result) ;
 		$result = str_replace("&agrave;", "a", $result) ;
 		$result = str_replace("&acirc;", "a", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â ", "a", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢", "a", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¤", "a", $result) ;
+		$result = str_replace("à", "a", $result) ;
+		$result = str_replace("â", "a", $result) ;
+		$result = str_replace("ä", "a", $result) ;
 		$result = str_replace("&eacute;", "e", $result) ;
 		$result = str_replace("&egrave;", "e", $result) ;
 		$result = str_replace("&ecirc;", "e", $result) ;
 		$result = str_replace("&euml;", "e", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©", "e", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨", "e", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âª", "e", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â«", "e", $result) ;
+		$result = str_replace("é", "e", $result) ;
+		$result = str_replace("è", "e", $result) ;
+		$result = str_replace("ê", "e", $result) ;
+		$result = str_replace("ë", "e", $result) ;
 		$result = str_replace("&igrave;", "i", $result) ;
 		$result = str_replace("&icirc;", "i", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¬", "i", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â®", "i", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯", "i", $result) ;
+		$result = str_replace("ì", "i", $result) ;
+		$result = str_replace("î", "i", $result) ;
+		$result = str_replace("ï", "i", $result) ;
 		$result = str_replace("&ograve;", "o", $result) ;
 		$result = str_replace("&ocirc;", "o", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â²", "o", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â´", "o", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¶", "o", $result) ;
+		$result = str_replace("ò", "o", $result) ;
+		$result = str_replace("ô", "o", $result) ;
+		$result = str_replace("ö", "o", $result) ;
 		$result = str_replace("&ugrave;", "u", $result) ;
 		$result = str_replace("&ucirc;", "u", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¹", "u", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â»", "u", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¼", "u", $result) ;
+		$result = str_replace("ù", "u", $result) ;
+		$result = str_replace("û", "u", $result) ;
+		$result = str_replace("ü", "u", $result) ;
 		$result = str_replace("&ccedil;", "c", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§", "c", $result) ;
-		$result = str_replace("ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢", "'", $result) ;
+		$result = str_replace("ç", "c", $result) ;
+		$result = str_replace("’", "'", $result) ;
 		$result = str_replace("`", "'", $result) ;
-		$result = str_replace("ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âµ", "u", $result) ;
-		$result = str_replace("ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£", "E", $result) ;
+		$result = str_replace("µ", "u", $result) ;
+		$result = str_replace("£", "E", $result) ;
 		$result = str_replace("$", "", $result) ;
-		$result = str_replace("ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤", "o", $result) ;
-		$result = str_replace("ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°", "o", $result) ;
+		$result = str_replace("¤", "o", $result) ;
+		$result = str_replace("°", "o", $result) ;
 		$result = str_replace("@", "a", $result) ;
 		$result = str_replace("^", " ", $result) ;
-		$result = str_replace("ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨", " ", $result) ;
+		$result = str_replace("¨", " ", $result) ;
 		$result = str_replace("&quot;", "'", $result) ;
 		$result = str_replace("&160#;", " ", $result) ;
 		$result = preg_replace("/&[A-Z0-9#]+;/i", "", $result) ;
@@ -417,10 +417,10 @@ class Misc
 		{
 			$from = ini_get('sendmail_from') ;
 		}
-		// Pour envoyer un mail HTML, l'en-tÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªte Content-type doit ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªtre dÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©fini
+		// Pour envoyer un mail HTML, l'entête Content-type doit être définie
 		$headers  = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-		// En-tÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªtes additionnels
+		// Entêtes additionnelels
 		// $headers .= 'To: '.$to. "\r\n";
 		$headers .= 'From: '.$from. "\r\n";
 		if($cc != '')
@@ -444,10 +444,7 @@ class Misc
 		{
 			$from = ini_get('sendmail_from') ;
 		}
-		// Pour envoyer un mail , l'en-tÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªte Content-type doit ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªtre dÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©fini
 		$headers = 'Content-type: text/plain; charset=iso-8859-1' . "\r\n";
-		// En-tÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªtes additionnels
-		// $headers .= 'To: '.$to. "\r\n";
 		$headers .= 'From: '.$from. "\r\n";
 		if($cc != '')
 		{
@@ -470,7 +467,6 @@ class Misc
 		{
 			$from = ini_get('sendmail_from') ;
 		}
-		// En-tÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªtes additionnels
 		$headers .= '';
 		$headers .= 'To: '.$to. "\r\n";
 		$headers .= 'From: '.$from. "\r\n";
@@ -723,7 +719,6 @@ class Misc
 			foreach($param_name as $n => $v)
 			{
 				// print $v.'<br />' ;
-				// On a passÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© n'importe quoi sauf du texte, aie
 				if(! is_string($v) && ! is_numeric($v))
 				{
 					$haystack_temp = null ;
@@ -974,7 +969,7 @@ class Misc
 */
 				case 'person_name' :
 					$var = preg_replace('/[[:space:]][[:space:]]+/', ' ', $var) ;
-					$var = (preg_match('/^([a-z][a-z0-9&;ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚ÂªÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â®ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â»ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¼ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â´ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¶ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¼ \']+)$/i', $var, $match)) ? $match[1] : $default_value ;
+					$var = (preg_match('/^([a-z][a-z0-9&;éèçàêîâûïüôöü \']+)$/i', $var, $match)) ? $match[1] : $default_value ;
 					break ;
 				case 'user_name' :
 					$var = (\Pv\Misc::validate_name_user_format($var)) ? $var : $default_value ;
@@ -1441,7 +1436,7 @@ class Misc
 	{
 		$result = \Pv\Misc::protect_quote($text) ;
 		$result = str_replace("'", "&#39;", $result) ;
-		$result = str_replace("ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©", "&eacute;", $result) ;
+		$result = str_replace("é", "&eacute;", $result) ;
 		return $result ;
 	}
 	public static function protect_quote($text)

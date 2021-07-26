@@ -9,7 +9,7 @@ class ActionImage extends \Pv\ZoneWeb\Action\EnvoiFichier
 	public $ExtensionFichierAttache = "png" ;
 	protected function AfficheContenu()
 	{
-		$this->ComposantIUParent->EnvoieImage() ;
+		$this->ComposantRenduParent->EnvoieImage() ;
 		exit ;
 	}
 }

@@ -50,10 +50,10 @@ class Mysql extends \Pv\DB\Native\Mysql
 			$user = (isset($this->ConnectionParams["user"])) ? $this->ConnectionParams["user"] : "root" ;
 			$password = (isset($this->ConnectionParams["password"])) ? $this->ConnectionParams["password"] : "" ;
 			$connectionStr = $this->ExtractConnectionString() ;
-			$this->Connection = new PDO($connectionStr, $user, $password, $this->OpenOptions) ;
+			$this->Connection = new \PDO($connectionStr, $user, $password, $this->OpenOptions) ;
 			if($this->Connection)
 			{
-				$this->Connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				$this->Connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 				$res = 1 ;
 			}
 		}
@@ -104,10 +104,10 @@ class Mysql extends \Pv\DB\Native\Mysql
 			$user = (isset($this->ConnectionParams["user"])) ? $this->ConnectionParams["user"] : "root" ;
 			$password = (isset($this->ConnectionParams["password"])) ? $this->ConnectionParams["password"] : "" ;
 			$connectionStr = $this->ExtractConnectionString() ;
-			$this->StoredProcConnection = new PDO($connectionStr, $user, $password) ;
+			$this->StoredProcConnection = new \PDO($connectionStr, $user, $password) ;
 			if($this->StoredProcConnection)
 			{
-				$this->StoredProcConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				$this->StoredProcConnection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 				$res = 1 ;
 			}
 		}
@@ -131,8 +131,13 @@ class Mysql extends \Pv\DB\Native\Mysql
 		catch(PDOException $ex)
 		{
 			$this->SetConnectionException($ex->getMessage()) ;
+			if(isset($res) && is_object($res))
+			{
+				$res->closeCursor() ;
+				$res = false ;
+			}
 		}
-		if($this->StoredProcQuery == false)
+		if($this->ConnectionException != '' && $this->StoredProcQuery == false)
 		{
 			$this->SetConnectionExceptionFromStmt($this->StoredProcConnection) ;
 		}
@@ -164,6 +169,7 @@ class Mysql extends \Pv\DB\Native\Mysql
 				$sql = str_replace(":".$name, ":param_".$name, $sql) ;
 			}
 		}
+		$exceptionMsg = '' ;
 		$this->CaptureQuery($sql, $params) ;
 		$this->FixCharacterEncoding() ;
 		$res = false ;
@@ -179,10 +185,10 @@ class Mysql extends \Pv\DB\Native\Mysql
 			$paramsBound = array() ;
 			foreach($params as $name => $val)
 			{
-				$paramType = PDO::PARAM_STR ;
+				$paramType = \PDO::PARAM_STR ;
 				if(is_int($val))
 				{
-					$paramType = PDO::PARAM_INT ;
+					$paramType = \PDO::PARAM_INT ;
 				}
 				elseif(is_null($val))
 				{
@@ -203,14 +209,22 @@ class Mysql extends \Pv\DB\Native\Mysql
 			if($res->errorCode() !== null && $res->errorCode() !== "00000")
 			{
 				$this->SetConnectionExceptionFromStmt($res) ;
+				$errInfo = $res->errorInfo() ;
+				$exceptionMsg = $errInfo[2] ;
 				$res = null ;
 				$res = false ;
 			}
+			// echo $sql."<br>" ;
 			$this->LaunchSqlProfiler($sql, ($res) ? "pdo_mysql_object" : '', $exceptionMsg) ;
 		}
-		catch(PDOException $ex)
+		catch(\PDOException $ex)
 		{
 			$this->SetConnectionException($ex->getMessage()) ;
+			if(is_object($res))
+			{
+				$res->closeCursor() ;
+			}
+			$res = false ;
 		}
 		return $res ;
 	}
@@ -219,7 +233,7 @@ class Mysql extends \Pv\DB\Native\Mysql
 		$row = false;
 		try
 		{
-			$row = $res->fetch(PDO::FETCH_ASSOC) ;
+			$row = $res->fetch(\PDO::FETCH_ASSOC) ;
 			if(is_array($row))
 			{
 				$row = array_map(array(& $this, "DecodeRowValue"), $row) ;
@@ -238,7 +252,7 @@ class Mysql extends \Pv\DB\Native\Mysql
 		{
 			if(is_object($res))
 			{
-				$res->closeCursor() ;
+				$OK = $res->closeCursor() ;
 				if($OK)
 				{
 					$res = null ;

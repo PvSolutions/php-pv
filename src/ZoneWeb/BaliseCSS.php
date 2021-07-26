@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
-class BaliseCSS extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class BaliseCSS extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $TypeComposant = "BaliseCSS" ;
 	public $Definitions = "" ;

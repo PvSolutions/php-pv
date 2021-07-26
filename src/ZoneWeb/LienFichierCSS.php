@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
-class LienFichierCSS extends \Pv\ZoneWeb\ComposantIU\ComposantIU
+class LienFichierCSS extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $TypeComposant = "LienFichierCSS" ;
 	public $Href = "" ;

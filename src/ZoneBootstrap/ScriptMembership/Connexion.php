@@ -13,11 +13,12 @@ class Connexion extends \Pv\ZoneWeb\ScriptMembership\Connexion
 	public $TagTitre = 'h3' ;
 	public $InclureIcones = 0 ;
 	public $ClasseCSSCadre = "col-12 col-sm-12 col-md-6 col-lg-4" ;
+	public $ClasseCSSConteneur = "" ;
 	public $ClasseCSSErreur = 'alert alert-danger alert-dismissable' ;
 	public function RenduSpecifique()
 	{
 		$ctn = '' ;
-		$ctn .= '<div class="row">'.PHP_EOL ;
+		$ctn .= '<div class="row'.(($this->ClasseCSSConteneur != '') ? ' '.$this->ClasseCSSConteneur : '').'">'.PHP_EOL ;
 		$ctn .= '<div class="'.$this->ClasseCSSCadre.'">'.PHP_EOL ;
 		$ctn .= '<form class="user_login_box '.$this->NomClsCSSFormulaireDonnees.'" action="'.$this->UrlSoumetTentativeConnexion().'" role="form" method="post">'.PHP_EOL ;
 		$ctn .= '<div class="card '.$this->ClsBstFormulaire.'">'.PHP_EOL ;

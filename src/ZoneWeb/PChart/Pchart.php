@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\PChart ;
 
-class Pchart extends \Pv\ZoneWeb\ComposantIU\ComposantDonneesSimple
+class Pchart extends \Pv\ZoneWeb\ComposantRendu\ComposantDonneesSimple
 {
 	public $InclureTitre = 1 ;
 	public $Titre = "Statistiques" ;

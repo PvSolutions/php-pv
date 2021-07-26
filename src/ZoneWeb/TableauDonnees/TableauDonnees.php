@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
-class TableauDonnees extends \Pv\ZoneWeb\ComposantIU\Parametrable
+class TableauDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 {
 	public $Titre = "" ;
 	public $TypeComposant = "TableauDonneesHTML" ;
@@ -88,7 +88,7 @@ class TableauDonnees extends \Pv\ZoneWeb\ComposantIU\Parametrable
 	protected function InitConfig()
 	{
 		parent::InitConfig() ;
-		$this->SourceValeursSuppl = new \Pv\ZoneWeb\Donnees\SrcValsSuppl() ;
+		$this->SourceValeursSuppl = new \Pv\ZoneWeb\Donnees\SrcValsSuppl\SrcValsSuppl() ;
 	}
 	public function InscritExtractValsIndex(& $extractVals, $indexCol)
 	{
@@ -613,10 +613,17 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 		$nomParamFiltresSoumis = $this->NomParamFiltresSoumis() ;
 		return ($this->ToujoursAfficher || (isset($_GET[$nomParamFiltresSoumis]))) ? 1 : 0 ;
 	}
+	public function PrepareZone()
+	{
+		$this->ExecuteCommandeSelectionnee() ;
+	}
 	public function PrepareRendu()
 	{
 		parent::PrepareRendu() ;
-		$this->ExecuteCommandeSelectionnee() ;
+		if($this->ZoneParent->PreparerComposants == 0)
+		{
+			$this->ExecuteCommandeSelectionnee() ;
+		}
 		if(! in_array($this->NomParamFiltresSoumis(), $this->ChampsGetSoumetFormulaire))
 		{
 			$this->ChampsGetSoumetFormulaire[] = $this->NomParamFiltresSoumis() ;
@@ -955,7 +962,7 @@ window.location.href = window.location.href ;
 		}
 		if($this->EstNul($this->DessinateurFiltresSelection))
 		{
-			return "<p>Le dessinateur de filtres n'est pas dÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©fini</p>" ;
+			return "<p>Le dessinateur de filtres n'est pas défini</p>" ;
 		}
 		if($this->MaxFiltresSelectionParLigne > 0)
 		{
@@ -1015,7 +1022,7 @@ window.location.href = window.location.href ;
 		}
 		if($this->EstNul($this->DessinateurBlocCommandes))
 		{
-			return "<p>Le dessinateur de filtres n'est pas dÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©fini</p>" ;
+			return "<p>Le dessinateur de filtres n'est pas défini</p>" ;
 		}
 		$ctn .= '<div class="BlocCommandes">'.PHP_EOL ;
 		$ctn .= $this->DessinateurBlocCommandes->Execute($this->ScriptParent, $this, $commandes) ;
@@ -1312,5 +1319,13 @@ window.location.href = window.location.href ;
 	protected function InitDessinateurBlocCommandes()
 	{
 		$this->DessinateurBlocCommandes = new \Pv\ZoneWeb\DessinCommandes\DessinCommandes() ;
+	}
+	public function AppliqueScriptParentValsSuppl()
+	{
+		$this->SourceValeursSuppl = new \Pv\ZoneWeb\Donnees\SrcValsSuppl\AppliqueScriptParent() ;
+	}
+	public function AppliqueZoneParentValsSuppl()
+	{
+		$this->SourceValeursSuppl = new \Pv\ZoneWeb\Donnees\SrcValsSuppl\AppliqueZoneParent() ;
 	}
 }

@@ -31,6 +31,7 @@ class Application extends \Pv\Objet\Objet
 	public $NomZoneRenduInterfPaiement ;
 	public $UrlRacine ;
 	public $MessageAucunElement = "Aucun element declare dans l'application" ;
+	public $MessageElementNonTrouve = "Aucun element ne correspond a ce fichier" ;
 	public $CheminDossierRacine ;
 	public function ObtientChemRelRegServsPersists()
 	{
@@ -284,7 +285,14 @@ class Application extends \Pv\Objet\Objet
 			}
 			else
 			{
-				echo $this->MessageAucunElement ;
+				if(count($this->Elements) == 0)
+				{
+					echo $this->MessageAucunElement ;
+				}
+				else
+				{
+					echo $this->MessageElementNonTrouve ;
+				}
 			}
 		}
 	}
@@ -473,12 +481,16 @@ class Application extends \Pv\Objet\Objet
 	}
 	public function CreeFournisseurDonneesPrinc()
 	{
-		$fourn = new \Pv\ZoneWeb\FournisseurDonnees\FournisseurDonnees() ;
-		$fourn->BaseDonnees = $this->ApplicationParent->CreeDBPrinc() ;
-		return $fourn ;
+		return $this->CreeFournPrinc() ;
 	}
 	public function CreeFournDonneesPrinc()
 	{
-		return $this->CreeFournisseurDonneesPrinc() ;
+		return $this->CreeFournPrinc() ;
+	}
+	public function CreeFournPrinc()
+	{
+		$fourn = new \Pv\FournisseurDonnees\Sql() ;
+		$fourn->BaseDonnees = $this->CreeBDPrinc() ;
+		return $fourn ;
 	}
 }

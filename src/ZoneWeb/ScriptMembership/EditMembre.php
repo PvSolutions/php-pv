@@ -37,12 +37,11 @@ class EditMembre extends \Pv\ZoneWeb\Script\Script
 	{
 		$membership = & $this->ZoneParent->Membership ;
 		$bd = & $membership->Database ;
-		$this->FormPrinc = $this->CreeFormPrinc() ;
+		$this->FormPrinc = $this->InsereFormPrinc() ;
 		if($this->MaxFiltresEditionParLigne > 0)
 		{
 			$this->FormPrinc->MaxFiltresEditionParLigne = $this->MaxFiltresEditionParLigne ;
 		}
-		$this->FormPrinc->AdopteScript("formPrinc", $this) ;
 		$this->InitFormPrinc() ;
 		if($this->CibleModification == 2)
 		{

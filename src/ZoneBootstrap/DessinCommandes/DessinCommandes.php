@@ -33,7 +33,7 @@ class DessinCommandes extends \Pv\ZoneWeb\DessinCommandes\DessinCommandes
 					$ctn .= $commande->ContenuAvantRendu ;
 				}
 				$classeBtn = $commande->ObtientValSuppl("classe-btn", "btn-primary") ;
-				$ctn .= '<button id="'.$commande->IDInstanceCalc.'" class="Commande btn '.$commande->NomClsCSS.' '.$classeBtn.'" type="submit" rel="'.$commande->NomElementSousComposantIU.'"' ;
+				$ctn .= '<button id="'.$commande->IDInstanceCalc.'" class="Commande btn '.$commande->NomClsCSS.' '.$classeBtn.'" type="submit" rel="'.$commande->NomElementSousComposantRendu.'"' ;
 				$contenuJsSurClick = ($commande->ContenuJsSurClick == '') ? $composant->IDInstanceCalc.'_ActiveCommande(this) ;' : $commande->ContenuJsSurClick.' ; return false ;' ;
 				$ctn .= ' onclick="'.$contenuJsSurClick.'"' ;
 				if($this->InclureLibelle == 0)

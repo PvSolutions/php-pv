@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\FormulaireDonnees ;
 
-class FormulaireDonnees extends \Pv\ZoneWeb\ComposantIU\Parametrable
+class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 {
 	public $TypeComposant = "FormulaireDonneesHTML" ;
 	public $Largeur = 0 ;
@@ -47,14 +47,14 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantIU\Parametrable
 	public $CommandeExecuter = null ;
 	public $DessinateurFiltresEdition = null ;
 	public $DessinateurBlocCommandes = null ;
-	public $CacherBlocCommandes = 0 ;
-	public $AfficherCommandesAucunElement = 0 ;
-	public $AnnulerLiaisonParametre = 0 ;
+	public $CacherBlocCommandes = false ;
+	public $AfficherCommandesAucunElement = false ;
+	public $AnnulerLiaisonParametre = false ;
 	public $DispositionComposants = array(4, 3, 1, 2) ;
 	public $MessageResultatCalculElements = "" ;
 	public $MessageAucunElement = "Aucun &eacute;l&eacute;ment trouv&eacute;" ;
-	public $CacherFormulaireFiltres = 0 ;
-	public $CacherFormulaireFiltresApresCmd = 0 ;
+	public $CacherFormulaireFiltres = false ;
+	public $CacherFormulaireFiltresApresCmd = false ;
 	public $MaxFiltresEditionParLigne = 0 ;
 	public $InclureRenduLibelleFiltresEdition = 1 ;
 	public $CommandeSelectionneeExec = 0 ;
@@ -78,6 +78,10 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantIU\Parametrable
 	public $ElementsEnCoursEditables = 0 ;
 	public $TotalElementsEditables = 1 ;
 	public $ActCmdTailleImage ;
+	public function PrepareZone()
+	{
+		$this->ExecuteCommandeSelectionnee() ;
+	}
 	public function & InsereFltEditRef($nom, & $filtreRef, $colLiee='', $nomComp='')
 	{
 		$flt = $this->CreeFiltreRef($nom, $filtreRef) ;
@@ -629,7 +633,10 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantIU\Parametrable
 			return $this->RenduMalRefere() ;
 		}
 		$this->MAJConfigFiltresSelection() ;
-		$this->ExecuteCommandeSelectionnee() ;
+		if($this->ZoneParent->PreparerComposants == 0)
+		{
+			$this->ExecuteCommandeSelectionnee() ;
+		}
 		$this->PrepareRendu() ;
 		$ctn = '<div id="'.$this->IDInstanceCalc.'"'.(($this->ClasseCSSDispositif != '') ? ' class="'.$this->ClasseCSSDispositif.'"' : '').'>'.PHP_EOL ;
 		if($this->MessageException == null)
@@ -891,7 +898,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantIU\Parametrable
 	protected function RenduBlocCommandes()
 	{
 		$ctn = '' ;
-		if(! $this->CacherBlocCommandes && ! $this->CacherFormulaireFiltres && ! $this->ImpressionEnCours())
+		if(! $this->CacherBlocCommandes && ! $this->ImpressionEnCours())
 		{
 			if($this->ElementEnCoursTrouve || $this->AfficherCommandesAucunElement)
 			{
@@ -901,7 +908,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantIU\Parametrable
 				}
 				if($this->EstNul($this->DessinateurBlocCommandes))
 				{
-					return "<p>Le dessinateur de filtres n'est pas dÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©fini</p>" ;
+					return "<p>Le dessinateur de filtres n'est pas défini</p>" ;
 				}
 				$ctn .= '<div class="BlocCommandes'.(($this->ClasseCSSBlocCommandes)).'"'.(($this->AlignBlocCommandes != '') ? ' align="'.$this->AlignBlocCommandes.'"' : '').'>'.PHP_EOL ;
 				$ctn .= $this->DessinateurBlocCommandes->Execute($this->ScriptParent, $this, $this->Commandes) ;
@@ -1143,7 +1150,7 @@ form.submit() ;
 			throw new Exception("La commande 'Annuler' n'a pas ete initialisee avant d'assigner une redirection") ;
 			return ;
 		}
-		$actCmd = $this->CommandeAnnuler->InsereActCmd("\Pv\ZoneWeb\ActionCommande\RedirectionHttp", array()) ;
+		$actCmd = $this->CommandeAnnuler->InsereClasseActCmd("\Pv\ZoneWeb\ActionCommande\RedirectionHttp", array()) ;
 		$actCmd->Url = $url ;
 		return $actCmd ;
 	}
@@ -1158,7 +1165,7 @@ form.submit() ;
 			throw new Exception("La commande 'Annuler' n'a pas ete initialisee avant d'assigner une redirection") ;
 			return ;
 		}
-		$actCmd = $this->CommandeAnnuler->InsereActCmd("\Pv\ZoneWeb\ActionCommande\RedirectionHttp", array()) ;
+		$actCmd = $this->CommandeAnnuler->InsereClasseActCmd("\Pv\ZoneWeb\ActionCommande\RedirectionHttp", array()) ;
 		$actCmd->NomScript = $nomScript ;
 		$actCmd->Parametres = $parametres ;
 		return $actCmd ;
@@ -1178,7 +1185,7 @@ form.submit() ;
 			throw new Exception("La commande 'Executer' n'a pas ete initialisee avant d'assigner une redirection") ;
 			return ;
 		}
-		$actCmd = $this->CommandeExecuter->InsereActCmd("\Pv\ZoneWeb\ActionCommande\RedirectionHttp", array()) ;
+		$actCmd = $this->CommandeExecuter->InsereClasseActCmd("\Pv\ZoneWeb\ActionCommande\RedirectionHttp", array()) ;
 		$actCmd->Url = $url ;
 		return $actCmd ;
 	}
@@ -1193,7 +1200,7 @@ form.submit() ;
 			throw new Exception("La commande 'Executer' n'a pas ete initialisee avant d'assigner une redirection") ;
 			return ;
 		}
-		$actCmd = $this->CommandeExecuter->InsereActCmd("\Pv\ZoneWeb\ActionCommande\RedirectionHttp", array()) ;
+		$actCmd = $this->CommandeExecuter->InsereClasseActCmd("\Pv\ZoneWeb\ActionCommande\RedirectionHttp", array()) ;
 		$actCmd->NomScript = $nomScript ;
 		$actCmd->Parametres = $parametres ;
 		return $actCmd ;

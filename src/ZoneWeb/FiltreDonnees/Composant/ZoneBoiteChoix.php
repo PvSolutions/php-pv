@@ -337,7 +337,14 @@ for(var i=1; i<=totalElems; i++)
 		}
 		else
 		{
-			$this->ValeursSelectionnees = array($this->Valeur) ;
+			if($this->EstPasNul($this->FiltreParent) && is_array($this->FiltreParent->ValeurBrute))
+			{
+				$this->ValeursSelectionnees = $this->FiltreParent->ValeurBrute ;
+			}
+			else
+			{
+				$this->ValeursSelectionnees = array($this->Valeur) ;
+			}
 		}
 	}
 	protected function EstValeurSelectionnee($valeur)

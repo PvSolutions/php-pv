@@ -12,11 +12,11 @@ class ZoneWeb extends \Pv\IHM\Zone
 	public $AdrScriptSession ;
 	public $DocumentsWeb = array() ;
 	public $GestTachesWeb ;
-	public $UtiliserDocumentWeb = 0 ;
+	public $UtiliserDocumentWeb = false ;
 	public $DocumentWebSelect ;
-	public $ActiverRoutes = 0 ;
-	public $CorrigerCheminsRoute = 1 ;
-	public $PreparerComposants = 1 ;
+	public $ActiverRoutes = false ;
+	public $CorrigerCheminsRoute = true ;
+	public $PreparerComposants = true ;
 	public $ArgsRouteAppelee = array() ;
 	public $DefinitionTypeDocument ;
 	public $CheminFavicon ;
@@ -30,42 +30,42 @@ class ZoneWeb extends \Pv\IHM\Zone
 	public $UrlBase = "" ;
 	public $ModeCache ;
 	public $ScriptPourRendu ;
-	public $InclureCtnJsEntete = 1 ;
+	public $InclureCtnJsEntete = true ;
 	public $RenduExtraHead = '' ;
-	public $InclureJQuery = 0 ;
+	public $InclureJQuery = false ;
 	public $CheminJQuery = "js/jquery.min.js" ;
-	public $InclureBootstrap = 0 ;
+	public $InclureBootstrap = false ;
 	public $CheminJsBootstrap = "js/bootstrap.min.js" ;
 	public $CheminCSSBootstrap = "css/bootstrap.css" ;
-	public $InclureBootstrapTheme = 0 ;
+	public $InclureBootstrapTheme = false ;
 	public $CheminCSSBootstrapTheme = "css/bootstrap-theme.min.css" ;
-	public $InclureFontAwesome = 0 ;
+	public $InclureFontAwesome = false ;
 	public $CheminFontAwesome = "css/font-awesome.min.css" ;
-	public $InclureJQueryMigrate = 1 ;
+	public $InclureJQueryMigrate = false ;
 	public $CheminJQueryMigrate = "js/jquery-migrate.min.js" ;
-	public $InclureJQueryMigrate3 = 0 ;
+	public $InclureJQueryMigrate3 = false ;
 	public $CheminJQueryMigrate3 = "js/jquery-migrate3.min.js" ;
-	public $InclureJQueryUi = 0 ;
+	public $InclureJQueryUi = false ;
 	public $CheminJsJQueryUi = "js/jquery-ui.min.js" ;
 	public $CheminCSSJQueryUi = "css/jquery-ui.css" ;
-	public $InclureNormalize = 0 ;
+	public $InclureNormalize = false ;
 	public $CheminNormalize = "css/normalize.css" ;
 	public $ContenusCSS = array() ;
 	public $ContenusJs = array() ;
 	public $ContenusJsPied = array() ;
 	public $CheminIconeScript = "" ;
-	public $InclureRenduTitre = 1 ;
-	public $InclureRenduIcone = 1 ;
-	public $InclureRenduMessageExecution = 1 ;
-	public $DetectIconeCorresp = 0 ;
+	public $InclureRenduTitre = true ;
+	public $InclureRenduIcone = true ;
+	public $InclureRenduMessageExecution = true ;
+	public $DetectIconeCorresp = false ;
 	public $CheminDossierIconeCorresp = "images/icones" ;
 	public $ExtIconeCorresp = "png" ;
-	public $InclureRenduChemin = 1 ;
-	public $InclureRenduDescription = 1 ;
+	public $InclureRenduChemin = true ;
+	public $InclureRenduDescription = true ;
 	public $ActionsPrinc = array() ;
 	public $ActionsAvantRendu = array() ;
 	public $ActionsApresRendu = array() ;
-	public $Composants = array() ;
+	public $ComposantsRendu = array() ;
 	public $NomParamActionAppelee = "appelleAction" ;
 	public $NomParamTacheAppelee = "appelleTache" ;
 	public $ValeurParamActionAppelee = false ;
@@ -73,10 +73,10 @@ class ZoneWeb extends \Pv\IHM\Zone
 	public $ActionsAppelees = array() ;
 	public $AnnulerRendu = 0 ;
 	public $RenduEnCours = 0 ;
-	public $RedirigerVersConnexion = 0 ;
-	public $ActiverRafraichScript = 1 ;
-	public $LibelleEspaceReserveFiltres = 0 ;
-	public $InclureScriptsMembership = 1 ;
+	public $RedirigerVersConnexion = false ;
+	public $ActiverRafraichScript = true ;
+	public $LibelleEspaceReserveFiltres = true ;
+	public $InclureScriptsMembership = true ;
 	public $NomDocumentWebEditMembership = "" ;
 	public $ModeRecouvrMP = "directe" ;
 	public $NomClasseScriptRecouvreMP = '\Pv\ZoneWeb\ScriptMembership\RecouvreMotPasse' ;
@@ -553,17 +553,22 @@ class ZoneWeb extends \Pv\IHM\Zone
 	{
 		return ($this->ValeurParamActionAppelee != "") ? 1 : 0 ;
 	}
-	public function & InsereTablPrinc($nomTabl)
+	public function & InsereDocument($nomDoc, $document)
 	{
-		return $this->InsereComposant($nomTabl, $this->CreeTablPrinc()) ;
+		return $this->InscritDocument($nomDoc, $document) ;
 	}
-	public function & InsereFormPrinc($nomForm)
+	public function & InsereDocumentWeb($nomDoc, $document)
 	{
-		return $this->InsereComposant($nomForm, $this->CreeFormPrinc()) ;
+		return $this->InscritDocument($nomDoc, $document) ;
 	}
 	public function & InsereComposant($nomComposant, $composant)
 	{
-		$this->InscritComposant($nomComposant, $composant) ;
+		$this->InscritComposantRendu($nomComposant, $composant) ;
+		return $composant ;
+	}
+	public function & InsereComposantRendu($nomComposant, $composant)
+	{
+		$this->InscritComposantRendu($nomComposant, $composant) ;
 		return $composant ;
 	}
 	public function & InsereActionPrinc($nomAction, $action)
@@ -581,9 +586,9 @@ class ZoneWeb extends \Pv\IHM\Zone
 		$this->InscritActionApresRendu($nomAction, $action) ;
 		return $action ;
 	}
-	public function InscritComposant($nomComposant, & $composant)
+	public function InscritComposantRendu($nomComposant, & $composant)
 	{
-		$this->Composants[$nomComposant] = & $composant ;
+		$this->ComposantsRendu[$nomComposant] = & $composant ;
 		$composant->AdopteZone($nomComposant, $this) ;
 	}
 	public function InscritActionPrinc($nomAction, & $action)
@@ -601,6 +606,10 @@ class ZoneWeb extends \Pv\IHM\Zone
 		$this->ActionsApresRendu[$nomAction] = & $action ;
 		$action->AdopteZone($nomAction, $this) ;
 	}
+	public function & InscritDocument($nomDoc, & $document)
+	{
+		$this->DocumentsWeb[$nomDoc] = & $document ;
+	}
 	public function CreeScript($nomClasse, $titre='')
 	{
 		if(! class_exists($nomClasse))
@@ -616,9 +625,9 @@ class ZoneWeb extends \Pv\IHM\Zone
 	}
 	protected function ExecuteScriptInaccessible(& $script)
 	{
-		if($this->RedirigerVersConnexion == 1)
+		if($this->RedirigerVersConnexion == true)
 		{
-			if($this->InclureScriptsMembership == 1 && ! $this->PossedeMembreConnecte() && $this->ValeurParamScriptAppele != $this->NomScriptConnexion)
+			if($this->InclureScriptsMembership == true && ! $this->PossedeMembreConnecte() && $this->ValeurParamScriptAppele != $this->NomScriptConnexion)
 			{
 				$params = array() ;
 				if($this->ScriptConnexion->AutoriserUrlsRetour == 1)
@@ -1000,12 +1009,12 @@ window.print() ;
 	{
 		$this->GestTachesWeb->Execute() ;
 	}
-	protected function PrepareComposants()
+	protected function PrepareComposantsRendu()
 	{
-		$nomsComp = array_keys($this->Composants) ;
+		$nomsComp = array_keys($this->ComposantsRendu) ;
 		foreach($nomsComp as $i => $nomComp)
 		{
-			$this->Composants[$nomComp]->PrepareZone() ;
+			$this->ComposantsRendu[$nomComp]->PrepareZone() ;
 		}
 	}
 	public function ExecuteScript(& $script)
@@ -1033,7 +1042,7 @@ window.print() ;
 		$this->DetermineEnvironnement($script) ;
 		$this->ExecuteRequeteSoumise($script) ;
 		// $script->PrepareRendu() ;
-		$this->PrepareComposants() ;
+		$this->PrepareComposantsRendu() ;
 		$this->ScriptPourRendu = $script ;
 		$this->RenduEnCours = 1 ;
 		if($this->ValeurParamActionAppelee !== false)
@@ -1096,7 +1105,7 @@ window.print() ;
 	}
 	public function InscritContenuJs($contenu)
 	{
-		$ctnJs = new PvBaliseJs() ;
+		$ctnJs = new BaliseJs() ;
 		$ctnJs->Definitions = $contenu ;
 		$this->ContenusJs[] = $ctnJs ;
 	}
@@ -1154,7 +1163,7 @@ window.print() ;
 	}
 	public function RenduContenuCSS($contenu)
 	{
-		$ctnCSS = new PvBaliseCSS() ;
+		$ctnCSS = new BaliseCSS() ;
 		$ctnCSS->Definitions = $contenu ;
 		return $ctnCSS->RenduDispositif() ;
 	}
@@ -1292,6 +1301,14 @@ document.getElementById("FormRetour").submit() ;
 	{
 		return new \Pv\ZoneWeb\TableauDonnees\TableauDonnees() ;
 	}
+	public function CreeGrillePrinc()
+	{
+		return new \Pv\ZoneWeb\TableauDonnees\GrilleDonnees() ;
+	}
+	public function CreeRepetPrinc()
+	{
+		return new \Pv\ZoneWeb\TableauDonnees\RepeteurDonnees() ;
+	}
 	public function CreeTableauDonneesPrinc()
 	{
 		return $this->CreeTablPrinc() ;
@@ -1320,13 +1337,52 @@ document.getElementById("FormRetour").submit() ;
 	{
 		return $this->ApplicationParent->CreeFournisseurDonneesPrinc() ;
 	}
+	public function CreeFournPrinc()
+	{
+		return $this->ApplicationParent->CreeFournisseurDonneesPrinc() ;
+	}
+	public function & InsereFormPrinc($nom='formPrinc')
+	{
+		$comp = $this->InsereComposant($nom, $this->CreeFormPrinc()) ;
+		return $comp ;
+	}
+	public function & InsereTablPrinc($nom='tablPrinc')
+	{
+		$comp = $this->InsereComposant($nom, $this->CreeTablPrinc()) ;
+		return $comp ;
+	}
+	public function & InsereGrillePrinc($nom='grillePrinc')
+	{
+		$comp = $this->InsereComposant($nom, $this->CreeGrillePrinc()) ;
+		return $comp ;
+	}
+	public function & InsereRepetPrinc($nom='repetPrinc')
+	{
+		$comp = $this->InsereComposant($nom, $this->CreeRepetPrinc()) ;
+		return $comp ;
+	}
 	public function AppliqueCommande(& $cmd, & $script)
 	{
 		$cmd->ConfirmeSucces() ;
 	}
+	public function AppliqueActionCommande(& $actCmd)
+	{
+		$this->AppliqueActCmd($actCmd) ;
+	}
+	public function AppliqueActCmd(& $actCmd)
+	{
+	}
 	public function ValideCritere(& $critere, & $script)
 	{
 		return true ;
+	}
+	public function ExtraitSrcValsSuppl($ligneDonnees, & $composant, & $srcValsSuppl)
+	{
+		return $ligneDonnees ;
+	}
+	public function DessineFiltres(& $composant, $parametres)
+	{
+		return '' ;
 	}
 	protected function AfficheRenduIndisponible(& $script, $msg)
 	{

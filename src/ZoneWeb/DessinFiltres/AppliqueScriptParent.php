@@ -11,11 +11,15 @@ class AppliqueScriptParent extends DessinFiltres
 		$nomMtd = ($this->NomMethodeScript != '') ? $this->NomMethodeScript : "DessineFiltres" ;
 		if(method_exists($script, $nomMtd))
 		{
-			$ctn = call_user_func_array(array($script, $nomMtd), array(& $composant, $parametres)) ;
+			$ctn = call_user_func_array(array($script, $nomMtd), array(& $this, &$composant, $parametres)) ;
 		}
 		else
 		{
 			$ctn = sprintf($this->MsgMethodeNonTrouvee, $nomMtd) ;
+		}
+		if($ctn == '')
+		{
+			$ctn = parent::Execute($script, $composant, $parametres) ;
 		}
 		return $ctn ;
 	}

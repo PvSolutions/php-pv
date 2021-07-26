@@ -7,9 +7,9 @@ class ActImgCommonCaptcha extends \Pv\ZoneWeb\Action\EnvoiFichier
 	protected $Support ;
 	protected function InitSupport()
 	{
-		$this->Support = \Pv\Common\GD\Captcha::Create($this->ComposantIUParent->LargeurImg, $this->ComposantIUParent->HauteurImg) ;
-		$this->Support->Name = $this->ComposantIUParent->NomImg ;
-		$this->Support->CaseInsensitive = $this->ComposantIUParent->CasseInsensibleImg ;
+		$this->Support = \Pv\Common\GD\Captcha::Create($this->ComposantRenduParent->LargeurImg, $this->ComposantRenduParent->HauteurImg) ;
+		$this->Support->Name = $this->ComposantRenduParent->NomImg ;
+		$this->Support->CaseInsensitive = $this->ComposantRenduParent->CasseInsensibleImg ;
 	}
 	protected function AfficheContenu()
 	{

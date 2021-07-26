@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\Document ;
 
-class Dialog extends \Pv\ZoneWeb\Document\DocumentWeb
+class Dialog extends \Pv\ZoneWeb\Document\Document
 {
 	public function RenduEntete(& $zone)
 	{

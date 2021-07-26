@@ -24,12 +24,11 @@ class EditProfil extends \Pv\ZoneWeb\Script\Script
 		$membership = & $this->ZoneParent->Membership ;
 		$bd = & $membership->Database ;
 		$scriptListe = & $this->ZoneParent->ScriptListeMembres ;
-		$this->FormPrinc = $this->CreeFormPrinc() ;
+		$this->FormPrinc = $this->InsereFormPrinc() ;
 		if($this->MaxFiltresEditionParLigne > 0)
 		{
 			$this->FormPrinc->MaxFiltresEditionParLigne = $this->MaxFiltresEditionParLigne ;
 		}
-		$this->FormPrinc->AdopteScript("formPrinc", $this) ;
 		$this->InitFormPrinc() ;
 		$this->FormPrinc->ChargeConfig() ;
 		$this->FiltreId = $this->FormPrinc->InsereFltLgSelectHttpGet($this->NomParamId, $bd->EscapeVariableName($membership->IdProfileColumn).' = <self>') ;
