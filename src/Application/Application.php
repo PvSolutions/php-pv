@@ -14,7 +14,7 @@ class Application extends \Pv\Objet\Objet
 	public $BasesDonnees = array() ;
 	public $ServsPersists = array() ;
 	public $TachesProgs = array() ;
-	public $Integrations = array() ;
+	public $ServsVendus = array() ;
 	public $Elements = array() ;
 	public $CheminFichierElementActifFixe = "" ;
 	public $CheminFichierElementActif = "" ;
@@ -51,8 +51,7 @@ class Application extends \Pv\Objet\Objet
 		$this->ChargeTachesProgs() ;
 		$this->ChargeServsPersists() ;
 		$this->ChargeIHMs() ;
-		$this->ChargeIntegrations() ;
-		$this->AppliqueIntegrations() ;
+		$this->ChargeServsVendus() ;
 		$this->ChargeElementHorsLigne() ;
 	}
 	public function InscritCtrlTachesProgs($nomElem='ctrlTachesProgs')
@@ -105,7 +104,7 @@ class Application extends \Pv\Objet\Objet
 		}
 		return $this->IHMs[$nom] ;
 	}
-	public function & ExisteInterfPaiement($nom)
+	public function ExisteInterfPaiement($nom)
 	{
 		return in_array($nom, $this->NomsInterfsPaiement) ;
 	}
@@ -126,6 +125,9 @@ class Application extends \Pv\Objet\Objet
 		$this->SystTrad = $this->CreeSystTrad() ;
 		$this->SystTrad->ChargeConfig() ;
 	}
+	protected function ChargeServsVendus()
+	{
+	}
 	protected function ChargeIHMs()
 	{
 	}
@@ -138,37 +140,6 @@ class Application extends \Pv\Objet\Objet
 	protected function ChargeElementHorsLigne()
 	{
 		$this->ElementHorsLigne = null ;
-	}
-	protected function ChargeIntegrations()
-	{
-	}
-	protected function AppliqueIntegrations()
-	{
-		$nomsIntegrs = array_keys($this->Integrations) ;
-		foreach($nomsIntegrs as $i => $nomIntegr)
-		{
-			$integr = & $this->Integrations[$nomIntegr] ;
-			$integr->ChargeConfig() ;
-			$integr->RemplitApplication($nomIntegr, $this) ;
-		}
-	}
-	public function & InscritIntegration($nomIntegr, & $integr)
-	{
-		return $this->InsereIntegration($nomIntegr, $integr) ;
-	}
-	public function InsereIntegration($nomIntegr, $integr)
-	{
-		$this->Integrations[$nomIntegr] = & $integr ;
-		return $integr ;
-	}
-	public function & ObtientIntegration($nomIntegr)
-	{
-		$integr = new PvIntegrationIndef() ;
-		if(isset($this->Integrations[$nomIntegr]))
-		{
-			$integr = & $this->Integrations[$nomIntegr] ;
-		}
-		return $integr ;
 	}
 	public function InscritElement($nom, & $element)
 	{
@@ -203,6 +174,16 @@ class Application extends \Pv\Objet\Objet
 			$servs[$i]->ArgsParDefaut["no_processus"] = $i ;
 		}
 		return $servs ;
+	}
+	protected function & InsereServiceVendu($nom, $svc)
+	{
+		return $this->InsereServVendu($nom, $svc) ;
+	}
+	protected function & InsereServVendu($nom, $svc)
+	{
+		$svc->NomElementInterfPaiemt = $nom ;
+		$this->ServsVendus[$nom] = & $svc ;
+		return $svc ;
 	}
 	public function & InsereIHM($nom, $ihm)
 	{

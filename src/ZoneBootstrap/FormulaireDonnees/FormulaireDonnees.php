@@ -60,4 +60,12 @@ class FormulaireDonnees extends \Pv\ZoneWeb\FormulaireDonnees\FormulaireDonnees
 		}
 		return $ctn ;
 	}
+	protected function DessineFiltresScriptParent()
+	{
+		$this->DessinateurFiltresEdition = new \Pv\ZoneBootstrap\DessinFiltres\AppliqueScriptParent() ;
+	}
+	protected function DessineCommandesScriptParent()
+	{
+		$this->DessinateurFiltresEdition = new \Pv\ZoneBootstrap\DessinCommandes\AppliqueScriptParent() ;
+	}
 }

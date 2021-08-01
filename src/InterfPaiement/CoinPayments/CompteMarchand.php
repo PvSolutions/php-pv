@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\CoinPayments ;
+namespace Pv\InterfPaiement\CoinPayments ;
 
-class CompteMarchand extends \Pv\PasserelleRglt\CompteMarchand
+class CompteMarchand extends \Pv\InterfPaiement\CompteMarchand
 {
 	public $Merchant ;
 	public $IPNSecret ;

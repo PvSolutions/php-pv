@@ -1,6 +1,6 @@
 <?php
 
-namespace Pv\PasserelleRglt ;
+namespace Pv\InterfPaiement ;
 
 class Transaction
 {
@@ -16,7 +16,7 @@ class Transaction
 	public function __construct()
 	{
 		$this->IdTransaction = uniqid() ;
-		$this->Cfg = new \Pv\PasserelleRglt\CfgTransact() ;
+		$this->Cfg = new \Pv\InterfPaiement\CfgTransact() ;
 	}
 	public function ImporteParLgn($lgn)
 	{
@@ -27,7 +27,7 @@ class Transaction
 		$this->Monnaie = $lgn["monnaie"] ;
 		// $this->InfosSuppl = $lgn["infos_suppl"] ;
 		$this->ContenuRetourBrut = null ;
-		$this->Cfg = new \Pv\PasserelleRglt\CfgTransact() ;
+		$this->Cfg = new \Pv\InterfPaiement\CfgTransact() ;
 		if($lgn["contenu_brut"] != '')
 		{
 			$transactTemp = @unserialize($lgn["contenu_brut"]) ;

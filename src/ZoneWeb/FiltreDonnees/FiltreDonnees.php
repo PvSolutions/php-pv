@@ -35,7 +35,7 @@ class FiltreDonnees extends \Pv\Objet\Objet
 	public $ValeurVide ;
 	public $ValeurParametre ;
 	public $ValeurBrute = "" ;
-	public $DejaLie = 0 ;
+	public $DejaLie = false ;
 	public $Invisible = 0 ;
 	public $Trim = 1 ;
 	public $EstEtiquette = 0 ;
@@ -155,7 +155,7 @@ class FiltreDonnees extends \Pv\Objet\Objet
 	public function Lie()
 	{
 		$this->CorrigeConfig() ;
-		if($this->DejaLie == 1)
+		if($this->DejaLie == true)
 		{
 			return $this->ValeurParametre ;
 		}
@@ -174,7 +174,7 @@ class FiltreDonnees extends \Pv\Objet\Objet
 		{
 			$this->ValeurParametre = $valeurParametre ;
 		}
-		$this->DejaLie = 1 ;
+		$this->DejaLie = true ;
 		return $this->ValeurParametre ;
 	}
 	public function DefinitColLiee($nomCol)

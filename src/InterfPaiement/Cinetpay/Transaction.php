@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\Cinetpay ;
+namespace Pv\InterfPaiement\Cinetpay ;
 
-class Transaction extends \Pv\PasserelleRglt\Transaction
+class Transaction extends \Pv\InterfPaiement\Transaction
 {
 	public $Signature ;
 	public $Monnaie = 'CFA' ;

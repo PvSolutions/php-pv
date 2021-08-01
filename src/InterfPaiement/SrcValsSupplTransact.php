@@ -1,6 +1,6 @@
 <?php
 
-namespace Pv\PasserelleRglt ;
+namespace Pv\InterfPaiement ;
 
 class SrcValsSupplTransact extends \Pv\ZoneWeb\TableauDonnees\SrcValsSuppl
 {

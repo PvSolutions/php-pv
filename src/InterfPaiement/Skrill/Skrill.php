@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\Skrill ;
+namespace Pv\InterfPaiement\Skrill ;
 
-class Skrill extends \Pv\PasserelleRglt\PasserelleRglt
+class Skrill extends \Pv\InterfPaiement\InterfPaiement
 {
 	public $EmailBenefCompteMarchand = "demoqco@sun-fish.com" ;
 	public $Titre = "Skrill" ;
@@ -20,11 +20,11 @@ class Skrill extends \Pv\PasserelleRglt\PasserelleRglt
 	}
 	protected function CreeTransaction()
 	{
-		return new \Pv\PasserelleRglt\Skrill\Transaction() ;
+		return new \Pv\InterfPaiement\Skrill\Transaction() ;
 	}
 	protected function CreeCompteMarchand()
 	{
-		$compte = new \Pv\PasserelleRglt\Skrill\CompteMarchand() ;
+		$compte = new \Pv\InterfPaiement\Skrill\CompteMarchand() ;
 		$compte->EmailBenef = $this->EmailBenefCompteMarchand ;
 		return $compte ;
 	}

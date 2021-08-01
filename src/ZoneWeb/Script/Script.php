@@ -4,7 +4,7 @@ namespace Pv\ZoneWeb\Script ;
 
 class Script extends \Pv\IHM\Zone\Script
 {
-	public $EstScriptSession = 0 ;
+	public $EstScriptSession = false ;
 	public $Titre ;
 	public $NomDocumentWeb ;
 	public $TitreDocument ;

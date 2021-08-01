@@ -101,6 +101,7 @@ class Sql extends \Pv\FournisseurDonnees\FournisseurDonnees
 		$texteTri = "" ;
 		if($indiceColonneTri > -1 && count($colonnes) > 0 && isset($colonnes[$indiceColonneTri]) && $colonnes[$indiceColonneTri]->TriPrealable == 0)
 		{
+			$valeurTri = '' ;
 			if($colonnes[$indiceColonneTri]->AliasDonneesTri != '')
 			{
 				$valeurTri = $colonnes[$indiceColonneTri]->AliasDonneesTri ;

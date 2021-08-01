@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\Paypal ;
+namespace Pv\InterfPaiement\Paypal ;
 
-class Paypal extends \Pv\PasserelleRglt\PasserelleRglt
+class Paypal extends \Pv\InterfPaiement\InterfPaiement
 {
 	public $ClientIdCompteMarchand = "" ;
 	public $SecretCompteMarchand = "" ;
@@ -34,11 +34,11 @@ class Paypal extends \Pv\PasserelleRglt\PasserelleRglt
 	}
 	protected function CreeTransaction()
 	{
-		return new \Pv\PasserelleRglt\Paypal\Transaction() ;
+		return new \Pv\InterfPaiement\Paypal\Transaction() ;
 	}
 	protected function CreeCompteMarchand()
 	{
-		$compte = new \Pv\PasserelleRglt\Paypal\CompteMarchand() ;
+		$compte = new \Pv\InterfPaiement\Paypal\CompteMarchand() ;
 		$compte->ClientId = $this->ClientIdCompteMarchand ;
 		$compte->Secret = $this->SecretCompteMarchand ;
 		return $compte ;
@@ -107,7 +107,7 @@ class Paypal extends \Pv\PasserelleRglt\PasserelleRglt
 	}
 	protected function VerifiePaiementTransaction($orderId)
 	{
-		$resOrder = new \Pv\PasserelleRglt\Paypal\ResultVerifOrder() ;
+		$resOrder = new \Pv\InterfPaiement\Paypal\ResultVerifOrder() ;
 		$httpSess = new HttpSession() ;
 		$ctnAuth = $httpSess->PostData(
 			$this->UrlOAuthApi(), array("grant_type" => "client_credentials"),

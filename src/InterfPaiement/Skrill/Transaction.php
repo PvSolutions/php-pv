@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\Skrill ;
+namespace Pv\InterfPaiement\Skrill ;
 
-class Transaction extends \Pv\PasserelleRglt\Transaction
+class Transaction extends \Pv\InterfPaiement\Transaction
 {
 	public $SessionId ;
 	public $IdMarchand ;

@@ -9,7 +9,7 @@ class AppliqueZoneParent extends SrcValsSuppl
 	public function Applique(& $composant, $ligneDonnees)
 	{
 		$ligneDonnees = parent::Applique($composant, $ligneDonnees) ;
-		$composant->ZoneParent->ExtraitSrcValsSuppl($ligneDonnees, $composant, $this) ;
+		$ligneDonnees = $composant->ZoneParent->ExtraitSrcValsSuppl($ligneDonnees, $composant, $this) ;
 		return $ligneDonnees ;
 	}
 }

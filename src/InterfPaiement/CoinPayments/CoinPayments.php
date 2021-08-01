@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\CoinPayments ;
+namespace Pv\InterfPaiement\CoinPayments ;
 
-class CoinPayments extends \Pv\PasserelleRglt\PasserelleRglt
+class CoinPayments extends \Pv\InterfPaiement\InterfPaiement
 {
 	public $MerchantCompteMarchand = "" ;
 	public $IPNSecretCompteMarchand = "" ;
@@ -26,11 +26,11 @@ class CoinPayments extends \Pv\PasserelleRglt\PasserelleRglt
 	}
 	protected function CreeTransaction()
 	{
-		return new \Pv\PasserelleRglt\CoinPayments\Transaction() ;
+		return new \Pv\InterfPaiement\CoinPayments\Transaction() ;
 	}
 	protected function CreeCompteMarchand()
 	{
-		$compte = new \Pv\PasserelleRglt\CoinPayments\CompteMarchand() ;
+		$compte = new \Pv\InterfPaiement\CoinPayments\CompteMarchand() ;
 		$compte->Merchant = $this->MerchantCompteMarchand ;
 		$compte->IPNSecret = $this->IPNSecretCompteMarchand ;
 		return $compte ;
@@ -41,7 +41,7 @@ class CoinPayments extends \Pv\PasserelleRglt\PasserelleRglt
 	}
 	protected function ConfirmeIPN()
 	{
-		$result = new \Pv\PasserelleRglt\CoinPayments\ResultConfirmIPN() ;
+		$result = new \Pv\InterfPaiement\CoinPayments\ResultConfirmIPN() ;
 		if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']))
 		{
 			$result->Param1 = $_SERVER["PHP_AUTH_USER"] ;

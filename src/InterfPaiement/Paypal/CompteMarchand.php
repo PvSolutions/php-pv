@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\Paypal ;
+namespace Pv\InterfPaiement\Paypal ;
 
-class CompteMarchand extends \Pv\PasserelleRglt\CompteMarchand
+class CompteMarchand extends \Pv\InterfPaiement\CompteMarchand
 {
 	public $ClientId ;
 	public $Secret ;

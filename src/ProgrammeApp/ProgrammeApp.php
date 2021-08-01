@@ -11,24 +11,24 @@ class ProgrammeApp extends \Pv\Application\Element
 	public $SortieDansFichier = 0 ;
 	protected function CreePlateforme()
 	{
-		$platf = new \Pv\PlateformeProc\PlateformeProcConsole() ;
+		$platf = new \Pv\PlateformeProc\Console() ;
 		switch(strtoupper($this->NaturePlateforme))
 		{
 			case "WEB" :
 			case "NAVIGATEUR" :
 			case "BROWSER" :
 			case "HTTP" :
-				{ $platf = new \Pv\PlateformeProc\PlateformeProcHttp() ; }
+				{ $platf = new \Pv\PlateformeProc\Http() ; }
 			break ;
 			case "CONSOLE" :
 			case "SHELL" :
 			case "DOS" :
-				{ $platf = new \Pv\PlateformeProc\PlateformeProcConsole() ; }
+				{ $platf = new \Pv\PlateformeProc\Console() ; }
 			break ;
 			case "INDEF" :
 			case "UNDEF" :
 			case "INDEFINI" :
-				{ $platf = new \Pv\PlateformeProc\PlateformeProcIndef() ; }
+				{ $platf = new \Pv\PlateformeProc\Indef() ; }
 			break ;
 		}
 		return $platf ;

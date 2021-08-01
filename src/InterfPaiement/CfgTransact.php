@@ -1,10 +1,10 @@
 <?php
 
-namespace Pv\PasserelleRglt ;
+namespace Pv\InterfPaiement ;
 
 class CfgTransact
 {
-	public $NomSvcAprPaiement ;
+	public $NomServiceVendu ;
 	public $Arg01 ;
 	public $Arg02 ;
 	public $Arg03 ;

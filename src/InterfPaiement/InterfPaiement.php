@@ -1,10 +1,10 @@
 <?php
 
-namespace Pv\PasserelleRglt ;
+namespace Pv\InterfPaiement ;
 
-class PasserelleRglt extends \Pv\IHM\IHM
+class InterfPaiement extends \Pv\IHM\IHM
 {
-	protected $_SvcsAprPaiement = array() ;
+	protected $_ServsVendus = array() ;
 	protected $_EtatExecution ;
 	protected $_Transaction ;
 	protected $_CompteMarchand ;
@@ -20,11 +20,11 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	protected $ValeurParamResultat = "" ;
 	protected $ValeurParamTermine = "paiement_termine" ;
 	protected $ValeurParamAnnule = "paiement_annule" ;
-	protected $EnregistrerTransaction = 1 ;
+	public $EnregistrerTransaction = true ;
 	public $UtiliserBdTransactionSoumise = 0 ;
-	protected $NomTableTransactSoumise = "transaction_soumise" ;
-	protected $NomTableTransaction = "transaction_paiement" ;
-	protected $MsgPaiementNonFinalise = "Votre paiement a r&eacute;ussi, mais aucune action n'a &eacute;t&eacute; trouv&eacute;e pour le suivi." ;
+	public $NomTableTransactSoumise = "transaction_soumise" ;
+	public $NomTableTransaction = "transaction_paiement" ;
+	public $MsgPaiementNonFinalise = "Votre paiement a r&eacute;ussi, mais aucune action n'a &eacute;t&eacute; trouv&eacute;e pour le suivi." ;
 	public $CheminRelatifRepTransacts = "." ;
 	public $AfficherErreurs404 = 0 ;
 	public $TitresEtatExecution = array(
@@ -55,7 +55,7 @@ class PasserelleRglt extends \Pv\IHM\IHM
 				return "" ;
 			}
 		}
-		$url = remove_url_params(get_current_url()) ;
+		$url = \Pv\Misc::remove_url_params(\Pv\Misc::get_current_url()) ;
 		if($this->ApplicationParent->NomElementActif == $this->NomElementApplication)
 		{
 			return $url ;
@@ -69,7 +69,7 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	}
 	protected function CreeBdTransaction()
 	{
-		return new \Pv\DB\Connection\Connection() ;
+		return $this->ApplicationParent->CreeBdPrinc() ;
 	}
 	protected function LgnDonneesTransact()
 	{
@@ -102,7 +102,7 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	}
 	protected function ImporteFichCfgTransaction()
 	{
-		if($this->EnregistrerTransaction == 1)
+		if($this->EnregistrerTransaction == true)
 		{
 			$bd = $this->CreeBdTransaction() ;
 			$lgn = $bd->FetchSqlRow('select * from '.$bd->EscapeTableName($this->NomTableTransaction).' where id_transaction='.$bd->ParamPrefix.'id', array('id' => $this->_Transaction->IdTransaction)) ;
@@ -133,6 +133,10 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	}
 	protected function VideCfgsTransactsExpirs()
 	{
+		if($this->EnregistrerTransaction)
+		{
+			return ;
+		}
 		if(is_dir($this->CheminRepTransacts()))
 		{
 			$dh = opendir($this->CheminRepTransacts()) ;
@@ -141,11 +145,11 @@ class PasserelleRglt extends \Pv\IHM\IHM
 			{
 				while(($nomFich = readdir($dh)) !== false)
 				{
-					if($nomFich == '.' || $nomFich == '..')
+					$cheminFich = $this->CheminRepTransacts()."/".$nomFich ;
+					if($nomFich == '.' || $nomFich == '..' || is_dir($cheminFich))
 					{
 						continue ;
 					}
-					$cheminFich = $this->CheminRepTransacts()."/".$nomFich ;
 					$infoFich = pathinfo($cheminFich) ;
 					if($infoFich["extension"] != "dat")
 					{
@@ -204,23 +208,33 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	protected function InitConfig()
 	{
 		parent::InitConfig() ;
-		$this->_EtatExecution = new \Pv\PasserelleRglt\EtatExecution() ;
+		$this->_EtatExecution = new \Pv\InterfPaiement\EtatExecution() ;
 		$this->_CompteMarchand = $this->CreeCompteMarchand() ;
 		$this->_Transaction = $this->CreeTransaction() ;
 	}
-	public function InsereSvcAprPaiement($nom, $svc)
+	public function InsereServVendu($nom, $svc)
 	{
-		$this->InscritSvcAprPaiement($nom, $svc) ;
+		$this->InscritServiceVendu($nom, $svc) ;
 		return $svc ;
 	}
-	public function InscritSvcAprPaiement($nom, & $svc)
+	public function InsereServiceVendu($nom, $svc)
 	{
-		$this->_SvcsAprPaiement[$nom] = & $svc ;
-		$svc->AdopteInterfPaiemt($nom, $this) ;
+		$this->InscritServiceVendu($nom, $svc) ;
+		return $svc ;
 	}
-	public function & SvcsAprPaiement()
+	public function InscritServiceVendu($nom, & $svc)
 	{
-		return $this->_SvcsAprPaiement ;
+		$this->_ServsVendus[$nom] = & $svc ;
+		$svc->NomElementInterfPaiemt = $nom ;
+	}
+	public function & ServsVendus()
+	{
+		$servs = $this->ApplicationParent->ServsVendus ;
+		if(count($this->_ServsVendus) > 0)
+		{
+			$servs = array_merge($servs, $this->_ServsVendus) ;
+		}
+		return $servs ;
 	}
 	public function UrlPaiementTermine()
 	{
@@ -232,11 +246,11 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	}
 	protected function CreeTransaction()
 	{
-		return new \Pv\PasserelleRglt\Transaction() ;
+		return new \Pv\InterfPaiement\Transaction() ;
 	}
 	protected function CreeCompteMarchand()
 	{
-		return new \Pv\PasserelleRglt\CompteMarchand() ;
+		return new \Pv\InterfPaiement\CompteMarchand() ;
 	}
 	public function & Transaction()
 	{
@@ -255,7 +269,7 @@ class PasserelleRglt extends \Pv\IHM\IHM
 		$this->_EtatExecution->Id = $id ;
 		$this->_EtatExecution->TimestampCapt = date("U") ;
 		$this->_EtatExecution->MessageErreur = $msgErreur ;
-		if($this->EnregistrerTransaction == 1)
+		if($this->EnregistrerTransaction == true)
 		{
 			$this->SauveTransaction() ;
 		}
@@ -323,7 +337,7 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	protected function ImporteTransactSoumiseBd()
 	{
 		$envoyerErr = 0 ;
-		$idTransact = _GET_def("idTransactSoumise") ;
+		$idTransact = \Pv\Misc::_GET_def("idTransactSoumise") ;
 		if($this->UtiliserBdTransactionSoumise == 0 || $idTransact == "")
 		{
 			return 1 ;
@@ -385,14 +399,15 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	}
 	protected function PrepareTransaction()
 	{
-		$nomSvcAprPaiement = $this->_Transaction->Cfg->NomSvcAprPaiement ;
-		if($nomSvcAprPaiement == '' || ! isset($this->_SvcsAprPaiement[$nomSvcAprPaiement]))
+		$nomServiceVendu = $this->_Transaction->Cfg->NomServiceVendu ;
+		$servsVendus = $this->ServsVendus() ;
+		if($nomServiceVendu == '' || ! isset($servsVendus[$nomServiceVendu]))
 		{
 			$this->DefinitEtatExecution("svc_apr_paiement_inexistant", "Aucune action n'a ete definie pour le suivi du reglement de la transaction") ;
 		}
 		else
 		{
-			$this->_SvcsAprPaiement[$nomSvcAprPaiement]->Prepare($this->_Transaction) ;
+			$servsVendus[$nomServiceVendu]->Prepare($this->_Transaction) ;
 		}
 	}
 	protected function SoumetTransaction()
@@ -424,16 +439,18 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	protected function ConfirmeTransactionReussieAuto()
 	{
 		$this->ImporteFichCfgTransaction() ;
-		if($this->_Transaction->Cfg->NomSvcAprPaiement != '' && isset($this->_SvcsAprPaiement[$this->_Transaction->Cfg->NomSvcAprPaiement]))
+		$servsVendus = $this->ServsVendus() ;
+		if($this->_Transaction->Cfg->NomServiceVendu != '' && isset($servsVendus[$this->_Transaction->Cfg->NomServiceVendu]))
 		{
-			$svcAprPaiement = & $this->_SvcsAprPaiement[$this->_Transaction->Cfg->NomSvcAprPaiement] ;
-			if($svcAprPaiement->EstEffectue($this->_Transaction))
+			$serviceVendu = & $servsVendus[$this->_Transaction->Cfg->NomServiceVendu] ;
+			$serviceVendu->AdopteInterfPaiemt($this->_Transaction->Cfg->NomServiceVendu, $this) ;
+			if($serviceVendu->EstEffectue($this->_Transaction))
 			{
-				$svcAprPaiement->Rembourse($this->_Transaction) ;
+				$serviceVendu->Rembourse($this->_Transaction) ;
 			}
 			else
 			{
-				$svcAprPaiement->ConfirmeSucces($this->_Transaction) ;
+				$serviceVendu->ConfirmeSucces($this->_Transaction) ;
 			}
 		}
 		else
@@ -448,10 +465,12 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	protected function ConfirmeTransactionEchoueeAuto()
 	{
 		$this->ImporteFichCfgTransaction() ;
-		if($this->_Transaction->Cfg->NomSvcAprPaiement != '' && isset($this->_SvcsAprPaiement[$this->_Transaction->Cfg->NomSvcAprPaiement]))
+		$servsVendus = $this->ServsVendus() ;
+		if($this->_Transaction->Cfg->NomServiceVendu != '' && isset($servsVendus[$this->_Transaction->Cfg->NomServiceVendu]))
 		{
-			$svcAprPaiement = & $this->_SvcsAprPaiement[$this->_Transaction->Cfg->NomSvcAprPaiement] ;
-			$svcAprPaiement->ConfirmeEchec($this->_Transaction) ;
+			$serviceVendu = & $servsVendus[$this->_Transaction->Cfg->NomServiceVendu] ;
+			$serviceVendu->AdopteInterfPaiemt($this->_Transaction->Cfg->NomServiceVendu, $this) ;
+			$serviceVendu->ConfirmeEchec($this->_Transaction) ;
 		}
 	}
 	protected function ConfirmeTransactionEchouee()
@@ -459,10 +478,12 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	}
 	protected function ConfirmeTransactionAnnuleeAuto()
 	{
-		if($this->_Transaction->Cfg->NomSvcAprPaiement != '' && isset($this->_SvcsAprPaiement[$this->_Transaction->Cfg->NomSvcAprPaiement]))
+		$servsVendus = $this->ServsVendus() ;
+		if($this->_Transaction->Cfg->NomServiceVendu != '' && isset($servsVendus[$this->_Transaction->Cfg->NomServiceVendu]))
 		{
-			$svcAprPaiement = & $this->_SvcsAprPaiement[$this->_Transaction->Cfg->NomSvcAprPaiement] ;
-			$svcAprPaiement->Annule($this->_Transaction) ;
+			$serviceVendu = & $servsVendus[$this->_Transaction->Cfg->NomServiceVendu] ;
+			$serviceVendu->AdopteInterfPaiemt($this->_Transaction->Cfg->NomServiceVendu, $this) ;
+			$serviceVendu->Annule($this->_Transaction) ;
 		}
 	}
 	protected function ConfirmeTransactionAnnulee()
@@ -515,14 +536,18 @@ class PasserelleRglt extends \Pv\IHM\IHM
 	}
 	protected function RestaureTransactionSession()
 	{
-		$this->_Transaction->IdTransaction = $_SESSION[$this->NomElementApplication."_id_transaction"] ;
-		unset($_SESSION[$this->NomElementApplication."_id_transaction"]) ;
+		if(isset($_SESSION[$this->NomElementApplication."_id_transaction"]))
+		{
+			$this->_Transaction->IdTransaction = $_SESSION[$this->NomElementApplication."_id_transaction"] ;
+			unset($_SESSION[$this->NomElementApplication."_id_transaction"]) ;
+		}
 	}
 	public function Execute()
 	{
+		session_start();
 		$this->VideCfgsTransactsExpirs() ;
 		$this->RestaureTransactionEnCours() ;
-		if($this->_Transaction->Montant != "")
+		if($this->_Transaction->Montant > 0)
 		{
 			if($this->TransactionEnCours())
 			{
@@ -592,7 +617,7 @@ class PasserelleRglt extends \Pv\IHM\IHM
 		{
 			$urlRedirect .= '?idTransactSoumise='.urlencode($this->_Transaction->IdTransaction) ;
 		}
-		redirect_to($urlRedirect) ;
+		\Pv\Misc::redirect_to($urlRedirect) ;
 	}
 	public function RemplitTablTransactsPaie(& $tabl)
 	{
@@ -613,7 +638,7 @@ class PasserelleRglt extends \Pv\IHM\IHM
 		$tabl->InsereDefColHtml('${titre_etat}', "Etat") ;
 		$tabl->InsereDefCol("montant", "Montant") ;
 		$tabl->InsereDefColCachee("id_etat") ;
-		$tabl->SourceValeursSuppl = new \Pv\PasserelleRglt\SrcValsSupplTransact() ;
+		$tabl->SourceValeursSuppl = new \Pv\InterfPaiement\SrcValsSupplTransact() ;
 		$tabl->SourceValeursSuppl->InterfPaiemtParent = & $this ;
 	}
 	public function ControleTransactionsEnAttente()

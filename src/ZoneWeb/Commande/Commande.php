@@ -259,6 +259,13 @@ class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 	{
 		return $this->InsereAction(new \Pv\ZoneWeb\ActionCommande\AppliqueScriptParent()) ;
 	}
+	public function & InsereActCmdNotifScript($nomScript, $params=array())
+	{
+		$actCmd = $this->InsereAction(new \Pv\ZoneWeb\ActionCommande\NotifieScript()) ;
+		$actCmd->NomScript = $nomScript ;
+		$actCmd->Parametres = $params ;
+		return $actCmd ;
+	}
 	public function & InsereActCmdZoneParent()
 	{
 		return $this->InsereAction(new \Pv\ZoneWeb\ActionCommande\AppliqueZoneParent()) ;

@@ -15,7 +15,7 @@ class Console extends PlateformeProc
 	public function RecupArgs()
 	{
 		$args = array() ;
-		if(! is_array($_SERVER["argv"]))
+		if(! isset($_SERVER["argv"]) || ! is_array($_SERVER["argv"]))
 		{
 			return $args ;
 		}

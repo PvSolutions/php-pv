@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\CoinPayments ;
+namespace Pv\InterfPaiement\CoinPayments ;
 
-class \Pv\PasserelleRglt\CoinPayments\ResultConfirmIPN
+class \Pv\InterfPaiement\CoinPayments\ResultConfirmIPN
 {
 	public $Methode = -1 ;
 	public $CodeErreur = "non_initialise" ;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\Cinetpay ;
+namespace Pv\InterfPaiement\Cinetpay ;
 
-class Cinetpay extends \Pv\PasserelleRglt\PasserelleRglt
+class Cinetpay extends \Pv\InterfPaiement\InterfPaiement
 {
 	public $Test = 1 ;
 	public $ApiKeyCompteMarchand = "" ;
@@ -41,11 +41,11 @@ class Cinetpay extends \Pv\PasserelleRglt\PasserelleRglt
 	}
 	protected function CreeTransaction()
 	{
-		return new \Pv\PasserelleRglt\Cinetpay\Transaction() ;
+		return new \Pv\InterfPaiement\Cinetpay\Transaction() ;
 	}
 	protected function CreeCompteMarchand()
 	{
-		$compte = new \Pv\PasserelleRglt\Cinetpay\CompteMarchand() ;
+		$compte = new \Pv\InterfPaiement\Cinetpay\CompteMarchand() ;
 		$compte->ApiKey = $this->ApiKeyCompteMarchand ;
 		$compte->SiteId = $this->SiteIdCompteMarchand ;
 		return $compte ;

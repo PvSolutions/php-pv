@@ -1,6 +1,6 @@
 <?php
 
-namespace Pv\PasserelleRglt\Paypal ;
+namespace Pv\InterfPaiement\Paypal ;
 
 class ResultVerifOrder
 {

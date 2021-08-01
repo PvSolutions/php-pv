@@ -405,7 +405,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 		$defCol->Formatteur = new \Pv\ZoneWeb\TableauDonnees\FormatColonne\Monnaie() ;
 		return $defCol ;
 	}
-	public function & InsereDefColDateFr($nomDonnees, $libelle="", $inclureHeure=0)
+	public function & InsereDefColDateFr($nomDonnees, $libelle="", $inclureHeure=0, $aliasDonnees='')
 	{
 		$defCol = $this->InsereDefCol($nomDonnees, $libelle, $aliasDonnees) ;
 		$defCol->Formatteur = new \Pv\ZoneWeb\TableauDonnees\FormatColonne\DateFr() ;

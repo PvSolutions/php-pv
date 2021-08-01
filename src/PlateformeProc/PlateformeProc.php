@@ -12,9 +12,6 @@ class PlateformeProc
 	{
 		return new http() ;
 	}
-}
-class PlateformeProc
-{
 	public function EstDisponible()
 	{
 		return 0 ;

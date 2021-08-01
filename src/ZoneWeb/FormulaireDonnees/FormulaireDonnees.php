@@ -270,7 +270,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		$flt->ExpressionDonnees = $exprDonnees ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
-		$this->FiltresGlobauxSelection[] = & $flt ;
+		$this->FiltresLigneSelection[] = & $flt ;
 		return $flt ;
 	}
 	public function & InsereFltSelectFixe($nom, $valeur, $exprDonnees='', $nomClsComp='')
@@ -279,7 +279,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		$flt->ExpressionDonnees = $exprDonnees ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
-		$this->FiltresGlobauxSelection[] = & $flt ;
+		$this->FiltresLigneSelection[] = & $flt ;
 		return $flt ;
 	}
 	public function & InsereFltSelectCookie($nom, $exprDonnees='', $nomClsComp='')
@@ -288,7 +288,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		$flt->ExpressionDonnees = $exprDonnees ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
-		$this->FiltresGlobauxSelection[] = & $flt ;
+		$this->FiltresLigneSelection[] = & $flt ;
 		return $flt ;
 	}
 	public function & InsereFltSelectSession($nom, $exprDonnees='', $nomClsComp='')
@@ -297,7 +297,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		$flt->ExpressionDonnees = $exprDonnees ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
-		$this->FiltresGlobauxSelection[] = & $flt ;
+		$this->FiltresLigneSelection[] = & $flt ;
 		return $flt ;
 	}
 	public function & InsereFltSelectMembreConnecte($nom, $nomParamLie='', $exprDonnees='', $nomClsComp='')
@@ -306,7 +306,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		$flt->ExpressionDonnees = $exprDonnees ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
-		$this->FiltresGlobauxSelection[] = & $flt ;
+		$this->FiltresLigneSelection[] = & $flt ;
 		return $flt ;
 	}
 	public function & InsereFltSelectHttpUpload($nom, $cheminDossierDest="", $exprDonnees='', $nomClsComp='')
@@ -315,7 +315,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		$flt->ExpressionDonnees = $exprDonnees ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
-		$this->FiltresGlobauxSelection[] = & $flt ;
+		$this->FiltresLigneSelection[] = & $flt ;
 		return $flt ;
 	}
 	public function & InsereFltSelectHttpGet($nom, $exprDonnees='', $nomClsComp='')
@@ -324,7 +324,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		$flt->ExpressionDonnees = $exprDonnees ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
-		$this->FiltresGlobauxSelection[] = & $flt ;
+		$this->FiltresLigneSelection[] = & $flt ;
 		return $flt ;
 	}
 	public function & InsereFltSelectHttpPost($nom, $exprDonnees='', $nomClsComp='')
@@ -333,10 +333,91 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		$flt->ExpressionDonnees = $exprDonnees ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
-		$this->FiltresGlobauxSelection[] = & $flt ;
+		$this->FiltresLigneSelection[] = & $flt ;
 		return $flt ;
 	}
 	public function & InsereFltSelectHttpRequest($nom, $exprDonnees='', $nomClsComp='')
+	{
+		$flt = $this->CreeFiltreHttpRequest($nom) ;
+		$flt->ExpressionDonnees = $exprDonnees ;
+		if($nomClsComp != '')
+			$flt->DeclareComposant($nomClsComp) ;
+		$this->FiltresLigneSelection[] = & $flt ;
+		return $flt ;
+	}
+	public function & InsereFltSelectGlobalRef($nom, & $filtreRef, $exprDonnees='', $nomComp='')
+	{
+		$flt = $this->CreeFiltreRef($nom, $filtreRef) ;
+		$flt->ExpressionDonnees = $exprDonnees ;
+		if($nomClsComp != '')
+			$flt->DeclareComposant($nomClsComp) ;
+		$this->FiltresGlobauxSelection[] = & $flt ;
+		return $flt ;
+	}
+	public function & InsereFltSelectGlobalFixe($nom, $valeur, $exprDonnees='', $nomClsComp='')
+	{
+		$flt = $this->CreeFiltreFixe($nom, $valeur) ;
+		$flt->ExpressionDonnees = $exprDonnees ;
+		if($nomClsComp != '')
+			$flt->DeclareComposant($nomClsComp) ;
+		$this->FiltresGlobauxSelection[] = & $flt ;
+		return $flt ;
+	}
+	public function & InsereFltSelectGlobalCookie($nom, $exprDonnees='', $nomClsComp='')
+	{
+		$flt = $this->CreeFiltreCookie($nom) ;
+		$flt->ExpressionDonnees = $exprDonnees ;
+		if($nomClsComp != '')
+			$flt->DeclareComposant($nomClsComp) ;
+		$this->FiltresGlobauxSelection[] = & $flt ;
+		return $flt ;
+	}
+	public function & InsereFltSelectGlobalSession($nom, $exprDonnees='', $nomClsComp='')
+	{
+		$flt = $this->CreeFiltreSession($nom) ;
+		$flt->ExpressionDonnees = $exprDonnees ;
+		if($nomClsComp != '')
+			$flt->DeclareComposant($nomClsComp) ;
+		$this->FiltresGlobauxSelection[] = & $flt ;
+		return $flt ;
+	}
+	public function & InsereFltSelectGlobalMembreConnecte($nom, $nomParamLie='', $exprDonnees='', $nomClsComp='')
+	{
+		$flt = $this->CreeFiltreMembreConnecte($nom, $nomParamLie) ;
+		$flt->ExpressionDonnees = $exprDonnees ;
+		if($nomClsComp != '')
+			$flt->DeclareComposant($nomClsComp) ;
+		$this->FiltresGlobauxSelection[] = & $flt ;
+		return $flt ;
+	}
+	public function & InsereFltSelectGlobalHttpUpload($nom, $cheminDossierDest="", $exprDonnees='', $nomClsComp='')
+	{
+		$flt = $this->CreeFiltreHttpUpload($nom, $cheminDossierDest) ;
+		$flt->ExpressionDonnees = $exprDonnees ;
+		if($nomClsComp != '')
+			$flt->DeclareComposant($nomClsComp) ;
+		$this->FiltresGlobauxSelection[] = & $flt ;
+		return $flt ;
+	}
+	public function & InsereFltSelectGlobalHttpGet($nom, $exprDonnees='', $nomClsComp='')
+	{
+		$flt = $this->CreeFiltreHttpGet($nom) ;
+		$flt->ExpressionDonnees = $exprDonnees ;
+		if($nomClsComp != '')
+			$flt->DeclareComposant($nomClsComp) ;
+		$this->FiltresGlobauxSelection[] = & $flt ;
+		return $flt ;
+	}
+	public function & InsereFltSelectGlobalHttpPost($nom, $exprDonnees='', $nomClsComp='')
+	{
+		$flt = $this->CreeFiltreHttpPost($nom) ;
+		$flt->ExpressionDonnees = $exprDonnees ;
+		if($nomClsComp != '')
+			$flt->DeclareComposant($nomClsComp) ;
+		$this->FiltresGlobauxSelection[] = & $flt ;
+		return $flt ;
+	}
+	public function & InsereFltSelectGlobalHttpRequest($nom, $exprDonnees='', $nomClsComp='')
 	{
 		$flt = $this->CreeFiltreHttpRequest($nom) ;
 		$flt->ExpressionDonnees = $exprDonnees ;
@@ -1122,6 +1203,14 @@ form.submit() ;
 	{
 		$this->DessinateurFiltresEdition = new \Pv\ZoneWeb\DessinFiltres\Html() ;
 	}
+	protected function DessineFiltresScriptParent()
+	{
+		$this->DessinateurFiltresEdition = new \Pv\ZoneWeb\DessinFiltres\AppliqueScriptParent() ;
+	}
+	protected function DessineCommandesScriptParent()
+	{
+		$this->DessinateurFiltresEdition = new \Pv\ZoneWeb\DessinCommandes\AppliqueScriptParent() ;
+	}
 	public function NotifieParMail($de, $a, $cc='', $cci='')
 	{
 		if($this->EstNul($this->CommandeExecuter))
@@ -1201,6 +1290,54 @@ form.submit() ;
 			return ;
 		}
 		$actCmd = $this->CommandeExecuter->InsereClasseActCmd("\Pv\ZoneWeb\ActionCommande\RedirectionHttp", array()) ;
+		$actCmd->NomScript = $nomScript ;
+		$actCmd->Parametres = $parametres ;
+		return $actCmd ;
+	}
+	public function AppliqueScriptParentCmdExec()
+	{
+		if(! $this->InscrireCommandeExecuter)
+		{
+			return ;
+		}
+		$this->RemplaceCommandeExecuter('\Pv\ZoneWeb\Commande\AppliqueScriptParent') ;
+	}
+	public function AppliqueScriptParentCmdAnnul()
+	{
+		if(! $this->InscrireCommandeAnnuler)
+		{
+			return ;
+		}
+		$this->RemplaceCommandeAnnuler('\Pv\ZoneWeb\Commande\AppliqueScriptParent') ;
+	}
+	public function AppliqueZoneParentCmdExec()
+	{
+		if(! $this->InscrireCommandeExecuter)
+		{
+			return ;
+		}
+		$this->RemplaceCommandeExecuter('\Pv\ZoneWeb\Commande\AppliqueZoneParent') ;
+	}
+	public function AppliqueZoneParentCmdAnnul()
+	{
+		if(! $this->InscrireCommandeAnnuler)
+		{
+			return ;
+		}
+		$this->RemplaceCommandeAnnuler('\Pv\ZoneWeb\Commande\AppliqueZoneParent') ;
+	}
+	public function NotifieExecuterVersScript($nomScript, $parametres=array())
+	{
+		if(! $this->InscrireCommandeExecuter)
+		{
+			return ;
+		}
+		if($this->EstNul($this->CommandeExecuter))
+		{
+			throw new Exception("La commande 'Executer' n'a pas ete initialisee avant d'assigner une redirection") ;
+			return ;
+		}
+		$actCmd = $this->CommandeExecuter->InsereClasseActCmd('\Pv\ZoneWeb\ActionCommande\NotifieScript', array()) ;
 		$actCmd->NomScript = $nomScript ;
 		$actCmd->Parametres = $parametres ;
 		return $actCmd ;

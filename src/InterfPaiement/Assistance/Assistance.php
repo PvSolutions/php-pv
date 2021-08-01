@@ -1,8 +1,8 @@
 <?php
 
-namespace Pv\PasserelleRglt\Test ;
+namespace Pv\InterfPaiement\Assistance ;
 
-class Test extends \Pv\PasserelleRglt\PasserelleRglt
+class Assistance extends \Pv\InterfPaiement\InterfPaiement
 {
 	public $NomTableAssistance = "transaction_assistance" ;
 	public $Titre = "Assistance" ;
@@ -25,25 +25,25 @@ class Test extends \Pv\PasserelleRglt\PasserelleRglt
 	}
 	protected function CreeTransaction()
 	{
-		return new \Pv\PasserelleRglt\Test\Transaction() ;
+		return new \Pv\InterfPaiement\Assistance\Transaction() ;
 	}
 	protected function CreeCompteMarchand()
 	{
-		return new \Pv\PasserelleRglt\Test\CompteMarchand() ;
+		return new \Pv\InterfPaiement\Assistance\CompteMarchand() ;
 	}
 	protected function RestaureTransactionEnCours()
 	{
 		parent::RestaureTransactionEnCours() ;
 		if($this->IdEtatExecution() == "termine" && isset($_SESSION["paiement_assistance_en_cours"]))
 		{
-			$this->_Transaction->IdTransaction = _POST_def("id_transaction") ;
-			$this->_Transaction->Montant = _POST_def("montant") ;
-			$this->_Transaction->Monnaie = _POST_def("monnaie") ;
-			$this->_Transaction->Designation = _POST_def("designation") ;
-			$email1 = _POST_def("email1") ;
-			$email2 = _POST_def("email2") ;
-			$tel1 = _POST_def("tel1") ;
-			$tel2 = _POST_def("tel2") ;
+			$this->_Transaction->IdTransaction = \Pv\Misc::_POST_def("id_transaction") ;
+			$this->_Transaction->Montant = \Pv\Misc::_POST_def("montant") ;
+			$this->_Transaction->Monnaie = \Pv\Misc::_POST_def("monnaie") ;
+			$this->_Transaction->Designation = \Pv\Misc::_POST_def("designation") ;
+			$email1 = \Pv\Misc::_POST_def("email1") ;
+			$email2 = \Pv\Misc::_POST_def("email2") ;
+			$tel1 = \Pv\Misc::_POST_def("tel1") ;
+			$tel2 = \Pv\Misc::_POST_def("tel2") ;
 			$bd = $this->CreeBdAssistance() ;
 			$ok = $bd->InsertRow(
 				$this->NomTableAssistance,
@@ -125,7 +125,7 @@ class Test extends \Pv\PasserelleRglt\PasserelleRglt
 		$ctn .= $this->LibelleEmail1. PHP_EOL ;
 		$ctn .= '</th>'.PHP_EOL ; 
 		$ctn .= '<td width="*" valign="top">'.PHP_EOL ;
-		$ctn .= '<input type="email" name="email1" value="'.htmlspecialchars(_POST_def("email1")).'" />'.PHP_EOL ;
+		$ctn .= '<input type="email" name="email1" value="'.htmlspecialchars(\Pv\Misc::_POST_def("email1")).'" />'.PHP_EOL ;
 		$ctn .= '</td>'.PHP_EOL ;
 		$ctn .= '</tr>'.PHP_EOL ;
 		$ctn .= '<tr>'.PHP_EOL ;
@@ -133,7 +133,7 @@ class Test extends \Pv\PasserelleRglt\PasserelleRglt
 		$ctn .= $this->LibelleEmail2. PHP_EOL ;
 		$ctn .= '</th>'.PHP_EOL ;
 		$ctn .= '<td valign="top">'.PHP_EOL ;
-		$ctn .= '<input type="email" name="email2" value="'.htmlspecialchars(_POST_def("email2")).'" />'.PHP_EOL ;
+		$ctn .= '<input type="email" name="email2" value="'.htmlspecialchars(\Pv\Misc::_POST_def("email2")).'" />'.PHP_EOL ;
 		$ctn .= '</td>'.PHP_EOL ;
 		$ctn .= '</tr>'.PHP_EOL ;
 		$ctn .= '<tr>'.PHP_EOL ;
@@ -141,7 +141,7 @@ class Test extends \Pv\PasserelleRglt\PasserelleRglt
 		$ctn .= $this->LibelleTel1. PHP_EOL ;
 		$ctn .= '</th>'.PHP_EOL ;
 		$ctn .= '<td valign="top">'.PHP_EOL ;
-		$ctn .= '<input type="text" name="tel1" value="'.htmlspecialchars(_POST_def("tel1")).'" />'.PHP_EOL ;
+		$ctn .= '<input type="text" name="tel1" value="'.htmlspecialchars(\Pv\Misc::_POST_def("tel1")).'" />'.PHP_EOL ;
 		$ctn .= '</td>'.PHP_EOL ;
 		$ctn .= '</tr>'.PHP_EOL ;
 		$ctn .= '<tr>'.PHP_EOL ;
@@ -149,7 +149,7 @@ class Test extends \Pv\PasserelleRglt\PasserelleRglt
 		$ctn .= $this->LibelleTel2. PHP_EOL ;
 		$ctn .= '</th>'.PHP_EOL ;
 		$ctn .= '<td valign="top">'.PHP_EOL ;
-		$ctn .= '<input type="text" name="tel2" value="'.htmlspecialchars(_POST_def("tel2")).'" />'.PHP_EOL ;
+		$ctn .= '<input type="text" name="tel2" value="'.htmlspecialchars(\Pv\Misc::_POST_def("tel2")).'" />'.PHP_EOL ;
 		$ctn .= '</td>'.PHP_EOL ;
 		$ctn .= '</tr>'.PHP_EOL ;
 		$ctn .= '<tr>'.PHP_EOL ;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pv\PasserelleRglt ;
+namespace Pv\InterfPaiement ;
 
 class ServiceVendu
 {
@@ -26,6 +26,7 @@ class ServiceVendu
 	{
 		$this->NomElementInterfPaiemt = $nom ;
 		$this->InterfPaiemtParent = & $interf ;
+		$this->ApplicationParent = & $interf->ApplicationParent ;
 	}
 	public function Prepare(& $transaction)
 	{
