@@ -2,217 +2,174 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
-class Donnees extends \Pv\ZoneWeb\ComposantRendu\ComposantDonnees
+class Donnees extends ComposantRendu
 {
-	public function & CreeFiltreRef($nom, & $filtreRef)
+	public $TypeComposant = "ComposantDonnees" ;
+	public $Editable = 1 ;
+	public $NomParamIdCommande = "Commande" ;
+	public $ValeurParamIdCommande = "" ;
+	public $ParamsGetSoumetFormulaire = array() ;
+	public $ChampsGetSoumetFormulaire = array() ;
+	public $DesactBtnsApresSoumiss = true ;
+	public $ForcerDesactCache = false ;
+	public $SuffixeParamIdAleat = "id_aleat" ;
+	public $InstrsJSAvantSoumetForm = "" ;
+	public function CreeFournDonneesDirect($vals, $nomCle='')
 	{
-		$filtre = new \Pv\ZoneWeb\FiltreDonnees\Ref() ;
-		$filtre->Source = & $filtreRef ;
-		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		$filtre->NomParametreDonnees = $nom ;
-		return $filtre ;
+		$fourn = new \Pv\FournisseurDonnees\Directe() ;
+		if($nomCle == '')
+			$nomCle = 'Principale' ;
+		$fourn->Valeurs[$nomCle] = $vals ;
+		return $fourn ;
 	}
-	public function & CreeFiltreFixe($nom, $valeur)
+	public function CreeFournDonneesSql(& $bd, $reqSelect='', $tablEdit='')
 	{
-		$filtre = new \Pv\ZoneWeb\FiltreDonnees\Fixe() ;
-		$filtre->NomParametreDonnees = $nom ;
-		$filtre->ValeurParDefaut = $valeur ;
-		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		return $filtre ;
+		$fourn = new \Pv\FournisseurDonnees\Sql() ;
+		$fourn->BaseDonnees = & $bd ;
+		$fourn->RequeteSelection = $reqSelect ;
+		$fourn->TableEdition = $tablEdit ;
+		return $fourn ;
 	}
-	public function & CreeFiltreCookie($nom)
+	public function DeclareFournDonneesDirect($valeurs, $nomCle='')
 	{
-		$filtre = new \Pv\ZoneWeb\FiltreDonnees\Cookie() ;
-		$filtre->NomParametreDonnees = $nom ;
-		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		return $filtre ;
+		$this->FournisseurDonnees = $this->CreeFournDonneesDirect($valeurs, $nomCle) ;
 	}
-	public function & CreeFiltreSession($nom)
+	public function DeclareFournDonneesSql(& $bd, $reqSelect='', $tablEdit='')
 	{
-		$filtre = new \Pv\ZoneWeb\FiltreDonnees\Session() ;
-		$filtre->NomParametreDonnees = $nom ;
-		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		return $filtre ;
+		$this->FournisseurDonnees = $this->CreeFournDonneesSql($bd, $reqSelect, $tablEdit) ;
 	}
-	public function & CreeFiltreMembreConnecte($nom, $nomParamLie='')
+	public function NomParamIdAleat()
 	{
-		$filtre = new \Pv\ZoneWeb\FiltreDonnees\MembreConnecte() ;
-		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		$filtre->NomParametreDonnees = $nom ;
-		$filtre->NomParametreLie = $nomParamLie ;
-		return $filtre ;
+		return $this->IDInstanceCalc."_".$this->SuffixeParamIdAleat ;
 	}
-	public function & CreeFiltreHttpUpload($nom, $cheminDossierDest="")
+	protected function CtnJsActualiseFormulaireFiltres()
 	{
-		$filtre = new \Pv\ZoneWeb\FiltreDonnees\HttpUpload() ;
-		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		$filtre->NomParametreDonnees = $nom ;
-		$filtre->CheminDossier = $cheminDossierDest ;
-		return $filtre ;
+		$ctn = '' ;
+		$ctn .= 'ActualiseFormulaire'.$this->IDInstanceCalc.'()' ;
+		return $ctn ;
 	}
-	public function & CreeFiltreHttpGet($nom)
-	{
-		$filtre = new \Pv\ZoneWeb\FiltreDonnees\HttpGet() ;
-		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		$filtre->NomParametreLie = $nom ;
-		$filtre->NomParametreDonnees = $nom ;
-		return $filtre ;
-	}
-	public function & CreeFiltreHttpPost($nom)
-	{
-		$filtre = new \Pv\ZoneWeb\FiltreDonnees\HttpPost() ;
-		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		$filtre->NomParametreLie = $nom ;
-		$filtre->NomParametreDonnees = $nom ;
-		return $filtre ;
-	}
-	public function & CreeFiltreHttpRequest($nom)
-	{
-		$filtre = new \Pv\ZoneWeb\FiltreDonnees\HttpRequest() ;
-		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		$filtre->NomParametreLie = $nom ;
-		$filtre->NomParametreDonnees = $nom ;
-		return $filtre ;
-	}
-	public function CreeFltRef($nom, & $filtreRef)
-	{
-		return $this->CreeFiltreRef($nom, $filtreRef) ;
-	}
-	public function CreeFltFixe($nom, $valeur)
-	{
-		return $this->CreeFiltreRef($nom, $valeur) ;
-	}
-	public function CreeFltCookie($nom)
-	{
-		return $this->CreeFiltreCookie($nom) ;
-	}
-	public function CreeFltSession($nom)
-	{
-		return $this->CreeFiltreSession($nom) ;
-	}
-	public function CreeFltMembreConnecte($nom, $nomParamLie='')
-	{
-		return $this->CreeFiltreMembreConnecte($nom, $nomParamLie) ;
-	}
-	public function CreeFltHttpUpload($nom, $cheminDossierDest="")
-	{
-		return $this->CreeFiltreHttpUpload($nom, $cheminDossierDest) ;
-	}
-	public function CreeFltHttpGet($nom)
-	{
-		return $this->CreeFiltreHttpGet($nom) ;
-	}
-	public function CreeFltHttpPost($nom)
-	{
-		return $this->CreeFiltreHttpPost($nom) ;
-	}
-	public function CreeFltHttpRequest($nom)
-	{
-		return $this->CreeFiltreHttpRequest($nom) ;
-	}
-	public function ExtraitValeursParametre(& $filtres)
+	protected function DeclarationSoumetFormulaireFiltres($filtres)
 	{
 		$nomFiltres = array_keys($filtres) ;
-		$valeurs = array() ;
+		$filtresGets = array() ;
+		$nomFiltresGets = array($this->IDInstanceCalc."_".$this->NomParamIdCommande) ;
+		$filtresGetsEdit = array() ;
 		foreach($nomFiltres as $i => $nomFiltre)
 		{
-			$filtre = & $filtres[$nomFiltre] ;
-			$filtre->Lie() ;
-			$valeurs[$filtre->NomParametreDonnees] = $filtre->ValeurParametre ;
-		}
-		return $valeurs ;
-	}
-	public function ExtraitValeursParametreLie(& $filtres)
-	{
-		$nomFiltres = array_keys($filtres) ;
-		$valeurs = array() ;
-		foreach($nomFiltres as $i => $nomFiltre)
-		{
-			$filtre = & $filtres[$nomFiltre] ;
-			$valeurs[$filtre->NomParametreLie] = $filtre->Lie() ;
-		}
-		return $valeurs ;
-	}
-	public function ExtraitValeursColonneLiee(& $filtres)
-	{
-		$nomFiltres = array_keys($filtres) ;
-		$valeurs = array() ;
-		foreach($nomFiltres as $i => $nomFiltre)
-		{
-			$filtre = & $filtres[$nomFiltre] ;
-			$filtre->Lie() ;
-			$valeurs[$filtre->NomColonneLiee] = $filtre->ValeurParametre ;
-		}
-		return $valeurs ;
-	}
-	public function ExtraitObjetParametre(& $filtres)
-	{
-		$nomFiltres = array_keys($filtres) ;
-		$obj = new StdClass() ;
-		foreach($nomFiltres as $i => $nomFiltre)
-		{
-			$filtre = & $filtres[$nomFiltre] ;
-			$nomProp = $filtre->NomParametreDonnees ;
-			if($nomProp == '')
+			if($filtres[$nomFiltre]->TypeLiaisonParametre == "get")
 			{
-				continue ;
-			}
-			$filtre->Lie() ;
-			$obj->$nomProp = $filtre->ValeurParametre ;
-		}
-		return $obj ;
-	}
-	public function ExtraitObjetColonneLiee(& $filtres)
-	{
-		$nomFiltres = array_keys($filtres) ;
-		$obj = new StdClass() ;
-		foreach($nomFiltres as $i => $nomFiltre)
-		{
-			$filtre = & $filtres[$nomFiltre] ;
-			$nomProp = $filtre->NomColonneLiee ;
-			if($nomProp == '')
-			{
-				continue ;
-			}
-			$filtre->Lie() ;
-			$obj->$nomProp = $filtre->ValeurParametre ;
-		}
-		return $obj ;
-	}
-	public function ObtientFiltre(& $filtres, $nomParamLie)
-	{
-	}
-	public function CreeCmdRedirectUrl()
-	{
-		return new \Pv\ZoneWeb\Commande\RedirectionHttp() ;
-	}
-	public function CreeCmdRedirectScript()
-	{
-		return new \Pv\ZoneWeb\Commande\RedirectionHttp() ;
-	}
-	public function ExtraitFiltresDeRendu(& $filtres, $filtresCaches=array())
-	{
-		$resultats = array() ;
-		foreach($filtres as $i => $filtre)
-		{
-			// print $i.'- '.$filtre->NomParametreLie.' '.$filtre->RenduPossible().'<br />' ;
-			if($filtre->RenduPossible() && ! in_array($filtre->NomParametreLie, $filtresCaches))
-			{
-				$resultats[$i] = & $filtres[$i] ;
+				$filtresGetsEdit[] = $filtres[$nomFiltre]->ObtientIDElementHtmlComposant() ;
+				$nomFiltresGets[] = $filtres[$nomFiltre]->NomParametreLie ;
 			}
 		}
-		return $resultats ;
-	}
-	public function ExtraitFiltresAffichables(& $filtres)
-	{
-		$resultats = array() ;
-		foreach($filtres as $i => $filtre)
+		foreach($this->ChampsGetSoumetFormulaire as $n => $v)
 		{
-			if($filtre->RenduPossible() && ! $filtre->LectureSeule)
-			{
-				$resultats[$i] = & $filtres[$i] ;
-			}
+			$filtresGetsEdit[] = $v ;
 		}
-		return $resultats ;
+		foreach($this->ParamsGetSoumetFormulaire as $n => $v)
+		{
+			$filtresGets[] = $v ;
+		}
+		$params = \Pv\Misc::extract_array_without_keys($_GET, $nomFiltresGets) ;
+		// print_r($nomFiltresGets) ;
+		$filtresGets = array_unique($filtresGets) ;
+		$indexMinUrl = (count($params) > 0) ? 0 : 1 ;
+		$urlFormulaire = \Pv\Misc::remove_url_params(\Pv\Misc::get_current_url()) ;
+		$urlFormulaire .= '?'.\Pv\Misc::http_build_query_string($params) ;
+		$instrDesactivs = '' ;
+		if($this->DesactBtnsApresSoumiss)
+		{
+			$instrDesactivs = '		for(var i=0; i<form.elements.length; i++)
+{
+	var elem = form.elements[i] ;
+	if(elem.type == "submit")
+	{
+		if(elem.disabled != undefined)
+			elem.disabled = "disabled" ;
+		else
+			elem.setAttribute("disabled", "disabled") ;
+	}
+}'.PHP_EOL ;
+		}
+		if($this->ForcerDesactCache)
+		{
+			$urlFormulaire .= '&'.urlencode($this->NomParamIdAleat()).'='.htmlspecialchars(rand(0, 999999)) ;
+		}
+		$ctn = '<script type="text/javascript">
+function SoumetFormulaire'.$this->IDInstanceCalc.'(form)
+{
+var urlFormulaire = "'.$urlFormulaire.'" ;
+///JJJ
+var parametresGet = '.json_encode($filtresGetsEdit).' ;
+if(parametresGet != undefined )
+{
+	for(var i=0; i<parametresGet.length; i++)
+	{
+		if(i >= '.$indexMinUrl.')
+		{
+			urlFormulaire += "&" ;
+		}
+		var nomParam = parametresGet[i] ;
+		var valeurParam = "" ;
+		var elementParam = document.getElementById(nomParam) ;
+		if(elementParam != null)
+		{
+		
+			nomParam = elementParam.name ;
+			valeurParam = elementParam.value ;
+			elementParam.disabled = "disabled" ;
+		}
+		urlFormulaire += encodeURIComponent(nomParam) + "=" + encodeURIComponent(valeurParam) ;
+	}
+}
+// alert(urlFormulaire) ;
+'.$instrDesactivs.'		form.action = urlFormulaire ;
+return true ;
+}
+function ActualiseFormulaire'.$this->IDInstanceCalc.'()
+{
+'.$this->CtnJsActualiseFormulaireFiltres().' ;
+}'.$this->CtnJsSoumetSurEntree().'
+</script>' ;
+		return $ctn ;
+	}
+	protected function DeclarationJsActiveCommande()
+	{
+		$ctn = '' ;
+		$ctn .= '<input type="hidden" name="'.$this->IDInstanceCalc.'_'.$this->NomParamIdCommande.'" value="" />'.PHP_EOL ;
+		$ctn .= '<script type="text/javascript">
+if(typeof '.$this->IDInstanceCalc.'_ActiveCommande != "function")
+{
+function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
+{
+	document.getElementsByName("'.$this->IDInstanceCalc.'_'.$this->NomParamIdCommande.'")[0].value = (btn.rel != undefined) ? btn.rel : btn.getAttribute("rel") ;
+	return true ;
+}
+}
+</script>' ;
+		return $ctn ;
+	}
+	protected function ChargeFournisseurDonnees()
+	{
+		$nomClasse = $this->NomClasseFournisseurDonnees ;
+		$this->FournisseurDonnees = null ;
+		if(class_exists($nomClasse))
+		{
+			$this->FournisseurDonnees = new $nomClasse() ;
+			$this->FournisseurDonnees->ChargeConfig() ;
+		}
+	}
+	public function ChargeConfig()
+	{
+		parent::ChargeConfig() ;
+		$this->ChargeFournisseurDonnees() ;
+	}
+	public function PrepareRendu()
+	{
+		parent::PrepareRendu() ;
+	}
+	protected function CtnJsSoumetSurEntree()
+	{
+		return '' ;
 	}
 }

@@ -52,7 +52,7 @@ class Script extends \Pv\IHM\Zone\Script
 	}
 	protected function CreeActionImprime()
 	{
-		return new PvActionImprimeScript() ;
+		return new \Pv\ZoneWeb\Action\ImprimeScript() ;
 	}
 	protected function ChargeActionsAuto()
 	{

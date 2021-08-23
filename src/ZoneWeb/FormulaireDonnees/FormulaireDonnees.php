@@ -43,6 +43,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 	public $NomCommandeAnnuler = "annuler" ;
 	public $LibelleCommandeExecuter = "Executer" ;
 	public $LibelleCommandeAnnuler = "Annuler" ;
+	public $NomCommandeEntree = "executer" ;
 	public $CommandeAnnuler = null ;
 	public $CommandeExecuter = null ;
 	public $DessinateurFiltresEdition = null ;
@@ -1063,6 +1064,32 @@ if(elem !== null) {
 var form = elem.getElementsByTagName("form")[0] ;
 SoumetFormulaire'.$this->IDInstanceCalc.'(form) ;
 form.submit() ;
+}' ;
+		return $ctn ;
+	}
+	protected function CtnJsSoumetSurEntree()
+	{
+		$ctn = '' ;
+		if($this->NomCommandeEntree == "" || ! isset($this->Commandes[$this->NomCommandeEntree]))
+		{
+			return '' ;
+		}
+		$cmd = & $this->Commandes[$this->NomCommandeEntree] ;
+		$contenuJsSurClick = ($cmd->ContenuJsSurClick == '') ? $this->IDInstanceCalc.'_ActiveCommande(document.getElementById('.json_encode($cmd->IDInstanceCalc).')) ; formTemp.submit() ;' : $cmd->ContenuJsSurClick.' ;' ;
+		$ctn .= 'var comp = document.getElementById("'.$this->IDInstanceCalc.'") ;
+if(comp !== null)
+{
+var formTemp = comp.getElementsByTagName("form")[0] ;
+for(var i=0; i<formTemp.elements.length; i++)
+{
+	var elem = formTemp.elements[i] ;
+	elem.addEventListener(\'keypress\', function(event) {
+	if (event.keyCode == 13) {
+		'.$contenuJsSurClick.'
+		event.preventDefault() ;
+	}
+});
+}
 }' ;
 		return $ctn ;
 	}

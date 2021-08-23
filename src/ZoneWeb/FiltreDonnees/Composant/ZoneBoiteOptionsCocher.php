@@ -4,7 +4,7 @@ namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
 class ZoneBoiteOptionsCocher extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteOptionsRadio
 {
-	public $ChoixMultiple = 1 ;
+	public $ChoixMultiple = true ;
 	protected $CalculerValeurParJs = 0 ;
 	protected function InstrsJsSelectElement()
 	{

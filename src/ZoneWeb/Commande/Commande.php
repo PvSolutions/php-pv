@@ -4,20 +4,20 @@ namespace Pv\ZoneWeb\Commande ;
 
 class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 {
-	public $Visible = 1 ;
-	public $NecessiteFormulaireDonnees = 0 ;
-	public $NecessiteTableauDonnees = 0 ;
-	public $UtiliserRenduDispositif = 0 ;
+	public $Visible = true ;
+	public $NecessiteFormulaireDonnees = false ;
+	public $NecessiteTableauDonnees = false ;
+	public $UtiliserRenduDispositif = false ;
 	public $ContenuJsSurClick = "" ;
-	public $FormulaireDonneesParent = null ;
-	public $TableauDonneesParent = null ;
-	public $ScriptParent = null ;
-	public $ZoneParent = null ;
-	public $ApplicationParent = null ;
+	public $FormulaireDonneesParent ;
+	public $TableauDonneesParent ;
+	public $ScriptParent ;
+	public $ZoneParent ;
+	public $ApplicationParent ;
 	public $NomElementFormulaireDonnees = "" ;
 	public $NomElementSousComposantRendu = "" ;
 	public $CheminIcone ;
-	public $InclureLibelle = 1 ;
+	public $InclureLibelle = true ;
 	public $Libelle = "" ;
 	public $NomClsCSS = "" ;
 	public $ContenuAvantRendu = "" ;
@@ -31,8 +31,8 @@ class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 	public $Actions = array() ;
 	public $SeparateurCriteresNonRespectes = "; " ;
 	public $Liens = array() ;
-	public $InscrireLienAnnuler = 0 ;
-	public $InscrireLienReprendre = 0 ;
+	public $InscrireLienAnnuler = false ;
+	public $InscrireLienReprendre = false ;
 	public $UrlLienAnnuler = "" ;
 	public $UrlLienReprendre = "" ;
 	public $ParamsExecution = array() ;

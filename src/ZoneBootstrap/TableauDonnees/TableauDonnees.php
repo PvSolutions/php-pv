@@ -120,7 +120,7 @@ class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 							}
 						}
 					}
-					$ctn .= '<form id="FormRangee'.$this->IDInstanceCalc.'" action="?'.(($this->ZoneParent->ActiverRoutes == 0) ? urlencode($this->ZoneParent->NomParamScriptAppele).'='.urlencode($this->ZoneParent->ValeurParamScriptAppele).'&' : '').http_build_query_string($parametresRenduEdit).'" method="post">'.PHP_EOL ;
+					$ctn .= '<form id="FormRangee'.$this->IDInstanceCalc.'" action="?'.(($this->ZoneParent->ActiverRoutes == 0) ? urlencode($this->ZoneParent->NomParamScriptAppele).'='.urlencode($this->ZoneParent->ValeurParamScriptAppele).'&' : '').\Pv\Misc::http_build_query_string($parametresRenduEdit).'" method="post">'.PHP_EOL ;
 					$ctn .= $ctnChampsPost ;
 				}
 				$ctn .= '<div class="card">

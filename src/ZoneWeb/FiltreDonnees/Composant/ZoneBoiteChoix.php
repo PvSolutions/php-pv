@@ -22,15 +22,15 @@ class ZoneBoiteChoix extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulai
 	public $LibelleElementHorsLigne = "" ;
 	public $ExtraElementHorsLigne = "" ;
 	protected $ValeursSelectionnees = array() ;
-	protected $ChoixMultiple = 0 ;
-	public $InclureLienSelectTous = 0 ;
+	protected $ChoixMultiple = false ;
+	public $InclureLienSelectTous = false ;
 	public $CheminIconeLienSelectTous = "" ;
 	public $LibelleLienSelectTous = "Cocher tout" ;
-	public $InclureLienSelectAucun = 0 ;
+	public $InclureLienSelectAucun = false ;
 	public $CheminIconeLienSelectAucun = "" ;
 	public $LibelleLienSelectAucun = "Decocher Tout" ;
-	public $InclureLiens = 1 ;
-	public $InclureFoncJs = 1 ;
+	public $InclureLiens = true ;
+	public $InclureFoncJs = true ;
 	public $SelectionStricte = false ;
 	public $SeparateurLibelleEtiqVide = ", " ;
 	public function & CreeFiltreRef($nom, & $filtreRef)
@@ -222,7 +222,7 @@ class ZoneBoiteChoix extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulai
 	}
 	protected function RenduFoncJs()
 	{
-		if(! $this->InclureFoncJs || $this->ChoixMultiple == 0)
+		if(! $this->InclureFoncJs || ! $this->ChoixMultiple)
 			return '' ;
 		$ctn = '' ;
 		$ctn .= '<script language="javascript">
@@ -250,19 +250,19 @@ for(var i=1; i<=totalElems; i++)
 	protected function RenduLiens()
 	{
 		$ctn = '' ;
-		if(! $this->InclureLiens || ! $this->ChoixMultiple || ! $this->InclureLienSelectAucun && ! $this->InclureLienSelectTous)
+		if(! $this->InclureLiens || ! $this->ChoixMultiple || (! $this->InclureLienSelectAucun && ! $this->InclureLienSelectTous))
 			return $ctn ;
 		if($this->TotalElements == 0)
 			return $ctn ;
 		$lienRendu = 0 ;
 		$ctn .= '<div class="liens">'.PHP_EOL ;
-		if($this->InclureLienSelectTous != 0)
+		if($this->InclureLienSelectTous == true)
 		{
 			$libelleLien = htmlentities($this->LibelleLienSelectTous) ;
 			$ctn .= '<a href="javascript:SelectElems_'.$this->IDInstanceCalc.'(1)">'.$libelleLien.'</a>' ;
 			$lienRendu = 1 ;
 		}
-		if($this->InclureLienSelectAucun != 0)
+		if($this->InclureLienSelectAucun == true)
 		{
 			if($lienRendu)
 			{

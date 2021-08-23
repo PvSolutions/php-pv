@@ -18,17 +18,17 @@ class TableauDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 	public $Lignes = array() ;
 	public $FiltresSelection = array() ;
 	public $MaxElementsPossibles = array(20) ;
-	public $ToujoursAfficher = 0 ;
-	public $CacherFormulaireFiltres = 0 ;
-	public $CacherBlocCommandes = 0 ;
+	public $ToujoursAfficher = false ;
+	public $CacherFormulaireFiltres = false ;
+	public $CacherBlocCommandes = false ;
 	public $SuffixeParamFiltresSoumis = "filtre" ;
 	public $SuffixeParamMaxElements = "max" ;
 	public $SuffixeParamIndiceDebut = "debut" ;
 	public $SuffixeParamIndiceColonneTri = "indice_tri" ;
 	public $SuffixeParamSensColonneTri = "sens_tri" ;
-	public $ForcerDesactCache = 0 ;
-	public $CacherNavigateurRangees = 0 ;
-	public $CacherNavigateurRangeesAuto = 0 ;
+	public $ForcerDesactCache = false ;
+	public $CacherNavigateurRangees = false ;
+	public $CacherNavigateurRangeesAuto = false ;
 	public $IndiceDebut = 0 ;
 	public $IndiceFin = 0 ;
 	public $MaxElements = 0 ;
@@ -37,7 +37,7 @@ class TableauDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 	public $IndiceColonneTriSelect = -1 ;
 	public $MaxFiltresSelectionParLigne = 2 ;
 	public $IndiceColonneTri = 0 ;
-	public $NePasTrier = 0 ;
+	public $NePasTrier = false ;
 	public $SensColonneTri = "" ;
 	public $TitreFormulaireFiltres = "Rechercher" ;
 	public $AlignTitreFormulaireFiltres = "left" ;
@@ -51,7 +51,7 @@ class TableauDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 	public $ElementsEnCours = array() ;
 	public $ElementsEnCoursBruts = array() ;
 	public $DispositionComposants = array(1, 2, 3, 4) ;
-	public $TriPossible = 1 ;
+	public $TriPossible = true ;
 	public $RangeeEnCours = -1 ;
 	public $LibellePremiereRangee = "|&lt;" ;
 	public $LibelleRangeePrecedente = "&lt;&lt;" ;
@@ -66,24 +66,25 @@ class TableauDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 	public $MessageAucunElement = "Aucun element n'a &eacute;t&eacute; trouv&eacute;" ;
 	public $AlerterAucunElement = 1 ;
 	public $UtiliserIconesTri = 1 ;
-	public $AccepterTriColonneInvisible = 0 ;
+	public $AccepterTriColonneInvisible = false ;
 	public $CheminRelativeIconesTri = "images" ;
 	public $NomIconeTriAsc = "IconAsc.png" ;
 	public $NomIconeTriDesc = "IconDesc.png" ;
 	public $NomIconeTriAscSelectionne = "IconAscSelect.png" ;
 	public $NomIconeTriDescSelectionne = "IconDescSelect.png" ;
-	public $DessinateurFiltresSelection = null ;
+	public $DessinateurFiltresSelection ;
 	public $MessageFiltresNonRenseignes  = "Veuillez renseigner tous les param&egrave;tres." ;
 	public $Commandes = array() ;
-	public $CommandeSelectionnee = null ;
+	public $CommandeSelectionnee ;
 	public $SuffixeParamCommandeSelectionnee = "Commande" ;
 	public $ValeurParamCommandeSelectionnee = "" ;
-	public $DessinateurBlocCommandes = null ;
-	public $SurvolerLigneFocus = 1 ;
-	public $ExtraireValeursElements = 1 ;
-	public $SautLigneSansCommande = 1 ;
+	public $DessinateurBlocCommandes ;
+	public $SurvolerLigneFocus = true ;
+	public $ExtraireValeursElements = true ;
+	public $SautLigneSansCommande = true ;
 	public $NavigateurRangees = null ;
-	public $RangeeDonneesEditable = 0 ;
+	public $NomCommandeEntree = "" ;
+	public $RangeeDonneesEditable = true ;
 	public $SourceValeursSuppl ;
 	protected function InitConfig()
 	{
@@ -1323,6 +1324,32 @@ window.location.href = window.location.href ;
 	public function AppliqueScriptParentValsSuppl()
 	{
 		$this->SourceValeursSuppl = new \Pv\ZoneWeb\Donnees\SrcValsSuppl\AppliqueScriptParent() ;
+	}
+	protected function CtnJsSoumetSurEntree()
+	{
+		$ctn = '' ;
+		if($this->NomCommandeEntree == "" || ! isset($this->Commandes[$this->NomCommandeEntree]))
+		{
+			return '' ;
+		}
+		$cmd = & $this->Commandes[$this->NomCommandeEntree] ;
+		$contenuJsSurClick = ($cmd->ContenuJsSurClick == '') ? $this->IDInstanceCalc.'_ActiveCommande(document.getElementById('.json_encode($cmd->IDInstanceCalc).')) ; formTemp.submit() ;' : $cmd->ContenuJsSurClick.' ;' ;
+		$ctn .= 'var comp = document.getElementById("'.$this->IDInstanceCalc.'") ;
+if(comp !== null)
+{
+var formTemp = comp.getElementsByTagName("form")[0] ;
+for(var i=0; i<formTemp.elements.length; i++)
+{
+	var elem = formTemp.elements[i] ;
+	elem.addEventListener(\'keypress\', function(event) {
+	if (event.keyCode == 13) {
+		'.$contenuJsSurClick.'
+		event.preventDefault() ;
+	}
+});
+}
+}' ;
+		return $ctn ;
 	}
 	public function AppliqueZoneParentValsSuppl()
 	{
