@@ -1,3 +1,6 @@
+
+DROP TABLE IF EXISTS `transaction_paiement`;
+
 CREATE TABLE `transaction_paiement` (
   `id` int(11) NOT NULL,
   `id_transaction` varchar(20) NOT NULL,

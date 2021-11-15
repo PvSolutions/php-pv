@@ -15,15 +15,14 @@ CREATE TABLE IF NOT EXISTS `membership_member` (
   `last_name` varchar(255) NOT NULL,
   `address` varchar(255) NULL,
   `contact` varchar(255) NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `ad_activated` tinyint(1) NOT NULL,
+  `enabled` tinyint(1) NOT NULL default 1,
   `profile_id` int(5) NOT NULL,
   PRIMARY KEY (`id`)
 )  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-INSERT INTO `membership_member` (`id`, `login_member`, `password_member`, `email`, `first_name`, `last_name`, `address`, `contact`, `enabled`, `ad_activated`, `profile_id`) VALUES
-(1, 'root', password('ADMIN'), 'root@localhost', 'Super', 'Administrateur', '', '', 1, 0, 1),
-(2, 'guest', '*00A51F3F48415C7D4E8908980D443C29C69B60C9', 'guest@monsite.com', 'Invité', 'Utilisateur', '', '', 1, 0, 2);
+INSERT INTO `membership_member` (`id`, `login_member`, `password_member`, `email`, `first_name`, `last_name`, `address`, `contact`, `enabled`, `profile_id`) VALUES
+(1, 'root', password('ADMIN'), 'root@localhost', 'Super', 'Administrateur', '', '', 1, 1),
+(2, 'guest', '*00A51F3F48415C7D4E8908980D443C29C69B60C9', 'guest@monsite.com', 'Invité', 'Utilisateur', '', '', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -35,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `membership_profile` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NULL,
-  `enabled` tinyint(1) NOT NULL,
+  `enabled` tinyint(1) NOT NULL default 1,
   PRIMARY KEY (`id`)
 )  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -72,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `membership_privilege` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `profile_id` int(5) NOT NULL,
   `role_id` int(5) NOT NULL,
-  `active` tinyint(1) NOT NULL,
+  `active` tinyint(1) NOT NULL default 0,
   PRIMARY KEY (`id`)
 )  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

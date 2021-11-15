@@ -110,7 +110,7 @@ ON "membership_member"
 REFERENCING NEW AS New OLD AS Old
 FOR EACH ROW
 BEGIN
-  :new."id" := case when :new."id" is null then "membership_member_seq".nextval else :new."id" end ;
+  select case when :new."id" is null then "membership_member_seq".nextval else :new."id" end into :new."id" from dual ;
 END membership_member_trg ;
 
 create or replace TRIGGER membership_profile_trg
@@ -119,7 +119,7 @@ ON "membership_profile"
 REFERENCING NEW AS New OLD AS Old
 FOR EACH ROW
 BEGIN
-  :new."id" := case when :new."id" is null then "membership_profile_seq".nextval else :new."id" end ;
+  select case when :new."id" is null then "membership_profile_seq".nextval else :new."id" end into :new."id" from dual ;
 END membership_profile_trg ;
 
 create or replace TRIGGER membership_role_trg
@@ -128,7 +128,7 @@ ON "membership_role"
 REFERENCING NEW AS New OLD AS Old
 FOR EACH ROW
 BEGIN
-  :new."id" := case when :new."id" is null then "membership_role_seq".nextval else :new."id" end ;
+  select case when :new."id" is null then "membership_role_seq".nextval else :new."id" end into :new."id" from dual ;
 END membership_role_trg ;
 
 create or replace TRIGGER membership_privilege_trg
@@ -137,7 +137,7 @@ ON "membership_privilege"
 REFERENCING NEW AS New OLD AS Old
 FOR EACH ROW
 BEGIN
-  :new."id" := case when :new."id" is null then "membership_privilege_seq".nextval else :new."id" end ;
+  select case when :new."id" is null then "membership_privilege_seq".nextval else :new."id" end into :new."id" from dual ;
 END membership_privilege_trg ;
 
 
