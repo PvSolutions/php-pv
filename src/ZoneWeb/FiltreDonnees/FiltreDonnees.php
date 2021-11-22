@@ -21,7 +21,7 @@ class FiltreDonnees extends \Pv\Objet\Objet
 	public $NomClasseCSS = "" ;
 	public $NomClasseCSSIcone = "" ;
 	public $EspaceReserve = "" ;
-	public $NomClasseComposant = "\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneTexte" ;
+	public $NomClasseComposant = '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneTexte' ;
 	public $NomComposant = "" ;
 	public $NomParametreLie = "" ;
 	public $NomParametreDonnees = "" ;
@@ -259,6 +259,13 @@ class FiltreDonnees extends \Pv\Objet\Objet
 	}
 	public function & DeclareComposant($nomClasseComposant)
 	{
+		if(\Pv\Application\Application::$InclureAliasesCompsFltsDonnees)
+		{
+			if(isset(\Pv\Application\Application::$AliasesCompsFltsDonnees[$nomClasseComposant]))
+			{
+				$nomClasseComposant = \Pv\Application\Application::$AliasesCompsFltsDonnees[$nomClasseComposant] ;
+			}
+		}
 		$this->Composant = $this->ValeurNulle() ;
 		$this->NomClasseComposant = $nomClasseComposant ;
 		if(class_exists($nomClasseComposant))

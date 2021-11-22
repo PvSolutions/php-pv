@@ -110,7 +110,7 @@ class GrilleDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 						}
 					}
 					$ligneDonnees = $this->SourceValeursSuppl->Applique($this, $ligneDonnees) ;
-					$ctn .= _parse_pattern($this->ContenuLigneModeleUse, $ligneDonnees) ;
+					$ctn .= \Pv\Misc::_parse_pattern($this->ContenuLigneModeleUse, $ligneDonnees) ;
 					if($this->EncadrerCellule == 1)
 					{
 						$ctn .= '</div>'.PHP_EOL ;

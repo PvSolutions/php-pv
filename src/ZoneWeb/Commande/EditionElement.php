@@ -6,6 +6,22 @@ class EditionElement extends \Pv\ZoneWeb\Commande\Executer
 {
 	public $Mode = 1 ;
 	public $AjusterRendu = true ;
+	public function Execute()
+	{
+		parent::Execute() ;
+		if($this->StatutExecution == 1 && $this->AjusterRendu)
+		{
+			if($this->Mode == \Pv\ZoneWeb\FormulaireDonnees\ModeEditionElement::Ajout)
+			{
+				$this->FormulaireDonneesParent->AnnuleLiaisonParametres() ;
+			}
+			elseif($this->Mode == \Pv\ZoneWeb\FormulaireDonnees\ModeEditionElement::Suppr && $this->AjusterRendu)
+			{
+				$this->FormulaireDonneesParent->CacherFormulaireFiltres = true ;
+				$this->Visible = false ;
+			}
+		}
+	}
 	protected function ExecuteInstructions()
 	{
 		$this->StatutExecution = 0 ;
@@ -27,10 +43,6 @@ class EditionElement extends \Pv\ZoneWeb\Commande\Executer
 			case \Pv\ZoneWeb\FormulaireDonnees\ModeEditionElement::Ajout :
 			{
 				$succes = $this->FormulaireDonneesParent->FournisseurDonnees->AjoutElement($this->FormulaireDonneesParent->FiltresEdition) ;
-				if($succes && $this->AjusterRendu)
-				{
-					$this->FormulaireDonneesParent->AnnuleLiaisonParametres() ;
-				}
 			}
 			break ;
 			case \Pv\ZoneWeb\FormulaireDonnees\ModeEditionElement::Modif :
@@ -42,11 +54,6 @@ class EditionElement extends \Pv\ZoneWeb\Commande\Executer
 			case \Pv\ZoneWeb\FormulaireDonnees\ModeEditionElement::Suppr :
 			{
 				$succes = $this->FormulaireDonneesParent->FournisseurDonnees->SupprElement($this->FormulaireDonneesParent->FiltresLigneSelection) ;
-				if($succes && $this->AjusterRendu)
-				{
-					$this->FormulaireDonneesParent->CacherFormulaireFiltres = true ;
-					$this->Visible = false ;
-				}
 			}
 			break ;
 			default :

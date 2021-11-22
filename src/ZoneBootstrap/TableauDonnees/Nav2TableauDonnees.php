@@ -53,7 +53,7 @@ class Nav2TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\NavigateurRangees
 			'NoFin' => $composant->IndiceFin,
 			'TotalElements' => $composant->TotalElements,
 		) ;
-		$ctn .= \Pv\Misc\_parse_pattern($composant->FormatInfosRangee, $valeursRangee) ;
+		$ctn .= \Pv\Misc::_parse_pattern($composant->FormatInfosRangee, $valeursRangee) ;
 		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '</div>'.PHP_EOL ;

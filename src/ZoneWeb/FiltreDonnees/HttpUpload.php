@@ -11,7 +11,7 @@ class HttpUpload extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 	public $CheminFichierDest = "" ;
 	public $CheminFichierSrc = "" ;
 	public $DejaTelecharge = 0 ;
-	public $NettoyerCaractsFichier = 1 ;
+	public $NettoyerCaractsFichier = true ;
 	public $ExtensionsAcceptees = array() ;
 	public $ExtensionsRejetees = array('pl', 'cgi', 'html', 'xhtml', 'html5', 'html4', 'xml', 'xss', 'rss', 'xlt', 'php', 'phtml', 'inc', 'js', 'vbs', 'py', 'bat', 'sh', 'cmd', 'exe', 'msi', 'bin', 'apk', 'com', 'command', 'cpl', 'action', 'csh', 'gadget', 'inf1', 'ins', 'inx', 'ipa', 'isu', 'job', 'jse', 'ksh', 'lnk', 'msc', 'msp', 'mst', 'osx', 'out', 'paf', 'pif', 'prg', 'ps1', 'reg', 'rgs', 'run', 'scr', 'sct', 'shb', 'shs', 'u3p', 'vb', 'vbe', 'vbs', 'vbscript', 'workflow', 'ws', 'wsf', 'wsh') ;
 	public $CheminFichierClient = "" ;
@@ -20,7 +20,7 @@ class HttpUpload extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 	public $NomFichierSelect = "" ;
 	public $ExtFichierSelect = "" ;
 	public $NomEltCoteSrv = "CoteSrv_" ;
-	public $NomClasseComposant = "\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneUpload" ;
+	public $NomClasseComposant = '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneUpload' ;
 	public $LibelleErreurTelecharg = '' ;
 	public $FormatFichierTelech = '' ;
 	public $SourceTelechargement = '' ;
@@ -70,13 +70,13 @@ class HttpUpload extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 	}
 	public function ObtientValeurParametre()
 	{
-		if($this->DejaTelecharge == 1)
+		if($this->DejaTelecharge == true)
 		{
 			return $this->CheminFichierDest ;
 		}
 		if(! isset($_FILES[$this->NomParametreLie]) && ! isset($_POST[$this->NomEltCoteSrv.$this->NomParametreLie]))
 		{
-			return $this->ValeurVide ;
+			return $this->ValeurParDefaut ;
 		}
 		if(isset($_FILES[$this->NomParametreLie]) && $_FILES[$this->NomParametreLie]["error"] != 4)
 		{

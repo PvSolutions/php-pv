@@ -127,6 +127,9 @@ class EditProfil extends \Pv\ZoneWeb\Script\Script
 		{
 			return ;
 		}
+		$this->FiltreRoles->DejaLie = false ;
+		$this->FiltreRoles->NePasLierParametre = false ;
+		$this->FiltreRoles->Lie() ;
 		$membership = & $this->FormPrinc->ZoneParent->Membership ;
 		$basedonnees = & $membership->Database ;
 		$idProfil = 0 ;

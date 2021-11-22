@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
-class SrcValsSuppl extends \Pv\ZoneWeb\Donnees\SrcValsSuppl
+class SrcValsSuppl extends \Pv\ZoneWeb\Donnees\SrcValsSuppl\SrcValsSuppl
 {
 	public $InclureHtml = 1 ;
 	public $SuffixeHtml = "_html" ;

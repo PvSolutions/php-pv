@@ -138,6 +138,48 @@ class ZoneWeb extends \Pv\IHM\Zone
 		$this->AdrScriptSession = new AdrScriptSession() ;
 		$this->InitReglesHtmlSur() ;
 	}
+	public function AdopteApplication($nom, & $app)
+	{
+		parent::AdopteApplication($nom, $app) ;
+		if(\Pv\Application\Application::$InclureAliasesCompsFltsDonnees == true)
+		{
+			$this->DefinitAliasCompsFltsDonnees() ;
+		}
+	}
+	protected function DefinitAliasCompsFltsDonnees()
+	{
+		\Pv\Application\Application::$AliasesCompsFltsDonnees = array_merge(
+			\Pv\Application\Application::$AliasesCompsFltsDonnees,
+			array(
+				'PvZoneSelectHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneSelect',
+				'PvJsColor' => '\Pv\ZoneWeb\FiltreDonnees\Composant\JsColor',
+				'PvZoneSelectBool' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneSelectBool',
+				'PvZoneCaptcha' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneCaptcha',
+				'PvNoteBloc' => '\Pv\ZoneWeb\FiltreDonnees\Composant\NoteBloc',
+				'PvTimeInput' => '\Pv\ZoneWeb\FiltreDonnees\Composant\TimeInput',
+				'PvCalendarDateInput' => '\Pv\ZoneWeb\FiltreDonnees\Composant\CalendarDateInput',
+				'PvDatePick' => '\Pv\ZoneWeb\FiltreDonnees\Composant\DatePick',
+				'PvVideoJs' => '\Pv\ZoneWeb\FiltreDonnees\Composant\VideoJs',
+				'PvRecaptcha' => '\Pv\ZoneWeb\FiltreDonnees\Composant\Recaptcha',
+				'PvRecaptcha2' => '\Pv\ZoneWeb\FiltreDonnees\Composant\Recaptcha2',
+				'PvRecaptcha3' => '\Pv\ZoneWeb\FiltreDonnees\Composant\Recaptcha3',
+				'PvZoneEtiquetteHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneEtiquette',
+				'PvZoneCorrespHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneCorresp',
+				'PvZoneEntreeHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneEntree',
+				'PvZoneTexteHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneTexte',
+				'PvZoneDateHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneDate',
+				'PvZoneDateTimeHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneDateTime',
+				'PvZoneInvisibleHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneInvisible',
+				'PvZoneMotPasseHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneMotPasse',
+				'PvZoneMultiligneHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneMultiligne',
+				'PvZoneUploadHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneUpload',
+				'PvZoneCocherHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneCocher',
+				'PvZoneCocherBoolHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneCocherBool',
+				'PvZoneBoiteSelectHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteSelect',
+				'PvZoneBoiteChoixHtml' => '\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteChoix',
+			)
+		) ;
+	}
 	public function NatureZone()
 	{
 		return "web" ;
@@ -411,6 +453,15 @@ class ZoneWeb extends \Pv\IHM\Zone
 	{
 		$this->GestTachesWeb->InscritTache($nom, $tache) ;
 	}
+	public function & InsereTache($nom, $tache)
+	{
+		$this->GestTachesWeb->InsereTache($nom, $tache) ;
+		return $tache ;
+	}
+	public function InscritTache($nom, & $tache)
+	{
+		$this->GestTachesWeb->InscritTache($nom, $tache) ;
+	}
 	public function ObtientUrlTache($nomTache)
 	{
 		$taches = $this->GestTachesWeb->ObtientTaches() ;
@@ -634,7 +685,7 @@ class ZoneWeb extends \Pv\IHM\Zone
 				{
 					$params[$this->ScriptConnexion->NomParamUrlRetour] = get_current_url() ;
 				}
-				redirect_to($this->ScriptConnexion->ObtientUrlParam($params)) ;
+				\Pv\Misc::redirect_to($this->ScriptConnexion->ObtientUrlParam($params)) ;
 			}
 		}
 		parent::ExecuteScriptInaccessible($script) ;
@@ -1270,7 +1321,7 @@ document.getElementById("FormRetour").submit() ;
 		}
 		elseif($urlDefaut != '')
 		{
-			redirect_to($urlDefaut) ;
+			\Pv\Misc::redirect_to($urlDefaut) ;
 		}
 	}
 	public function ObtientCheminDossierTaches()

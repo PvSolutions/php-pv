@@ -46,5 +46,16 @@ class ZoneBootstrap extends \Pv\ZoneWeb\ZoneWeb
 	{
 		return new \Pv\ZoneBootstrap\TableauDonnees\RepeteurDonnees() ;
 	}
+	protected function DefinitAliasCompsFltsDonnees()
+	{
+		parent::DefinitAliasCompsFltsDonnees() ;
+		\Pv\Application\Application::$AliasesCompsFltsDonnees = array_merge(
+			\Pv\Application\Application::$AliasesCompsFltsDonnees,
+			array(
+				'PvZoneBoiteOptionsRadioBootstrap' => '\Pv\ZoneBootstrap\FiltresDonnees\Composant\ZoneBoiteOptionRadio',
+				'PvZoneBoiteOptionsCocherBootstrap' => '\Pv\ZoneBootstrap\FiltresDonnees\Composant\ZoneBoiteOptionsCocher',
+			)
+		) ;
+	}
 }
 

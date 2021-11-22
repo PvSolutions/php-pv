@@ -5,16 +5,16 @@ namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public $TypeEditeur = "input_file_html" ;
-	public $InclureErreurTelecharg = 1 ;
-	public $InclureCheminCoteServeur = 1 ;
+	public $InclureErreurTelecharg = true ;
+	public $InclureCheminCoteServeur = true ;
 	public $AfficherCheminComplet = 0 ;
 	public $CheminCoteServeurEditable = 0 ;
-	public $InclureZoneSelectFichier = 1 ;
+	public $InclureZoneSelectFichier = true ;
 	public $TailleEditeurCoteServeur = "40" ;
 	public $TypeElementFormulaire = "file" ;
 	public $NomEltCoteSrv = "CoteSrv_" ;
 	public $LibelleCoteSrv = "Chemin sur le serveur" ;
-	public $InclureApercu = 1 ;
+	public $InclureApercu = true ;
 	public $LibelleViderFichier = "Vider" ;
 	protected $IncorporerApercu = 0 ;
 	public $LibelleApercu = "Aper&ccedil;u" ;
@@ -65,7 +65,7 @@ class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 		$ctn .= $this->RenduAttrStyleCSS() ;
 		$ctn .= $this->RenduAttrsSupplHtml() ;
 		// $ctn .= ' value="'.htmlentities($this->Valeur).'"' ;
-		if($this->IncorporerApercu == 1)
+		if($this->IncorporerApercu == true)
 		{
 			// $ctn .= ' onchange="if(this.value != \'\') { alert(this.value); document.getElementById(\'CadreApercu_'.$this->IDInstanceCalc.'\').src = this.value ; }"' ;
 		}
@@ -97,6 +97,10 @@ class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 		else
 		{
 			$ctn .= '<input type="hidden" name="'.$nomEltCoteSrv.$this->NomElementHtml.'" value="'.htmlspecialchars(trim($this->Valeur)).'" />' ;
+		}
+		if($this->InclureCheminCoteServeur)
+		{
+			$ctn .= ' &nbsp;' ;
 		}
 		$ctn .= '<a href="javascript:;" onclick="document.getElementsByName(\''.$nomEltCoteSrv.$this->NomElementHtml.'\')[0].value = \'\';">'.$this->LibelleViderFichier.'<a>&nbsp;' ;
 		if($this->InclureApercu > 0 && $this->IncorporerApercu == 0 && trim($this->Valeur) != '')

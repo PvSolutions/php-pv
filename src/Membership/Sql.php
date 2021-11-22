@@ -127,9 +127,9 @@ class Sql extends \Pv\Membership\Membership
 	public $TitleRoleColumn = "title" ;
 	public $TitleRoleAlias = "" ;
 	public $TitleRoleLabel = "Titre" ;
-	public $SimilarProfileFoundErrorLabel = "Un profil avec le mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªme titre existe d&eacute;j&agrave;" ;
+	public $SimilarProfileFoundErrorLabel = "Un profil avec le m&ecirc;me titre existe d&eacute;j&agrave;" ;
 	public $SimilarProfileFoundErrorAlias = "" ;
-	public $SimilarRoleFoundErrorLabel = "Un rÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â´le avec le mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªme titre ou le mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªme nom existe d&eacute;j&agrave;" ;
+	public $SimilarRoleFoundErrorLabel = "Un r&ocirc;le avec le m&ecirc;me titre ou le m&ecirc;me nom existe d&eacute;j&agrave;" ;
 	public $SimilarRoleFoundErrorAlias = "" ;
 	public $DescriptionRoleColumn = "description" ;
 	public $DescriptionRoleAlias = "" ;
@@ -160,7 +160,7 @@ class Sql extends \Pv\Membership\Membership
 	public $FirstNameMemberFormatErrorAlias = "" ;
 	public $EmailMemberFormatErrorLabel = "L'adresse email a un mauvais format" ;
 	public $EmailMemberFormatErrorAlias = "" ;
-	public $SimilarMemberFoundErrorLabel = "Un membre avec le mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªme login, le mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªme mot de passe ou le mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªme email existe d&eacute;j&agrave;" ;
+	public $SimilarMemberFoundErrorLabel = "Un membre avec le m&ecirc;me login, le m&ecirc;me mot de passe ou le m&ecirc;me email existe d&eacute;j&agrave;" ;
 	public $SimilarMemberFoundErrorAlias = "" ;
 	public $ConfirmPasswordMemberMatchLabel = "Vous n'avez pas confirm&eacute; le mot de passe" ;
 	public $ConfirmPasswordMemberMatchAlias = "" ;
@@ -242,7 +242,7 @@ class Sql extends \Pv\Membership\Membership
 		$sql = '' ;
 		if($this->MemberTable == '' || $this->ProfileTable == '' || $this->IdMemberColumn == '' || $this->LoginMemberColumn == '' || $this->PasswordMemberColumn == '' || $this->IdProfileColumn == '')
 		{
-			die('Definition du membership non complÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âªte !!!') ;
+			die('Definition du membership non compl&ecirc;te !!!') ;
 		}
 		$sql .= 'SELECT 1 MEMBER_REQUEST' ;
 		$sql .= ', '.$this->Database->EscapeFieldName("MEMBER_TABLE", $this->IdMemberColumn).' MEMBER_ID' ;

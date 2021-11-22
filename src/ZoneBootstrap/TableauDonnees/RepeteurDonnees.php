@@ -71,31 +71,12 @@ class RepeteurDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 			$parametresRendu = $this->ParametresCommandeSelectionnee() ;
 			if(count($this->ElementsEnCours) > 0)
 			{
-				$ctn .= '<div' ;
-				if($this->EncadrerCellule == 1)
+				if($this->EncadrerCellule == true)
 				{
-					$ctn .= ' class="RangeeDonnees container-fluid">'.PHP_EOL ;
+					$ctn .= '<div class="row">'.PHP_EOL ;
 				}
-				else
-				{
-					$ctn .= ' class="RangeeDonnees row">'.PHP_EOL ;
-				}
-				$inclureLargCell = 1 ;
-				$maxColsXs = ($this->MaxColonnesXs > 0) ? $this->MaxColonnesXs : $this->MaxColonnes ;
-				$colXs = 12 / $maxColsXs ;
-				$colDef = 12 / $this->MaxColonnes ;
 				foreach($this->ElementsEnCours as $j => $ligne)
 				{
-					if($this->EncadrerCellule == 1)
-					{
-						if($this->MaxColonnes <= 1 || $j % $this->MaxColonnes == 0)
-						{
-							$ctn .= '<div class="row">'.PHP_EOL ;
-						}
-						$ctn .= '<div class="Contenu col-'.$colXs.' col-sm-'.$colDef.(($this->ClasseCSSCellule != '') ? ' '.$this->ClasseCSSCellule : '').'"' ;
-						$ctn .= ' align="'.$this->AlignCellule.'"' ;
-						$ctn .= '>'.PHP_EOL ;
-					}
 					$ligneDonnees = $ligne ;
 					$ligneDonnees["POSITION"] = $j ;
 					$ligneDonnees["NO"] = $j + 1 ;
@@ -110,29 +91,16 @@ class RepeteurDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 						}
 					}
 					$ligneDonnees = $this->SourceValeursSuppl->Applique($this, $ligneDonnees) ;
-					$ctn .= _parse_pattern($this->ContenuLigneModeleUse, $ligneDonnees) ;
-					if($this->EncadrerCellule == 1)
-					{
-						$ctn .= '</div>'.PHP_EOL ;
-						if($this->MaxColonnes <= 1 || $j % $this->MaxColonnes == $this->MaxColonnes - 1)
-						{
-							$ctn .= '</div>'.PHP_EOL ;
-							$inclureLargCell = 0 ;
-						}
-					}
+					$ctn .= \Pv\Misc::_parse_pattern($this->ContenuLigneModeleUse, $ligneDonnees) ;
 				}
-				if($this->EncadrerCellule == 1)
+				if($this->EncadrerCellule == true)
 				{
-					if($this->MaxColonnes > 1 && count($this->ElementsEnCours) % $this->MaxColonnes != 0)
-					{
-						$ctn .= '</div>'.PHP_EOL ;
-					}
+					$ctn .= '</div>'.PHP_EOL ;
 				}
-				$ctn .= '</div>' ;
 			}
-			elseif($this->AlerterAucunElement == 1)
+			elseif($this->AlerterAucunElement == true)
 			{
-				$ctn .= '<p class="AucunElement">'.$this->MessageAucunElement.'</p>' ;
+				$ctn .= '<p class="alert alert-warning AucunElement">'.$this->MessageAucunElement.'</p>' ;
 			}
 		}
 		else

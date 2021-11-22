@@ -13,6 +13,8 @@ class Application extends \Pv\Objet\Objet
 	public $SystTrad ;
 	public $BasesDonnees = array() ;
 	public $ServsPersists = array() ;
+	static $InclureAliasesCompsFltsDonnees = false ;
+	static $AliasesCompsFltsDonnees = array() ;
 	public $TachesProgs = array() ;
 	public $ServsVendus = array() ;
 	public $Elements = array() ;
@@ -98,7 +100,7 @@ class Application extends \Pv\Objet\Objet
 	public function & InterfPaiement($nom)
 	{
 		$result = null ;
-		if(! in_array($nom, array_keys($this->NomsInterfsPaiement)))
+		if(! in_array($nom, $this->NomsInterfsPaiement))
 		{
 			return $result ;
 		}

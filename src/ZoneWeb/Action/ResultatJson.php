@@ -11,7 +11,7 @@ class ResultatJson extends \Pv\ZoneWeb\Action\Action
 	{
 		if(! is_object($this->Resultat))
 		{
-			$this->Resultat = new StdClass() ;
+			$this->Resultat = new \StdClass() ;
 		}
 		$this->ConstruitResultat() ;
 		if($this->InclureEnteteContenu)

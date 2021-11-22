@@ -62,7 +62,7 @@ class GestTaches extends \Pv\Objet\Objet
 		$tache = & $this->Taches[$nomTache] ;
 		$urlZone = $this->ZoneParent->ObtientUrl() ;
 		$parts = parse_url($urlZone) ;
-		$port = ($parts["port"] != '') ? $parts["port"] : 80 ;
+		$port = (isset($parts["port"]) && $parts["port"] != '') ? $parts["port"] : 80 ;
 		$chaineParams = http_build_query($params) ;
 		if($chaineParams != "")
 		{

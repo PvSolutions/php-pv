@@ -129,7 +129,9 @@ class EditRole extends \Pv\ZoneWeb\Script\Script
 		{
 			return ;
 		}
-		// print_r($this->FormPrinc->FiltreListeProfilsRole->ValeurBrute) ;
+		$this->FiltreProfils->DejaLie = false ;
+		$this->FiltreProfils->NePasLierParametre = false ;
+		$this->FiltreProfils->Lie() ;
 		$membership = & $this->ZoneParent->Membership ;
 		$basedonnees = & $membership->Database ;
 		$idRole = 0 ;
