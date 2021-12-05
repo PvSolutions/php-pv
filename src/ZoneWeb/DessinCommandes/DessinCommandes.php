@@ -26,7 +26,7 @@ class DessinCommandes extends \Pv\ZoneWeb\DessinFiltres\DessinFiltres
 		}
 		return 1 ;
 	}
-	protected function RenduCommande(& $commande, & $composant)
+	public function RenduCommande(& $commande, & $composant)
 	{
 		$ctn = '' ;
 		if($commande->ContenuAvantRendu != '')

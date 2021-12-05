@@ -106,7 +106,7 @@ $this->ConfirmeData("Contenu recu : ".$this->Requete->CorpsBrut) ;
 }
 ```
 
-Si vous recevez du contenu de type **application/json** ou **application/x-www-form-urlencoded**, vous aurez la propriété objet **$CorpsBrut** qui contient les paramètres.
+Si vous recevez du contenu de type **application/json** ou **application/x-www-form-urlencoded**, vous aurez la propriété objet **$Corps** qui contient les paramètres.
 
 ```php
 class Route1Restful1 extends \Pv\ApiRestful\Route\Route

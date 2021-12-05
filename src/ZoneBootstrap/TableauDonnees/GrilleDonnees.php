@@ -11,7 +11,7 @@ class GrilleDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 	public $ClsBstEnteteFormFiltres ;
 	public $ClsBstPiedFormFiltres ;
 	public $ClsBstBoutonSoumettre = "btn-success" ;
-	public $ClsBstFormFiltresSelect = "col-12 col-sm-8 col-md-6" ;
+	public $ClsBstFormFiltresSelect = "col-12" ;
 	public $SautLigneSansCommande = 0 ;
 	public $MaxColonnesXs = 0 ;
 	protected function InitConfig()

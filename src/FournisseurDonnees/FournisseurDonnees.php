@@ -39,6 +39,10 @@ class FournisseurDonnees extends \Pv\Objet\Objet
 	public function SelectElements($colonnes, $filtres, $indiceColonneTri=0, $sensColonneTri="asc")
 	{
 	}
+	public function AgregeElements($exprs, $filtres)
+	{
+		return array() ;
+	}
 	public function RangeeElements($colonnes, $filtres, $indiceDebut=0, $maxElements=100, $indiceColonneTri=0, $sensColonneTri="asc")
 	{
 	}

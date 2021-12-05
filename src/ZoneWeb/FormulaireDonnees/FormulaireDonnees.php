@@ -6,12 +6,12 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 {
 	public $TypeComposant = "FormulaireDonneesHTML" ;
 	public $Largeur = 0 ;
-	public $UtiliserLargeur = 1 ;
+	public $UtiliserLargeur = true ;
 	public $IdTagForm = "" ;
-	public $InclureElementEnCours = 1 ;
-	public $InclureTotalElements = 1 ;
+	public $InclureElementEnCours = true ;
+	public $InclureTotalElements = true ;
 	public $RequeteSelection = "" ;
-	public $FiltresSelectionObligatoires = 1 ;
+	public $FiltresSelectionObligatoires = true ;
 	public $FiltresGlobauxSelection = array() ;
 	public $FiltresLigneSelection = array() ;
 	public $FiltresEdition = array() ;
@@ -1230,13 +1230,13 @@ for(var i=0; i<formTemp.elements.length; i++)
 	{
 		$this->DessinateurFiltresEdition = new \Pv\ZoneWeb\DessinFiltres\Html() ;
 	}
-	protected function DessineFiltresScriptParent()
+	public function DessineFiltresScriptParent()
 	{
 		$this->DessinateurFiltresEdition = new \Pv\ZoneWeb\DessinFiltres\AppliqueScriptParent() ;
 	}
-	protected function DessineCommandesScriptParent()
+	public function DessineCommandesScriptParent()
 	{
-		$this->DessinateurFiltresEdition = new \Pv\ZoneWeb\DessinCommandes\AppliqueScriptParent() ;
+		$this->DessinateurBlocCommandes = new \Pv\ZoneWeb\DessinCommandes\AppliqueScriptParent() ;
 	}
 	public function NotifieParMail($de, $a, $cc='', $cci='')
 	{

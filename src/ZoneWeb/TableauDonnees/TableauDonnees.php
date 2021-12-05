@@ -145,7 +145,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	}
 	protected function CreeCmdRafraich()
 	{
-		return new \Pv\ZoneWeb\TableauDonnees\Commande\CommandeSoumetFiltres() ;
+		return new \Pv\ZoneWeb\TableauDonnees\Commande\SoumetFiltres() ;
 	}
 	public function InscritCmdRafraich($libelle='Actualiser', $cheminIcone='')
 	{
@@ -560,7 +560,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	}
 	public function & InsereCmdExportTexte($nomCmd, $libelle='')
 	{
-		$cmd = new \Pv\ZoneWeb\TableauDonnees\Commande\CommandeExportVers() ;
+		$cmd = new \Pv\ZoneWeb\TableauDonnees\Commande\ExportVers() ;
 		if($libelle != '')
 			$cmd->Libelle = $libelle ;
 		$this->InscritCommande($nomCmd, $cmd) ;
@@ -568,7 +568,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	}
 	public function & InsereCmdExportExcel($nomCmd, $libelle='')
 	{
-		$cmd = new \Pv\ZoneWeb\TableauDonnees\Commande\CommandeExportVers() ;
+		$cmd = new \Pv\ZoneWeb\TableauDonnees\Commande\Excel() ;
 		if($libelle != '')
 			$cmd->Libelle = $libelle ;
 		$this->InscritCommande($nomCmd, $cmd) ;
@@ -687,7 +687,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	public function CalculeElementsRendu()
 	{
 		$defCols = $this->ObtientDefColsRendu() ;
-		$this->TotalElements = $this->FournisseurDonnees->CompteElements($defCols, $this->FiltresSelection) ;
+		$this->TotalElements = $this->FournisseurDonnees->CompteElements($this->DefinitionsColonnes, $this->FiltresSelection) ;
 		// print_r($this->FournisseurDonnees->BaseDonnees) ;
 		// print_r($this->FournisseurDonnees) ;
 		if($this->FournisseurDonnees->ExceptionTrouvee())
@@ -696,7 +696,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 		}
 		else
 		{
-			// Ajuster l'indice dÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©but
+			// Ajuster l'indice debut
 			if($this->IndiceDebut < 0)
 				$this->IndiceDebut = 0 ;
 			if($this->IndiceDebut >= $this->TotalElements)
@@ -749,6 +749,10 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 				$this->ElementsEnCours = array() ;
 			}
 		}
+	}
+	public function AgregeElements($exprs)
+	{
+		return $this->FournisseurDonnees->AgregeElements($exprs, $this->FiltresSelection) ;
 	}
 	protected function RenduDispositifBrut()
 	{

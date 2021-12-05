@@ -32,11 +32,6 @@ Vous pouvez inclure directement la branche GITHUB avec composer. Procédez ainsi
 3. Dans **autoload**, ajoutez les clés "psr-4" et "files", avec ces contenus :
 
 ```json
-"files": [
-	// Autres files...
-	"../php-pv-master/vendor/SafeHTML.php",
-	"../php-pv-master/vendor/Services_JSON.php"
-],
 "psr-4": {,
 	// Autres psr-4...
 	"Pv\\": "vendor/php_pv/php_pv/src/"
@@ -69,10 +64,6 @@ Exemple :
 		"php_pv/php_pv": "v2-rc"
 	},
 	"autoload": {
-		"files": [
-			"../php-pv-master/vendor/SafeHTML.php",
-			"../php-pv-master/vendor/Services_JSON.php"
-		],
         "psr-4": {
 			"Pv\\": "vendor/php_pv/php_pv/src/"
 		}

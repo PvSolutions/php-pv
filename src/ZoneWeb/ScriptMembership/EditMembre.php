@@ -22,6 +22,7 @@ class EditMembre extends \Pv\ZoneWeb\Script\Script
 	public $MsgMotPasseInvalide = "Mauvais format pour le mot de passe" ;
 	public $MsgEmailInvalide = "Mauvais format pour l'email" ;
 	public $MsgMembreSimilaire = "Un membre avec le m&ecirc;me login/email existe d&eacute;j&agrave;" ;
+	public $MsgSuccesInscription = "Vous avez &eacute;t&eacute; inscrit avec succ&ecirc;s. Vous pouvez vous connecter." ;
 	public $MessageSuccesExecuter = '' ;
 	public $CibleModification = 1 ;
 	public $IdsProfilAcceptes = array() ;
@@ -50,6 +51,7 @@ class EditMembre extends \Pv\ZoneWeb\Script\Script
 		elseif($this->CibleModification == 3)
 		{
 			$this->FormPrinc->InclureElementEnCours = false ;
+			$this->FormPrinc->MsgExecSuccesCommandeExecuter = $this->MsgSuccesInscription ;
 		}
 		$this->FormPrinc->ChargeConfig() ;
 		if($this->CibleModification != 2)
@@ -100,6 +102,12 @@ class EditMembre extends \Pv\ZoneWeb\Script\Script
 			$this->FiltreADActive->DeclareComposant('\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneSelectBool') ;
 			$this->FiltreServeurAD = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamServeurAD, $membership->ADServerMemberColumn) ;
 			$this->FiltreServeurAD->Libelle = $membership->ADServerMemberLabel ;
+			$this->CompServeurAD = $this->FiltreServeurAD->DeclareComposant('\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneSelect') ;
+			$this->CompServeurAD->FournisseurDonnees = new \Pv\FournisseurDonnees\Sql() ;
+			$this->CompServeurAD->FournisseurDonnees->BaseDonnees = & $bd ;
+			$this->CompServeurAD->FournisseurDonnees->RequeteSelection = "(select ".$membership->IdADServerColumn." id, ".$bd->SqlConcat(array($membership->HostADServerColumn, "':'", $membership->PortADServerColumn, "'/'", $membership->DnADServerColumn))." label from ".$bd->EscapeTableName($membership->ADServerTable)." t1 where ".$bd->EscapeVariableName($membership->EnableADServerColumn)."=1)" ;
+			$this->CompServeurAD->NomColonneValeur = "id" ;
+			$this->CompServeurAD->NomColonneLibelle = "label" ;
 		}
 		$this->FiltreActif = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamActif, $membership->EnableMemberColumn) ;
 		$this->FiltreActif->Libelle = $membership->EnableMemberLabel ;
@@ -115,41 +123,52 @@ class EditMembre extends \Pv\ZoneWeb\Script\Script
 		$this->FiltreActif->DeclareComposant('\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneSelectBool') ;
 		$this->FiltreActif->ValeurParDefaut = $membership->EnableMemberTrueValue ;
 		$this->ChargeFormPrinc() ;
-		$this->FiltreProfil = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamProfil, $membership->ProfileMemberColumn) ;
-		$this->FiltreProfil->Libelle = $membership->ProfileMemberLabel ;
-		$this->CompProfil = $this->FiltreProfil->DeclareComposant('\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneSelect') ;
 		$idsProfil = $this->IdsProfilAcceptes ;
 		if($this->IdProfilParDefaut > 0 && ! in_array($this->IdProfilParDefaut, $idsProfil))
 		{
 			$idsProfil[] = $this->IdProfilParDefaut ;
 		}
-		$this->CompProfil->FournisseurDonnees = new \Pv\FournisseurDonnees\Sql() ;
-		$this->CompProfil->FournisseurDonnees->BaseDonnees = & $bd ;
-		if($this->CibleModification == 3 && count($idsProfil) > 0)
+		if($this->CibleModification == 3 && count($idsProfil) == 1)
 		{
-			$this->CompProfil->FournisseurDonnees->RequeteSelection = '(select * from '.$bd->EscapeTableName($membership->ProfileTable).' where '.$bd->EscapeVariableName($membership->IdProfileColumn).' in ('.join(', ', $idsProfil).'))' ;
+			$this->FiltreProfil = $this->FormPrinc->InsereFltEditFixe($this->NomParamProfil, $idsProfil[0], $membership->ProfileMemberColumn) ;
 		}
 		else
 		{
-			$this->CompProfil->FournisseurDonnees->RequeteSelection = $bd->EscapeTableName($membership->ProfileTable) ;
+			$this->FiltreProfil = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamProfil, $membership->ProfileMemberColumn) ;
+			$this->FiltreProfil->Libelle = $membership->ProfileMemberLabel ;
+			$this->CompProfil = $this->FiltreProfil->DeclareComposant('\Pv\ZoneWeb\FiltreDonnees\Composant\ZoneSelect') ;
+			$this->CompProfil->FournisseurDonnees = new \Pv\FournisseurDonnees\Sql() ;
+			$this->CompProfil->FournisseurDonnees->BaseDonnees = & $bd ;
+			if($this->CibleModification == 3 && count($idsProfil) > 0)
+			{
+				$this->CompProfil->FournisseurDonnees->RequeteSelection = '(select * from '.$bd->EscapeTableName($membership->ProfileTable).' where '.$bd->EscapeVariableName($membership->IdProfileColumn).' in ('.join(', ', $idsProfil).'))' ;
+			}
+			else
+			{
+				$this->CompProfil->FournisseurDonnees->RequeteSelection = $bd->EscapeTableName($membership->ProfileTable) ;
+			}
+			if($this->CibleModification == 3 && $this->IdProfilParDefaut != 0)
+			{
+				$this->FiltreProfil->ValeurParDefaut = $this->IdProfilParDefaut ;
+			}
+			if($this->CibleModification == 2)
+			{
+				$this->FiltreProfil->EstEtiquette = true ;
+			}
+			$this->CompProfil->NomColonneValeur = $membership->IdProfileColumn ;
+			$this->CompProfil->NomColonneLibelle = $membership->TitleProfileColumn ;
 		}
-		if($this->CibleModification == 3 && $this->IdProfilParDefaut != 0)
-		{
-			$this->FiltreProfil->ValeurParDefaut = $this->IdProfilParDefaut ;
-		}
-		if($this->CibleModification == 2)
-		{
-			$this->FiltreProfil->EstEtiquette = true ;
-		}
-		$this->CompProfil->NomColonneValeur = $membership->IdProfileColumn ;
-		$this->CompProfil->NomColonneLibelle = $membership->TitleProfileColumn ;
 		$this->FormPrinc->FournisseurDonnees = new \Pv\FournisseurDonnees\Sql() ;
 		$this->FormPrinc->FournisseurDonnees->BaseDonnees = & $bd ;
 		$this->FormPrinc->FournisseurDonnees->TableEdition = $membership->MemberTable ;
 		$this->FormPrinc->FournisseurDonnees->RequeteSelection = $membership->MemberTable ;
 		if($this->FormPrinc->Editable == true)
 		{
-			$paramsNonVide = array($this->NomParamLogin, $this->NomParamMotPasse, $this->NomParamNom, $this->NomParamPrenom) ;
+			$paramsNonVide = array($this->NomParamLogin, $this->NomParamNom, $this->NomParamPrenom) ;
+			if($membership->ADActivatedMemberColumn == '')
+			{
+				$paramsNonVide[] = $this->NomParamMotPasse ;
+			}
 			if($this->CibleModification == 1)
 			{
 				$paramsNonVide[] = $this->NomParamProfil ;
@@ -187,10 +206,13 @@ class EditMembre extends \Pv\ZoneWeb\Script\Script
 				$critere->MessageErreur = $this->MsgLoginInvalide ;
 				return false ;
 			}
-			if($this->FormPrinc->InclureElementEnCours == false && ! \Pv\Misc::validate_password_format($this->FiltreMotPasse->Lie()))
+			if($this->FormPrinc->InclureElementEnCours == false)
 			{
-				$critere->MessageErreur = $this->MsgMotPasseInvalide ;
-				return false ;
+				if(($membership->ADServerMemberColumn == '' || $this->FiltreADActive->Lie() == 0) && ! \Pv\Misc::validate_password_format($this->FiltreMotPasse->Lie()))
+				{
+					$critere->MessageErreur = $this->MsgMotPasseInvalide ;
+					return false ;
+				}
 			}
 			if(! \Pv\Misc::validate_email_format($this->FiltreEmail->Lie()))
 			{

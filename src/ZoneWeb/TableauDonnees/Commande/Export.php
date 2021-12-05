@@ -2,7 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\Commande ;
 
-class CommandeExport extends \Pv\ZoneWeb\TableauDonnees\Commande\Commande
+class Export extends \Pv\ZoneWeb\TableauDonnees\Commande\Commande
 {
 	public $NomFichier = "" ;
 	public $TypeContenu = "application/octet-stream" ;

@@ -6,14 +6,16 @@ class RepeteurDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 {
 	public $ClasseCSSRangee = "table-striped" ;
 	public $ClasseCSSCellule = "" ;
-	public $EncadrerCellule = 1 ;
+	public $EncadrerRangee = 1 ;
 	public $ClasseCSSBtnNav = "btn-primary" ;
 	public $ClsBstEnteteFormFiltres ;
 	public $ClsBstPiedFormFiltres ;
 	public $ClsBstBoutonSoumettre = "btn-success" ;
-	public $ClsBstFormFiltresSelect = "col-12 col-sm-8 col-md-6" ;
+	public $ClsBstFormFiltresSelect = "col-12" ;
 	public $SautLigneSansCommande = 0 ;
 	public $MaxColonnesXs = 0 ;
+	public $ContenuAvantRangeeDonnees = "" ;
+	public $ContenuApresRangeeDonnees = "" ;
 	protected function InitConfig()
 	{
 		parent::InitConfig() ;
@@ -71,7 +73,11 @@ class RepeteurDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 			$parametresRendu = $this->ParametresCommandeSelectionnee() ;
 			if(count($this->ElementsEnCours) > 0)
 			{
-				if($this->EncadrerCellule == true)
+				if($this->ContenuAvantRangeeDonnees != "")
+				{
+					$ctn .= $this->ContenuAvantRangeeDonnees. PHP_EOL ;
+				}
+				if($this->EncadrerRangee == true)
 				{
 					$ctn .= '<div class="row">'.PHP_EOL ;
 				}
@@ -93,9 +99,13 @@ class RepeteurDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 					$ligneDonnees = $this->SourceValeursSuppl->Applique($this, $ligneDonnees) ;
 					$ctn .= \Pv\Misc::_parse_pattern($this->ContenuLigneModeleUse, $ligneDonnees) ;
 				}
-				if($this->EncadrerCellule == true)
+				if($this->EncadrerRangee == true)
 				{
 					$ctn .= '</div>'.PHP_EOL ;
+				}
+				if($this->ContenuApresRangeeDonnees != "")
+				{
+					$ctn .= $this->ContenuApresRangeeDonnees. PHP_EOL ;
 				}
 			}
 			elseif($this->AlerterAucunElement == true)

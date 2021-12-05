@@ -88,9 +88,9 @@ class DessinFiltres extends \Pv\ZoneWeb\DessinFiltres\Html
 		$nomFiltres = array_keys($filtres) ;
 		$filtreRendus = 0 ;
 		$ctn .= '<div class="row">'.PHP_EOL ;
-		$ctn .= '<div class="col-'.$colXs.(($this->ColSm != '') ? ' col-sm-'.$this->ColSm : '').''.(($this->ColMd != '') ? ' col-md-'.$this->ColMd : '').(($this->ColLd != '') ? ' col-ld-'.$this->ColLd : '').' ">'.PHP_EOL ;
 		foreach($nomFiltres as $i => $nomFiltre)
 		{
+			$ctn .= '<div class="col-'.$colXs.(($this->ColSm != '') ? ' col-sm-'.$this->ColSm : '').''.(($this->ColMd != '') ? ' col-md-'.$this->ColMd : '').(($this->ColLd != '') ? ' col-ld-'.$this->ColLd : '').' ">'.PHP_EOL ;
 			$filtre = $filtres[$nomFiltre] ;
 			if($filtre->LectureSeule)
 			{
@@ -121,9 +121,9 @@ class DessinFiltres extends \Pv\ZoneWeb\DessinFiltres\Html
 				$ctn .= $this->RenduFiltre($filtre, $composant).PHP_EOL ;
 			}
 			$ctn .= '</div>'.PHP_EOL ;
+			$ctn .= '</div>'.PHP_EOL ;
 			$filtreRendus++ ;
 		}
-		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '</div>'.PHP_EOL ;
 		return $ctn ;
 	}

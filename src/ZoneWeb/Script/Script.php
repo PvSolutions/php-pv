@@ -334,6 +334,10 @@ class Script extends \Pv\IHM\Zone\Script
 	{
 		return '' ;
 	}
+	public function DessineCommandes(& $dessin, & $composant, $parametres)
+	{
+		return '' ;
+	}
 	// Incrire un fichier CSS
 	public function InscritContenuCSS($contenu, $media="")
 	{

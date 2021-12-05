@@ -31,7 +31,7 @@ Maintenant, déclarez l'application, l'API Restful et sa ressource par défaut d
 
 ```php
 // Inclure la librairie PHP-PV nécessaire
-include dirname(__FILE__)."/php-pv-master/Pv/IHM/ApiRestful.class.php" ;
+include dirname(__FILE__)."/php-pv-master/autoload.php" ;
 // Déclaration de la route par défaut
 class RouteAccueilRestful1 extends \Pv\ApiRestful\Route\Route
 {

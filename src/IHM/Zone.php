@@ -100,6 +100,7 @@ class Zone extends \Pv\IHM\IHM
 	public $PrivilegesExceptions = array() ;
 	public $PrivilegesPassePartout = array() ;
 	public $ExceptionsToujoursVisibles = 0 ;
+	public $SecuriserMembership = true ;
 	public $ExceptionsVisiblesPourSuperAdmin = 1 ;
 	public $ExceptionsAvantRendu = array() ;
 	public $Exceptions = array() ;
@@ -445,16 +446,19 @@ else
 	protected function ChargeMembership()
 	{
 		$nomClasseMembership = $this->NomClasseMembership ;
-		if(class_exists($nomClasseMembership))
+		if($nomClasseMembership != "")
 		{
-			$this->Membership = new $nomClasseMembership($this) ;
-		}
-		if($this->InclureScriptsMembership)
-		{
-			$nomClasseMembership = $this->NomClasseRemplisseurConfigMembership ;
 			if(class_exists($nomClasseMembership))
 			{
-				$this->RemplisseurConfigMembership = new $nomClasseMembership() ;
+				$this->Membership = new $nomClasseMembership($this) ;
+			}
+			else
+			{
+				die("La classe ".$nomClasseMembership." n'existe pas") ;
+			}
+			if($this->SecuriserMembership == true)
+			{
+				$this->Membership->SessionMemberKey = $this->IDInstanceCalc."_MemberId" ;
 			}
 		}
 	}

@@ -286,7 +286,6 @@ class Sql extends \Pv\FournisseurDonnees\FournisseurDonnees
 		else
 		{
 			$expression = $this->ExtraitExpressionFiltres($filtres) ;
-			$texteColonnes = $this->ExtraitTexteColonnes($colonnes) ;
 			// print_r($expression) ;
 			$requeteSql = "select count(0) TOTAL from ".$this->ChaineRequeteSelection() ;
 			if(count($expression->Parametres) > 0)
@@ -297,6 +296,34 @@ class Sql extends \Pv\FournisseurDonnees\FournisseurDonnees
 			$this->SauveExceptionBaseDonnees() ;
 		}
 		return $total ;
+	}
+	public function AgregeElements($exprs, $filtres)
+	{
+		if(! $this->BaseDonneesValide())
+			return null ;
+		$lgn = array() ;
+		$expression = $this->ExtraitExpressionFiltres($filtres) ;
+		if(is_string($exprs))
+		{
+			$exprs = array($exprs) ;
+		}
+		$texteColonnes = "" ;
+		foreach($exprs as $i => $expr)
+		{
+			if($i > 0)
+			{
+				$texteColonnes .= ", " ;
+			}
+			$texteColonnes .= $expr ;
+		}
+		$requeteSql = "select ".$texteColonnes." from ".$this->ChaineRequeteSelection() ;
+		if(count($expression->Parametres) > 0)
+		{
+			$requeteSql .= " where ".$expression->Texte ;
+		}
+		$lgn = $this->BaseDonnees->FetchSqlRow($requeteSql, array_merge($expression->Parametres, $this->ParamsSelection)) ;
+		$this->SauveExceptionBaseDonnees() ;
+		return $lgn ;
 	}
 	public function AjoutElement($filtres)
 	{

@@ -155,7 +155,7 @@ class HttpUpload extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 		}
 		if($this->SourceTelechargement == 'files')
 		{
-			// echo $this->CheminFichierSrc.' '.$this->CheminFichierDest.'<br>' ;
+			// echo $this->CheminFichierSrc.' to '.$this->CheminFichierDest.'<br>' ;
 			$ok = move_uploaded_file($this->CheminFichierSrc, $this->CheminFichierDest) ;
 			if(! $ok)
 			{

@@ -11,7 +11,7 @@ class AppliqueScriptParent extends DessinCommandes
 		$nomMtd = ($this->NomMethodeScript != '') ? $this->NomMethodeScript : "DessineCommandes" ;
 		if(method_exists($script, $nomMtd))
 		{
-			$ctn = call_user_func_array(array($script, $nomMtd), array(& $composant, $parametres)) ;
+			$ctn = call_user_func_array(array($script, $nomMtd), array(& $this, & $composant, $parametres)) ;
 		}
 		else
 		{

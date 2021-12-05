@@ -14,7 +14,7 @@ class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 	public $TypeElementFormulaire = "file" ;
 	public $NomEltCoteSrv = "CoteSrv_" ;
 	public $LibelleCoteSrv = "Chemin sur le serveur" ;
-	public $InclureApercu = true ;
+	public $InclureApercu = 1 ;
 	public $LibelleViderFichier = "Vider" ;
 	protected $IncorporerApercu = 0 ;
 	public $LibelleApercu = "Aper&ccedil;u" ;

@@ -209,7 +209,7 @@ where t1.id=1 ;
 
 ## Inscription de colonnes SQL
 
-Vous pouvez ajouter directement des colonnes dans les tables Membership.
+Vous pouvez ajouter directement des colonnes dans la table des membres.
 
 ```sql
 alter table membership_member add numero_telephone varchar(8) null ;
@@ -223,7 +223,7 @@ protected function ExtraColsAllMembers()
 {
 return ', numero_telephone, date_inscription' ;
 }
-``` 
+```
 
 ## Connexion par email
 

@@ -78,6 +78,9 @@ class Sql extends \Pv\Membership\Membership
 	public $FollowReferralsADServerAlias = '' ;
 	public $FollowReferralsADServerLabel = 'Suivre les redirections de connexion' ;
 	public $FollowReferralsADServerDefaultValue = 1 ;
+	public $EnableADServerColumn = "active" ;
+	public $EnableADServerAlias = "" ;
+	public $EnableADServerLabel = "Actif" ;
 	public $DisableMemberOnDelete = 1 ;
 	public $DisableRoleOnDelete = 1 ;
 	public $DisableProfileOnDelete = 1 ;

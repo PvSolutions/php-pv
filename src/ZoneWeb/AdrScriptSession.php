@@ -20,7 +20,7 @@ class AdrScriptSession
 	}
 	public function ImporteRequeteHttp(& $zone)
 	{
-		$this->ChaineGet = $_SERVER["REQUEST_URI"].$_REQUEST["QUERY_STRING"] ;
+		$this->ChaineGet = $_SERVER["REQUEST_URI"] ;
 		$this->DonneesPost = $_POST ;
 		$this->Sauvegarde($zone) ;
 		// print_r($_SESSION) ;

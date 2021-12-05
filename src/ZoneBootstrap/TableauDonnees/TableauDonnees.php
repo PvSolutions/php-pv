@@ -10,7 +10,7 @@ class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 	public $ClsBstBoutonSoumettre = "btn-success" ;
 	public $ClsBstEnteteFormFiltres ;
 	public $ClsBstPiedFormFiltres ;
-	public $ClsBstFormFiltresSelect = "col-12 col-sm-8 col-md-6" ;
+	public $ClsBstFormFiltresSelect = "col-12" ;
 	public $ClsBstBlocCommandes = "text-dark bg-light" ;
 	protected function InitConfig()
 	{
@@ -33,6 +33,10 @@ class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 			return "<p>Le dessinateur de filtres n'est pas d&eacute;fini</p>" ;
 		}
 		$ctn = "" ;
+		if($this->MaxFiltresSelectionParLigne > 0)
+		{
+			$this->DessinateurFiltresSelection->MaxFiltresParLigne = $this->MaxFiltresSelectionParLigne ;
+		}
 		if(! $this->PossedeFiltresRendus())
 		{
 			return '' ;
