@@ -1,123 +1,60 @@
 ---
 layout: default
+title: PHP-PV
+description: Documentation de la librairie
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+## Introduction
 
-[Link to another page](./another-page.html).
+**PHP-PV** signifie **PHP-Pleine Vue**. C'est un ensemble de librairies PHP pour réaliser facilement plusieurs types d'applications :
+ - Interface web avec authentification, bootstrap, tâches asynchones
+ - Services daemon
+ - API REST
+ - Passerelles de paiement BITCOIN, PAYPAL, SKRILL...
 
-There should be whitespace between paragraphs.
+## Caractéristiques
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+- Orientée Objet
+- Ecrit en Francais
+- Convention de Nommage : PascalCase
+- Compatible PHP 7 et 8
+- Inspiré de la VCL de Microsoft .NET 4.0
 
-# Header 1
+## Installation
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+- [Pré-requis](prerequis.html)
+- [Configuration](configuration.html)
+- [Premier projet](premierprojet.html)
+- [Structure d'un projet](structureprojet.html)
 
-## Header 2
+## Fonctionnement
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+- [L'Application](application.html)
+- [Les bases de données](commondb.html)
+- [Le service d'authentification](membership.html)
+- Les Zones web
+	- La Zone Web
+		- [Définition](zoneweb/zoneweb.html)
+		- [Entêtes de document](zoneweb/entetedoc.html)
+		- [Scripts web](zoneweb/scripts.html)
+		- [Documents web](zoneweb/documents.html)
+		- [Actions](zoneweb/actions.html)
+		- [Filtres de données](zoneweb/filtresdonnees.html)
+		- [Tâches planifiées](zoneweb/taches.html)
+		- [Composants de rendu](zoneweb/composants_rendu.html)
+		- [Tableaux de données](zoneweb/tableauxdonnees.html)
+		- [Formulaires de données](zoneweb/formulairedonnees.html)
+		- [Scripts membership](zoneweb/scriptsmembership.html)
+		- [Le composant ChartJS](zoneweb/chartjs.html)
+	- [La Zone Bootstrap](zonebootstrap.html)
+- [Les méthodes principales](mtdsprincs.html)
+- [Les passerelles de paiement](passerellepaiement.html)
+- [Les services persistants](servicespersistants.html)
 
-### Header 3
+## Autres librairies
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+- [Utilitaires](utilitaires.html)
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+## Anciennes versions
 
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
+- [Version 1](https://github.com/PvSolutions/php-pv-1.x)
