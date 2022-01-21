@@ -248,6 +248,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	{
 		$flt = $this->CreeFiltreRef($nom, $filtreRef) ;
 		$flt->ExpressionDonnees = $exprDonnees ;
+		$flt->NePasInclureSiVide = true ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
 		$this->FiltresSelection[] = & $flt ;
@@ -256,6 +257,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	public function & InsereFltSelectFixe($nom, $valeur, $exprDonnees='', $nomClsComp='')
 	{
 		$flt = $this->CreeFiltreFixe($nom, $valeur) ;
+		$flt->NePasInclureSiVide = true ;
 		$flt->ExpressionDonnees = $exprDonnees ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
@@ -266,6 +268,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	{
 		$flt = $this->CreeFiltreCookie($nom) ;
 		$flt->ExpressionDonnees = $exprDonnees ;
+		$flt->NePasInclureSiVide = true ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
 		$this->FiltresSelection[] = & $flt ;
@@ -275,6 +278,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	{
 		$flt = $this->CreeFiltreSession($nom) ;
 		$flt->ExpressionDonnees = $exprDonnees ;
+		$flt->NePasInclureSiVide = true ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
 		$this->FiltresSelection[] = & $flt ;
@@ -284,6 +288,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	{
 		$flt = $this->CreeFiltreMembreConnecte($nom, $nomParamLie) ;
 		$flt->ExpressionDonnees = $exprDonnees ;
+		$flt->NePasInclureSiVide = true ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
 		$this->FiltresSelection[] = & $flt ;
@@ -293,6 +298,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	{
 		$flt = $this->CreeFiltreHttpUpload($nom, $cheminDossierDest) ;
 		$flt->ExpressionDonnees = $exprDonnees ;
+		$flt->NePasInclureSiVide = true ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
 		$this->FiltresSelection[] = & $flt ;
@@ -302,6 +308,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	{
 		$flt = $this->CreeFiltreHttpGet($nom) ;
 		$flt->ExpressionDonnees = $exprDonnees ;
+		$flt->NePasInclureSiVide = true ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
 		$this->FiltresSelection[] = & $flt ;
@@ -311,6 +318,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	{
 		$flt = $this->CreeFiltreHttpPost($nom) ;
 		$flt->ExpressionDonnees = $exprDonnees ;
+		$flt->NePasInclureSiVide = true ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
 		$this->FiltresSelection[] = & $flt ;
@@ -320,6 +328,7 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 	{
 		$flt = $this->CreeFiltreHttpRequest($nom) ;
 		$flt->ExpressionDonnees = $exprDonnees ;
+		$flt->NePasInclureSiVide = true ;
 		if($nomClsComp != '')
 			$flt->DeclareComposant($nomClsComp) ;
 		$this->FiltresSelection[] = & $flt ;

@@ -5,14 +5,14 @@ namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 class ZoneBoiteSelect extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteChoix
 {
 	public $TypeEditeur = "select_html" ;
-	public function RenduJsDefinitValeur()
+	public function RenduJsDefinitValeur($nomVariable='valeur')
 	{
 		return 'if(document.getElementById("'.$this->IDInstanceCalc.'") != null) {
 var noeudSelect = document.getElementById("'.$this->IDInstanceCalc.'") ;
 noeudSelect.selectedIndex = 0 ;
 for (var tmp=0; tmp<noeudSelect.options.length; tmp++) {
 var noeudOption = noeudSelect.options[tmp] ;
-if(noeudOption.value === valeur) {
+if(noeudOption.value === '.$nomVariable.') {
 noeudSelect.selectedIndex = tmp ;
 break ;
 }

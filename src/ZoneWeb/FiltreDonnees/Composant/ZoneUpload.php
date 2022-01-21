@@ -76,6 +76,7 @@ class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 	{
 		$ctn = '' ;
 		$nomEltCoteSrv = ($this->FiltreParent != '') ? $this->FiltreParent->NomEltCoteSrv : $this->NomEltCoteSrv ;
+		$instrsJsViderVal = '' ;
 		if($this->InclureCheminCoteServeur)
 		{
 			if($this->CheminCoteServeurEditable)
@@ -86,12 +87,13 @@ class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 			{
 				$ctn .= '<input type="hidden" name="'.$nomEltCoteSrv.$this->NomElementHtml.'" value="'.htmlspecialchars(trim($this->Valeur)).'" />' ;
 				$valeur = $this->Valeur ;
+				$instrsJsViderVal .= 'document.getElementById(&quot;val_'.$nomEltCoteSrv.$this->NomElementHtml.'&quot;).innerText = &quot;&quot;;' ;
 				if($this->AfficherCheminComplet == 1 && $valeur != '')
 				{
 					$infosFich = pathinfo($valeur) ;
 					$valeur = $infosFich["basename"] ;
 				}
-				$ctn .= htmlentities($valeur) ;
+				$ctn .= '<span id="val_'.$nomEltCoteSrv.$this->NomElementHtml.'">'.htmlentities($valeur).'</span>' ;
 			}
 		}
 		else
@@ -102,7 +104,7 @@ class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 		{
 			$ctn .= ' &nbsp;' ;
 		}
-		$ctn .= '<a href="javascript:;" onclick="document.getElementsByName(\''.$nomEltCoteSrv.$this->NomElementHtml.'\')[0].value = \'\';">'.$this->LibelleViderFichier.'<a>&nbsp;' ;
+		$ctn .= '<a href="javascript:;" onclick="document.getElementsByName(\''.$nomEltCoteSrv.$this->NomElementHtml.'\')[0].value = \'\';'.$instrsJsViderVal.'">'.$this->LibelleViderFichier.'<a>&nbsp;' ;
 		if($this->InclureApercu > 0 && $this->IncorporerApercu == 0 && trim($this->Valeur) != '')
 		{
 			if($this->InclureCheminCoteServeur)

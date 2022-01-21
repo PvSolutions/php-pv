@@ -60,11 +60,11 @@ class FormulaireDonnees extends \Pv\ZoneWeb\FormulaireDonnees\FormulaireDonnees
 		}
 		return $ctn ;
 	}
-	protected function DessineFiltresScriptParent()
+	public function DessineFiltresScriptParent()
 	{
 		$this->DessinateurFiltresEdition = new \Pv\ZoneBootstrap\DessinFiltres\AppliqueScriptParent() ;
 	}
-	protected function DessineCommandesScriptParent()
+	public function DessineCommandesScriptParent()
 	{
 		$this->DessinateurFiltresEdition = new \Pv\ZoneBootstrap\DessinCommandes\AppliqueScriptParent() ;
 	}

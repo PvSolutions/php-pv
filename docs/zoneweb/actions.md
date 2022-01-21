@@ -172,7 +172,7 @@ class MonAction1 extends \Pv\ZoneWeb\Action\TelechargeFichier
 protected function AfficheEntetes()
 {
 Header("HTTP/1.1 404 Not found") ;
-Header("MonEntete1", 1) ;
+Header("MonEntete1:Valeur") ;
 }
 }
 ```

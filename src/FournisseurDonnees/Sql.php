@@ -4,7 +4,7 @@ namespace Pv\FournisseurDonnees ;
 
 class Sql extends \Pv\FournisseurDonnees\FournisseurDonnees
 {
-	public $BaseDonnees = null ;
+	public $BaseDonnees ;
 	public $RequeteSelection = "" ;
 	public $ParamsSelection = array() ;
 	public $TableEdition = "" ;

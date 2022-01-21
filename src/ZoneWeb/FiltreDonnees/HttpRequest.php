@@ -12,6 +12,7 @@ class HttpRequest extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 	public $AccepteTagsHtml = 1 ;
 	public $AccepteTagsSuspicieux = 0 ;
 	public $ValeurBruteNonCorrigee = false ;
+	public $SeparateurValeurs = ";" ;
 	protected function EnleveTagsHtml($valeur)
 	{
 		return strip_tags($valeur) ;
@@ -58,7 +59,7 @@ class HttpRequest extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 		$resultat = "" ;
 		if(is_array($valeur))
 		{
-			$resultat = join(";", $valeur) ;
+			$resultat = join($this->SeparateurValeurs, $valeur) ;
 		}
 		else
 		{

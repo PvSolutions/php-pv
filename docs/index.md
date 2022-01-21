@@ -43,9 +43,14 @@
 		- [Scripts membership](zoneweb/scriptsmembership.md)
 		- [Le composant ChartJS](zoneweb/chartjs.md)
 	- [La Zone Bootstrap](zonebootstrap.md)
+- [Les méthodes principales](mtdsprincs.md)
 - [Les passerelles de paiement](passerellepaiement.md)
 - [Les services persistants](servicespersistants.md)
 
 ## Autres librairies
 
 - [Utilitaires](utilitaires.md)
+
+## Anciennes versions
+
+- [Version 1](https://github.com/PvSolutions/php-pv-1.x)

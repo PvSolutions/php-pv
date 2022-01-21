@@ -10,18 +10,24 @@ class ElementFormulaire extends \Pv\ZoneWeb\ComposantRendu\BaliseHtml
 	public $Valeur = "" ;
 	public $EspaceReserve = "" ;
 	public $FmtLbl ;
-	public $EncodeHtmlEtiquette = 1 ;
+	public $EncodeHtmlEtiquette = true ;
 	public $AttrsSupplHtml = array() ;
-	public function RenduJsDefinitValeur()
+	public function RenduJsDefinitValeur($nomVariable='valeur')
 	{
-		return 'if(document.getElementById("'.$this->IDInstanceCalc.'") != null) {
-document.getElementById("'.$this->IDInstanceCalc.'").value = valeur ;
+		return 'if(document.getElementById("'.$this->IDInstanceCalc.'") !== null) {
+document.getElementById("'.$this->IDInstanceCalc.'").value = '.$nomVariable.' ;
 }' ;
 	}
-	public function RenduJsDefinitEtiquette()
+	public function RenduJsRecupValeur($nomVariable='valeur')
 	{
-		return 'if(document.getElementById("'.$this->IDInstanceCalc.'") != null) {
-document.getElementById("'.$this->IDInstanceCalc.'").innerText = valeur ;
+		return 'if(document.getElementById("'.$this->IDInstanceCalc.'") !== null) {
+'.$nomVariable.' = document.getElementById("'.$this->IDInstanceCalc.'").value ;
+}' ;
+	}
+	public function RenduJsDefinitEtiquette($nomVariable='valeur')
+	{
+		return 'if(document.getElementById("'.$this->IDInstanceCalc.'") !== null) {
+document.getElementById("'.$this->IDInstanceCalc.'").innerText = '.$nomVariable.' ;
 }' ;
 	}
 	protected function CreeFmtLbl()

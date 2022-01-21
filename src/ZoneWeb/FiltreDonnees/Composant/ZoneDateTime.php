@@ -21,7 +21,7 @@ class ZoneDateTime extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneEntree
 			}
 			elseif(preg_match('/^\d+\-\d+\-\d+ \d+\:\d+.+/$', $this->Valeur))
 			{
-				$this->Valeur = str_replace(" ", $this->Valeur) ;
+				$this->Valeur = str_replace(" ", "T", $this->Valeur) ;
 			}
 		}
 	}

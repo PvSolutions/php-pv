@@ -90,7 +90,7 @@ Voici le code source complet :
 
 ```php
 <?php
-include dirname(__FILE__)."/../PHP-PV/Pv/Base.class.php" ;
+include dirname(__FILE__)."/../php-pv-master/autoload.php" ;
 
 class ApplicationSolution1 extends \Pv\Application\Application {
 protected function ChargeIHMs() {

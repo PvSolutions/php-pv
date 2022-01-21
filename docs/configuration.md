@@ -13,11 +13,11 @@ Vous pouvez inclure directement la branche GITHUB avec composer. Procédez ainsi
 	"type":"package",
 	"package": {
 	  "name": "php_pv/php_pv",
-	  "version":"v2-rc",
+	  "version":"master",
 	  "source": {
 		  "url": "https://github.com/PvSolutions/php-pv.git",
 		  "type": "git",
-		  "reference":"v2-rc"
+		  "reference":"master"
 		}
 	}
 }
@@ -26,7 +26,7 @@ Vous pouvez inclure directement la branche GITHUB avec composer. Procédez ainsi
 2. Dans **require** :
 
 ```json
-"php_pv/php_pv": "v2-rc"
+"php_pv/php_pv": "master"
 ```
 
 3. Dans **autoload**, ajoutez les clés "psr-4" et "files", avec ces contenus :
@@ -51,17 +51,17 @@ Exemple :
 			"type":"package",
 			"package": {
 			  "name": "php_pv/php_pv",
-			  "version":"v2-rc",
+			  "version":"master",
 			  "source": {
 				  "url": "https://github.com/PvSolutions/php-pv.git",
 				  "type": "git",
-				  "reference":"v2-rc"
+				  "reference":"master"
 				}
 			}
 		}
 	],
 	"require": {
-		"php_pv/php_pv": "v2-rc"
+		"php_pv/php_pv": "master"
 	},
 	"autoload": {
         "psr-4": {

@@ -11,11 +11,11 @@ class Choix extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 		$valeurEntree = $ligne[$colonne->NomDonnees] ;
 		if(isset($this->ValeursChoix[$valeurEntree]))
 		{
-			$valeur = $this->ValeursChoix[$valeurEntree] ;
+			$valeur = \Pv\Misc::_parse_pattern($this->ValeursChoix[$valeurEntree], array_map("htmlentities", $ligne)) ;
 		}
 		else
 		{
-			$valeur = $this->ValeurNonTrouvee ;
+			$valeur = \Pv\Misc::_parse_pattern($this->ValeurNonTrouvee, array_map("htmlentities", $ligne)) ;
 		}
 		return $valeur ;
 	}

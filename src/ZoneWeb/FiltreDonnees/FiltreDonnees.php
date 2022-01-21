@@ -30,21 +30,23 @@ class FiltreDonnees extends \Pv\Objet\Objet
 	public $ExpressionDonnees = "" ;
 	public $NomColonneLiee = "" ;
 	public $ExpressionColonneLiee = "" ;
-	public $NePasInclureSiVide = 1 ;
+	public $MethodeSoumetApi = "" ;
+	public $NomParametreSoumetApi = "" ;
+	public $NePasInclureSiVide = false ;
 	public $ValeurParDefaut ;
 	public $ValeurVide ;
 	public $ValeurParametre ;
 	public $ValeurBrute = "" ;
 	public $DejaLie = false ;
-	public $Invisible = 0 ;
-	public $Trim = 1 ;
-	public $EstEtiquette = 0 ;
-	public $LectureSeule = 0 ;
-	public $NePasLierColonne = 0 ;
-	public $NePasLireColonne = 0 ;
-	public $NePasLierParametre = 0 ;
-	public $NePasIntegrerParametre = 0 ;
-	public $AppliquerCorrecteurValeur = 1 ;
+	public $Invisible = false ;
+	public $Trim = true ;
+	public $EstEtiquette = false ;
+	public $LectureSeule = false ;
+	public $NePasLierColonne = false ;
+	public $NePasLireColonne = false ;
+	public $NePasLierParametre = false ;
+	public $NePasIntegrerParametre = false ;
+	public $AppliquerCorrecteurValeur = true ;
 	public $CorrecteurValeur ;
 	public $FormatteurEtiquette ;
 	public function ImpressionEnCours()
@@ -127,7 +129,7 @@ class FiltreDonnees extends \Pv\Objet\Objet
 	}
 	public function RenduPossible()
 	{
-		return (! $this->Invisible && ($this->TypeLiaisonParametre == 'get' or $this->TypeLiaisonParametre == 'post')) ? 1 : 0 ;
+		return (! $this->Invisible && ($this->TypeLiaisonParametre == 'get' or $this->TypeLiaisonParametre == 'post')) ? true : false ;
 	}
 	public function ObtientValeurParametre()
 	{
@@ -161,7 +163,7 @@ class FiltreDonnees extends \Pv\Objet\Objet
 		}
 		$this->ValeurParametre = ($this->Trim) ? trim($this->ValeurParDefaut) : $this->ValeurParDefaut ;
 		// echo $this->NomParametreDonnees ;
-		if($this->Invisible == 1 || $this->NePasLierParametre == 1)
+		if($this->Invisible == true || $this->NePasLierParametre == true)
 		{
 			return $this->ValeurParametre ;
 		}

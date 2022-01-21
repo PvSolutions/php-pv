@@ -187,7 +187,7 @@ public function PrepareExecution()
 $this->ResFic = fopen("mon_fichier.txt", "r") ;
 if(! $this->ResFic)
 {
-$this->RenseigneErreur("Fichier mon_fichier.txt \Pv\Misc::introuvable") ;
+$this->RenseigneErreur("Fichier mon_fichier.txt introuvable") ;
 $this->ArreterExecution = true ;
 }
 }

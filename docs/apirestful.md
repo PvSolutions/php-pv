@@ -30,6 +30,7 @@ Placez ce contenu dans le **.htaccess**.
 Maintenant, déclarez l'application, l'API Restful et sa ressource par défaut dans **api.php**.
 
 ```php
+<?php
 // Inclure la librairie PHP-PV nécessaire
 include dirname(__FILE__)."/php-pv-master/autoload.php" ;
 // Déclaration de la route par défaut
