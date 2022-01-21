@@ -458,7 +458,29 @@ return $ctn ;
 
 Le rendu peut se faire via la méthode **DessineCommandes(& $dessin, & $composant, $parametres)** du script parent. Invoquez **DessineFiltresScriptParent()** du formulaire.
 
-
+```php
+class MonScript1 extends \Pv\ZoneWeb\Script\Script
+{
+	public function DetermineEnvironnement()
+	{
+		$this->Form1 = $this->InsereComposant("form1", new \Pv\ZoneWeb\FormulaireDonnees\FormulaireDonnees()) ;
+		$this->Form1->InclureElementEnCours = false ;
+		$this->Form1->ChargeConfig() ;
+		$this->Flt1 = $this->Form1->InsereFltEditHttpPost("nom") ;
+		$this->Form1->DessineCommandesScriptParent() ;
+	}
+	public function DessineCommandes(& $dessin, & $composant, $parametres)
+	{
+		return '<p>'.$dessin->RenduCommande($this->Form1->CommandeExecuter, $composant).'</p>' ;
+	}
+	public function RenduSpecifique()
+	{
+		$ctn = '' ;
+		$ctn .= $this->Form1->RenduDispositif() ;
+		return $ctn ;
+	}
+}
+```
 
 ## Voir aussi
 

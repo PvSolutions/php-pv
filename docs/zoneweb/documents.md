@@ -1,9 +1,10 @@
 # Documents Web
 
 Un document web personnalise l'affichage complet de chaque script.
-Dans la zone, il est utile :
-- pour les scripts à imprimer
-- pour les scripts qui s'afficheront dans une boîte de dialogue
+Dans la zone, il est utile pour différencier le design :
+- de la page d'accueil
+- des scripts pour impressions
+- des scripts qui d'une boîte de dialogue
 
 ## Déclaration
 

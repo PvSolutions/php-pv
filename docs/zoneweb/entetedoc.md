@@ -27,6 +27,17 @@ Exemple :
 ?>
 ```
 
+Vous pouvez completer le rendu <head> avec la propriété $RenduExtraHead.
+
+```php
+class MaZone1 extends \Pv\ZoneWeb\ZoneWeb
+{
+	public $RenduExtraHead = '<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">' ;
+}
+```
+
 ## CSS et Javascript
 
 ### Méthodes principales

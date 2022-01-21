@@ -139,6 +139,7 @@ return php_sapi_name() != "CLI" ;
 ## Voir aussi
 
 - [La zone web](zoneweb/zoneweb.md)
+- [Méthodes principales](mtdsprincs.md)
 - [Les passerelles de paiement](passerellepaiement.md)
 - [Les services persistants](servicespersistants.md)
 - [Les tâches programmées](tachesprogs.md)

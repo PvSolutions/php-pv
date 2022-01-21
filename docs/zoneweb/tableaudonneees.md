@@ -6,9 +6,10 @@ Le tableau de données est un composant IU. Il affiche :
 - Un formulaire de champs pour filtrer les résultats
 - Un bloc de commandes, pour l'exportation des résultats à un format précis…
 - Un tableau des résultats de la recherche
-La classe de ce composant est **\Pv\ZoneWeb\TableauDonnees\TableauDonnes**.
  
 ![Apercu tableau données](../images/tabldonneeshtml.png)
+
+La classe de ce composant est **\Pv\ZoneWeb\TableauDonnees\TableauDonnes**.
  
 ## Utilisation
 
@@ -65,6 +66,7 @@ $this->Tabl1->ChargeConfig() ;
 // Définition des filtres de sélection
 $this->Flt1 = $this->Tabl1->InsereFltSelectHttpGet("expression", "champ1 like concat(<self>, '%')") ;
 $this->Flt1->Libelle = "Expression" ;
+// Filtre fixe
 $this->Flt2 = $this->Tabl1->InsereFltSelectFixe("est_actif", 1, "active = <self>") ;
 // ...
 ```
@@ -133,6 +135,38 @@ $this->Tabl1->InsereDefColHtml('${menu} ${id}', 'Actions') ;
 }
 ```
 
+
+
+Vous pouvez renseigner les valeurs supplémentaires via la méthode **ExtraitSrcValsSuppl(& $dessin, & $composant, $parametres)** du script parent. Invoquez **AppliqueScriptParentValsSuppl()** du tableau.
+
+
+```php
+class MonScript1 extends \Pv\ZoneWeb\Script\Script
+{
+	public function DetermineEnvironnement()
+	{
+		$this->Tabl1 = $this->InsereComposant("tabl1", new \Pv\ZoneWeb\TableauDonnees\TableauDonnees()) ;
+		$this->Tabl1->InclureElementEnCours = false ;
+		$this->Tabl1->ChargeConfig() ;
+		// Definir vos colonnes et filtres...
+		$this->Flt1 = $this->Tabl1->InsereDefCol("nom") ;
+		// Fixer la source des valeurs supplémentaires au script
+		$this->Tabl1->AppliqueScriptParentValsSuppl() ;
+	}
+	public function ExtraitSrcValsSuppl($ligneDonnees, & $composant, & $srcValsSuppl)
+	{
+		$ligneDonnees["lien"] = 'mapage.php?no='.urlencode($ligneDonnees["reference"]) ;
+		return $ligneDonnees ;
+	}
+	public function RenduSpecifique()
+	{
+		$ctn = '' ;
+		$ctn .= $this->Tabl1->RenduDispositif() ;
+		return $ctn ;
+	}
+}
+```
+
 ## Autres propriétés
 
 Propriété / Méthode | Description
@@ -157,8 +191,11 @@ $this->Tabl1 = new \Pv\ZoneWeb\TableauDonnees\TableauDonnees() ;
 $this->Tabl1->AdopteScript("tabl1", $this) ;
 $this->Tabl1->ChargeConfig() ;
 // ...
-$this->Tabl1->CacherNavigateurRangees = 1 ;
+// Cacher le navigateur de rangées
+$this->Tabl1->CacherNavigateurRangees = true ;
+// Interdire les tris des colonnes
 $this->Tabl1->TriPossible = true ;
+// Message s'il n'y a aucun élément
 $this->Tabl1->MessageAucunElement = "Aucune facture trouv&eacute;e" ;
 ```
 
@@ -205,7 +242,7 @@ $cmd1 = $this->Tabl1->InsereCmdExportTexte("cmdTxt", "CSV") ;
 ## Rendu du tableau de données
 
 Vous pouvez personnaliser le rendu du tableau de données avec sa propriété **$DessinateurFiltresSelection**.
-Référez-vous au rendu des filtres d'édition du formulaire de données pour l'utilisation.
+Référez-vous au rendu des ![filtres d'édition](formulairedonnees.md) du formulaire de données pour l'utilisation.
 
 ## Caractéristiques après rendu
 

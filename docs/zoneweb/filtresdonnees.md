@@ -32,8 +32,12 @@ $TypeLiaisonParametre | Contient la valeur "get", valeur issue de $_GET ou "post
 $form = new \Pv\ZoneWeb\FormulaireDonnees\FormulaireDonnees() ;
 // ...
 $flt = $form->InsereFltEditHttpPost("champ1", "champ1") ;
+// Figer le filtre en lecture seule
+$flt->EstEtiquette = true ;
+// Encoder lors de l'enregistrement
 $flt->AliasParametreDonnees = "BASE64_DECODE(UNHEX(<self>))" ;
-$flt->ExpressionColonneLiee = "HEX(BASE64_ENCODE(<self>))" ;
+// Décoder la valeur de la colonne champ1
+$flt->ExpressionColonneLiee = "HEX(BASE64_ENCODE(champ1))" ;
 ```
 
 ## Correcteur de valeur
@@ -42,7 +46,7 @@ C'est une propriété qui encode/décode la valeur brute d'un filtre.
 Vous devez étendre la classe **\Pv\ZoneWeb\FiltreDonnees\CorrecteurValeur\Correcteur** et réécrire les méthodes clées.
 
 ```php
-class MonCorrectValFiltre1 extends \Pv\ZoneWeb\FiltreDonnees\CorrecteurValeur\Correcteur
+class MonCorrectValFiltre1 extends \Pv\ZoneWeb\FiltreDonnees\CorrecteurValeur\CorrecteurValeur
 {
 public function Applique($valeur, & $filtre)
 {
