@@ -9,6 +9,19 @@ class SrcValsSuppl
 	public $InclureUrl = false ;
 	public $SuffixeUrl = "_query_string" ;
 	public $LignesDonneesBrutes = null ;
+	protected function AppliqueFonct($nomFonct, & $lgn, $suffixe)
+	{
+		$res = array() ;
+		foreach($lgn as $n => $v) {
+			if($v == "") {
+				$res[$n.$suffixe] = $v ;
+			}
+			else {
+				$res[$n.$suffixe] = call_user_func_array($nomFonct, array($v)) ;
+			}
+		}
+		return $res ;
+	}
 	public function Applique(& $composant, $ligneDonnees)
 	{
 		$this->LigneDonneesBrutes = $ligneDonnees ;
@@ -17,18 +30,14 @@ class SrcValsSuppl
 		{
 			$ligneDonnees = array_merge(
 				$ligneDonnees,
-				\Pv\Misc::array_apply_suffix(array_map('htmlentities', $this->LigneDonneesBrutes), $this->SuffixeHtml)
+				$this->AppliqueFonct('htmlentities', $this->LigneDonneesBrutes, $this->SuffixeHtml)
 			) ;
 		}
 		if($this->InclureUrl)
 		{
 			$ligneDonnees = array_merge(
 				$ligneDonnees,
-				\Pv\Misc::array_apply_suffix(
-					array_map(
-						'urlencode', $this->LigneDonneesBrutes
-					), $this->SuffixeUrl
-				)
+				$this->AppliqueFonct('urlencode', $this->LigneDonneesBrutes, $this->SuffixeUrl)
 			) ;
 		}
 		return $ligneDonnees ;

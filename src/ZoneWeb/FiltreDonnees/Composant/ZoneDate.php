@@ -26,7 +26,8 @@ class ZoneDate extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneEntree
 		{
 			$ctn .= ' max="'.htmlspecialchars($this->DateMax).'"' ;
 		}
-		$ctn .= ' value="'.htmlspecialchars($this->Valeur).'"' ;
+		$valeurEnc = ($this->Valeur != "") ? htmlspecialchars($this->Valeur) : "" ;
+		$ctn .= ' value="'.$valeurEnc.'"' ;
 		$ctn .= ' />' ;
 		return $ctn ;
 	}

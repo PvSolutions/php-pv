@@ -2,7 +2,8 @@
 
 ## Présentation
 
-La route individuelle est **\Pv\ApiRestful\Route\Individuel** (ou **\Pv\ApiRestful\Route\Single**). Elle traite les éditions dans une table et/ou renvoie une ligne.
+La route individuelle est **\Pv\ApiRestful\Route\Individuel** (ou **\Pv\ApiRestful\Route\Single**).
+Elle traite les éditions dans une table et/ou renvoie une ligne. 
 
 ```php
 class RouteEdit1Restful1 extends \Pv\ApiRestful\Route\Single
@@ -165,7 +166,7 @@ class RouteSingle1Restful1 extends \Pv\ApiRestful\Route\Individuel
 	{
 		if($this->FltTitre->Lie() == "")
 		{
-			$this->MessageErreurExecution = "Veuillez renseigner un titre" ;
+			$this->RenseigneErreur("Veuillez renseigner un titre") ;
 		}
 	}
 }
@@ -187,7 +188,7 @@ class RouteSingle1Restful1 extends \Pv\ApiRestful\Route\Individuel
 	public function ExecuteInstructions()
 	{
 		// ...
-		if($this->PourAjout())
+		if($this->AjoutEnCours())
 		{
 			$this->InsereFltEditFixe("date_creation", date("Y-m-d H:i:s", "date_creation")) ;
 		}

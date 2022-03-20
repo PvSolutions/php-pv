@@ -66,7 +66,8 @@ class ZoneBoiteOptionsRadio extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoit
 			{
 				$valeur = $premiereValeur ;
 			}
-			$ctn .= PHP_EOL .'<input type="hidden" name="'.$this->NomElementHtml.'" id="'.$this->IDInstanceCalc.'" value="'.htmlspecialchars($valeur).'" />' ;
+			$valeurEnc = ($valeur != "") ? htmlspecialchars($valeur) : "" ;
+			$ctn .= PHP_EOL .'<input type="hidden" name="'.$this->NomElementHtml.'" id="'.$this->IDInstanceCalc.'" value="'.$valeurEnc.'" />' ;
 		}
 		// print_r($this->FournisseurDonnees->BaseDonnees) ;
 		return $ctn ;

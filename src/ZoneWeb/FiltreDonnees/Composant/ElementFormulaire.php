@@ -85,7 +85,8 @@ document.getElementById("'.$this->IDInstanceCalc.'").innerText = '.$nomVariable.
 		{
 			foreach($this->AttrsSupplHtml as $attr => $val)
 			{
-				$ctn .= ' '.htmlspecialchars($attr).'="'.htmlspecialchars($val).'"' ;
+				$valEnc = ($val != "") ? htmlspecialchars($val) : $val ;
+				$ctn .= ' '.htmlspecialchars($attr).'="'.$valEnc.'"' ;
 			}
 		}
 		return $ctn ;

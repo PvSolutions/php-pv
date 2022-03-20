@@ -15,7 +15,8 @@ class JsColor extends \Pv\ZoneWeb\FiltreDonnees\Composant\EditeurHtml
 	protected function RenduEditeurBrut()
 	{
 		$ctn = '' ;
-		$ctn .= '<input type="text" maxlength="6" size="12" class="jscolor" value="'.htmlspecialchars($this->Valeur).'" />' ;
+		$valeurEnc = ($this->Valeur != "") ? htmlspecialchars($this->Valeur) : "" ;
+		$ctn .= '<input type="text" maxlength="6" size="12" class="jscolor" value="'.$valeurEnc.'" />' ;
 		return $ctn ;
 	}
 }

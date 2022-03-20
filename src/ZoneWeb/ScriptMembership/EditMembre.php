@@ -70,6 +70,7 @@ class EditMembre extends \Pv\ZoneWeb\Script\Script
 				$this->FiltreIdEdit = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamIdEdit, $membership->IdMemberColumn) ;
 				$this->FiltreIdEdit->Libelle = strtoupper($membership->IdMemberColumn) ;
 				$this->FiltreIdEdit->EstEtiquette = true ;
+				$this->FiltreIdEdit->NePasLierColonne = true ;
 			}
 		}
 		$this->FiltreLogin = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamLogin, $membership->LoginMemberColumn) ;
@@ -154,6 +155,7 @@ class EditMembre extends \Pv\ZoneWeb\Script\Script
 			if($this->CibleModification == 2)
 			{
 				$this->FiltreProfil->EstEtiquette = true ;
+				$this->FiltreProfil->NePasLierColonne = true ;
 			}
 			$this->CompProfil->NomColonneValeur = $membership->IdProfileColumn ;
 			$this->CompProfil->NomColonneLibelle = $membership->TitleProfileColumn ;

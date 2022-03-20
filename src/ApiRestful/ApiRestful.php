@@ -20,17 +20,19 @@ class ApiRestful extends \Pv\IHM\IHM
 	public $OriginesAutorisees = "*" ;
 	public $RouteParDefaut ;
 	public $Reponse ;
+	public $InclureStatutReponse = true ;
+	public $EncodageJsonNatif = true ;
 	public $Requete ;
 	public $Metadatas ;
 	public $NomClasseMembership ;
 	public $Membership ;
-	public $InclureRoutesMembership = 1 ;
+	public $InclureRoutesMembership = true ;
 	public $NomRouteAppelee ;
 	public $PrivilegesEditMembership = array() ;
 	public $PrivilegesEditMembres = array() ;
 	protected $NomRoutesEditMembership = array() ;
-	public $AutoriserInscription = 0 ;
-	public $AutoriserModifPrefs = 0 ;
+	public $AutoriserInscription = false ;
+	public $AutoriserModifPrefs = false ;
 	public $NomClasseRouteRecouvreMP = '\Pv\ApiRestful\RouteMembership\RecouvreMP' ;
 	public $NomClasseRouteConnexion = '\Pv\ApiRestful\RouteMembership\Connexion' ;
 	public $NomClasseRouteInscription = '\Pv\ApiRestful\RouteMembership\Inscription' ;
@@ -56,10 +58,11 @@ class ApiRestful extends \Pv\IHM\IHM
 	public $NomRouteDeconnexion = "deconnexion" ;
 	public $NomRouteModifPrefs = "modifInfosPerso" ;
 	public $NomRouteImporteMembre = "importe" ;
-	public $NomRouteChangeMPMembre = "change_password" ;
+	public $NomRouteChangeMPMembre = "change_mp_membre" ;
 	public $NomRouteChangeMotPasse = "change_password" ;
 	public $NomRoutesAcces = "acces" ;
 	public $NomRoutesMonEspace = "mon_espace" ;
+	public $NomRoutesMembres = "membres" ;
 	public $NomRoutesProfils = "profils" ;
 	public $NomRoutesRoles = "roles" ;
 	public $NomRoutesServeursAD = "serveurs_ad" ;
@@ -68,11 +71,37 @@ class ApiRestful extends \Pv\IHM\IHM
 	public $NomParamSensTriCollection = "sort" ;
 	public $NomParamColonnesCollection = "fields" ;
 	public $InclureMetadatasEntete = true ;
+	public function CreeBDPrinc()
+	{
+		return $this->ApplicationParent->CreeBDPrinc() ;
+	}
+	public function CreeDBPrinc()
+	{
+		return $this->ApplicationParent->CreeDBPrinc() ;
+	}
+	public function CreeFournisseurDonneesPrinc()
+	{
+		return $this->ApplicationParent->CreeFournisseurDonneesPrinc() ;
+	}
+	public function CreeFournDonneesPrinc()
+	{
+		return $this->ApplicationParent->CreeFournisseurDonneesPrinc() ;
+	}
+	public function CreeFournPrinc()
+	{
+		return $this->ApplicationParent->CreeFournisseurDonneesPrinc() ;
+	}
 	protected function InitConfig()
 	{
 		parent::InitConfig() ;
 		$this->Metadatas = new \StdClass() ;
-		$this->CrypteurToken = new \Pv\Openssl\Crypter() ;
+		$this->CrypteurToken = $this->CreeCrypteurToken() ;
+	}
+	protected function CreeCrypteurToken()
+	{
+		$crypter = new \Pv\Openssl\Crypter() ;
+		$crypter->key = 'kotn9'.get_class($this) ;
+		return $crypter ;
 	}
 	public function & InscritRoute($nom, $cheminRoute, & $route)
 	{
@@ -96,6 +125,38 @@ class ApiRestful extends \Pv\IHM\IHM
 		}
 		$route = new $nomClasse() ;
 		return $this->InscritRoute($nom, $cheminRoute, $route) ;
+	}
+	public function CreeRoutePrinc()
+	{
+		return new Route\Route() ;
+	}
+	public function & InsereRoutePrinc($nom, $cheminRoute)
+	{
+		return $this->InsereRoute($nom, $chemin, $this->CreeRoutePrinc()) ;
+	}
+	public function CreeCollectionPrinc()
+	{
+		return new Route\Collection() ;
+	}
+	public function & InsereCollectionPrinc($nom, $cheminRoute)
+	{
+		return $this->InsereRoute($nom, $chemin, $this->CreeCollectionPrinc()) ;
+	}
+	public function CreeElementPrinc()
+	{
+		return new Route\Element() ;
+	}
+	public function & InsereElementPrinc($nom, $cheminRoute)
+	{
+		return $this->InsereRoute($nom, $chemin, $this->CreeElementPrinc()) ;
+	}
+	public function & InsereSinglePrinc($nom, $cheminRoute)
+	{
+		return $this->InsereRoute($nom, $chemin, $this->CreeElementPrinc()) ;
+	}
+	public function & InsereIndividuelPrinc($nom, $cheminRoute)
+	{
+		return $this->InsereRoute($nom, $chemin, $this->CreeElementPrinc()) ;
 	}
 	public function & InsereRouteParDefaut($route)
 	{
@@ -376,29 +437,32 @@ class ApiRestful extends \Pv\IHM\IHM
 	{
 		$this->DetermineEnvironnement() ;
 		$this->ChargeMembership() ;
-		$this->ChargeRoutes() ;
-		$this->PrepareExecution() ;
-		$this->DetecteRouteAppelee() ;
-		if($this->PossedeRouteAppelee())
+		if($this->Reponse->EstSucces())
 		{
-			if($this->RouteAppelee->EstAccessible())
+			$this->ChargeRoutes() ;
+			$this->PrepareExecution() ;
+			$this->DetecteRouteAppelee() ;
+			if($this->PossedeRouteAppelee())
 			{
-				$this->RouteAppelee->Execute() ;
+				if($this->RouteAppelee->EstAccessible())
+				{
+					$this->RouteAppelee->Execute() ;
+				}
+				else
+				{
+					$this->Reponse->ConfirmeNonAutoris() ;
+				}
 			}
 			else
 			{
-				$this->Reponse->ConfirmeNonAutoris() ;
-			}
-		}
-		else
-		{
-			if($this->EstPasNul($this->RouteParDefaut))
-			{
-				$this->RouteParDefaut->Execute() ;
-			}
-			else
-			{
-				$this->Reponse->ConfirmeNonTrouve() ;
+				if($this->EstPasNul($this->RouteParDefaut))
+				{
+					$this->RouteParDefaut->Execute() ;
+				}
+				else
+				{
+					$this->Reponse->ConfirmeNonTrouve() ;
+				}
 			}
 		}
 		$this->Reponse->EnvoieRendu($this) ;

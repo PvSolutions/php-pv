@@ -5,6 +5,7 @@ namespace Pv\ZoneBootstrap\TableauDonnees ;
 class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 {
 	public $SautLigneSansCommande = 0 ;
+	public $Responsive = true ;
 	public $ClasseCSSRangee = "table-striped table-hover" ;
 	public $ClasseCSSBtnNav = "btn-primary" ;
 	public $ClsBstBoutonSoumettre = "btn-success" ;
@@ -82,7 +83,7 @@ class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 		$ctn = '' ;
 		if($this->FiltresSoumis() || ! $this->PossedeFiltresRendus())
 		{
-			if($this->ZoneParent->InclureFontAwesome == 1)
+			if($this->ZoneParent->InclureFontAwesome == true)
 			{
 				$libelleTriAsc = '<span data-fa-transform="up-4" class="text-muted fa fa-sort-up" title="'.htmlspecialchars($this->LibelleTriAsc).'"></span>' ;
 				$libelleTriDesc = '<span data-fa-transform="down-4" class="text-muted fa fa-sort-down" title="'.htmlspecialchars($this->LibelleTriDesc).'"></span>' ;
@@ -128,7 +129,7 @@ class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 					$ctn .= $ctnChampsPost ;
 				}
 				$ctn .= '<div class="card">
-<div class="card-body table-responsive">'.PHP_EOL ;
+<div class="card-body'.(($this->Responsive) ? ' table-responsive' : '').'">'.PHP_EOL ;
 				$ctn .= '<table' ;
 				$ctn .= ' class="RangeeDonnees table '.$this->ClasseCSSRangee.'"' ;
 				$ctn .= '>'.PHP_EOL ;

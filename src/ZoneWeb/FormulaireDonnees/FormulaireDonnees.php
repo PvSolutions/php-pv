@@ -557,7 +557,7 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		foreach($nomFiltres as $i => $nomFiltre)
 		{
 			$filtre = & $this->FiltresEdition[$nomFiltre] ;
-			if(isset($this->ElementEnCours[$filtre->NomParametreDonnees]))
+			if($filtre->NomParametreDonnees != "" && isset($this->ElementEnCours[$filtre->NomParametreDonnees]))
 			{
 				$filtre->DejaLie = 0 ;
 				$filtre->ValeurParDefaut = $this->ElementEnCours[$filtre->NomParametreDonnees] ;

@@ -4,10 +4,10 @@ namespace Pv\ApiRestful\RouteMembership ;
 
 class ModifPrefs extends \Pv\ApiRestful\Route\Filtrable
 {
-	public $AutoriserAjout = 0 ;
-	public $AutoriserModif = 1 ;
-	public $AutoriserSuppr = 0 ;
-	public $AutoriserDesact = 0 ;
+	public $AutoriserAjout = false ;
+	public $AutoriserModif = true ;
+	public $AutoriserSuppr = false ;
+	public $AutoriserDesact = false ;
 	protected function PrepareExecution()
 	{
 		parent::PrepareExecution() ;

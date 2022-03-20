@@ -60,6 +60,26 @@ class Route extends \Pv\Objet\Objet
 	{
 		return $this->ApiParent->Reponse->EstEchec() ;
 	}
+	public function CreeBDPrinc()
+	{
+		return $this->ApiParent->CreeBDPrinc() ;
+	}
+	public function CreeDBPrinc()
+	{
+		return $this->ApiParent->CreeDBPrinc() ;
+	}
+	public function CreeFournisseurDonneesPrinc()
+	{
+		return $this->ApiParent->CreeFournisseurDonneesPrinc() ;
+	}
+	public function CreeFournDonneesPrinc()
+	{
+		return $this->ApiParent->CreeFournisseurDonneesPrinc() ;
+	}
+	public function CreeFournPrinc()
+	{
+		return $this->ApplicationParent->CreeFournisseurDonneesPrinc() ;
+	}
 	public function Execute()
 	{
 		$this->Requete = & $this->ApiParent->Requete ;
@@ -87,6 +107,10 @@ class Route extends \Pv\Objet\Objet
 	}
 	protected function TermineExecution()
 	{
+	}
+	public function ConfirmeContenu($data)
+	{
+		$this->ConfirmeData($data) ;
 	}
 	public function ConfirmeData($data)
 	{

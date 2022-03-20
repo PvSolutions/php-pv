@@ -7,7 +7,7 @@ class Reponse extends MessageHttp
 	public $NomFichierAttache ;
 	public $EnteteContentType = "application/json" ;
 	public $Contenu ;
-	public $EnteteStatusCode ;
+	public $EnteteStatusCode = 200 ;
 	public $MessageStatusCode ;
 	public function __construct()
 	{
@@ -142,6 +142,17 @@ class Reponse extends MessageHttp
 		$this->EnvoieEntetes($api) ;
 		$contenu = $this->Contenu ;
 		$contenu->_metadatas = $api->Metadatas ;
-		echo svc_json_encode($contenu) ;
+		if($api->InclureStatutReponse)
+		{
+			$contenu->status = (count($this->Contenu->errors) == 0) ? "success" : "error" ;
+		}
+		if($api->EncodageJsonNatif == true)
+		{
+			echo json_encode($contenu) ;
+		}
+		else
+		{
+			echo svc_json_encode($contenu) ;
+		}
 	}
 }

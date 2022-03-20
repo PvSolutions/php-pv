@@ -727,8 +727,16 @@ class ZoneWeb extends \Pv\IHM\Zone
 		{
 			$ctn .= '<meta name="author" content="'.htmlspecialchars(html_entity_decode($auteur)).'">'.PHP_EOL ;
 		}
-		$ctn .= '<meta name="description" content="'.htmlspecialchars(html_entity_decode($this->ObtientDescMetaDocument())).'">'.PHP_EOL ;
-		$ctn .= '<meta name="keywords" content="'.htmlspecialchars(html_entity_decode($this->ObtientMotsCleMetaDocument())).'">'.PHP_EOL ;
+		$metaDesc = $this->ObtientDescMetaDocument() ;
+		$metaKeywords = $this->ObtientMotsCleMetaDocument() ;
+		if($metaDesc != "")
+		{
+			$ctn .= '<meta name="description" content="'.htmlspecialchars(html_entity_decode($this->ObtientDescMetaDocument())).'">'.PHP_EOL ;
+		}
+		if($metaKeywords != "")
+		{
+			$ctn .= '<meta name="keywords" content="'.htmlspecialchars(html_entity_decode($this->ObtientMotsCleMetaDocument())).'">'.PHP_EOL ;
+		}
 		foreach($this->Metas as $nom => $contenu)
 		{
 			$ctn .= '<meta name="'.$nom.'" content="'.htmlspecialchars(html_entity_decode($contenu)).'">'.PHP_EOL ;

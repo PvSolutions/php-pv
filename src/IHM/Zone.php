@@ -459,6 +459,7 @@ else
 			if($this->SecuriserMembership == true)
 			{
 				$this->Membership->SessionMemberKey = $this->IDInstanceCalc."_MemberId" ;
+				$this->Membership->CryptSessionValues = true ;
 			}
 		}
 	}

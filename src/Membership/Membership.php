@@ -11,7 +11,8 @@ class Membership extends \Pv\Membership\Object\Item
 	public $UseGuestMember = 0 ;
 	public $RootMemberId = "" ;
 	public $UseRootMember = 1 ;
-	public $SessionMemberId = false ;
+	public $SessionMemberId = 0 ;
+	public $CryptSessionValues = true ;
 	public $SessionMemberKey = "login" ;
 	public $UpdateTimeKey = "update_time" ;
 	public $SessionSource = "SESSION" ;
@@ -21,6 +22,30 @@ class Membership extends \Pv\Membership\Object\Item
 	protected function InitConfig(& $parent)
 	{
 		$this->ParentArea = & $parent ;
+	}
+	public function CreateSessionCrypter()
+	{
+		$crypter = new \Pv\Openssl\Crypter() ;
+		$crypter->key = str_replace('\\', '.', get_class($this)) ;
+		return $crypter ;
+	}
+	public function EncodeSessionValue($value)
+	{
+		if($this->CryptSessionValues == false)
+		{
+			return $value ;
+		}
+		$crypter = $this->CreateSessionCrypter() ;
+		return $crypter->encode($value) ;
+	}
+	public function DecodeSessionValue($value)
+	{
+		if($this->CryptSessionValues == false)
+		{
+			return $value ;
+		}
+		$crypter = $this->CreateSessionCrypter() ;
+		return $crypter->decode($value) ;
 	}
 	public function GetSessionValue($key, $defaultValue=false)
 	{
@@ -32,14 +57,14 @@ class Membership extends \Pv\Membership\Object\Item
 			{
 				// print_r($_SESSION) ;
 				if(isset($_SESSION[$key]))
-					$value = $_SESSION[$key] ;
+					$value = $this->DecodeSessionValue($_SESSION[$key]) ;
 			}
 			break ;
 			case "COOKIE" :
 			case "COOKIES" :
 			{
 				if(isset($_COOKIE[$key]))
-					$value = $_COOKIE[$key] ;
+					$value = $this->DecodeSessionValue($_COOKIE[$key]) ;
 			}
 			break ;
 		}
@@ -55,13 +80,13 @@ class Membership extends \Pv\Membership\Object\Item
 				if($value === null)
 					unset($_SESSION[$key]) ;
 				else
-					$_SESSION[$key] = $value ;
+					$_SESSION[$key] = $this->EncodeSessionValue($value) ;
 			}
 			break ;
 			case "COOKIE" :
 			case "COOKIES" :
 			{
-				setcookie($key, $value) ;
+				setcookie($key, $this->EncodeSessionValue($value)) ;
 			}
 			break ;
 		}
@@ -78,12 +103,12 @@ class Membership extends \Pv\Membership\Object\Item
 			$this->SetSessionValue($this->UpdateTimeKey, date("U")) ;
 		}
 		$this->SessionMemberId = $this->GetSessionValue($this->SessionMemberKey) ;
+		// print 'Sssion ID : '.$this->SessionMemberId ;
 		if($this->SessionMemberId === false && $this->UseGuestMember && $this->GuestMemberId != false)
 		{
 			$this->SessionMemberId = $this->GuestMemberId ;
 		}
 		$this->MemberLogged = $this->NullValue() ;
-		// print 'Sssion ID : '.$this->SessionMemberId ;
 		// exit ;
 		if(! empty($this->SessionMemberId))
 			$this->MemberLogged = $this->FetchMember($this->SessionMemberId) ;

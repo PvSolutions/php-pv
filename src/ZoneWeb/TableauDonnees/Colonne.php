@@ -148,6 +148,9 @@ formatVal = formatVal.split(tagsSelf[i]).join(val) ;
 	}
 	public function EncodeValeur($valeur)
 	{
+		if(empty($valeur)) {
+			return $valeur ;
+		}
 		$resultat = ($this->EncodeHtmlValeur) ? htmlentities($valeur) : $valeur ;
 		return $resultat ;
 	}

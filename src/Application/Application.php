@@ -279,6 +279,16 @@ class Application extends \Pv\Objet\Objet
 			}
 		}
 	}
+	public function ExecuteElement($nomElem)
+	{
+		$this->ChargeConfig() ;
+		if(isset($this->Elements[$nomElem]))
+		{
+			$this->NomElementActif = $nomElem ;
+			$this->ElementActif = & $this->Elements[$nomElem] ;
+		}
+		$this->ExecuteElementActif() ;
+	}
 	public function EnModeConsole()
 	{
 		return (php_sapi_name() == "cli" || (isset($_SERVER["argv"]) && isset($_SERVER["argv"][0]) && ! isset($_SERVER["SCRIPT_FILENAME"]))) ;

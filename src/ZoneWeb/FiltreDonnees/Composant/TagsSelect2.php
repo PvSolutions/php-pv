@@ -14,7 +14,9 @@ class TagsSelect2 extends Select2
 		$ctn .= '<select name="'.htmlspecialchars($this->NomElementHtml).'[]" id="'.$this->IDInstanceCalc.'"'.$this->RenduAttrStyleCSS().' multiple>'.PHP_EOL ;
 		foreach($lignes as $i => $ligne)
 		{
-			$ctn .= '<option value="'.htmlspecialchars($ligne[$this->NomColonneValeur]).'" selected>'.htmlentities($ligne[$this->NomColonneLibelle]).'</option>'.PHP_EOL ;
+			$valEnc = ($ligne[$this->NomColonneValeur] != "") ? htmlspecialchars($ligne[$this->NomColonneValeur]) : "" ;
+			$libEnc = ($ligne[$this->NomColonneLibelle] != "") ? htmlentities($ligne[$this->NomColonneLibelle]) : "" ;
+			$ctn .= '<option value="'.$valEnc.'" selected>'.$libEnc.'</option>'.PHP_EOL ;
 		}
 		/*
 		*/

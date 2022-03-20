@@ -161,13 +161,21 @@ class FiltreDonnees extends \Pv\Objet\Objet
 		{
 			return $this->ValeurParametre ;
 		}
-		$this->ValeurParametre = ($this->Trim) ? trim($this->ValeurParDefaut) : $this->ValeurParDefaut ;
+		$this->ValeurParametre = $this->ValeurParDefaut ;
+		if($this->ValeurParametre != "" && $this->Trim)
+		{
+			$this->ValeurParametre = trim($this->ValeurParametre) ;
+		}
 		// echo $this->NomParametreDonnees ;
 		if($this->Invisible == true || $this->NePasLierParametre == true)
 		{
 			return $this->ValeurParametre ;
 		}
-		$valeurParametre = ($this->Trim) ? trim($this->ObtientValeurParametre()) : $this->ObtientValeurParametre() ;
+		$valeurParametre = $this->ObtientValeurParametre() ;
+		if($valeurParametre != "" && $this->Trim)
+		{
+			$valeurParametre = trim($this->ObtientValeurParametre()) ;
+		}
 		if($this->AppliquerCorrecteurValeur)
 		{
 			$valeurParametre = $this->CorrecteurValeur->Applique($valeurParametre, $this) ;

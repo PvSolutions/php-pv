@@ -13,6 +13,7 @@ class Element extends Editable
 	public $ValeursDesact = array() ;
 	public $MessageException ;
 	protected $ModeEdition = 0 ;
+	public $ErreurSiAucunElement = true ;
 	public function ApprouveAppel()
 	{
 		$methodeHttp = $this->ApiParent->MethodeHttp ;
@@ -194,13 +195,21 @@ class Element extends Editable
 						}
 					}
 					$this->ContenuReponse->data = $lgn ;
-					$this->ElementEnCoursTrouve = 1 ;
+					$this->ElementEnCoursTrouve = true ;
+					$this->ConfirmeSucces() ;
 				}
 				else
 				{
+					if($this->ErreurSiAucunElement == true)
+					{
+						$this->ApiParent->Reponse->ConfirmeNonTrouve() ;
+					}
+					else
+					{
+						$this->ConfirmeSucces() ;
+					}
 					$this->ContenuReponse->data = array() ;
 				}
-				$this->ConfirmeSucces() ;
 			}
 			else
 			{

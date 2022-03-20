@@ -16,7 +16,8 @@ class ZoneEntree extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 		$ctn .= ' type="'.$this->TypeElementFormulaire.'"' ;
 		$ctn .= $this->RenduAttrStyleCSS() ;
 		$ctn .= $this->RenduAttrsSupplHtml() ;
-		$ctn .= ' value="'.htmlspecialchars($this->Valeur).'"' ;
+		$valeurEnc = ($this->Valeur != "") ? htmlspecialchars($this->Valeur) : "" ;
+		$ctn .= ' value="'.$valeurEnc.'"' ;
 		$ctn .= ' />' ;
 		return $ctn ;
 	}

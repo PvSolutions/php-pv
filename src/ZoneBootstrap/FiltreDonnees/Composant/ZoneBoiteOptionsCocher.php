@@ -10,45 +10,28 @@ class ZoneBoiteOptionsCocher extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoi
 		$ctn = '' ;
 		$ctn .= $this->RenduFoncJs() ;
 		$ctn .= $this->RenduLiens() ;
-		$ctn .= '<table' ;
+		$ctn .= '<div' ;
+		$ctn .= ' class="row"' ;
 		$ctn .= ' name="Conteneur_'.$this->NomElementHtml.'"' ;
 		$ctn .= ' id="Conteneur_'.$this->IDInstanceCalc.'"' ;
 		$ctn .= $this->RenduAttrsSupplHtml() ;
 		$ctn .= '>'.PHP_EOL ;
 		$totalLignes = 0 ;
 		$indexLigne = 0 ;
-		$pourcentageColonne = intval(100 / $this->MaxColonnesParLigne) ;
+		$idxCol = intval(12 / $this->MaxColonnesParLigne) ;
 		$this->OuvreRequeteSupport() ;
 		while($ligne = $this->LitRequeteSupport())
 		{
-			if($indexLigne % $this->MaxColonnesParLigne == 0)
-			{
-				$ctn .= '<tr>'.PHP_EOL ;
-			}
-			$ctn .= '<td' ;
-			$ctn .= ' width="'.$pourcentageColonne.'%"' ;
-			$ctn .= ' valign="top"' ;
+			$ctn .= '<div class="col-'.$idxCol.'"' ;
 			$ctn .= '>'.PHP_EOL ;
 			$valeur = $this->ExtraitValeur($ligne, $this->NomColonneValeur) ;
 			$libelle = $this->ExtraitValeur($ligne, $this->NomColonneLibelle) ;
 			$ctn .= $this->RenduElement($valeur, $libelle, $ligne, $this->RequeteSupport->Position).PHP_EOL ;
-			$ctn .= '</td>'.PHP_EOL ;
-			if($indexLigne % $this->MaxColonnesParLigne == $this->MaxColonnesParLigne - 1)
-			{
-				$ctn .= '</tr>'.PHP_EOL ;
-			}
+			$ctn .= '</div>'.PHP_EOL ;
 			$indexLigne++ ;
 		}
-		if($indexLigne % $this->MaxColonnesParLigne != 0)
-		{
-			$colonnesFusionnees = $this->MaxColonnesParLigne - ($indexLigne % $this->MaxColonnesParLigne) ;
-			$ctn .= '<td colspan="'.$colonnesFusionnees.'"></td>'.PHP_EOL ;
-			$ctn .= '</tr>'.PHP_EOL ;
-		}
 		$this->FermeRequeteSupport() ;
-		$ctn .= '</table>' ;
-		// $ctn .= '<input type="hidden" name="'.$this->NomElementHtml.'" id="'.$this->IDInstanceCalc.'" value="'.htmlentities($this->Valeur).'" />' ;
-		// print_r($this->FournisseurDonnees->BaseDonnees) ;
+		$ctn .= '</div>' ;
 		return $ctn ;
 	}
 }

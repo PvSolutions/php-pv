@@ -9,12 +9,14 @@ class Parametrable extends Donnees
 		$filtre = new \Pv\ZoneWeb\FiltreDonnees\Ref() ;
 		$filtre->Source = & $filtreRef ;
 		$filtre->AdopteScript($nom, $this->ScriptParent) ;
+		$filtre->NomParametreLie = $nom ;
 		$filtre->NomParametreDonnees = $nom ;
 		return $filtre ;
 	}
 	public function & CreeFiltreFixe($nom, $valeur)
 	{
 		$filtre = new \Pv\ZoneWeb\FiltreDonnees\Fixe() ;
+		$filtre->NomParametreLie = $nom ;
 		$filtre->NomParametreDonnees = $nom ;
 		$filtre->ValeurParDefaut = $valeur ;
 		$filtre->AdopteScript($nom, $this->ScriptParent) ;
@@ -23,6 +25,7 @@ class Parametrable extends Donnees
 	public function & CreeFiltreCookie($nom)
 	{
 		$filtre = new \Pv\ZoneWeb\FiltreDonnees\Cookie() ;
+		$filtre->NomParametreLie = $nom ;
 		$filtre->NomParametreDonnees = $nom ;
 		$filtre->AdopteScript($nom, $this->ScriptParent) ;
 		return $filtre ;
@@ -30,22 +33,24 @@ class Parametrable extends Donnees
 	public function & CreeFiltreSession($nom)
 	{
 		$filtre = new \Pv\ZoneWeb\FiltreDonnees\Session() ;
+		$filtre->NomParametreLie = $nom ;
 		$filtre->NomParametreDonnees = $nom ;
 		$filtre->AdopteScript($nom, $this->ScriptParent) ;
 		return $filtre ;
 	}
-	public function & CreeFiltreMembreConnecte($nom, $nomParamLie='')
+	public function & CreeFiltreMembreConnecte($nom, $nomParamDonnees='')
 	{
 		$filtre = new \Pv\ZoneWeb\FiltreDonnees\Connecte() ;
 		$filtre->AdopteScript($nom, $this->ScriptParent) ;
-		$filtre->NomParametreDonnees = $nom ;
-		$filtre->NomParametreLie = $nomParamLie ;
+		$filtre->NomParametreLie = $nom ;
+		$filtre->NomParametreDonnees = $nomParamDonnees ;
 		return $filtre ;
 	}
 	public function & CreeFiltreHttpUpload($nom, $cheminDossierDest="")
 	{
 		$filtre = new \Pv\ZoneWeb\FiltreDonnees\HttpUpload() ;
 		$filtre->AdopteScript($nom, $this->ScriptParent) ;
+		$filtre->NomParametreLie = $nom ;
 		$filtre->NomParametreDonnees = $nom ;
 		$filtre->CheminDossier = $cheminDossierDest ;
 		return $filtre ;
@@ -152,7 +157,7 @@ class Parametrable extends Donnees
 		foreach($nomFiltres as $i => $nomFiltre)
 		{
 			$filtre = & $filtres[$nomFiltre] ;
-			$nomProp = $filtre->NomParametreDonnees ;
+			$nomProp = $filtre->NomParametreLie ;
 			if($nomProp == '')
 			{
 				continue ;

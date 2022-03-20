@@ -30,8 +30,9 @@ document.getElementById("'.$this->IDInstanceCalc.'").value = Cal.Year + "-" + Ca
 		{
 			$this->Valeur = date($this->FormatDatePHP, strtotime($this->Valeur)) ;
 		}
-        $ctn .= '<input type="text" id="'.$this->IDInstanceCalc.'_Support" value="'.htmlspecialchars($this->Valeur).'" onchange="fixeValeur'.$this->IDInstanceCalc.'()" />' ;
-        $ctn .= '<input type="hidden" id="'.$this->IDInstanceCalc.'" name="'.htmlspecialchars($this->NomElementHtml).'" value="'.htmlspecialchars($this->Valeur).'" />' ;
+		$valeurEnc = ($this->Valeur != "") ? htmlspecialchars($this->Valeur) : "" ;
+        $ctn .= '<input type="text" id="'.$this->IDInstanceCalc.'_Support" value="'.$valeurEnc.'" onchange="fixeValeur'.$this->IDInstanceCalc.'()" />' ;
+        $ctn .= '<input type="hidden" id="'.$this->IDInstanceCalc.'" name="'.htmlspecialchars($this->NomElementHtml).'" value="'.$valeurEnc.'" />' ;
         $ctn .= '
 <a href="javascript:NewCssCal(\''.$this->IDInstanceCalc.'_Support\',\''.$this->FormatDateJs.'\', \'dropdown\', true, \'24\', true)"><img src="'.$this->CheminRepImgs.'/cal.gif" border="0" alt="'.htmlspecialchars($this->DescriptifPopup).'"></a>' ;
         return $ctn ;

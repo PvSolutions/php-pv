@@ -13,10 +13,9 @@ class MembreConnecte extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 		{
 			return $this->ValeurVide ;
 		}
-		if(isset($this->ZoneParent->Membership->MemberLogged->RawData[$this->NomParametreLie]))
+		if(isset($this->ZoneParent->Membership->MemberLogged->RawData[$this->NomParametreDonnees]))
 		{
-			// print "ssds ".$this->ZoneParent->Membership->MemberLogged->RawData[$this->NomParametreLie] ;
-			return $this->ZoneParent->Membership->MemberLogged->RawData[$this->NomParametreLie] ;
+			return $this->ZoneParent->Membership->MemberLogged->RawData[$this->NomParametreDonnees] ;
 		}
 	}
 }

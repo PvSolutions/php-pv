@@ -74,11 +74,21 @@ Exécutez http://localhost/mon_api_rest/api.php
 - [Gestion du routage](apirestful/routage.md)
 - [La route Collection](apirestful/collection.md)
 - [La route Individuelle](apirestful/individuel.md)
+- [Le système d'authentification](apirestful/auth.md)
 
 ## Propriétés d'initiation
 
 Propriété | Description
 ------------ | -------------
-CheminRacineApi | Chemin Racine de l'API Restful
+$CheminRacineApi | Chemin Racine de l'API Restful
+$OriginesAutorisees | Hôtes autorisées pour des appels Ajax. Définit l'entête HTTP "Access-Control-Allow-Origin"
+$EncodageDocument | Encodage du document
+
+```php
+class ApiRestful1 extends \Pv\ApiRestful\ApiRestful
+{
+	public $EncodageDocument = "iso-8859-1" ;
+}
+```
 
 

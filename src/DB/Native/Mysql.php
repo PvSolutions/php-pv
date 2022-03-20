@@ -458,6 +458,14 @@ FROM information_schema.TABLES WHERE TABLE_SCHEMA = :schema AND TABLE_NAME = :ta
 	{
 		return 'SHOW TABLE STATUS' ;
 	}
+	function SqlEncrypt1($expression, $key)
+	{
+		return 'TO_BASE64(AES_ENCRYPT('.$expression.', '.$key.'))' ;
+	}
+	function SqlDecrypt1($expression, $key)
+	{
+		return 'AES_DECRYPT(FROM_BASE64('.$expression.'), '.$key.')' ;
+	}
 	function CloseCnx()
 	{
 		if(! $this->Connection || ! is_resource($this->Connection))

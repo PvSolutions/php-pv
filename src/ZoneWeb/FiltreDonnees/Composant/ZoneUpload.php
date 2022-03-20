@@ -81,11 +81,13 @@ class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 		{
 			if($this->CheminCoteServeurEditable)
 			{
-				$ctn .= $this->LibelleCoteSrv.' <input type="text" class="EditeurCheminCoteServeur" name="'.$nomEltCoteSrv.$this->NomElementHtml.'" value="'.htmlspecialchars(trim($this->Valeur)).'" size="'.$this->TailleEditeurCoteServeur.'" />' ;
+				$valeurEnc = (trim($this->Valeur) != "") ? htmlspecialchars(trim($this->Valeur))) : "" ;
+				$ctn .= $this->LibelleCoteSrv.' <input type="text" class="EditeurCheminCoteServeur" name="'.$nomEltCoteSrv.$this->NomElementHtml.'" value="'.$valeurEnc.'" size="'.$this->TailleEditeurCoteServeur.'" />' ;
 			}
 			else
 			{
-				$ctn .= '<input type="hidden" name="'.$nomEltCoteSrv.$this->NomElementHtml.'" value="'.htmlspecialchars(trim($this->Valeur)).'" />' ;
+				$valeurEnc = (trim($this->Valeur) != "") ? htmlspecialchars(trim($this->Valeur)) : "" ;
+				$ctn .= '<input type="hidden" name="'.$nomEltCoteSrv.$this->NomElementHtml.'" value="'.$valeurEnc.'" />' ;
 				$valeur = $this->Valeur ;
 				$instrsJsViderVal .= 'document.getElementById(&quot;val_'.$nomEltCoteSrv.$this->NomElementHtml.'&quot;).innerText = &quot;&quot;;' ;
 				if($this->AfficherCheminComplet == 1 && $valeur != '')
@@ -141,7 +143,7 @@ class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 	{
 		$ctn = '' ;
 		$this->DetecteApercuIncorpore() ;
-		if($this->IncorporerApercu == 0)
+		if($this->IncorporerApercu == 0 && $this->Valeur != "")
 		{
 			$ctn .= '<a href="'.htmlspecialchars($this->Valeur).'" target="'.$this->CibleApercu.'">'.$this->EncodeEtiquette($this->Valeur).'</a>' ;
 		}

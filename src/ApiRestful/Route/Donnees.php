@@ -11,6 +11,11 @@ class Donnees extends \Pv\ApiRestful\Route\Route
 		parent::InitConfig() ;
 		$this->FournisseurDonnees = new \Pv\FournisseurDonnees\Sql() ;
 	}
+	public function AdopteApi($nom, $cheminRoute, &$api)
+	{
+		parent::AdopteApi($nom, $cheminRoute, $api) ;
+		$this->FournisseurDonnees->BaseDonnees = $api->CreeBDPrinc() ;
+	}
 	public function & CreeFiltreRef($nom, & $filtreRef)
 	{
 		$filtre = new \Pv\ApiRestful\Filtre\Ref() ;

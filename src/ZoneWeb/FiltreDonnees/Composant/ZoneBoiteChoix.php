@@ -23,6 +23,9 @@ class ZoneBoiteChoix extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulai
 	public $ExtraElementHorsLigne = "" ;
 	protected $ValeursSelectionnees = array() ;
 	protected $ChoixMultiple = false ;
+	public $TransmettreTableauValeurs = false ;
+	public $SeparateurValeurs = "," ;
+	public $SubstitutSeparateurValeurs = "." ;
 	public $InclureLienSelectTous = false ;
 	public $CheminIconeLienSelectTous = "" ;
 	public $LibelleLienSelectTous = "Cocher tout" ;
@@ -222,11 +225,35 @@ class ZoneBoiteChoix extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulai
 	}
 	protected function RenduFoncJs()
 	{
-		if(! $this->InclureFoncJs || ! $this->ChoixMultiple)
+		if(! $this->ChoixMultiple)
 			return '' ;
 		$ctn = '' ;
-		$ctn .= '<script language="javascript">
-function SelectElems_'.$this->IDInstanceCalc.'(mode)
+		$ctn .= '<script language="javascript">'.PHP_EOL ;
+		if(! $this->DoitTransmettreTablVals())
+		{
+			$ctn .= 'function CalculeVal_'.$this->IDInstanceCalc.'() {
+var totalElems = '.svc_json_encode($this->TotalElements).' ;
+var valEditeur = "" ;
+	for(var i=1; i<=totalElems; i++) {
+		var noeud = document.getElementById('.svc_json_encode($this->IDInstanceCalc.'_').' + i) ;
+		if(noeud == null) {
+			continue ;
+		}
+		var valNoeud = null ;
+		'.$this->InstrsJsObtientValElement().'
+		if(valNoeud !== null) {
+			if(valEditeur !== "") {
+				valEditeur += '.svc_json_encode($this->SeparateurValeurs).' ;
+			}
+			valEditeur += valNoeud ;
+		}
+	}
+	document.getElementById("'.$this->IDInstanceCalc.'").value = valEditeur ;
+}' ;
+		}
+		if($this->InclureFoncJs)
+		{
+			$ctn .= 'function SelectElems_'.$this->IDInstanceCalc.'(mode)
 {
 var totalElems = '.svc_json_encode($this->TotalElements).' ;
 for(var i=1; i<=totalElems; i++)
@@ -237,15 +264,28 @@ for(var i=1; i<=totalElems; i++)
 		continue ;
 	}
 	'.PHP_EOL ;
-		$ctn .= $this->InstrsJsSelectElement() ;
-		$ctn .= "\t\t".'}
-}
-</script>' ;
+			$ctn .= $this->InstrsJsSelectElement() ;
+			$ctn .= "\t\t".'}'.PHP_EOL ;
+			if(! $this->DoitTransmettreTablVals())
+			{
+				$ctn .= "\t".'CalculeVal_'.$this->IDInstanceCalc.'() ;'.PHP_EOL ;
+			}
+			$ctn .= '}'.PHP_EOL ;
+		}
+		$ctn .= '</script>' ;
 		return $ctn ;
 	}
 	protected function InstrsJsSelectElement()
 	{
 		return '' ;
+	}
+	protected function InstrsJsObtientValElement()
+	{
+		return '' ;
+	}
+	public function DoitTransmettreTablVals()
+	{
+		return ($this->TransmettreTableauValeurs == true || $this->SeparateurValeurs == "") ;
 	}
 	protected function RenduLiens()
 	{
@@ -279,7 +319,7 @@ for(var i=1; i<=totalElems; i++)
 		$this->InitFournisseurDonnees() ;
 		$this->CalculeValeursSelectionnees() ;
 		$lignes = array() ;
-		if($this->ChoixMultiple == 0)
+		if($this->ChoixMultiple == false)
 		{
 			$lignes = $this->FournisseurDonnees->RechExacteElements($this->FiltresSelection, $this->NomColonneValeur, $this->Valeur) ;
 			// print_r($this->FournisseurDonnees) ;
@@ -343,7 +383,14 @@ for(var i=1; i<=totalElems; i++)
 			}
 			else
 			{
-				$this->ValeursSelectionnees = array($this->Valeur) ;
+				if(! $this->DoitTransmettreTablVals())
+				{
+					$this->ValeursSelectionnees = explode($this->SeparateurValeurs, $this->Valeur) ;
+				}
+				else
+				{
+					$this->ValeursSelectionnees = array($this->Valeur) ;
+				}
 			}
 		}
 	}
@@ -418,6 +465,9 @@ for(var i=1; i<=totalElems; i++)
 			$this->ChargeConfigFournisseurDonnees() ;
 			$this->CalculeElementsRendu() ;
 			$ctn .= $this->RenduListeElements() ;
+			if($this->ChoixMultiple == true && ! $this->DoitTransmettreTablVals()) {
+				$ctn .= '<input type="hidden" name="'.$this->NomElementHtml.'" id="'.$this->IDInstanceCalc.'" value="'.htmlspecialchars($this->Valeur).'" />' ;
+			}
 		}
 		else
 		{

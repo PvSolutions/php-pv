@@ -1212,6 +1212,38 @@ class Connection
 	function SqlToString($expression)
 	{
 	}
+	function SqlEncrypt1($expression, $key)
+	{
+		return $expression ;
+	}
+	function SqlDecrypt1($expression, $key)
+	{
+		return $expression ;
+	}
+	function SqlEncrypt2($expression, $key)
+	{
+		return $expression ;
+	}
+	function SqlDecrypt2($expression, $key)
+	{
+		return $expression ;
+	}
+	function SqlEncrypt3($expression, $key)
+	{
+		return $expression ;
+	}
+	function SqlDecrypt3($expression, $key)
+	{
+		return $expression ;
+	}
+	function SqlEncrypt4($expression, $key)
+	{
+		return $expression ;
+	}
+	function SqlDecrypt4($expression, $key)
+	{
+		return $expression ;
+	}
 	public function EncodeHtmlEntity($value)
 	{
 		return htmlentities($value) ;
