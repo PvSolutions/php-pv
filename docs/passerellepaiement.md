@@ -15,7 +15,7 @@ Une fois le paiement réussi, elle affecte le service demandé avec le client.
 A partir d'une zone web, vous soumettez une transaction à la passerelle de paiement.
 Elle contactera le système de paiement en ligne. Une fois le paiement réussi, la passerelle exécute le service après paiement.
 
-## Passerelle de paiement Test (Assistance) - PHP-PV
+## Passerelle de paiement Test (Assistance)
 
 ### Préparation
 
@@ -29,10 +29,10 @@ Importez le script dans votre base de données. Il crée une table "transaction_
 
 ### Utilisation
 
-1. Déclarez la base de données des transactions
+1. Déclarez la base de données des transactions. Seules les BD MariaDB et Mysql sont supportées.
 
 ```php
-class BdTransact1 extends \Pv\DB\PDO
+class BdTransact1 extends \Pv\DB\PDO\Mysql
 {
 public function InitConnectionParams()
 {
@@ -47,7 +47,7 @@ $this->ConnectionParams["schema"] = "mabd1" ;
 
 2. Déclarez la base de données des informations de paiement
 
-Vous devez télécharger à cette adresse :
+Téléchargez à cette adresse, la structure SQL de la passerelle test.
 
 (https://github.com/PvSolutions/php-pv/blob/sql/Paiement/Assistance/Install.sql)
 
@@ -56,7 +56,7 @@ Importez le script dans votre base de données. Il crée une table "assistance_p
 Déclarez la classe Base de données MySQL.
 
 ```php
-class BdAssistance1 extends \Pv\DB\PDO
+class BdAssistance1 extends \Pv\DB\PDO\Mysql
 {
 public function InitConnectionParams()
 {
@@ -89,7 +89,7 @@ echo "Désolé, vous avez annulé votre transaction !!!" ;
 }
 ```
 
-4. Déclarez la passerelle de paiement et assignez le service après paiement.
+4. Déclarez la passerelle de paiement.
 
 ```php
 class MaPasserellePaie1 extends \Pv\InterfPaiement\Assistance\Assistance
@@ -99,15 +99,10 @@ protected function CreeBdTransaction()
 {
 return new BdTransact1() ;
 }
-// déclarez le service après paiement
-public function ChargeConfig()
-{
-$this->InsereSvcAprPaiement("service1", new ServicePaye1()) ;
-}
 }
 ```
 
-5. Insérez cette passerelle dans l'application
+5. Insérez cette passerelle et assignez le service après paiement dans l'application
 
 ```php
 class Application1 extends \Pv\Application\Application
@@ -117,10 +112,16 @@ public function ChargeIHMs()
 $this->PasserellePaie1 = $this->InsereIHM("passerelle1", new MaPasserellePaie1()) ;
 // ...
 }
+// déclarez le service après paiement
+public function ChargeConfig()
+{
+parent::ChargeConfig() ;
+$this->InsereServiceVendu("service1", new ServicePaye1()) ;
+}
 }
 ```
 
-7. Dans une zone, demandez le paiement.
+6. Dans une zone, demandez le paiement.
 
 ```php
 class MaZone1 extends \Pv\ZoneWeb\ZoneWeb
@@ -140,7 +141,7 @@ $transaction = $passerellePaie->Transaction() ;
 $transaction->Montant = 20 ;
 $transaction->Monnaie = 'EUR' ; // EURO
 $transaction->Designation = "Paiement du produit AAAA" ;
-$transaction->Cfg->NomSvcAprPaiement = "monService1" ; // Nom du service après paiement
+$transaction->Cfg->NomServiceVendu = "monService1" ; // Nom du service après paiement
 $transaction->Cfg->Arg01 = $this->ZoneParent->IdMembreConnecte() ;
 // Démarrer le processus
 $passerellePaie->DemarreProcessus() ;

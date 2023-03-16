@@ -2,6 +2,7 @@
 
 namespace Pv\Membership\Ldap ;
 
+#[\AllowDynamicProperties]
 class Auth
 {
 	public $Host = "" ;

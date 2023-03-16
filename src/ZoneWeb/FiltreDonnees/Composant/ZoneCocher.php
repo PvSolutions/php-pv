@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneCocher extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public $ValeurVrai = 1 ;

@@ -2,6 +2,7 @@
 
 namespace Pv\FournisseurDonnees ;
 
+#[\AllowDynamicProperties]
 class Direct extends \Pv\FournisseurDonnees\Natif
 {
 	public $Valeurs = array() ;

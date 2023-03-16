@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\DessinFiltres ;
 
+#[\AllowDynamicProperties]
 class AppliqueZoneParent extends DessinFiltres
 {
 	public $NomMethodeScript ;

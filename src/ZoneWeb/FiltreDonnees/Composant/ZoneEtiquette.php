@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneEtiquette extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public $Libelle = "" ;

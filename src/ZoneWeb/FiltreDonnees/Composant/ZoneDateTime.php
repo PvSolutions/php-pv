@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneDateTime extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneEntree
 {
 	public $TypeEditeur = "input_datetime_html" ;

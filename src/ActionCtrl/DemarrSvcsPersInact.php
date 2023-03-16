@@ -2,6 +2,7 @@
 
 namespace Pv\ActionCtrl ;
 
+#[\AllowDynamicProperties]
 class DemarrSvcsPersInact extends \Pv\ActionCtrl\ActionCtrl
 {
 	public function ExecuteArgs($args)

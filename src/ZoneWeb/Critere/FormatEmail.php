@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Critere ;
 
+#[\AllowDynamicProperties]
 class FormatEmail extends \Pv\ZoneWeb\Critere\Critere
 {
 	public $FormatMessageErreur = 'Les champs ${ListeFiltres} doivent avoir un email valide' ;

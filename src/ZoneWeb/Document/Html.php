@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Document ;
 
+#[\AllowDynamicProperties]
 class Html extends \Pv\ZoneWeb\Document\Document
 {
 	public $AttrsBody = array() ;

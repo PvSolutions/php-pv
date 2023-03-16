@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class BoutonsHorizontaux extends \Pv\ZoneWeb\BarreMenu\ListeHorizontal
 {
 	public $LargeurSousMenu = "" ;

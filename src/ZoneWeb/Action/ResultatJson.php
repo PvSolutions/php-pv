@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class ResultatJson extends \Pv\ZoneWeb\Action\Action
 {
 	public $Resultat = null ;

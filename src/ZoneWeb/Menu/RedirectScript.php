@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Menu ;
 
+#[\AllowDynamicProperties]
 class RedirectScript extends \Pv\ZoneWeb\Menu\MenuWeb
 {
 	public $NomScript = "" ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class VideoJs extends PvComposantJSFiltrable
 {
 	public $AttrsTag ;

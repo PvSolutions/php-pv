@@ -2,7 +2,7 @@
 
 ## Déclaration de routes
 
-Vous devez déclarer les routes en réécrivant la méthode **ChargeRoutes()**. Utilisez 2 méthodes :
+Vous devez déclarer les routes en réécrivant la méthode **ChargeRoutes()** de l'API Restful. Utilisez 2 méthodes :
 
 - **InsereRouteParDefaut(\$route)** : Remplace la route par défaut
 - **InsereRoute(\$nom, \$chemin, \$route)** : Inscrit une route dans l'API.
@@ -22,7 +22,7 @@ protected function ChargeRoutes()
 }
 class RoutePresentCategRestful1 extends \Pv\ApiRestful\Route\Route
 {
-	public function ExecuteInstructions()
+	protected function ExecuteInstructions()
 	{
 		$this->ContenuReponse->data = "Page de présentation des categories" ;
 	}
@@ -44,7 +44,7 @@ Dans la route, vous avez accès à ces variables dans le tableau **$ApiParent->A
 ```php
 class RouteInfoCategRestful1 extends \Pv\ApiRestful\Route\Route
 {
-	public function ExecuteInstructions()
+	protected function ExecuteInstructions()
 	{
 		$this->ContenuReponse->data = "Article N°".$this->ApiParent->ArgsRouteAppelee["id_article"] ;
 	}
@@ -131,9 +131,13 @@ Pour changer le statut HTTP, vous avez plusieurs possibilités.
 
 Propriété/Méthode | Description
 ------------ | -------------
+RenseigneReponse(\$statusCode, \$message, \$data) | Renseigne le code HTTP, le message d'erreur, et la valeur de la réponse.
 ConfirmeData(\$data) | Renseigne la valeur de l'API, et confirme le succès HTTP 200.
-RenseigneErreur(\$message) | Renseigne le message d'erreur, et renvoie l'erreur HTTP 400.
-RenseigneException(\$message) | Renseigne le message d'erreur, et renvoie l'erreur HTTP 500.
+RenseigneErreur(\$message='') | Renseigne le message d'erreur, et renvoie l'erreur HTTP 400.
+ConfirmeInvalide(\$message='') | Alias de RenseigneErreur(\$message='')
+ConfirmeNonTrouve(\$message='') | Renseigne le message d'erreur, et renvoie l'erreur HTTP 404.
+ConfirmeEchecAuth(\$message='') | Renseigne le message d'erreur, et renvoie l'erreur HTTP 403.
+RenseigneException(\$message='') | Renseigne le message d'erreur, et renvoie l'erreur HTTP 500.
 EstSucces() | Vérifie si la réponse actuelle a le statut HTTP 200
 EstEchec() | Vérifie si la réponse actuelle n'a pas le statut HTTP 200
 
@@ -153,16 +157,16 @@ Vous pouvez accéder à la réponse à partir de la propriété de l'API **\$Rep
 
 Propriété/Méthode | Description
 ------------ | -------------
-\$MethodeHttp | Nom de la méthode HTTP acceptée. Par défaut, possède la valeur vide. Ainsi la route accepte toutes les méthodes.
+\$MethodeHttp | Nom de la méthode HTTP acceptée. Par défaut, possède la valeur vide la route accepte tout.
 \$ApiParent | Api contenant la route.
 \$NomElementApi | Nom de la route dans l'API
-\$CheminRouteApi | Chemin de la route déclaré sur l'API
+\$CheminRouteApi | Chemin de la route déclarée sur l'API.
 
 ```php
 class Route1Restful1 extends \Pv\ApiRestful\Route\Route
 {
 public $MethodeHttp = "GET" ; // Acceptera uniquement la méthode GET
-public function ExecuteInstructions()
+protected function ExecuteInstructions()
 {
 	$this->ContenuReponse->data = "Route appelée sous le nom ".$this->NomElementApi ;
 }
@@ -182,7 +186,7 @@ Utilisez la propriété bool **\$ArreterExecution** pour terminer l'exécution.
 ```php
 class Route1Restful1 extends \Pv\ApiRestful\Route\Route
 {
-public function PrepareExecution()
+protected function PrepareExecution()
 {
 $this->ResFic = fopen("mon_fichier.txt", "r") ;
 if(! $this->ResFic)
@@ -191,11 +195,11 @@ $this->RenseigneErreur("Fichier mon_fichier.txt introuvable") ;
 $this->ArreterExecution = true ;
 }
 }
-public function ExecuteInstructions()
+protected function ExecuteInstructions()
 {
 	$this->ContenuReponse->data = "Contenu fichier : ".fgets($this->ResFic) ;
 }
-public function TermineExecution()
+protected function TermineExecution()
 {
 fclose($this->ResFic)
 }

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class ActionNotification extends \Pv\ZoneWeb\Commande\Commande
 {
 	public $ActionNotification ;

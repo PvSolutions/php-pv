@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\PChart ;
 
+#[\AllowDynamicProperties]
 class Abscisse
 {
 	public $ValeurMin = null ;

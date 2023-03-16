@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\Assistance ;
 
+#[\AllowDynamicProperties]
 class Assistance extends \Pv\InterfPaiement\InterfPaiement
 {
 	public $NomTableAssistance = "transaction_assistance" ;

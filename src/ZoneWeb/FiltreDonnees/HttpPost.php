@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees ;
 
+#[\AllowDynamicProperties]
 class HttpPost extends \Pv\ZoneWeb\FiltreDonnees\HttpRequest
 {
 	public $Role = "post" ;

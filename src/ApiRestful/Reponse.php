@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful ;
 
+#[\AllowDynamicProperties]
 class Reponse extends MessageHttp
 {
 	public $NomFichierAttache ;
@@ -101,25 +102,25 @@ class Reponse extends MessageHttp
 	{
 		$this->DefinitEnteteStatusCode(400, $message) ;
 	}
-	public function ConfirmeEchecAuth()
+	public function ConfirmeEchecAuth($message='')
 	{
-		$this->DefinitEnteteStatusCode(403) ;
+		$this->DefinitEnteteStatusCode(403, $message) ;
 	}
 	public function ConfirmeErreurInterne($message='')
 	{
 		$this->DefinitEnteteStatusCode(500, $message) ;
 	}
-	public function ConfirmeNonAutoris()
+	public function ConfirmeNonAutoris($message='')
 	{
-		$this->DefinitEnteteStatusCode(401) ;
+		$this->DefinitEnteteStatusCode(401, $message) ;
 	}
-	public function ConfirmeNonAutorise()
+	public function ConfirmeNonAutorise($message='')
 	{
-		$this->DefinitEnteteStatusCode(401) ;
+		$this->DefinitEnteteStatusCode(401, $message) ;
 	}
-	public function ConfirmeNonTrouve()
+	public function ConfirmeNonTrouve($message='')
 	{
-		$this->DefinitEnteteStatusCode(404) ;
+		$this->DefinitEnteteStatusCode(404, $message) ;
 	}
 	protected function CalculeEntetesSpec(& $api)
 	{
@@ -145,6 +146,21 @@ class Reponse extends MessageHttp
 		if($api->InclureStatutReponse)
 		{
 			$contenu->status = (count($this->Contenu->errors) == 0) ? "success" : "error" ;
+		}
+		if($api->CrypterReponse > 0 && count($this->Contenu->errors) == 0)
+		{
+			$crypter = new \Pv\Openssl\Crypter() ;
+			$crypter->cipher = $api->CypherCryptReponse ;
+			$crypter->key = $api->CleCryptReponse ;
+			$crypter->hmac = $api->HmacCryptReponse ;
+			if($api->CrypterReponse == 2)
+			{
+				$contenu = $crypter->encode(json_encode($contenu)) ;
+			}
+			else
+			{
+				$contenu->data = $crypter->encode(json_encode($contenu->data)) ;
+			}
 		}
 		if($api->EncodageJsonNatif == true)
 		{

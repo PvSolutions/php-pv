@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Tache ;
 
+#[\AllowDynamicProperties]
 class CtrlTransacts extends \Pv\ZoneWeb\Tache\Tache
 {
 	public $DelaiExecution = 0.25 ;

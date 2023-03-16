@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
+#[\AllowDynamicProperties]
 class CommentaireFacebook extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $AppId = PV_ID_APP_FACEBOOK_DEFAUT ; // 

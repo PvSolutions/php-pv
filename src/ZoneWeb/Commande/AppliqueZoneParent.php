@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class AppliqueZoneParent extends Executer
 {
 	public $NomMethodeZone ;

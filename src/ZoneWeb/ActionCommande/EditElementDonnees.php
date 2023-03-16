@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ActionCommande ;
 
+#[\AllowDynamicProperties]
 class EditElementDonnees extends \Pv\ZoneWeb\ActionCommande\ActionCommande
 {
 	public $TableEdition = '' ;

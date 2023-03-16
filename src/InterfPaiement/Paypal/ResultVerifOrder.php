@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\Paypal ;
 
+#[\AllowDynamicProperties]
 class ResultVerifOrder
 {
 	public $ValeurAccessToken ;

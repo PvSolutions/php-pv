@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Filtre ;
 
+#[\AllowDynamicProperties]
 class ArgRoute extends Filtre
 {
 	public $Role = "arg_route" ;

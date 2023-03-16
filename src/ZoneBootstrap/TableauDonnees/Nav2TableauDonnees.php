@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class Nav2TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\NavigateurRangees
 {
 	public function Execute(& $script, & $composant)

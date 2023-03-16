@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\DessinFiltres ;
 
+#[\AllowDynamicProperties]
 class Modele extends \Pv\ZoneWeb\DessinFiltres\Html
 {
 	public $ContenuModele ;
@@ -53,6 +54,7 @@ class Modele extends \Pv\ZoneWeb\DessinFiltres\Html
 	}
 }
 
+#[\AllowDynamicProperties]
 class Modele extends \Pv\ZoneWeb\DessinFiltres\Modele
 {
 }

@@ -2,6 +2,7 @@
 
 namespace Pv\DB\PDO ;
 
+#[\AllowDynamicProperties]
 class Mysql extends \Pv\DB\Native\Mysql
 {
 	public $SetCharacterEncodingOnFetch = 1 ;

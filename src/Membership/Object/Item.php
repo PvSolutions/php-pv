@@ -2,6 +2,7 @@
 
 namespace Pv\Membership\Object ;
 
+#[\AllowDynamicProperties]
 class Item extends ObjectBase
 {
 	public $ParentObject = null ;

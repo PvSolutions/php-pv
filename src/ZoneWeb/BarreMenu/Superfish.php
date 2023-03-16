@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class Superfish extends \Pv\ZoneWeb\BarreMenu\BarreMenuWeb
 {
 	public static $SourceIncluse ;

@@ -2,6 +2,7 @@
 
 namespace Pv\Common\ProcessEntry ;
 
+#[\AllowDynamicProperties]
 class ProcessEntry
 {
 	var $UID ;

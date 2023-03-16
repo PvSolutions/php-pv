@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\DessinCommandes ;
 
+#[\AllowDynamicProperties]
 class AppliqueScriptParent extends DessinCommandes
 {
 	public $NomMethodeScript ;

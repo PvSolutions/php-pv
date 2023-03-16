@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees ;
 
+#[\AllowDynamicProperties]
 class Ref extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 {
 	public $Role = "ref" ;

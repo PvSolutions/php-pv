@@ -2,6 +2,7 @@
 
 namespace Pv\PlateformeProc ;
 
+#[\AllowDynamicProperties]
 class http extends PlateformeProc
 {
 	public function EstDisponible()

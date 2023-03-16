@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class BarreMenuWeb extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $TypeComposant = 'BarreMenuHTML' ;

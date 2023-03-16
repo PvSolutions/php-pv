@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ActionCommande ;
 
+#[\AllowDynamicProperties]
 class FormMail extends \Pv\ZoneWeb\ActionCommande\EnvoiMail
 {
 	protected function ConstruitContenuMessage()

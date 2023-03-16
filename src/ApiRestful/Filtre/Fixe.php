@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Filtre ;
 
+#[\AllowDynamicProperties]
 class Fixe extends Filtre
 {
 	public $TypeLiaisonParametre = "hidden" ;

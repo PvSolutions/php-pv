@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
+#[\AllowDynamicProperties]
 class BaliseCSS extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $TypeComposant = "BaliseCSS" ;

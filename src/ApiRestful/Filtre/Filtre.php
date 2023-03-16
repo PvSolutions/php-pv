@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Filtre ;
 
+#[\AllowDynamicProperties]
 class Filtre extends \Pv\Objet\Objet
 {
 	public $Obligatoire = 0 ;

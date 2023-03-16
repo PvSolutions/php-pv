@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class CalendarDateInput extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public $Format = "YYYY-MM-DD" ;

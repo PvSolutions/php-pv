@@ -4,6 +4,12 @@
 
 PHP-PV utilise des composants de rendu, qui affichent des formulaires. Les filtres de données proposent des champs de saisie et collecte leurs valeurs après soumission. Ils identifient également les paramètres à impacter sur les bases de données (nom de colonne, condition sql...)
 
+```php
+$form = new \Pv\ZoneWeb\FormulaireDonnees\FormulaireDonnees() ;
+...
+$flt1 = $form->InsereFltEditHttpPost("flt1", "colonne1") ;
+```
+
 ## Propriétés et Méthodes principales
 
 Propriété / Méthode | Description
@@ -35,9 +41,9 @@ $flt = $form->InsereFltEditHttpPost("champ1", "champ1") ;
 // Figer le filtre en lecture seule
 $flt->EstEtiquette = true ;
 // Encoder lors de l'enregistrement
-$flt->AliasParametreDonnees = "BASE64_DECODE(UNHEX(<self>))" ;
+$flt->ExpressionColonneLiee = "HEX(BASE64_ENCODE(<self>))" ;
 // Décoder la valeur de la colonne champ1
-$flt->ExpressionColonneLiee = "HEX(BASE64_ENCODE(champ1))" ;
+$flt->AliasParametreDonnees = "BASE64_DECODE(UNHEX(champ1))" ;
 ```
 
 ## Correcteur de valeur
@@ -91,6 +97,7 @@ Méthode | Description
 ------------- | -------------
 DeclareComposant($nomClasseComposant) | Définit le composant à partir du nom de la classe
 RemplaceComposant($composant) | Définit le composant à partir de l'instance
+ObtientIDComposant() | Retourne l'ID HTML du composant.
 
 Exemple :
 ```php
@@ -241,6 +248,8 @@ $comp->InclureApercu = 1 ;
 
 ## Voir aussi
 
+- [Composants de saisie pour filtre de données](compsfrm_saisie.md)
+- [Composants de liste pour filtre de données](compsfrm_liste.md)
 - [Composants de rendu](composants_rendu.md)
 - [Tableaux de données](tableauxdonnees.md)
 - [Formulaires de données](formulairedonnees.md)

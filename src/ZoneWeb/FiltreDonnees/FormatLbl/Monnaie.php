@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\FormatLbl ;
 
+#[\AllowDynamicProperties]
 class Monnaie extends \Pv\ZoneWeb\FiltreDonnees\FormatLbl\FormalLbl
 {
 	public $MaxDecimals = 3 ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FormulaireDonnees ;
 
+#[\AllowDynamicProperties]
 class ModeEditionElement
 {
 	const Ajout = 1 ;

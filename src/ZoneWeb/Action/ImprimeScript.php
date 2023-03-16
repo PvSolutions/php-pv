@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class ImprimeScript extends \Pv\ZoneWeb\Action\Action
 {
 	public function Execute()

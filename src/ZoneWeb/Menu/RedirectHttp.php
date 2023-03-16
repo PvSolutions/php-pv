@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Menu ;
 
+#[\AllowDynamicProperties]
 class RedirectHttp extends \Pv\ZoneWeb\Menu\MenuWeb
 {
 	public function ObtientStatutSelection()

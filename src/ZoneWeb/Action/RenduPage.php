@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class RenduPage extends \Pv\ZoneWeb\Action\Action
 {
 	public $TitreDocument ;

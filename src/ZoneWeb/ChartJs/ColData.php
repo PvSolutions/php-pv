@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ChartJs ;
 
+#[\AllowDynamicProperties]
 class ColData
 {
 	public $Libelle ;

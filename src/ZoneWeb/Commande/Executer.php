@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class Executer extends \Pv\ZoneWeb\Commande\FormulaireDonnees
 {
 	public $CacherFormulaireFiltresSiSucces = 0 ;

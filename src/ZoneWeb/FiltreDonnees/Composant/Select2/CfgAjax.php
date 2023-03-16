@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant\Select2 ;
 
+#[\AllowDynamicProperties]
 class CfgAjax
 {
 	public $url ;

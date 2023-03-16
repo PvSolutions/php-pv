@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class RecouvreMotPasse extends \Pv\ZoneWeb\Script\Script
 {
 	public $Titre = "Mot de passe oubli&eacute;" ;
@@ -77,6 +78,15 @@ class RecouvreMotPasse extends \Pv\ZoneWeb\Script\Script
 			}
 			if($membership->PasswordMemberExpr != "")
 			{
+				$passwordVal = $basedonnees->ParamPrefix."mot_passe" ;
+				if(stripos($membership->PasswordMemberExpr, "<self>") !== false)
+				{
+					$passwordVal = str_ireplace("<self>", $basedonnees->ExprParamPattern, $membership->PasswordMemberExpr) ;
+				}
+				else
+				{
+					$passwordVal = $membership->PasswordMemberExpr."(".$basedonnees->ExprParamPattern.")" ;
+				}
 				$nouvValeurs[$basedonnees->ExprKeyName] = array(
 					$membership->PasswordMemberColumn => $membership->PasswordMemberExpr.'('.$basedonnees->ExprParamPattern.')'
 				) ;
@@ -178,7 +188,7 @@ class RecouvreMotPasse extends \Pv\ZoneWeb\Script\Script
 	protected function DetermineFormPrinc()
 	{
 		$membership = & $this->ZoneParent->Membership ;
-		$this->FormPrinc = $this->CreeFormPrinc() ;
+		$this->FormPrinc = $this->InsereFormPrinc() ;
 		if($this->LibelleCmdExecuter != '')
 		{
 			$this->FormPrinc->LibelleCommandeExecuter = $this->LibelleCmdExecuter ;

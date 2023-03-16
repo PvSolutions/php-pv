@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class Recaptcha3 extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public static $ClesSiteInclus = array() ;

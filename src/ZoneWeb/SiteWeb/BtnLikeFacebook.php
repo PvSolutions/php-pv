@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
+#[\AllowDynamicProperties]
 class \Pv\ZoneWeb\SiteWeb\BtnLikeFacebook extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $Url ;

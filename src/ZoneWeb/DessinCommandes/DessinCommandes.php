@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\DessinCommandes ;
 
+#[\AllowDynamicProperties]
 class DessinCommandes extends \Pv\ZoneWeb\DessinFiltres\DessinFiltres
 {
 	public $InclureIcones = 1 ;

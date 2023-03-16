@@ -2,6 +2,7 @@
 
 namespace Pv\ProcesseurQueue ;
 
+#[\AllowDynamicProperties]
 class Element
 {
 	public $Index = -1 ;

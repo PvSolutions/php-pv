@@ -3,6 +3,7 @@
 namespace Pv\FournisseurDonnees ;
 
 
+#[\AllowDynamicProperties]
 class ExpressionFiltre
 {
 	public $Texte = "" ;

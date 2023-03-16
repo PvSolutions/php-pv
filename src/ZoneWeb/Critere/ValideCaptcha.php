@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Critere ;
 
+#[\AllowDynamicProperties]
 class ValideCaptcha extends \Pv\ZoneWeb\Critere\Critere
 {
 	public $FltCaptchaParent ;

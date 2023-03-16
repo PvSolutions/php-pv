@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ArborescenceDonnees ;
 
+#[\AllowDynamicProperties]
 class DefGroupeCol extends \Pv\ZoneWeb\ArborescenceDonnees\DefCol
 {
 	public $RenduDebutParDefaut = '' ;

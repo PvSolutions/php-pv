@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Filtre ;
 
+#[\AllowDynamicProperties]
 class HttpCorps extends Filtre
 {
 	public $Role = "corps_http" ;

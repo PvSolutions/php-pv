@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\DessinFiltres ;
 
+#[\AllowDynamicProperties]
 class DessinFiltres
 {
 	public $FiltresCaches = array() ;

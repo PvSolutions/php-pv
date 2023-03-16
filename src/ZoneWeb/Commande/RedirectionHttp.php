@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class RedirectionHttp extends \Pv\ZoneWeb\Commande\Commande
 {
 	public $NecessiteFormulaireDonnees = 0 ;

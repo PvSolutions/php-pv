@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ElementFormulaire extends \Pv\ZoneWeb\ComposantRendu\BaliseHtml
 {
 	public $TypeEditeur = "base" ;

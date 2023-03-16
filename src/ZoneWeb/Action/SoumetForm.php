@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class SoumetForm extends \Pv\ZoneWeb\Action\RenduPage
 {
 	public $ParamsGet = array() ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ExpatXml ;
 
+#[\AllowDynamicProperties]
 class Document extends ExpatXmlNode
 {
 	public $Path = "" ;

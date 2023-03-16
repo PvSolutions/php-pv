@@ -7,6 +7,7 @@ if(! function_exists('url_to_absolute'))
 	include dirname(__FILE__)."/url_to_absolute/url_to_absolute.php" ;
 }
 
+#[\AllowDynamicProperties]
 class \Pv\Common\HttpSession
 {
 	var $UseBuffer = true;

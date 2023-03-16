@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Script\Critere ;
 
+#[\AllowDynamicProperties]
 class EditServeurAD extends \Pv\ZoneWeb\Critere\Critere
 {
 	public function EstRespecte()

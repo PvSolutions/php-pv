@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\PChart ;
 
+#[\AllowDynamicProperties]
 class LigneLimitee extends \Pv\ZoneWeb\PChart\Diagramme
 {
 	public $InscrirePointilles = 0 ;

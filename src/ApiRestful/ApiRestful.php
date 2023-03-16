@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful ;
 
+#[\AllowDynamicProperties]
 class ApiRestful extends \Pv\IHM\IHM
 {
 	public $TypeIHM = "API" ;
@@ -33,6 +34,10 @@ class ApiRestful extends \Pv\IHM\IHM
 	protected $NomRoutesEditMembership = array() ;
 	public $AutoriserInscription = false ;
 	public $AutoriserModifPrefs = false ;
+	public $CrypterReponse = 0 ;
+	public $CypherCryptReponse = "AES-256-CBC" ;
+	public $CleCryptReponse = "AP1Res6Ful142" ;
+	public $HmacCryptReponse = "sha256" ;
 	public $NomClasseRouteRecouvreMP = '\Pv\ApiRestful\RouteMembership\RecouvreMP' ;
 	public $NomClasseRouteConnexion = '\Pv\ApiRestful\RouteMembership\Connexion' ;
 	public $NomClasseRouteInscription = '\Pv\ApiRestful\RouteMembership\Inscription' ;
@@ -177,6 +182,13 @@ class ApiRestful extends \Pv\IHM\IHM
 		{
 			$cheminRacineApi = '/'.$cheminRacineApi ;
 		}
+		// print $cheminRacineApi.PHP_EOL ;
+		// print_r($this->ValeurParamRoute) ;
+		$estChemRepApi = (strrpos($cheminRacineApi, "/") == strlen($cheminRacineApi) - 1) ;
+		if($estChemRepApi)
+		{
+			$cheminRacineApi = substr($cheminRacineApi, 0, strlen($cheminRacineApi) - 1) ;
+		}
 		foreach($this->Routes as $nom => $route)
 		{
 			preg_match_all("/\{([a-zA-Z0-9\_]+)\}/", $route->CheminRouteApi, $nomsArgsRoute) ;
@@ -191,7 +203,7 @@ class ApiRestful extends \Pv\IHM\IHM
 				{
 					for($i=1; $i<count($valeursArgsRoute); $i++)
 					{
-						$this->ArgsRouteAppelee[$nomsArgsRoute[1][$i - 1]] = $valeursArgsRoute[$i] ;
+						$this->ArgsRouteAppelee[trim($nomsArgsRoute[1][$i - 1])] = trim($valeursArgsRoute[$i]) ;
 					}
 				}
 			}

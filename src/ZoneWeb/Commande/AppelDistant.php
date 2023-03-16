@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class AppelDistant extends \Pv\ZoneWeb\Commande\Executer
 {
 	public $NomZoneAppelDistant ;

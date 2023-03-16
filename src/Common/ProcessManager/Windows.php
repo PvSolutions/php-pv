@@ -2,6 +2,7 @@
 
 namespace Pv\Common\ProcessManager ;
 
+#[\AllowDynamicProperties]
 class Windows extends ProcessManager
 {
 	function RunAsyncCommandString($cmd)

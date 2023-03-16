@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class EditMembre extends \Pv\ZoneWeb\Script\Script
 {
 	public $MaxFiltresEditionParLigne = 1 ;
@@ -79,7 +80,21 @@ class EditMembre extends \Pv\ZoneWeb\Script\Script
 		{
 			$this->FiltreMotPasse = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamMotPasse, $membership->PasswordMemberColumn) ;
 			$this->FiltreMotPasse->Libelle = $membership->PasswordMemberLabel ;
-			$this->FiltreMotPasse->ExpressionColonneLiee = $membership->PasswordMemberExpr.'(<self>)' ;
+			if($membership->PasswordMemberExpr != '')
+			{
+				if(stripos($membership->PasswordMemberExpr, "<self>") !== false)
+				{
+					$this->FiltreMotPasse->ExpressionColonneLiee = str_ireplace('<self>', $membership->Database->ExprParamPattern, $membership->PasswordMemberExpr) ;
+				}
+				else
+				{
+					$this->FiltreMotPasse->ExpressionColonneLiee = $membership->PasswordMemberExpr.'(<self>)' ;
+				}
+			}
+			else
+			{
+				$this->FiltreMotPasse->ExpressionColonneLiee = $membership->PasswordMemberExpr ;
+			}
 			$this->FiltreMotPasse->RemplaceComposant(new \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneMotPasse) ;
 		}
 		if(! $membership->LoginWithEmail)

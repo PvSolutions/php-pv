@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class Editable extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 {
 	public $NomParametrePost ;

@@ -2,9 +2,10 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class AppelFonctJS extends \Pv\ZoneWeb\Commande\RedirectionHttp
 {
-	public $FenetreCible = "window" ;
+	public $FenetreCible = "" ;
 	public $NomFonct = "" ;
 	public $Params = array() ;
 	protected function EnumParamsJS()
@@ -20,9 +21,10 @@ class AppelFonctJS extends \Pv\ZoneWeb\Commande\RedirectionHttp
 	}
 	protected function ExecuteInstructions()
 	{
+		$nomFonct = (($this->FenetreCible != '') ? $this->FenetreCible."." : "").$this->NomFonct ;
 		$ctn = '<script type="text/javascript">
 jQuery(function() {
-'.$this->FenetreCible.'.'.$this->NomFonct.'('.$this->EnumParamsJS().') ;
+'.$nomFonct.'('.$this->EnumParamsJS().') ;
 }) ;
 </script>'.PHP_EOL ;
 		if($this->EstPasNul($this->TableauDonneesParent))

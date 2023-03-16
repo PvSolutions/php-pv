@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class DefLienFilAriane extends \Pv\Objet\Objet
 {
 	public $RequeteSelection ;

@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\Cinetpay ;
 
+#[\AllowDynamicProperties]
 class Cinetpay extends \Pv\InterfPaiement\InterfPaiement
 {
 	public $Test = 1 ;

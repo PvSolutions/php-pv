@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class ModifMembre extends EditMembre
 {
 	public $Titre = 'Modifier membre' ;

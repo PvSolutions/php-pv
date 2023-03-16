@@ -2,6 +2,7 @@
 
 namespace Pv ;
 
+#[\AllowDynamicProperties]
 class Misc
 {
 	public static function try_session_start()
@@ -379,6 +380,10 @@ class Misc
 	}
 	public static function date_time_fr($Date)
 	{
+		if(empty($Date))
+		{
+			return '' ;
+		}
 		$dateParts = explode(" ", $Date) ;
 		if(count($dateParts) != 2)
 			return $Date ;
@@ -391,6 +396,10 @@ class Misc
 	}
 	public static function hour($Time)
 	{
+		if(empty($Time))
+		{
+			return '' ;
+		}
 		$TimeAttr = explode(":", $Time) ;
 		if(count($TimeAttr) != 3)
 		{
@@ -1374,7 +1383,7 @@ class Misc
 	}
 	public static function force_object(& $data)
 	{
-		$result = new StdClass ;
+		$result = new \StdClass ;
 		if(is_array($result))
 		{
 			$result = conv_array_to_object($data) ;
@@ -1383,7 +1392,7 @@ class Misc
 	}
 	public static function & conv_array_to_object(& $data)
 	{
-		$result = new StdClass ;
+		$result = new \StdClass ;
 		if(! is_array($data))
 		{
 			return $result ;
@@ -1561,7 +1570,7 @@ class Misc
 			if (is_array($v) || is_object($v)) {
 				array_push($ret, http_build_query($v, '', $sep, $k));
 			} else {
-				array_push($ret, $k.'='.(($raw) ? rawurlencode($v) : urlencode($v)));
+				array_push($ret, $k.'='.(($raw) ? rawurlencode(($v !== null) ? $v : '') : urlencode(($v !== null) ? $v : "")));
 			}
 		}
 		if (empty($sep)) $sep = ini_get('arg_separator.output') ;
@@ -1685,7 +1694,7 @@ class Misc
 		$keyCounts = array();
 
 		// remove whitespace and lowercase words in $text
-		$text_array = array_map("Pv\\Misc\\popularKeywords_clearWord", $text_array);
+		$text_array = array_map("\\Pv\\Misc::popularKeywords_clearWord", $text_array);
 
 		foreach ($text_array as $term) {
 			if(strlen($term) < $minKeywordLength)

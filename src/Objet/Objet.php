@@ -2,6 +2,7 @@
 
 namespace Pv\Objet ;
 
+#[\AllowDynamicProperties]
 class Objet
 {
 	public $ID = "" ;

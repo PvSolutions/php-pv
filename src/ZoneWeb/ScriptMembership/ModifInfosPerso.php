@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class ModifInfosPerso extends EditMembre
 {
 	public $CibleModification = 2 ;

@@ -2,6 +2,7 @@
 
 namespace Pv\DB\Native ;
 
+#[\AllowDynamicProperties]
 class Mysql extends \Pv\DB\Connection\Connection
 {
 /**

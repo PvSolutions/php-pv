@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\RapportDonnees ;
 
+#[\AllowDynamicProperties]
 class RapportDonnees extends \Pv\ZoneWeb\ComposantRendu\ComposantDonneesSimple
 {
 	public $TypeComposant = "RapportHTML" ;

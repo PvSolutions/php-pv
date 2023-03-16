@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class ImportElement extends \Pv\ZoneWeb\Commande\FormulaireDonnees
 {
 	public $FormatFichier ;

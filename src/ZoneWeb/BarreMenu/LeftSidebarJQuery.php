@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class LeftSidebarJQuery extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	protected $CheminJs = "js/slidebars.js" ;

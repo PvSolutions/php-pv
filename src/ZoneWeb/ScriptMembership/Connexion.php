@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class Connexion extends \Pv\ZoneWeb\Script\Script
 {
 	public $Titre = "Connexion" ;
@@ -92,6 +93,10 @@ class Connexion extends \Pv\ZoneWeb\Script\Script
 	public function DetermineEnvironnement()
 	{
 		$this->DetecteTentativeConnexion() ;
+		$this->ZoneParent->InscritContenuJs('function soumetFormulaire(btn) {
+	btn.form.submit() ;
+	btn.disabled = "disabled" ;
+}') ;
 		$this->IdMembre = -1 ;
 		$this->TentativeConnexionValidee = 0 ;
 		if($this->TentativeConnexionEnCours && ! $this->ZoneParent->EstNul($this->ZoneParent->Membership) && $this->ValideTentativeConnexion())
@@ -240,7 +245,7 @@ class Connexion extends \Pv\ZoneWeb\Script\Script
 		$ctn .= $this->RenduTableauParametres().PHP_EOL ;
 		if($this->AfficherBoutonSoumettre)
 		{
-			$ctn .= '<p align="'.$this->AlignBoutonSoumettre.'"><input type="submit" value="'.$this->LibelleBoutonSoumettre.'" /></p>'.PHP_EOL ;
+			$ctn .= '<p align="'.$this->AlignBoutonSoumettre.'"><input type="button" value="'.$this->LibelleBoutonSoumettre.'" onclick="soumetFormulaire(this)" /><input type="submit" value="Soumet" style="display:none" /></p>'.PHP_EOL ;
 		}
 		$ctn .= '</div>' ;
 		$ctn .= '</form>' ;

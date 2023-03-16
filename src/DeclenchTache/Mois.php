@@ -2,6 +2,7 @@
 
 namespace Pv\DeclenchTache ;
 
+#[\AllowDynamicProperties]
 class Mois extends Jour
 {
 	public $Jour = 1 ;

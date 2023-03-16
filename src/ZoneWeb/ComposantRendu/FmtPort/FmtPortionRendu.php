@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu\FmtPort ;
 
+#[\AllowDynamicProperties]
 class FmtPortionRendu extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $PrefixeEncUrl = "url_" ;

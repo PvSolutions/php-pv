@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class Filtrable extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $FournisseurDonnees ;

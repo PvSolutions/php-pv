@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class FmtFichImportElement
 {
 	public $Extensions = array() ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class EditeurHtml extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	protected static $SourceIncluse = 0 ;

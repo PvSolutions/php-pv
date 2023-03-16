@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ActionCommande ;
 
+#[\AllowDynamicProperties]
 class TailleImageGd extends \Pv\ZoneWeb\ActionCommande\ActionCommande
 {
 	public $DieSiNonDispo = 0 ;

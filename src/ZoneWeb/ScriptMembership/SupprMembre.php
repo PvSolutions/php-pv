@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class SupprMembre extends EditMembre
 {
 	public $Titre = 'Desactiver membre' ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Tache ;
 
+#[\AllowDynamicProperties]
 class CtrlServsPersists extends \Pv\ZoneWeb\Tache\Tache
 {
 	public $DelaiTransition = 0 ;

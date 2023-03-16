@@ -2,6 +2,7 @@
 
 namespace Pv\ActionCtrl ;
 
+#[\AllowDynamicProperties]
 class ManipSvcPers extends \Pv\ActionCtrl\ActionCtrl
 {
 	public $ServPersistSelect ;

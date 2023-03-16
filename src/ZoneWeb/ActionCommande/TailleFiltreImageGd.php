@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ActionCommande ;
 
+#[\AllowDynamicProperties]
 class TailleFiltreImageGd
 {
 	public $NomFiltre ;

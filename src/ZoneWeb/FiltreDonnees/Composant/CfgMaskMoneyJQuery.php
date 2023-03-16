@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class CfgMaskMoneyJQuery
 {
 	public $prefix = "" ;

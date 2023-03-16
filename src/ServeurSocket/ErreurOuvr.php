@@ -2,6 +2,7 @@
 
 namespace Pv\ServeurSocket ;
 
+#[\AllowDynamicProperties]
 class ErreurOuvr
 {
 	public $No ;

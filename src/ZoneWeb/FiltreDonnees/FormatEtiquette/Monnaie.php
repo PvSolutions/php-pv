@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\FormatEtiquette ;
 
+#[\AllowDynamicProperties]
 class Monnaie extends PvFmtEtiquetteFiltre
 {
 	public $MaxDecimals = 3 ;

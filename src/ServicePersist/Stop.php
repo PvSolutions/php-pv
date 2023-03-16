@@ -2,6 +2,7 @@
 
 namespace Pv\ServicePersist ;
 
+#[\AllowDynamicProperties]
 class Stop extends \Pv\TacheCtrl\TacheCtrl
 {
 	protected function ExecuteSession()

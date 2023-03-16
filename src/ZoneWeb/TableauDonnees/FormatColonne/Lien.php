@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class Lien
 {
 	public $FormatLibelle ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\DessinFiltres ;
 
+#[\AllowDynamicProperties]
 class Html extends \Pv\ZoneWeb\DessinFiltres\DessinFiltres
 {
 	public $Largeur = "" ;

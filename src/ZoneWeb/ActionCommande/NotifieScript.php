@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ActionCommande ;
 
+#[\AllowDynamicProperties]
 class NotifieScript extends \Pv\ZoneWeb\ActionCommande\ActionCommande
 {
 	public $Url = "" ;

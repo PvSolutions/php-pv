@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class DateEditor extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public $ValeurJour = "" ;

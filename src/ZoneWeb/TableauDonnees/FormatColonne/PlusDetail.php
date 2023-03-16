@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class PlusDetail extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 {
 	public $MaxCaracteresIntro = 40 ;

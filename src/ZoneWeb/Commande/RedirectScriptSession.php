@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class RedirectScriptSession extends \Pv\ZoneWeb\Commande\Commande
 {
 	public $UrlDefaut = '' ;

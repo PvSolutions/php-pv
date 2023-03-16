@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneSelectBool extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteSelect
 {
 	public $SelectionStricte = true ;
@@ -14,9 +15,8 @@ class ZoneSelectBool extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteSelect
 		// print $this->IDInstanceCalc ;
 		return (in_array($valeur, $this->ValeursSelectionnees, $this->SelectionStricte)) ? 1 : 0 ;
 	}
-	public function ChargeConfig()
+	public function RenduDispositif()
 	{
-		parent::ChargeConfig() ;
 		$this->FournisseurDonnees = new \Pv\FournisseurDonnees\Booleen() ;
 		if($this->ValeurVrai != "")
 			$this->FournisseurDonnees->ValeurVrai = $this->ValeurVrai ;
@@ -30,5 +30,6 @@ class ZoneSelectBool extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteSelect
 		$this->FournisseurDonnees->RequeteSelection = $this->FournisseurDonnees->NomCleBool ;
 		$this->NomColonneValeur = $this->FournisseurDonnees->NomAttributValeur ;
 		$this->NomColonneLibelle = $this->FournisseurDonnees->NomAttributLibelle ;
+		return parent::RenduDispositif() ;
 	}
 }

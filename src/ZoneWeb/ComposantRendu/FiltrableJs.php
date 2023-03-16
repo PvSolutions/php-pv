@@ -2,13 +2,14 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class FiltrableJs extends \Pv\ZoneWeb\ComposantRendu\Filtrable
 {
 	protected static $SourceIncluse = 0 ;
 	public $CfgInit ;
 	protected function CreeCfgInit()
 	{
-		return new StdClass ;
+		return new \StdClass ;
 	}
 	protected function InitConfig()
 	{

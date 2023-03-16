@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class Booleen extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 {
 	public $ValeursPositivesAcceptees = array("1", "true", "vrai") ;

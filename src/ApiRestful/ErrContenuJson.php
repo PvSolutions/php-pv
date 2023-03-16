@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful ;
 
+#[\AllowDynamicProperties]
 class ErrContenuJson
 {
 	public $code ;

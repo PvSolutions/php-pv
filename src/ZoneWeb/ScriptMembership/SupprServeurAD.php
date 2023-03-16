@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class SupprServeurAD extends EditServeurAD
 {
 	public $Titre = 'Desactiver connexion AD' ;

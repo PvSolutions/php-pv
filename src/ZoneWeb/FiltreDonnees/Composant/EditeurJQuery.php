@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class EditeurJQuery extends \Pv\ZoneWeb\FiltreDonnees\Composant\EditeurHtml
 {
 	protected $CfgInst ;
@@ -34,7 +35,7 @@ class EditeurJQuery extends \Pv\ZoneWeb\FiltreDonnees\Composant\EditeurHtml
 	}
 	protected function CreeCfgInst()
 	{
-		return new StdClass() ;
+		return new \StdClass() ;
 	}
 	protected function InitFonctsInst()
 	{

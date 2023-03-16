@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class FmtCsvImportElement extends \Pv\ZoneWeb\Commande\FmtFichImportElement
 {
 	public $Extensions = array('csv', 'txt') ;

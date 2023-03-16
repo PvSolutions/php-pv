@@ -2,6 +2,7 @@
 
 namespace Pv\ExpatXml ;
 
+#[\AllowDynamicProperties]
 class Parser
 {
 	public $XmlObject = null;
@@ -31,6 +32,21 @@ class Parser
 		xml_set_character_data_handler($this->XmlObject, 'DataHandler');   
 		xml_set_element_handler($this->XmlObject, "StartHandler", "EndHandler");
 	}
+	protected function iso8859_1_to_utf8(string $s): string
+	{
+		$s .= $s;
+		$len = \strlen($s);
+
+		for ($i = $len >> 1, $j = 0; $i < $len; ++$i, ++$j) {
+			switch (true) {
+				case $s[$i] < "\x80": $s[$j] = $s[$i]; break;
+				case $s[$i] < "\xC0": $s[$j] = "\xC2"; $s[++$j] = $s[$i]; break;
+				default: $s[$j] = "\xC3"; $s[++$j] = \chr(\ord($s[$i]) - 64); break;
+			}
+		}
+
+		return substr($s, 0, $j);
+	}
 	public function ParseFile($path)
 	{
 		$this->InitOutput($path) ;
@@ -46,7 +62,7 @@ class Parser
 			}
 			while (($data = fread($fp, 4096)) != false) {	
 				if($this->EncodeUtf8)
-					$data = utf8_encode($data) ;
+					$data = $this->iso8859_1_to_utf8($data) ;
 				$this->ParseData($data, feof($fp)) ;
 			}
 		}

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FormulaireDonnees ;
 
+#[\AllowDynamicProperties]
 class Disposition
 {
 	const FormulaireFiltresEdition = 1 ;

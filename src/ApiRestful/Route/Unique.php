@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Route ;
 
+#[\AllowDynamicProperties]
 class Unique extends Element
 {
 	public $AutoriserSelect = 1 ;

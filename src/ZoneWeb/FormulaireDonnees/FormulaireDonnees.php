@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FormulaireDonnees ;
 
+#[\AllowDynamicProperties]
 class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 {
 	public $TypeComposant = "FormulaireDonneesHTML" ;
@@ -497,6 +498,19 @@ class FormulaireDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 		if($this->FournisseurDonnees->ExceptionTrouvee())
 		{
 			$this->MessageException = $this->FournisseurDonnees->MessageException() ;
+		}
+		else
+		{
+			foreach($this->ElementsEnCours as $ix => $lgn)
+			{
+				foreach($lgn as $n => $v)
+				{
+					if($v === null)
+					{
+						$this->ElementsEnCours[$ix][$n] = "" ;
+					}
+				}
+			}
 		}
 		// print_r($this->FournisseurDonnees->BaseDonnees) ;
 		// $this->ElementsEnCours = $this->FournisseurDonnees->SelectElements($this->ExtraitColonnesDonnees($filtresSelection), $filtresSelection) ;

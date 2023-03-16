@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class TelechargeFichier extends \Pv\ZoneWeb\Action\EnvoiFichier
 {
 	public $TypeMime = "application/octet-stream" ;

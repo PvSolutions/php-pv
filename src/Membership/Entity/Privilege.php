@@ -2,6 +2,7 @@
 
 namespace Pv\Membership\Entity ;
 
+#[\AllowDynamicProperties]
 class Privilege extends Row
 {
 	public $Id = "" ;

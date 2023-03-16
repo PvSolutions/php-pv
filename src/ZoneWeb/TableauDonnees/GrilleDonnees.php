@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class GrilleDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 {
 	public $TypeComposant = 'GrilleDonneesHTML' ;

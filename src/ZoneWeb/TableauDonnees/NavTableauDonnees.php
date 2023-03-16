@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class NavTableauDonnees extends \Pv\ZoneWeb\TableauDonnees\NavigateurRangees
 {
 	public $TotalPremRangees = 3 ;

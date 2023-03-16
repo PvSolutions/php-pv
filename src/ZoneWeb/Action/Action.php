@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class Action extends \Pv\Objet\Objet
 {
 	public $ZoneParent ;

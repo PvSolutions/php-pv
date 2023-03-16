@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Route ;
 
+#[\AllowDynamicProperties]
 class Route extends \Pv\Objet\Objet
 {
 	public $MethodeHttp ;
@@ -112,13 +113,50 @@ class Route extends \Pv\Objet\Objet
 	{
 		$this->ConfirmeData($data) ;
 	}
+	public function RenseigneReponse($statusCode, $message='', $data=null)
+	{
+		$this->ApiParent->Reponse->EnteteStatusCode = $statusCode ;
+		if($statusCode == 200 || $statusCode == 201 || $statusCode == 202 || $statusCode == 203)
+		{
+			$this->ApiParent->Reponse->Contenu->data = $data ;
+		}
+		else
+		{
+			$this->ApiParent->Reponse->Contenu->message = $message ;
+		}
+	}
 	public function ConfirmeData($data)
 	{
+		$this->ApiParent->Reponse->EnteteStatusCode = 200 ;
 		$this->ApiParent->Reponse->Contenu->data = $data ;
+	}
+	public function ConfirmeNonTrouve($message='')
+	{
+		return $this->ApiParent->Reponse->ConfirmeNonTrouve($message) ;
+	}
+	public function ConfirmeInvalide($message='')
+	{
+		return $this->ApiParent->Reponse->ConfirmeInvalide($message) ;
+	}
+	public function ConfirmeEchecAuth($message='')
+	{
+		return $this->ApiParent->Reponse->ConfirmeEchecAuth($message) ;
+	}
+	public function ConfirmeNonAutorise($message='')
+	{
+		return $this->ApiParent->Reponse->ConfirmeNonAutorise($message) ;
+	}
+	public function ConfirmeErreur($message='')
+	{
+		return $this->ApiParent->Reponse->ConfirmeInvalide($message) ;
 	}
 	public function RenseigneErreur($message='')
 	{
 		return $this->ApiParent->Reponse->ConfirmeInvalide($message) ;
+	}
+	public function ConfirmeException($message='')
+	{
+		return $this->ApiParent->Reponse->ConfirmeErreurInterne($message) ;
 	}
 	public function RenseigneException($message='')
 	{

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneBoiteOptionsCocher extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteOptionsCocher
 {
 	protected function RenduListeElements()

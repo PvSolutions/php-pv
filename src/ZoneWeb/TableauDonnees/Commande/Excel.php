@@ -3,6 +3,7 @@
 namespace Pv\ZoneWeb\TableauDonnees\Commande ;
 
 
+#[\AllowDynamicProperties]
 class Excel extends \Pv\ZoneWeb\TableauDonnees\Commande\ExportVers
 {
 	public $NomFichier = "resultat.xls" ;

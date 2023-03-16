@@ -2,6 +2,7 @@
 
 namespace Pv\DB\SqlDef\Column ;
 
+#[\AllowDynamicProperties]
 class Mysql extends \Pv\DB\SqlDef\Column\Column
 {
 	public function ImportConfigFromRow($row)

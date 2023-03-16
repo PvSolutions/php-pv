@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class InscriptionMembre extends AjoutElement
 {
 	public function ExecuteInstructions()

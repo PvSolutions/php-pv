@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
+#[\AllowDynamicProperties]
 class LienFichierJs extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $TypeComposant = "FichierJs" ;

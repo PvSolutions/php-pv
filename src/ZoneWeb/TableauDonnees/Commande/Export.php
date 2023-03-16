@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\Commande ;
 
+#[\AllowDynamicProperties]
 class Export extends \Pv\ZoneWeb\TableauDonnees\Commande\Commande
 {
 	public $NomFichier = "" ;

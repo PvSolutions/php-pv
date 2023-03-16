@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Menu ;
 
+#[\AllowDynamicProperties]
 class MenuWeb extends \Pv\Objet\Objet
 {
 	protected $EstRacine = 0 ;

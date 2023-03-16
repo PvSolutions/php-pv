@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class ElementCommande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 {
 	public $TypeElementCommande = "base" ;

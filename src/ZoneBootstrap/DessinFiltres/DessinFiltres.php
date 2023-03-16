@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\DessinFiltres ;
 
+#[\AllowDynamicProperties]
 class DessinFiltres extends \Pv\ZoneWeb\DessinFiltres\Html
 {
 	public $ClassesBsEditeur = array(
@@ -90,13 +91,13 @@ class DessinFiltres extends \Pv\ZoneWeb\DessinFiltres\Html
 		$ctn .= '<div class="row">'.PHP_EOL ;
 		foreach($nomFiltres as $i => $nomFiltre)
 		{
-			$ctn .= '<div class="col-'.$colXs.(($this->ColSm != '') ? ' col-sm-'.$this->ColSm : '').''.(($this->ColMd != '') ? ' col-md-'.$this->ColMd : '').(($this->ColLd != '') ? ' col-ld-'.$this->ColLd : '').' ">'.PHP_EOL ;
 			$filtre = $filtres[$nomFiltre] ;
 			if($filtre->LectureSeule)
 			{
 				$ctn .= '<input type="hidden" id="'.htmlspecialchars($filtre->ObtientIDComposant()).'" name="'.htmlspecialchars($filtre->ObtientNomComposant()).'" value="'.htmlspecialchars($filtre->Lie()).'" />'.PHP_EOL ;
 				continue ;
 			}
+			$ctn .= '<div class="col-'.$colXs.(($this->ColSm != '') ? ' col-sm-'.$this->ColSm : '').''.(($this->ColMd != '') ? ' col-md-'.$this->ColMd : '').(($this->ColLd != '') ? ' col-ld-'.$this->ColLd : '').' ">'.PHP_EOL ;
 			$ctn .= '<div class="row g-3'.(($this->ClsBstLigne != '') ? ' '.$this->ClsBstLigne : '').'">'.PHP_EOL ;
 			if($this->InclureRenduLibelle)
 			{

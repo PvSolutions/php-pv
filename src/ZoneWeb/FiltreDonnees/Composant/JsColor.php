@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class JsColor extends \Pv\ZoneWeb\FiltreDonnees\Composant\EditeurHtml
 {
 	public $CheminFichierJs = "js/jscolor.js" ;

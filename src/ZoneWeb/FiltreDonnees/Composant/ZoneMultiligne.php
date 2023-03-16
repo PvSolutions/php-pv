@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneMultiligne extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public $TypeEditeur = "textarea_html" ;

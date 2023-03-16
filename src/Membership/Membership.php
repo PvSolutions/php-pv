@@ -2,6 +2,7 @@
 
 namespace Pv\Membership ;
 
+#[\AllowDynamicProperties]
 class Membership extends \Pv\Membership\Object\Item
 {
 	public $ParentArea = null ;

@@ -2,6 +2,7 @@
 
 namespace Pv\Membership ;
 
+#[\AllowDynamicProperties]
 class SessionManager
 {
 	public $ConnectionTable = 'membership_connection' ;

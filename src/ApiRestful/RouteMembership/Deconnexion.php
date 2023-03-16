@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\RouteMembership ;
 
+#[\AllowDynamicProperties]
 class Deconnexion extends \Pv\ApiRestful\Route\Route
 {
 	protected function TermineExecution()

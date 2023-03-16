@@ -2,6 +2,7 @@
 
 namespace Pv\ActionCtrl ;
 
+#[\AllowDynamicProperties]
 class ArretTousSvcsPers extends \Pv\ActionCtrl\ActionCtrl
 {
 	public function ExecuteArgs($args)

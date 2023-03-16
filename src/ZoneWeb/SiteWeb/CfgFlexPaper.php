@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
+#[\AllowDynamicProperties]
 class CfgFlexPaper
 {
 	public $Scale ;

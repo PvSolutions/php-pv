@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\Skrill ;
 
+#[\AllowDynamicProperties]
 class Transaction extends \Pv\InterfPaiement\Transaction
 {
 	public $SessionId ;

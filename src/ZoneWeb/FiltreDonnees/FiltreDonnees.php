@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees ;
 
+#[\AllowDynamicProperties]
 class FiltreDonnees extends \Pv\Objet\Objet
 {
 	public $PrefixesLibelle = array() ;
@@ -169,6 +170,10 @@ class FiltreDonnees extends \Pv\Objet\Objet
 		// echo $this->NomParametreDonnees ;
 		if($this->Invisible == true || $this->NePasLierParametre == true)
 		{
+			if($this->ValeurParametre === null)
+			{
+				$this->ValeurParametre = "" ;
+			}
 			return $this->ValeurParametre ;
 		}
 		$valeurParametre = $this->ObtientValeurParametre() ;
@@ -183,6 +188,10 @@ class FiltreDonnees extends \Pv\Objet\Objet
 		if($valeurParametre !== $this->ValeurVide || $this->ValeurVide !== null)
 		{
 			$this->ValeurParametre = $valeurParametre ;
+		}
+		if($this->ValeurParametre === null)
+		{
+			$this->ValeurParametre = "" ;
 		}
 		$this->DejaLie = true ;
 		return $this->ValeurParametre ;

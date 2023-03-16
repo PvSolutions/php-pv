@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees ;
 
+#[\AllowDynamicProperties]
 class HttpUpload extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 {
 	public $Role = "http_upload" ;

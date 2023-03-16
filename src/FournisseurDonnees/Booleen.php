@@ -2,6 +2,7 @@
 
 namespace Pv\FournisseurDonnees ;
 
+#[\AllowDynamicProperties]
 class Booleen extends \Pv\FournisseurDonnees\Direct
 {
 	public $NomCleBool = "Bool" ;

@@ -2,6 +2,7 @@
 
 namespace Pv\Membership\Entity ;
 
+#[\AllowDynamicProperties]
 class Row
 {
 	public $RawData = array() ;

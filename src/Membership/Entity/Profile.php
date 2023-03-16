@@ -2,6 +2,7 @@
 
 namespace Pv\Membership\Entity ;
 
+#[\AllowDynamicProperties]
 class Profile extends Row
 {
 	public $Privileges = array() ;

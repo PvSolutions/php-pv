@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\DessinFiltres ;
 
+#[\AllowDynamicProperties]
 class DessinFiltres extends \Pv\ZoneWeb\DessinFiltres\Html
 {
 	public $ClassesBsEditeur = array(

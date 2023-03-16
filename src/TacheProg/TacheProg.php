@@ -2,6 +2,7 @@
 
 namespace Pv\TacheProg ;
 
+#[\AllowDynamicProperties]
 class TacheProg extends \Pv\ProgrammeApp\ProgrammeApp
 {
 	public $Declenchs = array() ;

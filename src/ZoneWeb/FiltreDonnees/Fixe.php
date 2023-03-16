@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees ;
 
+#[\AllowDynamicProperties]
 class Fixe extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 {
 	public $TypeLiaisonParametre = "hidden" ;

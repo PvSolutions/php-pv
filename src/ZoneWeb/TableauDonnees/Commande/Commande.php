@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\Commande ;
 
+#[\AllowDynamicProperties]
 class Commande extends \Pv\ZoneWeb\Commande\Commande
 {
 	public $NecessiteTableauDonnees = 1 ;

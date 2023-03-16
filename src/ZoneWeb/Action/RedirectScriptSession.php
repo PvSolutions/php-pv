@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class RedirectScriptSession extends \Pv\ZoneWeb\Action\Action
 {
 	public $UrlDefaut = '' ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\RouteMembership ;
 
+#[\AllowDynamicProperties]
 class ChangeMotPasse extends \Pv\ApiRestful\Route\Filtrable
 {
 	public $AutoriserAjout = 0 ;
@@ -16,13 +17,21 @@ class ChangeMotPasse extends \Pv\ApiRestful\Route\Filtrable
 		$mb = & $this->ApiParent->Membership ;
 		$bd = & $mb->Database ;
 		$this->FltIdMembre = $this->InsereFltSelectFixe("id_connecte", $api->IdMembreConnecte(), $bd->EscapeVariableName($mb->IdMemberColumn)." = <self>") ;
-		if($mb->PasswordMemberExpr != '')
+		if($mb->PasswordMemberExpr == '')
 		{
 			$this->FltAncMotPasse = $this->InsereFltSelectHttpCorps("ancien_mot_passe", $bd->EscapeVariableName($mb->PasswordMemberColumn)." = <self>") ;
 		}
 		else
 		{
-			$this->FltAncMotPasse = $this->InsereFltSelectHttpCorps("ancien_mot_passe", $mb->PasswordMemberExpr."(".$bd->EscapeVariableName($mb->PasswordMemberColumn).") = <self>") ;
+			if(stripos($mb->PasswordMemberExpr, '<self>') !== false)
+			{
+				$expr = str_ireplace('<self>', $bd->EscapeVariableName($mb->PasswordMemberColumn), $mb->PasswordMemberExpr) ;
+				$this->FltAncMotPasse = $this->InsereFltSelectHttpCorps("ancien_mot_passe", $expr." = <self>") ;
+			}
+			else
+			{
+				$this->FltAncMotPasse = $this->InsereFltSelectHttpCorps("ancien_mot_passe", $mb->PasswordMemberExpr."(".$bd->EscapeVariableName($mb->PasswordMemberColumn).") = <self>") ;
+			}
 		}
 		$this->FltNouvMotPasse = $this->InsereFltEditHttpCorps("nouveau_mot_passe", "") ;
 	}
@@ -33,8 +42,20 @@ class ChangeMotPasse extends \Pv\ApiRestful\Route\Filtrable
 		$bd = & $mb->Database ;
 		if($mb->ValidateConnection($api->LoginMembreConnecte(), $this->FltAncMotPasse->Lie()))
 		{
+			$passwordVal = $bd->ParamPrefix."mot_passe" ;
+			if($mb->PasswordMemberExpr != '')
+			{
+				if(stripos($mb->PasswordMemberExpr, "<self>") !== false)
+				{
+					$passwordVal = str_ireplace("<self>", $bd->ParamPrefix."mot_passe", $mb->PasswordMemberExpr) ;
+				}
+				else
+				{
+					$passwordVal = $mb->PasswordMemberExpr."(".$bd->ParamPrefix."mot_passe)" ;
+				}
+			}
 			$ok = $bd->RunSql(
-				"update ".$bd->EscapeTableName($mb->MemberTable)." set ".$bd->EscapeVariableName($mb->PasswordMemberColumn)."=".(($mb->PasswordMemberExpr != '') ? $mb->PasswordMemberExpr."(".$bd->ParamPrefix."mot_passe)" : $bd->ParamPrefix."mot_passe")." where ".$bd->EscapeVariableName($mb->PasswordMemberColumn)."=".$bd->ParamPrefix."id",
+				"update ".$bd->EscapeTableName($mb->MemberTable)." set ".$bd->EscapeVariableName($mb->PasswordMemberColumn)."=".$passwordVal." where ".$bd->EscapeVariableName($mb->PasswordMemberColumn)."=".$bd->ParamPrefix."id",
 				array(
 					"mot_passe" => $this->FltNouvMotPasse->Lie(),
 					"id" => $this->FltIdMembre->Lie(),

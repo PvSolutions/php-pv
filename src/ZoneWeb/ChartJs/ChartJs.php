@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ChartJs ;
 
+#[\AllowDynamicProperties]
 class ChartJs extends \Pv\ZoneWeb\ComposantRendu\ComposantDonneesSimple
 {
 	public $TypeComposant = "Chart" ;

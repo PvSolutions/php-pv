@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
+#[\AllowDynamicProperties]
 class FlexPaper extends \Pv\ZoneWeb\SiteWeb\VisionneuseSiteWeb
 {
 	public $Config = null ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\SliderJs ;
 
+#[\AllowDynamicProperties]
 class JqMenuCamera extends \Pv\ZoneWeb\SliderJs\JQueryCamera
 {
 	public $NomColLibMenu = "" ;

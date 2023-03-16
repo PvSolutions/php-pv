@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Critere ;
 
+#[\AllowDynamicProperties]
 class Critere extends \Pv\ZoneWeb\Commande\ElementCommande
 {
 	public $TypeElementCommande = "critere" ;

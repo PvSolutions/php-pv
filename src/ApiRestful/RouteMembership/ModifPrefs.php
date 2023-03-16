@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\RouteMembership ;
 
+#[\AllowDynamicProperties]
 class ModifPrefs extends \Pv\ApiRestful\Route\Filtrable
 {
 	public $AutoriserAjout = false ;

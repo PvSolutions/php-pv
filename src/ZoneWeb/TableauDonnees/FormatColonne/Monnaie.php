@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class Monnaie extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 {
 	public $MaxDecimals = 3 ;

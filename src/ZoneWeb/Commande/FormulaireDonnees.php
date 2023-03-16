@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class FormulaireDonnees extends \Pv\ZoneWeb\Commande\Commande
 {
 	public $NecessiteFormulaireDonnees = 1 ;

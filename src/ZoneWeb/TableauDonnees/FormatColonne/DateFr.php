@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class DateFr extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 {
 	public $InclureHeure = 0 ;

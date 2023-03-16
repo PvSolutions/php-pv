@@ -2,6 +2,7 @@
 
 namespace Pv\DB\Native ;
 
+#[\AllowDynamicProperties]
 class SqlLite extends \Pv\DB\Connection\Connection
 {
 	public $VendorName = "SQLLITE" ;

@@ -8,24 +8,7 @@ Les scripts varient le contenu d'une zone, tout en gardant les mêmes entêtes e
 
 Vous devez déclarer chaque script, et réécrire sa méthode de rendu.
 
-Insérez les dans la zone, à partir des méthodes **ChargeScripts** ou **ChargeScriptsMembership**.
-
 ```php
-// 
-class MaZoneWeb1 extends \Pv\ZoneWeb\ZoneWeb
-{
-// Inscription des scripts
-public function ChargeScripts()
-{
-// Inscrire la page d'accueil
-$this->InsereScriptParDefaut(new MonScriptAccueil()) ;
-// Inscrire la page d'a propos
-$this->InsereScript("a_propos", new MonScriptAPropos()) ;
-// Inscrire la page de contact
-$this->InsereScript("contact", new MonScriptContact()) ;
-}
-// ...
-}
 // Déclaration du script d'accueil
 class MonScriptAccueil extends \Pv\ZoneWeb\Script\Script
 {
@@ -49,6 +32,26 @@ public function RenduSpecifique()
 {
 return "<p>Ma page de contact</p>" ;
 }
+}
+```
+
+Insérez les dans la zone, à partir des méthodes **ChargeScripts** ou **ChargeScriptsMembership**.
+
+```php
+// 
+class MaZoneWeb1 extends \Pv\ZoneWeb\ZoneWeb
+{
+// Inscription des scripts
+public function ChargeScripts()
+{
+// Inscrire la page d'accueil
+$this->InsereScriptParDefaut(new MonScriptAccueil()) ;
+// Inscrire la page d'a propos
+$this->InsereScript("a_propos", new MonScriptAPropos()) ;
+// Inscrire la page de contact
+$this->InsereScript("contact", new MonScriptContact()) ;
+}
+// ...
 }
 ```
 
@@ -159,6 +162,33 @@ public function RenduSpecifique()
 $ctn = '' ;
 $ctn .= "Ce script sera affiché avec un titre très grand !" ;
 return $ctn ;
+}
+}
+```
+
+## Disponibilité
+
+Vous pouvez vérifier si le script est disponible, pour éviter que les conditions ne soient remplies.
+Comme exemple de condition, le script ne doit s'afficher que s'il existe une catégorie dans la base de données.
+
+Réécrivez sa méthode **VerifieDisponibilite()**, et renseignez le message d'erreur adéquat, **$MessageIndisponibilite**.
+
+```php
+// Déclaration du script
+class MonScript1 extends \Pv\ZoneWeb\Script\Script
+{
+public function VerifieDisponibilite()
+{
+if(! isset($_SESSION["code_transaction"]))
+{
+$this->MessageIndisponibilite = "Veuillez d'abord générer un code transaction" ;
+$this->LiensIndisponibilite = "<a href='?appelleScript=genereCode'>Générer</a>" ;
+}
+}
+public function RenduSpecifique()
+{
+$ctn = '' ;
+$ctn .= "Votre code de transaction est : ".htmlentities($_SESSION["code_transaction"]) ;
 }
 }
 ```

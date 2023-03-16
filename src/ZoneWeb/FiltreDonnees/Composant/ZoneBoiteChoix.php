@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneBoiteChoix extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public $FournisseurDonnees = null ;
@@ -12,7 +13,7 @@ class ZoneBoiteChoix extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulai
 	public $NomColonneExtra = "" ;
 	public $NomColonneValeurParDefaut = "" ;
 	public $UtiliserColonneExtra = 0 ;
-	protected $Elements = array() ;
+	public $Elements = array() ;
 	public $TotalElements = 0 ;
 	public $LibelleEtiqVide = "(Non trouve)" ;
 	public $StockerElements = 0 ;
@@ -255,7 +256,7 @@ var valEditeur = "" ;
 		{
 			$ctn .= 'function SelectElems_'.$this->IDInstanceCalc.'(mode)
 {
-var totalElems = '.svc_json_encode($this->TotalElements).' ;
+var totalElems = '.intval($this->TotalElements).' ;
 for(var i=1; i<=totalElems; i++)
 {
 	var noeud = document.getElementById('.svc_json_encode($this->IDInstanceCalc.'_').' + i) ;
@@ -371,9 +372,13 @@ for(var i=1; i<=totalElems; i++)
 		if(! $this->ChoixMultiple)
 		{
 			if(is_array($this->Valeur))
+			{
 				$this->ValeursSelectionnees = $this->Valeur ;
+			}
 			else
+			{
 				$this->ValeursSelectionnees = array($this->Valeur) ;
+			}
 		}
 		else
 		{
@@ -385,7 +390,14 @@ for(var i=1; i<=totalElems; i++)
 			{
 				if(! $this->DoitTransmettreTablVals())
 				{
-					$this->ValeursSelectionnees = explode($this->SeparateurValeurs, $this->Valeur) ;
+					if($this->Valeur !== null)
+					{
+						$this->ValeursSelectionnees = explode($this->SeparateurValeurs, $this->Valeur) ;
+					}
+					else
+					{
+						$this->ValeursSelectionnees = array() ;
+					}
 				}
 				else
 				{
@@ -458,6 +470,10 @@ for(var i=1; i<=totalElems; i++)
 	}
 	protected function RenduDispositifBrut()
 	{
+		if($this->Valeur === null)
+		{
+			$this->Valeur = "" ;
+		}
 		$ctn = '' ;
 		$this->InitFournisseurDonnees() ;
 		if(! $this->EstNul($this->FournisseurDonnees))

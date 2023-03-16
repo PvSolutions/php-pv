@@ -316,10 +316,28 @@ Insérez la classe **\Pv\ZoneWeb\Commande\AppliqueZoneParent** pour une nouvelle
 $cmd4 = $form->InsereCommande("cmd4", new \Pv\ZoneWeb\Commande\AppliqueZoneParent()) ;
 ```
 
+### Propriétés / Méthodes principales
+
+Propriété / Méthode | Description
+------------- | -------------
+$IDInstanceCalc | ID de la commande
+$Visible | Active la commande dans le formulaire, ainsi que son exécution.
+$ContenuJsSurClick | Contenu Javascript exécuté, lorsque vous cliquez sur le bouton.
+$ContenuAvantRendu | Contenu HTML à inclure, avant son rendu
+$ContenuApresRendu | Contenu HTML à inclure, après son rendu
+
+```php
+$cmd4 = $form->InsereCommande("cmd4", new \Pv\ZoneWeb\Commande\Executer()) ;
+$cmd4->ContenuJsSurClick = "alert('test')" ;
+```
+
+
 ## Rendu du formulaire de filtres
 
 Vous pouvez personnaliser le rendu du formulaire de filtres avec sa propriété **$DessinateurFiltresEdition**.
 Veuillez créer une classe héritant de **\Pv\ZoneWeb\DessinFiltres\Html** et réécrire sa méthode publique **Execute(& $script, & $composant, $parametres)**.
+Assignez le nouveau dessinateur de filtres, après avoir chargé la configuration du formulaire.
+
 Vous avez 2 méthodes dans la nouvelle classe, pour chaque filtre de données :
 - **RenduLibelleFiltre(& $filtre)** pour le libellé du filtre de données
 - **RenduFiltre(& $filtre, & $composant)** pour le composant du filtre de données
@@ -337,12 +355,12 @@ $this->Form1 = new \Pv\ZoneWeb\FormulaireDonnees\FormulaireDonnees() ;
 // Toujours afficher le formulaire
 $this->Form1->InclureElementEnCours = 0 ;
 $this->Form1->InclureTotalElements = 0 ;
-// Definir le dessinateur de filtres edition
-$this->Form1->DessinateurFiltresEdition = new MonDessinFiltresDonnees() ;
 // Liaison avec le script en cours
 $this->Form1->AdopteScript("form1", $this) ;
 // Chargement de la config
 $this->Form1->ChargeConfig() ;
+// Definir le dessinateur de filtres edition
+$this->Form1->DessinateurFiltresEdition = new MonDessinFiltresDonnees() ;
 // Définition des autres propriétés
 $this->Flt1 = $this->Form1->InsereFltEditHttpPost("champ1") ;
 $this->Flt1->Libelle = "Champ 1" ;
@@ -373,7 +391,6 @@ return $ctn ;
 ```
 
 Le rendu peut se faire via la méthode **DessineFiltres(& $dessin, & $composant, $parametres)** du script parent. Invoquez **DessineFiltresScriptParent()** du formulaire.
-
 
 ```php
 class MonScript1 extends \Pv\ZoneWeb\Script\Script
@@ -487,5 +504,7 @@ class MonScript1 extends \Pv\ZoneWeb\Script\Script
 - [Zone web](zoneweb.md)
 - [Scripts web](scripts.md)
 - [Filtres de données](filtresdonnees.md)
+- [Composants de saisie pour filtre de données](compsfrm_saisie.md)
+- [Composants de liste pour filtre de données](compsfrm_liste.md)
 - [Composants de rendu](composants_rendu.md)
 - [Tableaux de données](tableauxdonnees.md)

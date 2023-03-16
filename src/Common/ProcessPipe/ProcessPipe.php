@@ -2,6 +2,7 @@
 
 namespace Pv\Common\ProcessPipe ;
 
+#[\AllowDynamicProperties]
 class ProcessPipe
 {
 	const InputNo = 0 ;

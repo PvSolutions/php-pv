@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Critere ;
 
+#[\AllowDynamicProperties]
 class NonVide extends \Pv\ZoneWeb\Critere\Critere
 {
 	public $FormatMessageErreur = 'Les champs ${ListeFiltres} ne doivent pas &ecirc;tre vides' ;

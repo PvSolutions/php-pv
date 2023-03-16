@@ -2,6 +2,7 @@
 
 namespace Pv\ProcesseurQueue ;
 
+#[\AllowDynamicProperties]
 class Dossier extends \Pv\ProcesseurQueue\ProcesseurQueue
 {
 	public $CheminAbsoluDossier ;

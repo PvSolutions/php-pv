@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class SupprRole extends EditRole
 {
 	public $Titre = 'Desactiver role' ;

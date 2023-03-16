@@ -1,6 +1,6 @@
 # Les composants de saisie
 
-## \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneTexte
+## ZoneTexte
 
 ### Présentation
 
@@ -37,7 +37,7 @@ Résultat du code source :
 
 Toutes ces propriétés sont disponibles sur tous les autres composants.
 
-## \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneDate
+## ZoneDate
 
 ### Présentation
 
@@ -68,7 +68,7 @@ $composant->DateMax = date("Y-m-d", date("U") + 7 * 86400) ;
 
 ![Aperçu](../images/pvzonedatehtml_max.png)
 
-## \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneMotPasse
+## ZoneMotPasse
 
 Permet de saisir un mot de passe.
 
@@ -79,7 +79,7 @@ $composant = $filtre->DeclareComposant("\Pv\ZoneWeb\FiltreDonnees\Composant\Zone
 
 ![Aperçu](../images/pvzonemotpassehtml_apercu.png)
 
-## \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneMultiligne
+## ZoneMultiligne
 
 ### Présentation
 
@@ -110,4 +110,10 @@ Résultat du code source :
 
 ![Résultat du code source](../images/pvzoneareahtml_props_spec.png)
 
+## Voir aussi
 
+- [Composants de liste pour filtre de données](compsfrm_liste.md)
+- [Composants de rendu](composants_rendu.md)
+- [Filtres de données](filtresdonnees.md)
+- [Tableaux de données](tableauxdonnees.md)
+- [Formulaires de données](formulairedonnees.md)

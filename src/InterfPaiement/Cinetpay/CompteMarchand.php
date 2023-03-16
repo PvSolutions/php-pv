@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\Cinetpay ;
 
+#[\AllowDynamicProperties]
 class CompteMarchand extends \Pv\InterfPaiement\CompteMarchand
 {
 	public $ApiKey ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Route ;
 
+#[\AllowDynamicProperties]
 class Filtrable extends \Pv\ApiRestful\Route\Donnees
 {
 	public $FiltresSelection = array() ;

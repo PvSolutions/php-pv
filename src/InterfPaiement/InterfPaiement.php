@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement ;
 
+#[\AllowDynamicProperties]
 class InterfPaiement extends \Pv\IHM\IHM
 {
 	protected $_ServsVendus = array() ;

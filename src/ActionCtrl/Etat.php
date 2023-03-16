@@ -2,6 +2,7 @@
 
 namespace Pv\ActionCtrl ;
 
+#[\AllowDynamicProperties]
 class Etat
 {
 	public $Statut = 0 ;

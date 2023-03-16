@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Tache ;
 
+#[\AllowDynamicProperties]
 class CtrlTachesProgs extends \Pv\ZoneWeb\Tache\Tache
 {
 	public $DelaiTransition = 0 ;

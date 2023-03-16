@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ActionCommande ;
 
+#[\AllowDynamicProperties]
 class RedirectionHttp extends \Pv\ZoneWeb\ActionCommande\ActionCommande
 {
 	public $Url = "" ;

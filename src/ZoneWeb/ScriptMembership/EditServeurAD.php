@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class EditServeurAD extends \Pv\ZoneWeb\Script\Script
 {
 	public $MaxFiltresEditionParLigne = 1 ;
@@ -40,6 +41,7 @@ class EditServeurAD extends \Pv\ZoneWeb\Script\Script
 			$this->FiltreIdEdit = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamIdEdit, $membership->IdADServerColumn) ;
 			$this->FiltreIdEdit->Libelle = strtoupper($membership->IdADServerLabel) ;
 			$this->FiltreIdEdit->EstEtiquette = true ;
+			$this->FiltreIdEdit->NePasLierColonne = true ;
 		}
 		$this->FiltreHote = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamHote, $membership->HostADServerColumn) ;
 		$this->FiltreHote->Libelle = $membership->HostADServerLabel ;

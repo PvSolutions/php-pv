@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class EditProfil extends \Pv\ZoneWeb\Script\Script
 {
 	public $MaxFiltresEditionParLigne = 1 ;
@@ -37,6 +38,7 @@ class EditProfil extends \Pv\ZoneWeb\Script\Script
 			$this->FiltreIdEdit = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamIdEdit, $membership->IdProfileColumn) ;
 			$this->FiltreIdEdit->Libelle = strtoupper($membership->IdProfileColumn) ;
 			$this->FiltreIdEdit->EstEtiquette = true ;
+			$this->FiltreIdEdit->NePasLierColonne = true ;
 		}
 		$this->FiltreTitre = $this->FormPrinc->InsereFltEditHttpPost($this->NomParamTitre, $membership->TitleProfileColumn) ;
 		$this->FiltreTitre->Libelle = $membership->TitleProfileLabel ;
@@ -149,9 +151,10 @@ class EditProfil extends \Pv\ZoneWeb\Script\Script
 		}
 		$sql = "INSERT INTO ".$basedonnees->EscapeTableName($membership->PrivilegeTable)." (".$basedonnees->EscapeFieldName($membership->PrivilegeTable, $membership->RolePrivilegeColumn).", ".$basedonnees->EscapeFieldName($membership->PrivilegeTable, $membership->ProfilePrivilegeColumn).", ".$basedonnees->EscapeFieldName($membership->PrivilegeTable, $membership->EnablePrivilegeColumn).") select ".$basedonnees->EscapeFieldName($membership->RoleTable, $membership->RolePrivilegeForeignKey).", ".$basedonnees->ParamPrefix."profileId, ".$basedonnees->ParamPrefix."profileEnabled from ".$basedonnees->EscapeTableName($membership->RoleTable) ;
 		$basedonnees->RunSql($sql, array("profileEnabled" => $membership->EnablePrivilegeFalseValue(), "profileId" => $idProfil)) ;
-		if(is_array($this->FiltreRoles->ValeurBrute))
+		if($this->FiltreRoles->Lie() !== null && $this->FiltreRoles->Lie() !== "")
 		{
-			foreach($this->FiltreRoles->ValeurBrute as $i => $valeur)
+			$rolesSelect = explode(",", $this->FiltreRoles->Lie()) ;
+			foreach($rolesSelect as $i => $valeur)
 			{
 				$basedonnees->UpdateRow(
 					$membership->PrivilegeTable,
@@ -170,11 +173,11 @@ class EditProfil extends \Pv\ZoneWeb\Script\Script
 	public function RenduSpecifique()
 	{
 		$ctn = parent::RenduSpecifique() ;
-		$ctn .= $this->FormPrinc->RenduDispositif() ;
 		if($this->FormPrinc->NomCommandeSelectionnee() == $this->FormPrinc->NomCommandeExecuter && $this->FormPrinc->SuccesCommandeSelectionnee() && $this->FormPrinc->Editable == true)
 		{
 			$this->RattachePrivileges() ;
 		}
+		$ctn .= $this->FormPrinc->RenduDispositif() ;
 		return $ctn ;
 	}
 }

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
+#[\AllowDynamicProperties]
 class BaliseJsCmpIE extends \Pv\ZoneWeb\BaliseJs
 {
 	public $VersionMin = 9 ;

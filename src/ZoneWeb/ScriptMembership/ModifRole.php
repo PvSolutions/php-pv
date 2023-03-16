@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class ModifRole extends EditRole
 {
 	public $Titre = 'Modifier role' ;

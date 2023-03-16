@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class MaskMoneyJQuery extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneInvisible
 {
 	public static $SourceIncluse = 0 ;
@@ -69,6 +70,7 @@ jQuery("#Editeur_'.$this->IDInstanceCalc.'").maskMoney('.svc_json_encode($this->
 		return $ctn ;
 	}
 }
+#[\AllowDynamicProperties]
 class PvConfigPriceFormatJQuery
 {
 	public $prefix = "" ;

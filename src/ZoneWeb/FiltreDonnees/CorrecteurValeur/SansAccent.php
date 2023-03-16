@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\CorrecteurValeur ;
 
+#[\AllowDynamicProperties]
 class SansAccent extends \Pv\ZoneWeb\FiltreDonnees\CorrecteurValeur\Correcteur
 {
 	public function Applique($valeur, & $filtre)

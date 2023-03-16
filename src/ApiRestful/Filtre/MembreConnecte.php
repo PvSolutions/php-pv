@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Filtre ;
 
+#[\AllowDynamicProperties]
 class MembreConnecte extends Filtre
 {
 	public $Role = "membre_connecte" ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class SupprProfil extends EditProfil
 {
 	public $Titre = 'Desactiver profil' ;

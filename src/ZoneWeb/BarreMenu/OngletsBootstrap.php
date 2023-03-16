@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class OngletsBootstrap extends \Pv\ZoneWeb\BarreMenu\BarreMenuWeb
 {
 	public $NomClasseCSSMenuRacine = "MenuRacine" ;

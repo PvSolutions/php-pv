@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\PChart ;
 
+#[\AllowDynamicProperties]
 class Forme extends \Pv\Objet\Objet
 {
 	protected function RecupCheminPolice(& $graphe)

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ActImgCommonCaptcha extends \Pv\ZoneWeb\Action\EnvoiFichier
 {
 	protected $Support ;

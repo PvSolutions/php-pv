@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FormulaireDonnees ;
 
+#[\AllowDynamicProperties]
 class SupprDonnees extends \Pv\ZoneWeb\FormulaireDonnees\FormulaireDonnees
 {
 	public $NomClasseCommandeExecuter = "\Pv\ZoneWeb\Commande\SupprElement" ;

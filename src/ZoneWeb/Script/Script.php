@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Script ;
 
+#[\AllowDynamicProperties]
 class Script extends \Pv\IHM\Zone\Script
 {
 	public $EstScriptSession = false ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ProcesseurQueue ;
 
+#[\AllowDynamicProperties]
 class ProcesseurQueue extends \Pv\ServicePersist\ServicePersist
 {
 	public $MaxElements = 20 ;

@@ -4,6 +4,7 @@ namespace Pv\ZoneWeb\FiltreDonnees\Composant\Select2 ;
 
 use \Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class TagsSelect2 extends \Pv\ZoneWeb\FiltreDonnees\Composant\Select2
 {
 	protected function RenduEditeurBrut()

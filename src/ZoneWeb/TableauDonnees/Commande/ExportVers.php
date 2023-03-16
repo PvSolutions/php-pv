@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\Commande ;
 
+#[\AllowDynamicProperties]
 class ExportVers extends \Pv\ZoneWeb\TableauDonnees\Commande\Export
 {
 	public $SeparateurColonnes = ";" ;

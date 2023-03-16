@@ -2,6 +2,7 @@
 
 namespace Pv\ProgrammeApp ;
 
+#[\AllowDynamicProperties]
 class ProgrammeApp extends \Pv\Application\Element
 {
 	public $Plateforme = null ;

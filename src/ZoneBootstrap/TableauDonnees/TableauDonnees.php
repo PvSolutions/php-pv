@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 {
 	public $SautLigneSansCommande = 0 ;
@@ -42,6 +43,8 @@ class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 		{
 			return '' ;
 		}
+		$ctn .= '<div class="row">'.PHP_EOL ;
+		$ctn .= '<div class="'.$this->ClsBstFormFiltresSelect.'">'.PHP_EOL ;
 		$ctn .= '<form class="FormulaireFiltres" method="post" enctype="multipart/form-data" onsubmit="return SoumetFormulaire'.$this->IDInstanceCalc.'(this) ;" role="form">'.PHP_EOL ;
 		$ctn .= '<div class="card card-primary">'.PHP_EOL ;
 		if($this->TitreFormulaireFiltres != '')
@@ -51,18 +54,16 @@ class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 			$ctn .= '</div>'.PHP_EOL ;
 		}
 		$ctn .= '<div class="card-body">'.PHP_EOL ;
-		$ctn .= '<div class="row">'.PHP_EOL ;
-		$ctn .= '<div class="'.$this->ClsBstFormFiltresSelect.'">'.PHP_EOL ;
 		$ctn .= $this->DessinateurFiltresSelection->Execute($this->ScriptParent, $this, $this->FiltresSelection) ;
 		$ctn .= '<input type="hidden" name="'.$this->NomParamFiltresSoumis().'" id="'.$this->NomParamFiltresSoumis().'" value="1" />'.PHP_EOL ;
-		$ctn .= '</div>'.PHP_EOL ;
-		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '<div class="card-footer'.(($this->ClsBstPiedFormFiltres == '') ? '' : ' '.$this->ClsBstPiedFormFiltres).'" align="'.$this->AlignBoutonSoumettreFormulaireFiltres.'">'.PHP_EOL ;
 		$ctn .= '<button class="btn '.$this->ClsBstBoutonSoumettre.'" type="submit">'.$this->TitreBoutonSoumettreFormulaireFiltres.'</button>'.PHP_EOL ;
 		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '</form>'.PHP_EOL ;
+		$ctn .= '</div>'.PHP_EOL ;
+		$ctn .= '</div>'.PHP_EOL ;
 		return $ctn ;
 	}
 	protected function RenduBlocCommandes()
@@ -129,7 +130,7 @@ class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 					$ctn .= $ctnChampsPost ;
 				}
 				$ctn .= '<div class="card">
-<div class="card-body'.(($this->Responsive) ? ' table-responsive' : '').'">'.PHP_EOL ;
+<div class="card-body'.(($this->Responsive) ? ' table-responsive-md' : '').'">'.PHP_EOL ;
 				$ctn .= '<table' ;
 				$ctn .= ' class="RangeeDonnees table '.$this->ClasseCSSRangee.'"' ;
 				$ctn .= '>'.PHP_EOL ;
@@ -209,7 +210,7 @@ class TableauDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 			}
 			else
 			{
-				$ctn .= '<p class="AucunElement">'.$this->MessageAucunElement.'</p>' ;
+				$ctn .= '<p class="alert alert-info AucunElement">'.$this->MessageAucunElement.'</p>' ;
 			}
 		}
 		else

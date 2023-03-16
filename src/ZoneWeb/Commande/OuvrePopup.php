@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class OuvrePopup extends \Pv\ZoneWeb\Commande\RedirectionHttp
 {
 	public $NomFenetre = "" ;

@@ -2,6 +2,7 @@
 
 namespace Pv\FournisseurDonnees ;
 
+#[\AllowDynamicProperties]
 class FournisseurDonnees extends \Pv\Objet\Objet
 {
 	public $DerniereException = null ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class BaliseHtml extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $IDElementHtml = "" ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ArborescenceDonnees ;
 
+#[\AllowDynamicProperties]
 class DefCol extends \Pv\ZoneWeb\ArborescenceDonnees\DefNoeud
 {
 	public $IntegrAutoValActuelle = 1 ;

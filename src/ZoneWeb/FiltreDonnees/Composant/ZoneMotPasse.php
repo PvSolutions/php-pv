@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneMotPasse extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneEntree
 {
 	public $TypeElementFormulaire = "password" ;

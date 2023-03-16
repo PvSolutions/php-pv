@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class BlocVertical extends \Pv\ZoneWeb\BarreMenu\BarreMenuWeb
 {
 	public $InclureRenduIcone = 0 ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\PChart ;
 
+#[\AllowDynamicProperties]
 class GrapheCirculaire extends \Pv\ZoneWeb\PChart\Diagramme
 {
 	public $QualiteAntiAlias = 0 ;

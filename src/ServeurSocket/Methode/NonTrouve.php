@@ -2,6 +2,7 @@
 
 namespace Pv\ServeurSocket\Methode ;
 
+#[\AllowDynamicProperties]
 class NonTrouve extends \Pv\ServeurSocket\Methode\MethodeSocket
 {
 	public $MessageRetour = "le nom de la methode a appeler est invalide" ;

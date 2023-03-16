@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\Skrill ;
 
+#[\AllowDynamicProperties]
 class Skrill extends \Pv\InterfPaiement\InterfPaiement
 {
 	public $EmailBenefCompteMarchand = "demoqco@sun-fish.com" ;

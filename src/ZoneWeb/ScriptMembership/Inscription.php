@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class Inscription extends EditMembre
 {
 	public $CibleModification = 3 ;

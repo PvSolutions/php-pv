@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class EditionElement extends \Pv\ZoneWeb\Commande\Executer
 {
 	public $Mode = 1 ;

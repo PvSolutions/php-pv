@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\PChart ;
 
+#[\AllowDynamicProperties]
 class CfgEchelle
 {
 	public $Mode = SCALE_NORMAL ;

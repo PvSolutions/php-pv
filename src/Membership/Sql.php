@@ -2,6 +2,7 @@
 
 namespace Pv\Membership ;
 
+#[\AllowDynamicProperties]
 class Sql extends \Pv\Membership\Membership
 {
 	public $Database ;
@@ -458,12 +459,21 @@ class Sql extends \Pv\Membership\Membership
 			$sql .= ', ' ;
 			if($this->PasswordMemberExpr != '')
 			{
-				$sql .= $this->PasswordMemberExpr.'(' ;
+				if(stripos($this->PasswordMemberExpr, '<self>') !== false)
+				{
+					$sql .= str_replace('<self>', $this->Database->ParamPrefix.'RequestPassword', $this->PasswordMemberExpr) ;
+				}
+				else
+				{
+					$sql .= $this->PasswordMemberExpr ;
+					$sql .= '(' ;
+					$sql .= $this->Database->ParamPrefix.'RequestPassword' ;
+					$sql .= ')' ;
+				}
 			}
-			$sql .= $this->Database->ParamPrefix.'RequestPassword' ;
-			if($this->PasswordMemberExpr != '')
+			else
 			{
-				$sql .= ')' ;
+				$sql .= $this->Database->ParamPrefix.'RequestPassword' ;
 			}
 			$sql .= ' REQUEST_PASSWORD' ;
 		}
@@ -760,7 +770,14 @@ class Sql extends \Pv\Membership\Membership
 	{
 		if($this->PasswordMemberExpr != '')
 		{
-			$memberRow[$this->Database->ExprKeyName][$this->PasswordMemberColumn] = $this->PasswordMemberExpr.'('.$this->ExprParamPattern.')' ;
+			if(stripos($this->PasswordMemberExpr, '<self>') !== false)
+			{
+				$memberRow[$this->Database->ExprKeyName][$this->PasswordMemberColumn] = str_ireplace('<self>', $this->ExprParamPattern, $this->PasswordMemberExpr) ;
+			}
+			else
+			{
+				$memberRow[$this->Database->ExprKeyName][$this->PasswordMemberColumn] = $this->PasswordMemberExpr.'('.$this->ExprParamPattern.')' ;
+			}
 		}
 		$ok = $this->Database->InsertRow(
 			$this->MemberTable,
@@ -772,7 +789,14 @@ class Sql extends \Pv\Membership\Membership
 	{
 		if($this->PasswordMemberExpr != '')
 		{
-			$memberRow[$this->Database->ExprKeyName][$this->PasswordMemberColumn] = $this->PasswordMemberExpr.'('.$this->ExprParamPattern.')' ;
+			if(stripos($this->PasswordMemberExpr, '<self>') !== false)
+			{
+				$memberRow[$this->Database->ExprKeyName][$this->PasswordMemberColumn] = str_ireplace('<self>', $this->ExprParamPattern, $this->PasswordMemberExpr) ;
+			}
+			else
+			{
+				$memberRow[$this->Database->ExprKeyName][$this->PasswordMemberColumn] = $this->PasswordMemberExpr.'('.$this->ExprParamPattern.')' ;
+			}
 		}
 		$ok = $this->Database->UpdateRow(
 			$this->MemberTable,

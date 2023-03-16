@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneCorresp extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneEtiquette
 {
 	public $NomColonneValeur ;
@@ -15,7 +16,7 @@ class ZoneCorresp extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneEtiquette
 		// print_r($this->FournisseurDonnees) ;
 		$etiquette = '' ;
         // print_r($lignes) ;
-		if(count($lignes) > 0)
+		if(is_array($lignes) && count($lignes) > 0)
 		{
 			$this->Libelle = $lignes[0][$this->NomColonneLibelle] ;
 		}

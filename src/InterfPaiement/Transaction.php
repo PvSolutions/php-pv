@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement ;
 
+#[\AllowDynamicProperties]
 class Transaction
 {
 	public $IdDonnees ;

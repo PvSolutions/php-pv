@@ -2,6 +2,7 @@
 
 namespace Pv\TacheProg ;
 
+#[\AllowDynamicProperties]
 class CtrlServsPersists extends \Pv\TacheCtrl\TacheCtrl
 {
 	public $DelaiTransition = 0 ;

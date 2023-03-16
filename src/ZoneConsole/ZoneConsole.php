@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneConsole ;
 
+#[\AllowDynamicProperties]
 class ZoneConsole extends \Pv\IHM\Zone
 {
 	protected $ArgsExecution = array() ;

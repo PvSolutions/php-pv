@@ -2,6 +2,7 @@
 
 namespace Pv\PlateformeProc ;
 
+#[\AllowDynamicProperties]
 class Indef extends PlateformeProc
 {
 	public function EstDisponible()

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneCommonCaptcha extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneTexte
 {
 	public $NomImg = "verify" ;

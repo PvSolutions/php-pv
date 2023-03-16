@@ -2,6 +2,7 @@
 
 namespace Pv\Application ;
 
+#[\AllowDynamicProperties]
 class Application extends \Pv\Objet\Objet
 {
 	public $CheminIconeElem = "images/icone-elem-app.png" ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class AjoutProfil extends EditProfil
 {
 	public $Titre = 'Ajouter profil' ;

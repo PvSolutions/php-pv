@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class ListeRoles extends \Pv\ZoneWeb\Script\Script
 {
 	public $TitreDocument = "Liste des roles" ;

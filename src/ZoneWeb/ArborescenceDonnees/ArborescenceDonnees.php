@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ArborescenceDonnees ;
 
+#[\AllowDynamicProperties]
 class ArborescenceDonnees extends \Pv\ZoneWeb\TableauDonnees\TableauDonnees
 {
 	public $RenduDebutRangee = '<ul class="RangeeDonnees">' ;

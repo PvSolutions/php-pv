@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class FilArianeDonnees extends \Pv\ZoneWeb\ComposantRendu\ComposantDonneesSimple
 {
 	public $NomClasseCSS = "FilAriane" ;

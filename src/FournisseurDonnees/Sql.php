@@ -2,6 +2,7 @@
 
 namespace Pv\FournisseurDonnees ;
 
+#[\AllowDynamicProperties]
 class Sql extends \Pv\FournisseurDonnees\FournisseurDonnees
 {
 	public $BaseDonnees ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class TableauDonnees extends \Pv\ZoneWeb\ComposantRendu\Parametrable
 {
 	public $Titre = "" ;
@@ -194,11 +195,10 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 		if(! in_array($this->MaxElements, $this->MaxElementsPossibles))
 			$this->MaxElements = $this->MaxElementsPossibles[0] ;
 		$this->IndiceDebut = (isset($_GET[$nomParamIndiceDebut])) ? intval($_GET[$nomParamIndiceDebut]) : 0 ;
-		if($this->NePasTrier == 0)
+		if($this->NePasTrier == false)
 		{
 			$this->IndiceColonneTri = (isset($_GET[$nomParamIndiceColonneTri])) ? intval($_GET[$nomParamIndiceColonneTri]) : $this->IndiceColonneTri ;
 			if($this->IndiceColonneTri >= count($this->DefinitionsColonnes) || $this->IndiceColonneTri < 0)
-				$this->IndiceColonneTri = 0 ;
 			// Gerer les tri sur des colonnes invisibles...
 			if(count($this->DefinitionsColonnes) > 0)
 			{
@@ -728,6 +728,16 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 				}
 				else
 				{
+					foreach($this->ElementsEnCoursBruts as $ix => $lgn)
+					{
+						foreach($lgn as $n => $v)
+						{
+							if($v === null)
+							{
+								$this->ElementsEnCoursBruts[$ix][$n] = "" ;
+							}
+						}
+					}
 					if($this->ExtraireValeursElements)
 					{
 						$this->ElementsEnCours = $this->ObtientValeursExtraites($this->ElementsEnCoursBruts) ;
@@ -801,7 +811,12 @@ function '.$this->IDInstanceCalc.'_ActiveCommande(btn)
 			{
 				continue ;
 			}
-			$ctn .= '<input type="hidden" name="'.htmlspecialchars($filtre->ObtientNomComposant()).'" value="'.htmlspecialchars($filtre->Lie()).'" />'.PHP_EOL ;
+			$valeur = $filtre->Lie() ;
+			if($valeur !== null)
+			{
+				$valeur = htmlspecialchars($valeur) ;
+			}
+			$ctn .= '<input type="hidden" name="'.htmlspecialchars($filtre->ObtientNomComposant()).'" value="'.$valeur.'" />'.PHP_EOL ;
 		}
 		$ctn .= '<input type="submit" value="Envoyer" />'.PHP_EOL ;
 		$ctn .= '</form>'.PHP_EOL ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneEntree extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public $TypeEditeur = "input_text_html" ;

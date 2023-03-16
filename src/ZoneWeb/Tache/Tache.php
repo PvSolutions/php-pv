@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Tache ;
 
+#[\AllowDynamicProperties]
 class Tache extends \Pv\Objet\Objet
 {
 	public $NomElementGest ;

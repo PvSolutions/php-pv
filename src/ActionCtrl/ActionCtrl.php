@@ -2,6 +2,7 @@
 
 namespace Pv\ActionCtrl ;
 
+#[\AllowDynamicProperties]
 class ActionCtrl extends \Pv\Objet\Objet
 {
 	public $NomElementTacheCtrl ;

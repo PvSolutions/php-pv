@@ -2,6 +2,7 @@
 
 namespace Pv\FournisseurDonnees ;
 
+#[\AllowDynamicProperties]
 class ServsPersists extends \Pv\FournisseurDonnees\Direct
 {
 	public $Application ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Route ;
 
+#[\AllowDynamicProperties]
 class Editable extends Filtrable
 {
 	public $FiltresEdition = array() ;

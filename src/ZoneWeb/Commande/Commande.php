@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class Commande extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 {
 	public $Visible = true ;

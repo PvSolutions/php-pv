@@ -2,6 +2,7 @@
 
 namespace Pv\ServicePersist ;
 
+#[\AllowDynamicProperties]
 class Etat
 {
 	const ETAT_NON_DEFINI = 0 ;

@@ -2,6 +2,7 @@
 
 namespace Pv\TacheCtrl ;
 
+#[\AllowDynamicProperties]
 class TacheCtrl extends \Pv\TacheProg\TacheProg
 {
 	protected $NaturePlateforme = "console" ;

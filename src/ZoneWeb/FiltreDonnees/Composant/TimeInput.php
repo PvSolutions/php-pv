@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class TimeInput extends \Pv\ZoneWeb\FiltreDonnees\Composant\EditeurHtml
 {
 	public $CheminFichierJs = "js/timeInput.js" ;

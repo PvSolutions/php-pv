@@ -2,10 +2,12 @@
 
 namespace Pv\DB\Native ;
 
+#[\AllowDynamicProperties]
 class SqlServer extends \Pv\DB\Connection\Connection
 {
 	var $VendorName = "SQLSERVER" ;
-	var $LoginTimeout = 0 ;
+	var $LoginTimeout = 60 ;
+	var $OpenOptions = array() ;
 	function ExecFixCharacterEncoding()
 	{
 	}
@@ -21,6 +23,7 @@ class SqlServer extends \Pv\DB\Connection\Connection
 	{
 		return "[".$tableName."].[".$fieldName."]" ;
 	}
+	/*
 	function EscapeRowValue($rowValue)
 	{
 		if(is_numeric($rowValue))
@@ -28,6 +31,7 @@ class SqlServer extends \Pv\DB\Connection\Connection
 		$unpacked = unpack('H*hex', $rowValue);
 		return '0x' . $unpacked['hex'];
 	}
+	*/
 	function OpenCnx()
 	{
 		$this->ClearConnectionException() ;
@@ -47,7 +51,7 @@ class SqlServer extends \Pv\DB\Connection\Connection
 			$user = (isset($this->ConnectionParams["user"])) ? $this->ConnectionParams["user"] : "root" ;
 			$password = (isset($this->ConnectionParams["password"])) ? $this->ConnectionParams["password"] : "" ;
 			$schema = (isset($this->ConnectionParams["schema"])) ? $this->ConnectionParams["schema"] : "" ;
-			$connectionInfo = array("Database" => $schema, "UID" => $user, "PWD" => $password) ;
+			$connectionInfo = array_merge($this->OpenOptions, array("Database" => $schema, "UID" => $user, "PWD" => $password)) ;
 			if($this->AutoSetCharacterEncoding && $this->CharacterEncoding != '')
 			{
 				$connectionInfo["CharacterSet"] = strtoupper($this->CharacterEncoding) ;
@@ -103,19 +107,39 @@ class SqlServer extends \Pv\DB\Connection\Connection
 	}
 	function & OpenQuery($sql, $params=array())
 	{
+		$res = false ;
 		if(! $this->InitConnection())
 		{
-			return false ;
+			return $res ;
 		}
 		$this->ClearConnectionException() ;
 		$this->CaptureQuery($sql, $params) ;
 		$this->FixCharacterEncoding() ;
-		$sql = $this->PrepareSql($sql, $params) ;
-		// print_r($sql) ;
+		$paramRegex = preg_quote($this->ParamPrefix).'([a-z0-9\_]+)' ;
+		preg_match_all('/'.$paramRegex.'/i', $sql, $matches) ;
+		$realParams = array() ;
+		$paramNames = array() ;
+		foreach($matches[1] as $i => $match)
+		{
+			if(isset($params[$match]))
+			{
+				$realParams[] = $params[$match] ;
+				if(! in_array($match, $paramNames))
+				{
+					$paramNames[] = $match ;
+				}
+			}
+		}
+		if(count($paramNames) > 0)
+		{
+			rsort($paramNames) ;
+			foreach($paramNames as $j => $n)
+			$sql = str_ireplace($this->ParamPrefix.$n, '?', $sql) ;
+		}
 		$res = false ;
 		try
 		{
-			$res = sqlsrv_query($this->Connection, $sql) ;
+			$res = sqlsrv_query($this->Connection, $sql, $realParams) ;
 			$exceptionMsg = "" ;
 			if(! $res)
 			{

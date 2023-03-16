@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu\EncPortionRendu ;
 
+#[\AllowDynamicProperties]
 class DateFr extends \Pv\ZoneWeb\ComposantRendu\EncPortionRendu\Enc
 {
 	public $AppliquerTout = 0 ;

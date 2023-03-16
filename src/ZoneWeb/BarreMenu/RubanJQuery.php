@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class RubanJQuery extends \Pv\ZoneWeb\BarreMenu\BarreMenuWeb
 {
 	public $NomClasseCSSMenuRacine = "MenuRacine jquery-ruban" ;

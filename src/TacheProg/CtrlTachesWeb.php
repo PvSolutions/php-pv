@@ -2,6 +2,7 @@
 
 namespace Pv\TacheProg ;
 
+#[\AllowDynamicProperties]
 class CtrlTachesWeb extends \Pv\TacheProg\TacheProg
 {
 	public $NomsZone = array() ;

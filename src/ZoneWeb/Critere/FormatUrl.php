@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Critere ;
 
+#[\AllowDynamicProperties]
 class FormatUrl extends \Pv\ZoneWeb\Critere\Critere
 {
 	public $FormatMessageErreur = 'Les champs ${ListeFiltres} doivent avoir une URL valide' ;

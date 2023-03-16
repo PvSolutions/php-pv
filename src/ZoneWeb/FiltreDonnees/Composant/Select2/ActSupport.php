@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant\Select2 ;
 
+#[\AllowDynamicProperties]
 class ActSupport extends \Pv\ZoneWeb\Action\ResultatJson
 {
 	protected $TermeRech ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class Liens extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 {
 	public $Liens = array() ;

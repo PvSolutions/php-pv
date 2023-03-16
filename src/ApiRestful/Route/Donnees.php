@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Route ;
 
+#[\AllowDynamicProperties]
 class Donnees extends \Pv\ApiRestful\Route\Route
 {
 	public $FournisseurDonnees ;

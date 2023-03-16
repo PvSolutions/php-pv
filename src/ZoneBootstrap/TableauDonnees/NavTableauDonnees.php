@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class NavTableauDonnees extends \Pv\ZoneWeb\TableauDonnees\NavigateurRangees
 {
 	public $MaxRangeesPrec = 3 ;

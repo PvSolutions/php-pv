@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class FluxRSS extends \Pv\ZoneWeb\Action\EnvoiFichier
 {
 	public $TypeMime = "application/rss+xml" ;

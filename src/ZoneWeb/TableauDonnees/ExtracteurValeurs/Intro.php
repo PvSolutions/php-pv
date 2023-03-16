@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\ExtracteurValeurs ;
 
+#[\AllowDynamicProperties]
 class Intro extends \Pv\ZoneWeb\TableauDonnees\ExtracteurValeurs\ExtracteurValeurs
 {
 	public $MaxMots = 255 ;

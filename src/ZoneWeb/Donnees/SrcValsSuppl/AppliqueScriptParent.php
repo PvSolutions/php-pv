@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Donnees\SrcValsSuppl ;
 
+#[\AllowDynamicProperties]
 class AppliqueScriptParent extends SrcValsSuppl
 {
 	public $InclureHtml = true ;

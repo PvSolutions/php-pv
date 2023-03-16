@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class EnvoiFichier extends \Pv\ZoneWeb\Action\Action
 {
 	public $UtiliserTypeMime = 0 ;

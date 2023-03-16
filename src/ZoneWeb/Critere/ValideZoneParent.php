@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Critere ;
 
+#[\AllowDynamicProperties]
 class ValideZoneParent extends \Pv\ZoneWeb\Critere\ValideRegexpForm
 {
 	public $FormatMessageErreur = 'Les champs ${ListeFiltres} ne respectent pas les conditions de la zone' ;

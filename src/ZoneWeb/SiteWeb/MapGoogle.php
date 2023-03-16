@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
+#[\AllowDynamicProperties]
 class MapGoogle extends \Pv\ZoneWeb\SiteWeb\VisionneuseSiteWeb
 {
 	public $Zoom = 14 ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class NavigateurRangees
 {
 	public function Execute(& $script, & $composant)

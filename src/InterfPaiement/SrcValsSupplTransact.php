@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement ;
 
+#[\AllowDynamicProperties]
 class SrcValsSupplTransact extends \Pv\ZoneWeb\TableauDonnees\SrcValsSuppl
 {
 	public $InterfPaiemtParent ;

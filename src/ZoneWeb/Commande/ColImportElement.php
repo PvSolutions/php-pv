@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class ColImportElement extends \Pv\Objet\Objet
 {
 	public $EstObligatoire = 0 ;

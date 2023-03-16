@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Filtre ;
 
+#[\AllowDynamicProperties]
 class Ref extends Filtre
 {
 	public $Role = "ref" ;

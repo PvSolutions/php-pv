@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneCadreOptionsRadio extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteOptionsRadio
 {
 	public $NomParamCadre = "Cadre" ;
@@ -218,7 +219,7 @@ class ZoneCadreOptionsRadio extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoit
 		}
 		else
 		{
-			die("Le composant ".$this->IDInstanceCalc." nÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½cessite un fournisseur de donnÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½es.") ;
+			die("Le composant ".$this->IDInstanceCalc." nécessite un fournisseur de données.") ;
 		}				
 		return $ctn ;
 	}

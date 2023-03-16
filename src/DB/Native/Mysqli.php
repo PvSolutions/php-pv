@@ -2,6 +2,7 @@
 
 namespace Pv\DB\Native ;
 
+#[\AllowDynamicProperties]
 class Mysqli extends \Pv\DB\Native\Mysql
 {
 /**

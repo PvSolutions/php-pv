@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Route ;
 
+#[\AllowDynamicProperties]
 class Collection extends Filtrable
 {
 	public $MethodeHttp = "GET" ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ServicePersist ;
 
+#[\AllowDynamicProperties]
 class Processus extends \Pv\ServicePersist\ServicePersist
 {
 	public function EstActif($cheminFichierAbsolu, $cheminFichierElementActif)

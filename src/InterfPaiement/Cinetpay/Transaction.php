@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\Cinetpay ;
 
+#[\AllowDynamicProperties]
 class Transaction extends \Pv\InterfPaiement\Transaction
 {
 	public $Signature ;

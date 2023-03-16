@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class RepeteurDonnees extends GrilleDonnees
 {
 	public $ContenuAvantRangeeDonnees = "" ;

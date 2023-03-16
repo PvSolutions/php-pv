@@ -2,6 +2,7 @@
 
 namespace Pv\DB\SqlDef\Table ;
 
+#[\AllowDynamicProperties]
 class Table extends \Pv\DB\SqlDef\SqlDef
 {
 	public $Schema = "" ;

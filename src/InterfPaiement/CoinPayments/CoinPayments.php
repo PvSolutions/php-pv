@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\CoinPayments ;
 
+#[\AllowDynamicProperties]
 class CoinPayments extends \Pv\InterfPaiement\InterfPaiement
 {
 	public $MerchantCompteMarchand = "" ;

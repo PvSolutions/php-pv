@@ -2,6 +2,7 @@
 
 namespace Pv\DB\Connection ;
 
+#[\AllowDynamicProperties]
 class Connection
 {
 /**

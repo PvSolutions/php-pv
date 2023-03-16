@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Filtre ;
 
+#[\AllowDynamicProperties]
 class HttpPost extends HttpRequest
 {
 	public $Role = "post" ;

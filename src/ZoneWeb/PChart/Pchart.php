@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\PChart ;
 
+#[\AllowDynamicProperties]
 class Pchart extends \Pv\ZoneWeb\ComposantRendu\ComposantDonneesSimple
 {
 	public $InclureTitre = 1 ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Auth ;
 
+#[\AllowDynamicProperties]
 class Distant extends Auth
 {
 	protected function CleIdMembre()

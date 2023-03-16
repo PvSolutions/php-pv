@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\RapportDonnees ;
 
+#[\AllowDynamicProperties]
 class ElementIU extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $NomElementRapport ;

@@ -80,14 +80,20 @@ Exécutez http://localhost/mon_api_rest/api.php
 
 Propriété | Description
 ------------ | -------------
-$CheminRacineApi | Chemin Racine de l'API Restful
-$OriginesAutorisees | Hôtes autorisées pour des appels Ajax. Définit l'entête HTTP "Access-Control-Allow-Origin"
-$EncodageDocument | Encodage du document
+\$CheminRacineApi | Chemin Racine de l'API Restful
+\$OriginesAutorisees | Hôtes autorisées pour des appels Ajax. Définit l'entête HTTP "Access-Control-Allow-Origin"
+\$EncodageDocument | Encodage du document
+\$CrypterReponse | 0 = ne pas crypter (par défaut), 1 = crypter uniquement la valeur data, 2 = crypter toute la réponse. Après avoir décrypté la valeur, vous devez decoder le résultat JSON pour l'utiliser.
+\$CleCryptReponse | Clé utilisée lors du cryptage. valeur par défaut : AP1Res6Ful142.
+\$HmacCryptReponse | Valeur HMAC lors du cryptage. valeur par défaut : sha256.
+\$CypherCryptReponse | Valeur HMAC lors du cryptage. valeur par défaut : AES-256-CBC.
+\$InclureStatutReponse | Inclut la propriété status dans la réponse. Ses valeurs sont : success = OK, error = Erreur survenue.
 
 ```php
 class ApiRestful1 extends \Pv\ApiRestful\ApiRestful
 {
 	public $EncodageDocument = "iso-8859-1" ;
+	public $InclureStatutReponse = false ;
 }
 ```
 

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\CorrecteurValeur ;
 
+#[\AllowDynamicProperties]
 class Correcteur
 {
 	public function Applique($valeur, & $filtre)

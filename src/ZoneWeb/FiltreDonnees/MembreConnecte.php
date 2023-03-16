@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees ;
 
+#[\AllowDynamicProperties]
 class MembreConnecte extends \Pv\ZoneWeb\FiltreDonnees\FiltreDonnees
 {
 	public $Role = "membre_connecte" ;

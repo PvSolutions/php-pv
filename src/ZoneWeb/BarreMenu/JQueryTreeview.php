@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class JQueryTreeview extends \Pv\ZoneWeb\BarreMenu\BarreMenuWeb
 {
 	protected static $SourceIncluse = 0 ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ActionCommande ;
 
+#[\AllowDynamicProperties]
 class AppliqueScriptParent extends ActionCommande
 {
 	public $NomMethodeScript ;

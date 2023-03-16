@@ -2,6 +2,7 @@
 
 namespace Pv\DB\SqlDef ;
 
+#[\AllowDynamicProperties]
 class SqlDef
 {
 	public $Name = "" ;

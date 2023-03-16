@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class ComposantRendu extends \Pv\ZoneWeb\ElementRendu\ElementRendu
 {
 	public $ContenuAvantRendu = "" ;

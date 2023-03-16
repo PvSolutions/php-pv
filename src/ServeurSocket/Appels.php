@@ -2,6 +2,7 @@
 
 namespace Pv\ServeurSocket ;
 
+#[\AllowDynamicProperties]
 class Appels extends \Pv\ServeurSocket\ServeurSocket
 {
 	public $Methodes = array() ;

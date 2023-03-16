@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class DoitChangerMotPasse extends \Pv\ZoneWeb\Script\Script
 {
 	public $Titre = "Changer obligatoire de mot de passe" ;

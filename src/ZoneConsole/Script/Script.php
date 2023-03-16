@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneConsole\Script ;
 
+#[\AllowDynamicProperties]
 class Script extends \Pv\IHM\Zone\Script
 {
 	public function RenduDispositif()

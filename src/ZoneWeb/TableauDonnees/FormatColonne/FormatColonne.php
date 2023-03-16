@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class FormatColonne extends \Pv\Objet\Objet
 {
 	public $ExtracteurValeur ;

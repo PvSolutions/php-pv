@@ -2,6 +2,7 @@
 
 namespace Pv\Traduction ;
 
+#[\AllowDynamicProperties]
 class Traducteur extends \Pv\Objet\Objet
 {
 	public $Exprs = array() ;

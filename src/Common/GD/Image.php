@@ -2,6 +2,7 @@
 
 namespace Pv\Common\GD ;
 
+#[\AllowDynamicProperties]
 class Image extends Control
 {
 	public $_Handle ;

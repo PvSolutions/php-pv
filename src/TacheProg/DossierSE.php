@@ -2,6 +2,7 @@
 
 namespace Pv\TacheProg ;
 
+#[\AllowDynamicProperties]
 class DossierSE extends \Pv\TacheProg\TacheProg
 {
 	public $CheminAbsoluDossier ;

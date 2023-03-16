@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class AppliqueScriptParent extends Executer
 {
 	public $NomMethodeScript ;

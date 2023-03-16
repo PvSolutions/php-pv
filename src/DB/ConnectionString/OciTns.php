@@ -2,6 +2,7 @@
 
 namespace Pv\DB\ConnectionString ;
 
+#[\AllowDynamicProperties]
 class OciTns
 {
 	public $Protocol = 'TCP' ;

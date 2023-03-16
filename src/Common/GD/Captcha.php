@@ -2,6 +2,7 @@
 
 namespace Pv\Common\GD ;
 
+#[\AllowDynamicProperties]
 class Captcha extends Layer
 {
 	public $CharCount = 6 ;

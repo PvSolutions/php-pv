@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ChartJs ;
 
+#[\AllowDynamicProperties]
 class CfgInit
 {
 	public $type = "bar" ;
@@ -10,6 +11,6 @@ class CfgInit
 	public function __construct()
 	{
 		$this->data = new \Pv\ZoneWeb\ChartJs\Data() ;
-		$this->options = new StdClass() ;
+		$this->options = new \StdClass() ;
 	}
 }

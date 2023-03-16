@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
+#[\AllowDynamicProperties]
 class AdrScriptSession
 {
 	public $ChaineGet ;

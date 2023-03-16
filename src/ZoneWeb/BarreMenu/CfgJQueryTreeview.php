@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class CfgJQueryTreeview
 {
 	public $persist = "location" ;

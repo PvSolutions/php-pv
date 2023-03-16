@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ElementRendu ;
 
+#[\AllowDynamicProperties]
 class ElementRendu extends \Pv\Objet\Objet
 {
 	public $UrlsReferantsSurs = array() ;

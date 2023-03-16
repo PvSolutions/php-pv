@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class GrilleDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 {
 	public $ClasseCSSRangee = "table-striped" ;
@@ -39,6 +40,9 @@ class GrilleDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 		{
 			return '' ;
 		}
+		$ctn .= '<div class="row">'.PHP_EOL ;
+		$ctn .= '<div class="'.$this->ClsBstFormFiltresSelect.'">'.PHP_EOL ;
+		$ctn .= $this->DessinateurFiltresSelection->Execute($this->ScriptParent, $this, $this->FiltresSelection) ;
 		$ctn .= '<form class="FormulaireFiltres" method="post" enctype="multipart/form-data" onsubmit="return SoumetFormulaire'.$this->IDInstanceCalc.'(this) ;" role="form">'.PHP_EOL ;
 		$ctn .= '<div class="card card-primary">'.PHP_EOL ;
 		if($this->TitreFormulaireFiltres != '')
@@ -48,18 +52,15 @@ class GrilleDonnees extends \Pv\ZoneWeb\TableauDonnees\GrilleDonnees
 			$ctn .= '</div>'.PHP_EOL ;
 		}
 		$ctn .= '<div class="card-body">'.PHP_EOL ;
-		$ctn .= '<div class="row">'.PHP_EOL ;
-		$ctn .= '<div class="'.$this->ClsBstFormFiltresSelect.'">'.PHP_EOL ;
-		$ctn .= $this->DessinateurFiltresSelection->Execute($this->ScriptParent, $this, $this->FiltresSelection) ;
 		$ctn .= '<input type="hidden" name="'.$this->NomParamFiltresSoumis().'" id="'.$this->NomParamFiltresSoumis().'" value="1" />'.PHP_EOL ;
-		$ctn .= '</div>'.PHP_EOL ;
-		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '<div class="card-footer'.(($this->ClsBstPiedFormFiltres == '') ? '' : ' '.$this->ClsBstPiedFormFiltres).'" align="'.$this->AlignBoutonSoumettreFormulaireFiltres.'">'.PHP_EOL ;
 		$ctn .= '<button class="btn '.$this->ClsBstBoutonSoumettre.'" type="submit">'.$this->TitreBoutonSoumettreFormulaireFiltres.'</button>'.PHP_EOL ;
 		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '</div>'.PHP_EOL ;
 		$ctn .= '</form>'.PHP_EOL ;
+		$ctn .= '</div>'.PHP_EOL ;
+		$ctn .= '</div>'.PHP_EOL ;
 		return $ctn ;
 	}
 	protected function RenduRangeeDonnees()

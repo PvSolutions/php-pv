@@ -1,8 +1,16 @@
 # Authentification API Restful
 
+## Présentation
+
 L'API Restful se base sur le système d'authentification **\Pv\Membership\Sql**, décrit [ici](../membership.md).
 
-## Prérequis base de données
+## Authentification Distante
+
+L'authentification distante, définie par défaut, se base sur l'entête Bearer. Sa classe est **\Pv\ApiRestful\Auth\Distante**.
+
+La page de connexion transmet un token, qu'il faudra utiliser comme token.
+
+### Prérequis base de données
 
 En plus des tables du membership, vous devez créer la table des sessions, disponibles sur la branche Github [sql](https://github.com/PvSolutions/php-pv/tree/sql/SessionMembership) de PHP-PV.
 
@@ -10,7 +18,7 @@ Fichier | Description
 ------------- | -------------
 membership-session-mysql.sql | Tables pour MySQL
 
-## Déclaration
+### Déclaration
 
 Dans votre code source, dérivez la classe **\Pv\Membership\Sql**.
 
@@ -53,7 +61,7 @@ curl --location --request POST 'http://localhost/mon_api_rest/acces/connexion' \
 --data-urlencode 'device=mon device 1.0'
 ```
 
-## Propriétés API
+### Propriétés API
 
 Propriétés | Description
 ------------- | -------------
@@ -76,7 +84,7 @@ class ApiRestful1 extends \Pv\ApiRestful\ApiRestful
 }
 ```
 
-## Classes Routes membership
+### Classes Routes membership
 
 Propriétés | Valeur par défaut | Description
 ------------- | ------------- | -------------
@@ -91,6 +99,24 @@ class ApiRestful1 extends \Pv\ApiRestful\ApiRestful
 {
 	public $NomClasseRouteConnexion = 'RouteConnexion1' ;
 }
+```
+
+## Authentification Basique
+
+L'authentification distante se base sur l'entête HTTP basique. Sa classe est **\Pv\ApiRestful\Auth\Basique**.
+
+```php
+class MonApi extends \Pv\ApiRestful\ApiRestful
+{
+public $NomClasseAuth = '\Pv\ApiRestful\Auth\Basique' ;
+}
+```
+
+Transférez les identifiants de connexion (login / mot de passe) sur chaque requête, via l'entête HTTP **basic**.
+
+```
+curl --location --request GET 'http://localhost/api.php' \
+--header 'Authorization: Basic cm9vdDpBRE1JTg=='
 ```
 
 ## Autres liens

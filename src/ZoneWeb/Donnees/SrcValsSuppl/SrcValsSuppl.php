@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Donnees\SrcValsSuppl ;
 
+#[\AllowDynamicProperties]
 class SrcValsSuppl
 {
 	public $InclureHtml = false ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ArborescenceDonnees ;
 
+#[\AllowDynamicProperties]
 class DefNoeud extends \Pv\ZoneWeb\TableauDonnees\Colonne
 {
 	public $TriPrealable = 1 ;

@@ -14,6 +14,7 @@ $GLOBALS['GDFormats'] = array(
 	'wbmp' => 'wbmp'
 ) ; 
 
+#[\AllowDynamicProperties]
 class Manipulator extends Control
 {
 	function Init()

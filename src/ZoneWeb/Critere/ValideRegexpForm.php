@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Critere ;
 
+#[\AllowDynamicProperties]
 class ValideRegexpForm extends \Pv\ZoneWeb\Critere\Critere
 {
 	public $FormatMessageErreur = 'Le champ ${libelleFiltre} a un format invalide' ;

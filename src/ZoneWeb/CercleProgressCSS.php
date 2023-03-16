@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
+#[\AllowDynamicProperties]
 class CercleProgressCSS extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public static $SourceIncluse = 0 ;

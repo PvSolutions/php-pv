@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class Deconnexion extends \Pv\ZoneWeb\Script\Script
 {
 	public $Titre = "D&eacute;connexion" ;

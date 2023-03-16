@@ -2,6 +2,7 @@
 
 namespace Pv\Objet ;
 
+#[\AllowDynamicProperties]
 class Exception
 {
 	public $Code = "" ;

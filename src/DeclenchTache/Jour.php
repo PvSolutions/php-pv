@@ -2,6 +2,7 @@
 
 namespace Pv\DeclenchTache ;
 
+#[\AllowDynamicProperties]
 class Jour extends DeclenchTache
 {
 	public $Heure = 0 ;

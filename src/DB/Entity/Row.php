@@ -2,6 +2,7 @@
 
 namespace Pv\DB\Entity ;
 
+#[\AllowDynamicProperties]
 class Row
 {
 	public $RawData = array() ;

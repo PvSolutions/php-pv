@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 {
 	public $TypeEditeur = "input_file_html" ;
@@ -81,7 +82,7 @@ class ZoneUpload extends \Pv\ZoneWeb\FiltreDonnees\Composant\ElementFormulaire
 		{
 			if($this->CheminCoteServeurEditable)
 			{
-				$valeurEnc = (trim($this->Valeur) != "") ? htmlspecialchars(trim($this->Valeur))) : "" ;
+				$valeurEnc = (trim($this->Valeur) != "") ? htmlspecialchars(trim($this->Valeur)) : "" ;
 				$ctn .= $this->LibelleCoteSrv.' <input type="text" class="EditeurCheminCoteServeur" name="'.$nomEltCoteSrv.$this->NomElementHtml.'" value="'.$valeurEnc.'" size="'.$this->TailleEditeurCoteServeur.'" />' ;
 			}
 			else

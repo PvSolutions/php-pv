@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\PChart ;
 
+#[\AllowDynamicProperties]
 class Diagramme extends \Pv\ZoneWeb\PChart\Forme
 {
 	public $InscrirePointilles = 1 ;

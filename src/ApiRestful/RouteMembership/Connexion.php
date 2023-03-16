@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\RouteMembership ;
 
+#[\AllowDynamicProperties]
 class Connexion extends \Pv\ApiRestful\Route\Filtrable
 {
 	public $NecessiteMembreConnecte = 0 ;

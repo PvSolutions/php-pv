@@ -2,6 +2,7 @@
 
 namespace Pv\ExpatXml ;
 
+#[\AllowDynamicProperties]
 class Element
 {
 	public $Name = "" ;

@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\Paypal ;
 
+#[\AllowDynamicProperties]
 class CompteMarchand extends \Pv\InterfPaiement\CompteMarchand
 {
 	public $ClientId ;

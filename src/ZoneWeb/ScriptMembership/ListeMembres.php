@@ -2,10 +2,12 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class ListeMembres extends \Pv\ZoneWeb\Script\Script
 {
 	public $TitreDocument = "Liste des membres" ;
 	public $Titre = "Liste des membres" ;
+	public $LibelleChangeMP = "Mot de passe" ;
 	public $AfficherId = true ;
 	public $PrivilegesAfficherId = array() ;
 	public function DetermineEnvironnement()
@@ -27,6 +29,7 @@ class ListeMembres extends \Pv\ZoneWeb\Script\Script
 		{
 			$this->DefColId = $this->TablPrinc->InsereDefCol($membership->IdMemberColumn, strtoupper($membership->IdMemberColumn)) ;
 		}
+		$this->DefColChangeMp = $this->TablPrinc->InsereDefColCachee("CAN_CHANGE_PWD") ;
 		$this->ChargeFiltresPrinc() ;
 		$this->DefColLogin = $this->TablPrinc->InsereDefCol($membership->LoginMemberColumn, $membership->LoginMemberLabel) ;
 		$this->DefColNom = $this->TablPrinc->InsereDefCol($membership->LastNameMemberColumn, $membership->LastNameMemberLabel) ;
@@ -41,6 +44,12 @@ class ListeMembres extends \Pv\ZoneWeb\Script\Script
 			$this->ZoneParent->ScriptModifMembre->ObtientUrlFmt(array('id' => '${id}')),
 			$this->ZoneParent->LibelleModif
 		) ;
+		$this->LienChangeMP = $this->TablPrinc->InsereLienAction(
+			$this->DefColActs,
+			$this->ZoneParent->ScriptChangeMPMembre->ObtientUrlFmt(array('id' => '${id}')),
+			$this->LibelleChangeMP
+		) ;
+		$this->LienChangeMP->NomDonneesValid = "CAN_CHANGE_PWD" ;
 		$this->ChargeLiensActPrinc() ;
 		$this->LienSuppr = $this->TablPrinc->InsereLienAction(
 			$this->DefColActs,
@@ -48,7 +57,16 @@ class ListeMembres extends \Pv\ZoneWeb\Script\Script
 			$this->ZoneParent->LibelleSuppr
 		) ;
 		$this->TablPrinc->FournisseurDonnees = new \Pv\FournisseurDonnees\Sql ;
-		$this->TablPrinc->FournisseurDonnees->RequeteSelection = '(select t1.*, t2.'.$bd->EscapeVariableName($membership->TitleProfileColumn).' MEMBER_PROFILE from '.$bd->EscapeTableName($membership->MemberTable).' t1
+		$exprChangeMpPossible = '1' ;
+		if($membership->GuestMemberId > 0)
+		{
+			$exprChangeMpPossible = $bd->EscapeVariableName($membership->IdMemberColumn).' <> '.intval($membership->GuestMemberId) ;
+		}
+		if($membership->ADActivatedMemberColumn != '')
+		{
+			$exprChangeMpPossible .= ' and case when '.$membership->ADActivatedMemberColumn.' <> \''.$membership->ADActivatedMemberTrueValue.'\' then 1 else 0 end' ;
+		}
+		$this->TablPrinc->FournisseurDonnees->RequeteSelection = '(select t1.*, ('.$exprChangeMpPossible.') CAN_CHANGE_PWD, t2.'.$bd->EscapeVariableName($membership->TitleProfileColumn).' MEMBER_PROFILE from '.$bd->EscapeTableName($membership->MemberTable).' t1
 inner join '.$bd->EscapeTableName($membership->ProfileTable).' t2 on t1.'.$bd->EscapeVariableName($membership->ProfileMemberColumn).'=t2.'.$bd->EscapeVariableName($membership->IdProfileColumn).')';
 		$this->TablPrinc->FournisseurDonnees->BaseDonnees = & $bd ;
 	}

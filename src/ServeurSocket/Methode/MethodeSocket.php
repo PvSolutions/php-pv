@@ -2,6 +2,7 @@
 
 namespace Pv\ServeurSocket\Methode ;
 
+#[\AllowDynamicProperties]
 class MethodeSocket
 {
 	public $ArgsParDefaut = array() ;

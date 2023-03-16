@@ -2,6 +2,7 @@
 
 namespace Pv\ServeurSocket\Methode ;
 
+#[\AllowDynamicProperties]
 class Test extends \Pv\ServeurSocket\Methode\MethodeSocket
 {
 	public $MessageTest = "Test reussi" ;

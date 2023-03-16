@@ -7,6 +7,7 @@ if(! defined("PROCESS_MANAGER_GENERATE_CURRENT"))
 	define('PROCESS_MANAGER_GENERATE_CURRENT', 1) ;
 }
 
+#[\AllowDynamicProperties]
 class ProcessManager
 {
 	var $LastCommand = "" ;

@@ -2,10 +2,21 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneBoiteOptionsCocher extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteOptionsRadio
 {
 	public $ChoixMultiple = true ;
 	protected $CalculerValeurParJs = 0 ;
+	protected function InstrsJsObtientValElement() {
+		return 'if(noeud.checked !== undefined && (noeud.checked === "checked" || noeud.checked === true)) {
+	valNoeud = noeud.value ;
+}
+else {
+	if(noeud.getAttribute("checked") === "checked" || noeud.getAttribute("checked") === true) {
+		noeud = valNoeud.value ;
+	}
+}' ;
+	}
 	protected function InstrsJsSelectElement()
 	{
 		$ctn = '' ;
@@ -46,14 +57,26 @@ break ;
 		{
 			$forcerSelection = 1 ;
 		}
+		// print_r($ligne) ;
 		// echo $valeur.' : '.$forcerSelection.'<br />' ;
 		$ctn = '' ;
-		$nomElementHtml = $this->NomElementHtml.'[]' ;
+		if(! $this->DoitTransmettreTablVals())
+		{
+			$nomElementHtml = $this->NomElementHtml.'_'.$position ;
+		}
+		else
+		{
+			$nomElementHtml = $this->NomElementHtml.'[]' ;
+		}
 		$ctn .= '<input type="checkbox" name="'.$nomElementHtml.'" id="'.$this->IDInstanceCalc.'_'.$position.'"' ;
-		$ctn .= ' value="'.htmlentities($valeur).'"' ;
+		$ctn .= ' value="'.htmlspecialchars($valeur).'"' ;
 		if($this->EstValeurSelectionnee($valeur) || $forcerSelection)
 		{
 			$ctn .= ' checked' ;
+		}
+		if(! $this->DoitTransmettreTablVals())
+		{
+			$ctn .= ' onclick="CalculeVal_'.$this->IDInstanceCalc.'()"' ;
 		}
 		$ctn .= ' />' ;
 		return $ctn ;

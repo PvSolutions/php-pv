@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class Parametrable extends Donnees
 {
 	public function & CreeFiltreRef($nom, & $filtreRef)
@@ -123,7 +124,7 @@ class Parametrable extends Donnees
 		{
 			$filtre = & $filtres[$nomFiltre] ;
 			$filtre->Lie() ;
-			$valeurs[$filtre->NomParametreDonnees] = $filtre->ValeurParametre ;
+			$valeurs[$filtre->NomParametreDonnees] = (($filtre->ValeurParametre) != null) ? $filtre->ValeurParametre : '' ;
 		}
 		return $valeurs ;
 	}
@@ -153,7 +154,7 @@ class Parametrable extends Donnees
 	public function ExtraitObjetParametre(& $filtres)
 	{
 		$nomFiltres = array_keys($filtres) ;
-		$obj = new StdClass() ;
+		$obj = new \StdClass() ;
 		foreach($nomFiltres as $i => $nomFiltre)
 		{
 			$filtre = & $filtres[$nomFiltre] ;
@@ -170,7 +171,7 @@ class Parametrable extends Donnees
 	public function ExtraitObjetColonneLiee(& $filtres)
 	{
 		$nomFiltres = array_keys($filtres) ;
-		$obj = new StdClass() ;
+		$obj = new \StdClass() ;
 		foreach($nomFiltres as $i => $nomFiltre)
 		{
 			$filtre = & $filtres[$nomFiltre] ;

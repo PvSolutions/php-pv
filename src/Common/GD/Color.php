@@ -2,6 +2,7 @@
 
 namespace Pv\Common\GD ;
 
+#[\AllowDynamicProperties]
 class Color
 {
 	public $R ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ServeurSocket ;
 
+#[\AllowDynamicProperties]
 class ServeurSocket extends \Pv\ServicePersist\ServicePersist
 {
 	protected $Flux = false ;

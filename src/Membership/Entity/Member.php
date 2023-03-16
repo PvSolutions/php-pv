@@ -2,6 +2,7 @@
 
 namespace Pv\Membership\Entity ;
 
+#[\AllowDynamicProperties]
 class Member extends Row
 {
 	public $StoreData = 1 ;

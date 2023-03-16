@@ -2,6 +2,7 @@
 
 namespace Pv\ServeurSocket ;
 
+#[\AllowDynamicProperties]
 class RetourAppel
 {
 	public $message = "resultat non defini" ;

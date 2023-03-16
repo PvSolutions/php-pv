@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Filtre ;
 
+#[\AllowDynamicProperties]
 class Cookie extends Filtre
 {
 	public $Role = "cookie" ;

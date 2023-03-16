@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneBoiteOptionsRadio extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteChoix
 {
 	public $MaxColonnesParLigne = 2 ;
@@ -66,8 +67,7 @@ class ZoneBoiteOptionsRadio extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoit
 			{
 				$valeur = $premiereValeur ;
 			}
-			$valeurEnc = ($valeur != "") ? htmlspecialchars($valeur) : "" ;
-			$ctn .= PHP_EOL .'<input type="hidden" name="'.$this->NomElementHtml.'" id="'.$this->IDInstanceCalc.'" value="'.$valeurEnc.'" />' ;
+			$ctn .= PHP_EOL .'<input type="hidden" name="'.$this->NomElementHtml.'" id="'.$this->IDInstanceCalc.'" value="'.htmlspecialchars($valeur).'" />' ;
 		}
 		// print_r($this->FournisseurDonnees->BaseDonnees) ;
 		return $ctn ;

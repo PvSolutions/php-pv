@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneBoiteOptionsRadio extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteOptionsRadio
 {
 	protected function RenduListeElements()

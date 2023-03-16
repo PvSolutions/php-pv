@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\BarreMenu ;
 
+#[\AllowDynamicProperties]
 class Cadre extends \Pv\ZoneWeb\BarreMenu\BarreMenuWeb
 {
 	public $NomClasseCSSMenuRacine = "MenuRacine cadre_menu" ;

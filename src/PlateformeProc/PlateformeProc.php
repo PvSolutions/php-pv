@@ -2,6 +2,7 @@
 
 namespace Pv\PlateformeProc ;
 
+#[\AllowDynamicProperties]
 class PlateformeProc
 {
 	public function Http()

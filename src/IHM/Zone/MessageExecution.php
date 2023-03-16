@@ -2,6 +2,7 @@
 
 namespace Pv\IHM\Zone ;
 
+#[\AllowDynamicProperties]
 class MessageExecution
 {
 	public $NomScriptSource ;

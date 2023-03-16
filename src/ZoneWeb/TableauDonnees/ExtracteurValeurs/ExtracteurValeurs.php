@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\ExtracteurValeurs ;
 
+#[\AllowDynamicProperties]
 class ExtracteurValeurs
 {
 	public $AccepteValeursVide = 0 ;

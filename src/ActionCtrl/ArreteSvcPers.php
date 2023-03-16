@@ -2,6 +2,7 @@
 
 namespace Pv\ActionCtrl ;
 
+#[\AllowDynamicProperties]
 class ArreteSvcPers extends \Pv\ActionCtrl\ManipSvcPers
 {
 	protected function ExecuteManip($args)

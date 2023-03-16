@@ -2,6 +2,7 @@
 
 namespace Pv\ServeurSocket\Format ;
 
+#[\AllowDynamicProperties]
 class Brut extends \Pv\ServeurSocket\Format\FormatSocket
 {
 	public function Decode($contenu)

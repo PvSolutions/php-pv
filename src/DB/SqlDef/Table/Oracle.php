@@ -2,6 +2,7 @@
 
 namespace Pv\DB\SqlDef\Table ;
 
+#[\AllowDynamicProperties]
 class Oracle extends \Pv\DB\SqlDef\Table\Table
 {
 	public function ImportConfigFromRowValue($name, $value)

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class AjoutServeurAD extends EditServeurAD
 {
 	public $Titre = 'Ajouter connexion AD' ;

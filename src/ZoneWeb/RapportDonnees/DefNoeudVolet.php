@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\RapportDonnees ;
 
+#[\AllowDynamicProperties]
 class DefNoeudVolet
 {
 	public $LibelleDonnees ;

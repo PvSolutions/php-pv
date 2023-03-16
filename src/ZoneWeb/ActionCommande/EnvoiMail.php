@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ActionCommande ;
 
+#[\AllowDynamicProperties]
 class EnvoiMail extends \Pv\ZoneWeb\ActionCommande\ActionCommande
 {
 	public $TypeMail = "html" ;

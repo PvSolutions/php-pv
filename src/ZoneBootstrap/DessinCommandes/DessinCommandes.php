@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\DessinCommandes ;
 
+#[\AllowDynamicProperties]
 class DessinCommandes extends \Pv\ZoneWeb\DessinCommandes\DessinCommandes
 {
 	public $ClasseCSSPanel = "card-primary" ;

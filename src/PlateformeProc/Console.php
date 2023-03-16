@@ -2,6 +2,7 @@
 
 namespace Pv\PlateformeProc ;
 
+#[\AllowDynamicProperties]
 class Console extends PlateformeProc
 {
 	public function ObtientNomOS()

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class ChangeMotPasse extends \Pv\ZoneWeb\Script\Script
 {
 	public $NomParamAncMotPasse = "anc_mot_passe" ;
@@ -25,7 +26,7 @@ class ChangeMotPasse extends \Pv\ZoneWeb\Script\Script
 	}
 	protected function DetermineFormPrinc()
 	{
-		$this->FormPrinc = $this->CreeFormPrinc() ;
+		$this->FormPrinc = $this->InsereFormPrinc() ;
 		$this->FormPrinc->InclureElementEnCours = 0 ;
 		if($this->MaxFiltresEditionParLigne > 0)
 		{
@@ -83,8 +84,20 @@ class ChangeMotPasse extends \Pv\ZoneWeb\Script\Script
 			$idMembre = $membership->ValidateConnection($this->LoginMembreConnecte(), $this->FiltreAncMotPasse->Lie()) ;
 			if($idMembre > 0)
 			{
+				$passwordVal = $bd->ParamPrefix."password" ;
+				if($membership->PasswordMemberExpr != '')
+				{
+					if(stripos($membership->PasswordMemberExpr, "<self>") !== false)
+					{
+						$passwordVal = str_ireplace("<self>", $bd->ParamPrefix."password", $membership->PasswordMemberExpr) ;
+					}
+					else
+					{
+						$passwordVal = $membership->PasswordMemberExpr."(".$bd->ParamPrefix."password)" ;
+					}
+				}
 				$ok = $bd->RunSql(
-					'update '.$bd->EscapeTableName($membership->MemberTable).' set '.$bd->EscapeVariableName($membership->PasswordMemberColumn).'='.$membership->PasswordMemberExpr.'(:password)
+					'update '.$bd->EscapeTableName($membership->MemberTable).' set '.$bd->EscapeVariableName($membership->PasswordMemberColumn).'='.$passwordVal.'
 where '.$bd->EscapeVariableName($membership->IdMemberColumn).'=:id',
 					array(
 						'id' => $idMembre,

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu\EncPortionRendu ;
 
+#[\AllowDynamicProperties]
 class Enc
 {
 	public $Prefixe ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class ChartMorrisJs extends \Pv\ZoneWeb\ComposantRendu\FiltrableJs
 {
 	public $NomColonneX ;

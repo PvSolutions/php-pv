@@ -2,6 +2,7 @@
 
 namespace Pv\FournisseurDonnees ;
 
+#[\AllowDynamicProperties]
 class Rangee extends \Pv\FournisseurDonnees\Direct
 {
 	public $NomCleRangee = "Rangee" ;

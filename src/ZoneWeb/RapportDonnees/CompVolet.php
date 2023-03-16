@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\RapportDonnees ;
 
+#[\AllowDynamicProperties]
 class CompVolet extends \Pv\ZoneWeb\RapportDonnees\ElementIU
 {
 	public $Elements = array() ;

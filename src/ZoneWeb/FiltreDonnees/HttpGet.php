@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees ;
 
+#[\AllowDynamicProperties]
 class HttpGet extends \Pv\ZoneWeb\FiltreDonnees\HttpRequest
 {
 	public $Role = "get" ;

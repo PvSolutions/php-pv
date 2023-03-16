@@ -2,6 +2,7 @@
 
 namespace Pv\IHM ;
 
+#[\AllowDynamicProperties]
 class Zone extends \Pv\IHM\IHM
 {
 	public $TypeIHM = "zone" ;
@@ -9,6 +10,7 @@ class Zone extends \Pv\IHM\IHM
 	public $NomParamScriptAppele = "appelleScript" ;
 	public $AutoDetectParamScriptAppele = 1 ;
 	public $ValeurParamScriptAppeleFixe = "" ;
+	public $ValeurBruteParamScriptAppele ;
 	public $ValeurParamScriptAppele = "" ;
 	public $ScriptParDefaut = null ;
 	public $NomScriptParDefaut = "accueil" ;
@@ -498,15 +500,20 @@ else
 	}
 	protected function ExecuteScriptIndisponible(& $script)
 	{
-		$msgIndisponible = ($script->MessageIndisponible != '') ? $script->MessageIndisponible : $this->MessageScriptIndisponible ;
-		$this->AfficheRenduIndisponible($script, $msgIndisponible) ;
+		$msgIndisponible = ($script->MessageIndisponibilite != '') ? $script->MessageIndisponibilite : $this->MessageScriptIndisponible ;
+		$liensIndisp = ($script->LiensIndisponibilite != '') ? $script->LiensIndisponibilite : '' ;
+		$this->AfficheRenduIndisponible($script, $msgIndisponible, $liensIndisp) ;
 	}
-	protected function AfficheRenduIndisponible(& $script, $msg)
+	protected function AfficheRenduIndisponible(& $script, $msg, $liens='')
 	{
 		$ctn = '' ;
 		$this->ScriptPourRendu = & $script ;
 		$ctn .= $this->RenduEnteteDocument() ;
-		$ctn .= '<div style="text-color:red">'.$msg.'</div>' ;
+		$ctn .= $msg.PHP_EOL ;
+		if($liens == "")
+		{
+			$ctn .= $liens.PHP_EOL ;
+		}
 		$ctn .= $this->RenduPiedDocument() ;
 		echo $ctn ;
 		exit ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap ;
 
+#[\AllowDynamicProperties]
 class ZoneBootstrap extends \Pv\ZoneWeb\ZoneWeb
 {
 	public $LangueDocument = "en" ;
@@ -19,12 +20,15 @@ class ZoneBootstrap extends \Pv\ZoneWeb\ZoneWeb
 	public $CheminCSSBootstrap = 'css/bootstrap.min.css' ;
 	public $NomClasseScriptConnexion = '\Pv\ZoneBootstrap\ScriptMembership\Connexion' ;
 	public $CheminFontAwesome = 'vendor/fontawesome/css/all.min.css' ;
-	protected function AfficheRenduIndisponible(& $script, $msg)
+	protected function AfficheRenduIndisponible(& $script, $msg, $liens='')
 	{
 		$ctn = '' ;
 		$this->ScriptPourRendu = & $script ;
 		$ctn .= $this->RenduEnteteDocument() ;
 		$ctn .= '<div class="alert alert-danger" role="alert">'.$msg.'</div>' ;
+		if($liens != "") {
+			$ctn .= '<div class="card"><div class="card-footer">'.$liens.'</div></div>'.PHP_EOL ;
+		}
 		$ctn .= $this->RenduPiedDocument() ;
 		$this->ScriptPourRendu = null ;
 		echo $ctn ;

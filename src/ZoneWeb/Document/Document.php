@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Document ;
 
+#[\AllowDynamicProperties]
 class Document
 {
 	protected function RenduDefsJS(& $zone)

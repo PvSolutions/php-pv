@@ -2,6 +2,7 @@
 
 namespace Pv\TacheCtrl ;
 
+#[\AllowDynamicProperties]
 class ProgsApp extends \Pv\TacheCtrl\TacheCtrl
 {
 	public $DelaiTransition = 0 ;

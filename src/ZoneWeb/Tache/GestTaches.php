@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Tache ;
 
+#[\AllowDynamicProperties]
 class GestTaches extends \Pv\Objet\Objet
 {
 	public $NomDossierTaches = "taches" ;

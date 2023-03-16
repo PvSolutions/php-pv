@@ -2,6 +2,7 @@
 
 namespace Pv\ServicePersist ;
 
+#[\AllowDynamicProperties]
 class ServicePersist extends \Pv\ProgrammeApp\ProgrammeApp
 {
 	public $Arreter = 0 ;

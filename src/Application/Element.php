@@ -2,6 +2,7 @@
 
 namespace Pv\Application ;
 
+#[\AllowDynamicProperties]
 class Element extends \Pv\Objet\Objet
 {
 	public $ApplicationParent = null ;

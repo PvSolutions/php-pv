@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class Timestamp extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 {
 	public $FormatDate = "Y-m-d H:i:s" ;

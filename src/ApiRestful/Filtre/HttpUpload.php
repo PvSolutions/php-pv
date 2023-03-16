@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Filtre ;
 
+#[\AllowDynamicProperties]
 class HttpUpload extends Filtre
 {
 	public $Role = "http_upload" ;

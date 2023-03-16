@@ -2,6 +2,7 @@
 
 namespace Pv\DB\Entity ;
 
+#[\AllowDynamicProperties]
 class Collection
 {
 	public $ParentDatabase ;

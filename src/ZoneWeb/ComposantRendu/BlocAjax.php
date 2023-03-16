@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class BlocAjax extends \Pv\ZoneWeb\ComposantRendu\BaliseHtml
 {
 	public $TexteMsgSurExpirationAtteint = "" ;

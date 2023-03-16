@@ -2,6 +2,7 @@
 
 namespace Pv\Membership\Object ;
 
+#[\AllowDynamicProperties]
 class ObjectBase
 {
 	public $ObjectName = "" ;

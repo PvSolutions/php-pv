@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class Colonne extends \Pv\Objet\Objet
 {
 	public $TriPrealable = 0 ;

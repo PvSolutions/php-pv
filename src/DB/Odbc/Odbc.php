@@ -2,6 +2,7 @@
 
 namespace Pv\DB\Odbc ;
 
+#[\AllowDynamicProperties]
 class Odbc extends \Pv\DB\Connection\Connection
 {
 	var $DriverKey = "" ;

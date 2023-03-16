@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class DatetimePickerRainForest extends \Pv\ZoneWeb\FiltreDonnees\Composant\EditeurHtml
 {
 	protected static $SourceIncluse = 0 ;

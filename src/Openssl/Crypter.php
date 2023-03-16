@@ -2,6 +2,7 @@
 
 namespace Pv\Openssl ;
 
+#[\AllowDynamicProperties]
 class Crypter
 {
 	public $cipher = "AES-256-CFB" ;

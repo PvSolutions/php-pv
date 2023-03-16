@@ -2,6 +2,7 @@
 
 namespace Pv\Common\ProcessEntry ;
 
+#[\AllowDynamicProperties]
 class Linux extends ProcessEntry
 {
 	function ImportFromPsEfEntry($process_data)

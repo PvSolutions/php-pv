@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\SliderJs ;
 
+#[\AllowDynamicProperties]
 class CfgInitJQueryCamera
 {
 	public $alignment = 'center' ;

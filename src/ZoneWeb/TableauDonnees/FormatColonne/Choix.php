@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class Choix extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 {
 	public $ValeursChoix = array() ;
@@ -9,7 +10,7 @@ class Choix extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 	public function Encode(& $composant, $colonne, $ligne)
 	{
 		$valeurEntree = $ligne[$colonne->NomDonnees] ;
-		if(isset($this->ValeursChoix[$valeurEntree]))
+		if($valeurEntree !== null and $valeurEntree !== "" && isset($this->ValeursChoix[$valeurEntree]))
 		{
 			$valeur = \Pv\Misc::_parse_pattern($this->ValeursChoix[$valeurEntree], array_map("htmlentities", $ligne)) ;
 		}

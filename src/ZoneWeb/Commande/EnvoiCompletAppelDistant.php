@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Commande ;
 
+#[\AllowDynamicProperties]
 class EnvoiCompletAppelDistant extends \Pv\ZoneWeb\Commande\AppelDistant
 {
 	protected function ExtraitArgsAppelDistant()

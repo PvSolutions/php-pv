@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class SrcValsSuppl extends \Pv\ZoneWeb\Donnees\SrcValsSuppl\SrcValsSuppl
 {
 	public $InclureHtml = 1 ;

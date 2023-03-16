@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
+#[\AllowDynamicProperties]
 class ZoneWeb extends \Pv\IHM\Zone
 {
 	public $TagTitre = "h2" ;
@@ -1443,7 +1444,7 @@ document.getElementById("FormRetour").submit() ;
 	{
 		return '' ;
 	}
-	protected function AfficheRenduIndisponible(& $script, $msg)
+	protected function AfficheRenduIndisponible(& $script, $msg, $liens='')
 	{
 		$ctn = '' ;
 		$this->ScriptPourRendu = & $script ;
@@ -1451,6 +1452,9 @@ document.getElementById("FormRetour").submit() ;
 		$ctn .= $this->RenduEnteteDocument() ;
 		$ctn .= '<body>'.PHP_EOL ;
 		$ctn .= '<div style="color:red">'.$msg.'</div>'.PHP_EOL ;
+		if($liens != "") {
+			$ctn .= '<p>'.$liens.'</p>'.PHP_EOL ;
+		}
 		$ctn .= $this->RenduPiedDocument().PHP_EOL ;
 		$ctn .= '</body>'.PHP_EOL ;
 		$ctn .= '</html>' ;

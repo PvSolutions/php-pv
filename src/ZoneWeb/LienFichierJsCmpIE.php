@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb ;
 
+#[\AllowDynamicProperties]
 class LienFichierJsCmpIE extends \Pv\ZoneWeb\LienFichierJs
 {
 	public $VersionMin = 9 ;

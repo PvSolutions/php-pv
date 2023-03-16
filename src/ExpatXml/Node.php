@@ -2,6 +2,7 @@
 
 namespace Pv\ExpatXml ;
 
+#[\AllowDynamicProperties]
 class Node extends ExpatXmlElement
 {
 	public $RegisterChildNodes = 1 ;

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\RapportDonnees ;
 
+#[\AllowDynamicProperties]
 class DefRequete
 {
 	public $Colonnes ;

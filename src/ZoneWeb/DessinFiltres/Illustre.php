@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\DessinFiltres ;
 
+#[\AllowDynamicProperties]
 class Illustre extends \Pv\ZoneWeb\DessinFiltres\Html
 {
 	public static $StyleGlobalInclus = 0 ;

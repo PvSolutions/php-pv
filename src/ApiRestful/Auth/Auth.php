@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Auth ;
 
+#[\AllowDynamicProperties]
 class Auth
 {
 	public $MessageErreur ;

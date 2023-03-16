@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\ScriptMembership ;
 
+#[\AllowDynamicProperties]
 class Connexion extends \Pv\ZoneWeb\ScriptMembership\Connexion
 {
 	public $MessageRecouvreMP = '<br><p>Mot de passe oubli&eacute; ? <a href="${url}">Cliquez ici</a> pour le r&eacute;cup&eacute;rer</p>' ;
@@ -29,7 +30,8 @@ class Connexion extends \Pv\ZoneWeb\ScriptMembership\Connexion
 		if($this->AfficherBoutonSoumettre)
 		{
 			$ctn .= '<div class="card-footer" align="'.$this->AlignBtnSoumettre.'">'.PHP_EOL ;
-			$ctn .= '<input type="submit" value="'.$this->LibelleBoutonSoumettre.'" class="btn btn-lg btn-success'.(($this->ClsBstBoutonSoumettre) ? ' '.$this->ClsBstBoutonSoumettre : '').'" />'.PHP_EOL ;
+			$ctn .= '<button type="button" class="btn btn-lg btn-success'.(($this->ClsBstBoutonSoumettre) ? ' '.$this->ClsBstBoutonSoumettre : '').'" onclick="soumetFormulaire(this)">'.$this->LibelleBoutonSoumettre.'</button>'.PHP_EOL ;
+			$ctn .= '<input type="submit" value="Soumet" style="display:none" />'.PHP_EOL ;
 			$ctn .= '</div>'.PHP_EOL ;
 		}
 		$ctn .= '</div>'.PHP_EOL ;

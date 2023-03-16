@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Critere ;
 
+#[\AllowDynamicProperties]
 class FormatLogin extends \Pv\ZoneWeb\Critere\Critere
 {
 	public $FormatMessageErreur = 'Les champs ${ListeFiltres} doivent avoir un pseudo valide' ;

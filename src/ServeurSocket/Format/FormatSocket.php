@@ -2,6 +2,7 @@
 
 namespace Pv\ServeurSocket\Format ;
 
+#[\AllowDynamicProperties]
 class FormatSocket
 {
 	public function Encode($contenu)

@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\PChart ;
 
+#[\AllowDynamicProperties]
 class ActionImage extends \Pv\ZoneWeb\Action\EnvoiFichier
 {
 	public $TypeMime = "image/png" ;

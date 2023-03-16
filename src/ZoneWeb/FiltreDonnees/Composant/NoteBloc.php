@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class NoteBloc extends \Pv\ZoneWeb\FiltreDonnees\Composant\EditeurHtml
 {
 	public $CheminFichierJs = "js/noteBloc.js" ;

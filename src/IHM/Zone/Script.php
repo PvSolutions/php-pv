@@ -2,6 +2,7 @@
 
 namespace Pv\IHM\Zone ;
 
+#[\AllowDynamicProperties]
 class Script extends \Pv\Objet\Objet
 {
     /*
@@ -21,7 +22,8 @@ class Script extends \Pv\Objet\Objet
 	public $CheminMiniature = "" ;
 	public $Titre = "" ;
 	public $TitreDocument = "" ;
-	public $MessageIndisponible = "" ;
+	public $MessageIndisponibilite = "" ;
+	public $LiensIndisponibilite = "" ;
 	public $Privileges = array() ;
 	public $PrivilegesStricts = 0 ;
 	public $NecessiteMembreConnecte = 0 ;
@@ -68,7 +70,7 @@ class Script extends \Pv\Objet\Objet
 	public function EstDisponible()
 	{
 		$this->VerifieDisponibilite() ;
-		return $this->MessageIndisponible == '' ;
+		return $this->MessageIndisponibilite == '' ;
 	}
 	protected function VerifieDisponibilite()
 	{

@@ -2,6 +2,7 @@
 
 namespace Pv\DB\Native ;
 
+#[\AllowDynamicProperties]
 class Oracle extends \Pv\DB\Connection\Connection
 {
 /**

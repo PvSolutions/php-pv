@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Route ;
 
+#[\AllowDynamicProperties]
 class Element extends Editable
 {
 	public $MethodeHttp = "" ;

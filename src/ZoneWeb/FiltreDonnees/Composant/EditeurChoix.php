@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class EditeurChoix extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteChoix
 {
 	protected static $SourceIncluse = 0 ;

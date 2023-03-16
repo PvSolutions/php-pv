@@ -2,6 +2,7 @@
 
 namespace Pv\Common\ProcessManager ;
 
+#[\AllowDynamicProperties]
 class Linux extends ProcessManager
 {
 	function RunAsyncCommandString($cmd)

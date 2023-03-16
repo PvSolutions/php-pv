@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\ComposantRendu ;
 
+#[\AllowDynamicProperties]
 class PortionDonnees extends \Pv\ZoneWeb\ComposantRendu\ComposantDonneesSimple
 {
 	public $PrefixeEncUrl = "url_" ;
@@ -131,6 +132,7 @@ class PortionDonnees extends \Pv\ZoneWeb\ComposantRendu\ComposantDonneesSimple
 	}
 }
 
+#[\AllowDynamicProperties]
 class PortionDonnees extends \Pv\ZoneWeb\ComposantRendu\PortionDonnees
 {
 }

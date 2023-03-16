@@ -2,6 +2,7 @@
 
 namespace Pv\ApiRestful\Colonne ;
 
+#[\AllowDynamicProperties]
 class SrcValsSuppl
 {
 	public $LignesDonneesBrutes ;

@@ -2,6 +2,7 @@
 
 namespace Pv\Common\GD ;
 
+#[\AllowDynamicProperties]
 class Layer extends Image
 {
 	public static function & CreateLayer(& $Parent)

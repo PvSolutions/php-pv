@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees ;
 
+#[\AllowDynamicProperties]
 class DispositionTableau
 {
 	const FormulaireFiltres = 1 ;

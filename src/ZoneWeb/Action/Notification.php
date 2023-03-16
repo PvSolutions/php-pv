@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\Action ;
 
+#[\AllowDynamicProperties]
 class Notification extends \Pv\ZoneWeb\Action\Action
 {
 	protected $Message ;

@@ -2,6 +2,7 @@
 
 namespace Pv\InterfPaiement\CoinPayments ;
 
+#[\AllowDynamicProperties]
 class \Pv\InterfPaiement\CoinPayments\ResultConfirmIPN
 {
 	public $Methode = -1 ;

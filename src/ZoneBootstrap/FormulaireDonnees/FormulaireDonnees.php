@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneBootstrap\FormulaireDonnees ;
 
+#[\AllowDynamicProperties]
 class FormulaireDonnees extends \Pv\ZoneWeb\FormulaireDonnees\FormulaireDonnees
 {
 	public $UtiliserLargeur = 0 ;
@@ -67,5 +68,13 @@ class FormulaireDonnees extends \Pv\ZoneWeb\FormulaireDonnees\FormulaireDonnees
 	public function DessineCommandesScriptParent()
 	{
 		$this->DessinateurFiltresEdition = new \Pv\ZoneBootstrap\DessinCommandes\AppliqueScriptParent() ;
+	}
+	public function DessineFiltresZoneParent()
+	{
+		$this->DessinateurFiltresEdition = new \Pv\ZoneBootstrap\DessinFiltres\AppliqueZoneParent() ;
+	}
+	public function DessineCommandesZoneParent()
+	{
+		$this->DessinateurFiltresEdition = new \Pv\ZoneBootstrap\DessinCommandes\AppliqueZoneParent() ;
 	}
 }

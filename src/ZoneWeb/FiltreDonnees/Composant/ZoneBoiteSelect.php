@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\FiltreDonnees\Composant ;
 
+#[\AllowDynamicProperties]
 class ZoneBoiteSelect extends \Pv\ZoneWeb\FiltreDonnees\Composant\ZoneBoiteChoix
 {
 	public $TypeEditeur = "select_html" ;

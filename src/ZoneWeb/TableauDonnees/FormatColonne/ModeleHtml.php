@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\TableauDonnees\FormatColonne ;
 
+#[\AllowDynamicProperties]
 class ModeleHtml extends \Pv\ZoneWeb\TableauDonnees\FormatColonne\FormatColonne
 {
 	public $ModeleHtml = "" ;

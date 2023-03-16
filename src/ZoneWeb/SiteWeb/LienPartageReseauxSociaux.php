@@ -2,6 +2,7 @@
 
 namespace Pv\ZoneWeb\SiteWeb ;
 
+#[\AllowDynamicProperties]
 class LienPartageReseauxSociaux extends \Pv\ZoneWeb\ComposantRendu\ComposantRendu
 {
 	public $Url ;
