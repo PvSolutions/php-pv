@@ -1,0 +1,22 @@
+create table oneserv_transact_bmiwfs (
+	id int not null auto_increment,
+	id_transaction varchar(50) not null,
+	date_trans datetime not null default current_timestamp,
+	tokens varchar(500) not null,
+	url varchar(500) not null,
+	ctn_req_trans varchar(5000) not null,
+	ctn_rep_trans varchar(5000) not null,
+	code_http_trans tinyint(3) unsigned not null,
+	msg_erreur_trans varchar(500) not null default '',
+	total_appels_status tinyint(3) unsigned not null default 0,
+	date_debut_status datetime null default null,
+	date_fin_status datetime null default null,
+	ctn_req_status varchar(5000) not null default '',
+	ctn_rep_status varchar(5000) not null default '',
+	code_http_status tinyint(3) unsigned not null,
+	msg_erreur_status varchar(500) not null default '',
+	primary key(id),
+	key (id_transaction),
+	key (code_http_trans),
+    key (code_http_status) 
+) ;

@@ -17,12 +17,16 @@ CREATE TABLE IF NOT EXISTS `membership_member` (
   `contact` varchar(255) NULL,
   `enabled` tinyint(1) NOT NULL default 1,
   `profile_id` int(5) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY(login_member),
+  KEY(email),
+  KEY(profile_id)
 )  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+ALTER TABLE membership_member ADD INDEX full_name (first_name, last_name) ;
 
 INSERT INTO `membership_member` (`id`, `login_member`, `password_member`, `email`, `first_name`, `last_name`, `address`, `contact`, `enabled`, `profile_id`) VALUES
-(1, 'root', password('ADMIN'), 'root@localhost', 'Super', 'Administrateur', '', '', 1, 1),
-(2, 'guest', '*00A51F3F48415C7D4E8908980D443C29C69B60C9', 'guest@monsite.com', 'Invité', 'Utilisateur', '', '', 1, 2);
+(1, 'root', CONCAT('*', UPPER(SHA1(UNHEX(SHA1('ADMIN'))))), 'root@localhost', 'Super', 'Administrateur', '', '', 1, 1),
+(2, 'guest', CONCAT('*', UPPER(SHA1(UNHEX(SHA1(ROUND(RAND() * (9999999-1000000 + 1) + 1000000)))))), 'guest@monsite.com', 'Invité', 'Utilisateur', '', '', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -35,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `membership_profile` (
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NULL,
   `enabled` tinyint(1) NOT NULL default 1,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY(title)
 )  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 INSERT INTO `membership_profile` (`id`, `title`, `description`, `enabled`) VALUES
@@ -54,7 +59,9 @@ CREATE TABLE IF NOT EXISTS `membership_role` (
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY(name),
+  KEY(title)
 )  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 INSERT INTO `membership_role` (`id`, `name`, `title`, `description`, `enabled`) VALUES
@@ -74,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `membership_privilege` (
   `active` tinyint(1) NOT NULL default 0,
   PRIMARY KEY (`id`)
 )  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+ALTER TABLE membership_privilege ADD INDEX refs (profile_id, role_id) ;
 
 INSERT INTO `membership_privilege` (`id`, `profile_id`, `role_id`, `active`) VALUES
 (null, 1, 1, 1),
